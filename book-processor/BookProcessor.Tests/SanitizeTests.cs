@@ -20,10 +20,10 @@ namespace BookProcessor.Tests
         [InlineData("Hello, Hi!! Guardians of the Galaxy...", "Hello Hi Guardians of the Galaxy")]
         [InlineData("W!h@e#r$e i%s m^y u&m*b(r)e+l=l/a?", "Where is my umbrella")]
         [InlineData("W{h}e::r'e i\"s m/y u>m<b,r.e~`lla", "Where is my umbrella")]
-        public void Test1(string inVal, string exp)
+        public void CanRemoveSpecialCharacters(string inVal, string exp)
         {
             string res = bookProcessor.Sanitize(inVal);
-            Assert.True(res.Equals(exp), "Empty string returns Empty");
+            Assert.True(res.Equals(exp), "Sanitize Function will remove all special character from its input argument");
         }
     }
 }

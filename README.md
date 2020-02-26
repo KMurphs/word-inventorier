@@ -32,3 +32,9 @@ dotnet watch test
 dotnet test --filter Name~IsPrime
 dotnet watch test --filter Name~IsPrime
 ```
+
+
+## Potential Optimisations
+https://www.codeproject.com/Articles/345105/Memory-Stream-Multiplexer-write-and-read-from-many
+https://en.wikipedia.org/wiki/Heap_(data_structure)
+https://www.studytonight.com/data-structures/bubble-sort

@@ -1,10 +1,7 @@
 using System;
 using NUnit.Framework;
 using System.Collections.Generic;
-// using System.Web.Script.Serialization;
-// using Newtonsoft.Json;
-// using Newtonsoft.Json.Linq;
-// using Java.Util;
+using System.Text.RegularExpressions;
 
 namespace BookInventorier.NUnitTests
 {
@@ -21,12 +18,15 @@ namespace BookInventorier.NUnitTests
 
         [Test]
         [TestCaseSource(nameof(CanTransformSanitizedStringIntoDataStructure_DataSource))]
-        public void CanTransformSanitizedStringIntoDataStructure(string strInput, IDictionary<string, int> freqDict, IDictionary<int, LinkedList<string>> lengthsDict)
+        public void CanTransformSanitizedStringIntoDataStructure(string strInput, IDictionary<string, int> freqDict, IDictionary<int, LinkedList<string>> lengthsDict, string mostFreq, string longest )
         {         
 
             IDictionary<string, int> freqs;
             IDictionary<int, LinkedList<string>> lengths;
-            double durationMs = bookInventorier.Process(strInput, out freqs, out lengths);
+            InventoryItem mostFrequentToken;
+            InventoryItem longestToken;
+            int tokensCount;
+            double durationMs = bookInventorier.Process(strInput, out freqs, out lengths, out mostFrequentToken, out longestToken, out tokensCount);
 
             foreach(string key in freqs.Keys){
                 Console.WriteLine($"{key} -> {freqs[key]}");
@@ -34,6 +34,16 @@ namespace BookInventorier.NUnitTests
             foreach(int key in lengths.Keys){
                 Console.WriteLine($"{key} -> {string.Join( ", ", new List<string>(lengths[key]).ToArray() )}");//1.7s
             }
+
+
+            Assert.True(tokensCount == Regex.Matches(strInput, " ").Count + 1, "Returns correct meta data");
+            Assert.True(mostFrequentToken.key == mostFreq, "Returns correct meta data");
+            Assert.True(mostFrequentToken.length == mostFreq.Length, "Returns correct meta data");
+            Assert.True(mostFrequentToken.frequency == Regex.Matches(strInput, mostFreq).Count, "Returns correct meta data");
+            Assert.True(longestToken.key == longest, "Returns correct meta data");
+            Assert.True(longestToken.length == longest.Length, "Returns correct meta data");
+            Assert.True(longestToken.frequency == Regex.Matches(strInput, longest).Count, "Returns correct meta data");
+
 
 
 
@@ -58,8 +68,8 @@ namespace BookInventorier.NUnitTests
         static IEnumerable<object[]> CanTransformSanitizedStringIntoDataStructure_DataSource()
         {
             return new[] { 
-                new object[] {"test tmp test tmp test", new Dictionary<string, int>(){{"test", 3},{"tmp",2}}, new Dictionary<int, LinkedList<string>>(){{4,new LinkedList<string>(new List<string>(){"test"})},{3,new LinkedList<string>(new List<string>(){"tmp"})}}},
-                new object[] {"test tmp test tmp test tmp1 tmp1", new Dictionary<string, int>(){{"test", 3},{"tmp",2},{"tmp1",2}}, new Dictionary<int, LinkedList<string>>(){{4,new LinkedList<string>(new List<string>(){"test","tmp1"})},{3,new LinkedList<string>(new List<string>(){"tmp"})}}},
+                new object[] {"test tmp test tmp test", new Dictionary<string, int>(){{"test", 3},{"tmp",2}}, new Dictionary<int, LinkedList<string>>(){{4,new LinkedList<string>(new List<string>(){"test"})},{3,new LinkedList<string>(new List<string>(){"tmp"})}}, "test", "test"},
+                new object[] {"test tmp test tmp test tmp1 tmp1", new Dictionary<string, int>(){{"test", 3},{"tmp",2},{"tmp1",2}}, new Dictionary<int, LinkedList<string>>(){{4,new LinkedList<string>(new List<string>(){"test","tmp1"})},{3,new LinkedList<string>(new List<string>(){"tmp"})}}, "test", "test"},
             };
         }
 
@@ -112,6 +122,35 @@ namespace BookInventorier.NUnitTests
                 new object[] {new Dictionary<string, int>(){{"test1", 151},{"test2",152}}, new Dictionary<int, LinkedList<string>>(){{4,new LinkedList<string>(new List<string>(){"4568","1238","tnp"})},{3,new LinkedList<string>(new List<string>(){"456","123"})}}},
             };
         }
+
+
+
+
+
+
+        [Test]
+        [TestCaseSource(nameof(CanPerformQuery_DataSource))]
+        public void CanPerformQuery(IDictionary<string, int> freqDict, IDictionary<int, LinkedList<string>> lengthsDict)
+        {     
+
+            List<InventoryItem> res = bookInventorier.Query(freqDict, lengthsDict, 0, 50);
+            foreach(InventoryItem item in res){
+                Console.WriteLine(item.ToString());
+            }
+
+
+            Assert.True(false, "");
+            
+        }
+        static IEnumerable<object[]> CanPerformQuery_DataSource()
+        {
+            return new[] { 
+                new object[] {new Dictionary<string, int>(){{"testa", 152},{"testb",152}}, new Dictionary<int, LinkedList<string>>(){{4,new LinkedList<string>(new List<string>(){"testa","testb"})}}},
+                new object[] {new Dictionary<string, int>(){{"test1", 151},{"test2",152}}, new Dictionary<int, LinkedList<string>>(){{4,new LinkedList<string>(new List<string>(){"test1","test2"})}}},
+            };
+        }
+
+
 
     }
 }

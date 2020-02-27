@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "book-inventorier"
+		},
+		{
+			"path": "book-processor"
+		},
+		{
+			"path": "book-handler"
+		}
+	]
+}

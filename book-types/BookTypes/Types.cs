@@ -34,15 +34,22 @@ namespace BookTypes
 
     public interface IQueryResult{
 
-        int durationMs { get; }
+        double durationMs { get; }
         List<InventoryItem> data { get; }
     }
     public struct QueryResult : IQueryResult{
-        public QueryResult(int _durationMs, List<InventoryItem> _data){
+        public QueryResult(double _durationMs, List<InventoryItem> _data){
             this.durationMs = _durationMs;
             this.data = _data;
         }
-        public int durationMs { get; }
+        public QueryResult(double _durationMs, List<IInventoryItem> _data){
+            this.durationMs = _durationMs;
+            this.data = new List<InventoryItem>();
+            foreach(IInventoryItem item in _data){
+                this.data.Add((InventoryItem)item);
+            }
+        }
+        public double durationMs { get; }
         public List<InventoryItem> data { get; }
 
         public override string ToString() {

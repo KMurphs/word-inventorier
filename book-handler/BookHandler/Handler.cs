@@ -1,69 +1,19 @@
 ﻿using System;
 using System.Security.Cryptography;
 using BookProcessor;
+using BookTypes;
+using BookInventorier;
 
 
 
 namespace BookHandler
 {
-    interface IRecordUnit
-    {
-        string key { get; }
-        string frequency { get; }
-        string length { get; }
 
-    }
-    public struct RecordUnit: IRecordUnit{
-        public RecordUnit(string key, int frequency){
-            key = key;
-            frequency = frequency;
-            length = key.Length;
-        }
-        string key { get; }
-        string frequency { get; }
-        string length { get; }
-        
-        public override string ToString(Boolean addNewLine = false) => $"Record entry is for token '{key}' \t Occurs '{frequency}' times in corpus \t Token has {length}characters {(addNewLine?Environment.NewLine:"")}";
-    }
-    public struct BookSummary{
-        public BookSummary(string id, int wordsCount, int uniqueWordsCount, RecordUnit mostFrequentWord, RecordUnit longestWord, double summaryDurationSec, RecordUnit[] results)
-        {
-            id = id;
-            idType = id.IndexOf("http") == -1 ? "book-hash" : "book-url";
-            wordsCount  = wordsCount;
-            uniqueWordsCount  = uniqueWordsCount;
-            mostFrequentWord  = mostFrequentWord;
-            longestWord  = longestWord;
-            summaryDurationSec  = summaryDurationSec;
-            results = results;
-        }
 
-        public string id { get; }
-        public string idType { get; }
-        public int wordsCount { get; }
-        public int uniqueWordsCount { get; }
-        public RecordUnit mostFrequentWord { get; }
-        public RecordUnit longestWord { get; }
-        public double summaryDurationSec { get; }
-        public RecordUnit[] results {get; }
-        public override string ToString() {
-            string resAggregation = "";
-            foreach(RecordUnit res in results){
-                resAggregation = resAggregation + results.ToString(true);
-            }
-            return $@"
-                \nThe book has id: '{id}' (idType) with '{wordsCount}' entries and '{uniqueWordsCount}' different ones.
-                \nThe book was processed in '{summaryDurationSec}' seconds
-                \nMost Frequent Record: {mostFrequentWord.ToString()}
-                \nLongest Record: {longestWord.ToString()}
-                \nQueries Records: \n{resAggregation}
-            ";
-        } 
-    } 
     public class Handler
     {
         public async Task<BookSummary> Handle(string bookSrc, int topN_inFreq = 50, int topN_inFreqLongerthan_L = 50, int Length_L = 6){
-            BookSummary book;
+            BookSummary bookSummary;
             Processor bookProcessor = new Processor();
             Inventorier bookInventorier = new Inventorier();
             string sanitizedBook = "";
@@ -87,14 +37,15 @@ namespace BookHandler
             double durationMs = bookInventorier.Process(sanitizedBook, out freqs, out lengths, out bookLength, out mostFrequentToken, out longestToken);
 
 
-            // 
+            // Query Inventory against query parameters
+            List<IQueryResult> results = new List<IQueryResult>();
+            results.Add(QueryWrapper(freqs, lengths, 0, topN_inFreq));
+            results.Add(QueryWrapper(freqs, Length_L, 0, topN_inFreqLongerthan_L));
 
+            
 
-
-
-
-            RecordUnit[] results = new Array[RecordUnit]();
-            book = new BookSummary(
+            // Pack return object and leave
+            bookSummary = new BookSummary(
                 bookID,
                 bookLength,
                 freqs.Count,
@@ -103,9 +54,21 @@ namespace BookHandler
                 longestWord, 
                 results
             );
-            return book;
+            return bookSummary;
 
         }
+        public QueryResult QueryWrapper(IDictionary<string, int> tokenToFreqDict, IDictionary<int, LinkedList<string>> lenghtToTokenDict, int minLength, int topNCount)
+        {
+            List<IInventoryItem> results;
+            double durationMs = bookInventorier.Query(tokenToFreqDict, lenghtToTokenDict, minLength, topNCount, out results);
+            QueryResult res = new QueryResult(durationMs, results);
+
+            return res;
+        }
+
+
+
+
 
         public static byte[] GetHash(string inputString)
         {

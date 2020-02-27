@@ -1,21 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using BookTypes;
 
 namespace BookInventorier
 {
 
-    public struct InventoryItem{
-        public InventoryItem(string _key, int _frequency){
-            key = _key;
-            frequency = _frequency;
-            length = _key.Length;
-        }
-        public string key { get; }
-        public int frequency { get; }
-        public int length { get; }
-        public string ToString(Boolean addNewLine = false) => $"Record entry is for token '{key}' \t Occurs '{frequency}' times in corpus \t Token has {length}characters {(addNewLine?Environment.NewLine:"")}";
-    }
+
 
 
 
@@ -25,8 +16,8 @@ namespace BookInventorier
                 string sanitizedStr, 
                 out IDictionary<string, int> tokenToFreqDict,
                 out IDictionary<int, LinkedList<string>> lenghtToTokenDict,
-                out InventoryItem mostFrequentToken,
-                out InventoryItem longestToken,
+                out IInventoryItem mostFrequentToken,
+                out IInventoryItem longestToken,
                 out int tokensCount
         ){
             // Keep track of function of execution time
@@ -106,9 +97,12 @@ namespace BookInventorier
         }
 
 
-        public List<InventoryItem> Query(IDictionary<string, int> tokenToFreqDict, IDictionary<int, LinkedList<string>> lenghtToTokenDict, int minLength, int topNCount){
+        public double Query(IDictionary<string, int> tokenToFreqDict, IDictionary<int, LinkedList<string>> lenghtToTokenDict, int minLength, int topNCount, out List<IInventoryItem> results){
             
-            List<InventoryItem> res = new List<InventoryItem>();
+            // Keep track of function of execution time
+            var watch = System.Diagnostics.Stopwatch.StartNew();         
+
+            results = new List<IInventoryItem>();
 
 
             // At any given moment in the program the first k elemtsn are the most frequent we have encountered so far
@@ -137,77 +131,64 @@ namespace BookInventorier
                 var currentNode = lenghtToTokenDict[lengthKey].First;
                 while ((currentNode != null)){
                     curr_token = currentNode.Value;
-                    // Console.Write($"---->{currentNode.Value}\n");
+
 
                     
-
                 
                     // Now let's see if this element can bubble up from the shaky position
                     // in the top K pool (output array)
-                    sortedTokenKeys[topNCount] = curr_token; // alwasy start by this shaky position
-                    // Console.Write($"-->{string.Join(",", sortedTokenKeys)}\n");
+                    sortedTokenKeys[topNCount] = curr_token; // alwasy start at this shaky position
 
-                    // let's do the magic -- bubbling up elements since either a new one is sitting at the back, 
-                    // or the previous instance has just had its frequency increased
-                    // We only need to bubble from the position of the curr element towards the up direction
+
+                    // let's do the magic -- bubbling up elements 
                     int curr_token_index = topNCount + 1;
                     while (curr_token_index >= 2)
                     {
                         curr_token_index--;
+
+                        // Prepare variables of interest for the remaining of the loop
                         curr_token = sortedTokenKeys[curr_token_index];
                         prev_token = sortedTokenKeys[curr_token_index - 1];
                         curr_token = curr_token != "" && curr_token != default(string) ? curr_token : "";
                         prev_token = prev_token != "" && prev_token != default(string) ? prev_token : "";
                         curr_token_freq = tokenToFreqDict.ContainsKey(curr_token) ? tokenToFreqDict[curr_token] : 0;
                         prev_token_freq = tokenToFreqDict.ContainsKey(prev_token) ? tokenToFreqDict[prev_token] : 0;
-                        // Console.Write($"-->Curr: {curr_token} -- {curr_token_freq}\n");
-                        // Console.Write($"-->Prev: {prev_token} -- {prev_token_freq}\n");
-                        // Console.Write($"-->Compare: {curr_token_freq > prev_token_freq}\n");
+
 
                         //if curr element's freq is greater than its predecessor, swap
                         if (curr_token_freq > prev_token_freq)
                         {
-                            // Console.WriteLine($"Swapping {curr_token}({curr_token_freq}) and {prev_token}({prev_token_freq})");
                             sortedTokenKeys[curr_token_index] = prev_token;
                             sortedTokenKeys[curr_token_index - 1] = curr_token;
                         }
+                        //if freqs are equal, ensure that element are arranged alphabetically
                         else if (curr_token_freq == prev_token_freq && String.Compare(curr_token, prev_token) < 0)
                         {
-                            // Console.WriteLine($"Swapping {curr_token}({curr_token_freq}) and {prev_token}({prev_token_freq})");
                             sortedTokenKeys[curr_token_index] = prev_token;
                             sortedTokenKeys[curr_token_index - 1] = curr_token;
                         }
-                        // Console.Write($"-->{string.Join(",", sortedTokenKeys)}\n");
-
                     }
 
 
-                    // print top k elements 
-                    // Console.WriteLine($"top has {sortedTokenKeys.Length} elements");
-                    // for (int j = 0; j < topNCount && sortedTokenKeys[j] != ""; ++j){
-                    //     if(sortedTokenKeys[j] != null && tokenToFreqDict.ContainsKey(sortedTokenKeys[j])){
-                    //         Console.Write($"{sortedTokenKeys[j]}({tokenToFreqDict[sortedTokenKeys[j]]}) -  ");
-                    //     }
-                    // }
-                        
-
-
-                    // Console.Write(Environment.NewLine);
                     currentNode = currentNode.Next;
                 }
             }
 
+            // Pack Query Result
             for (int j = 0; j < topNCount && sortedTokenKeys[j] != ""; ++j){
                 if(sortedTokenKeys[j] != null && tokenToFreqDict.ContainsKey(sortedTokenKeys[j])){
-                    Console.Write($"{sortedTokenKeys[j]}({tokenToFreqDict[sortedTokenKeys[j]]}) -  ");
-                    res.Add(new InventoryItem(sortedTokenKeys[j], tokenToFreqDict[sortedTokenKeys[j]]));
+                    // Console.Write($"{sortedTokenKeys[j]}({tokenToFreqDict[sortedTokenKeys[j]]}) -  ");
+                    results.Add(new InventoryItem(sortedTokenKeys[j], tokenToFreqDict[sortedTokenKeys[j]]));
                 }
             }
+            // Return function execution time
+            watch.Stop();
+            double durationMs = watch.ElapsedMilliseconds;
+            // Console.WriteLine($"Query took: {durationMs}ms");//1.7s
 
-            Console.Write(Environment.NewLine);
 
 
-            return res;
+            return durationMs;
         }
 
         public Boolean Deserialize(

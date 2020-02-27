@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\book-inventorier\BookInventorier\BookInventorier.csproj" />
     <ProjectReference Include="..\..\book-processor\BookProcessor\BookProcessor.csproj" />
+    <ProjectReference Include="..\..\book-types\BookTypes\BookTypes.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

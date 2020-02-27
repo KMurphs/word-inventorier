@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "book-handler"
+		},
+		{
+			"path": "book-types"
 		}
 	]
 }

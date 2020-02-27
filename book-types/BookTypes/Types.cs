@@ -21,7 +21,7 @@ namespace BookTypes
         public string key { get; }
         public int frequency { get; }
         public int length { get; }
-        public string ToString(Boolean addNewLine = false) => $"Record entry is for token '{key}' \t Occurs '{frequency}' times in corpus \t Token has {length}characters {(addNewLine?Environment.NewLine:"")}";
+        public string ToString(Boolean addNewLine = false) => $"Record entry is for token '{key}' - Occurs '{frequency}' times in corpus - Token has '{length}' characters {(addNewLine?Environment.NewLine:"")}";
     }
 
 
@@ -33,32 +33,41 @@ namespace BookTypes
 
 
     public interface IQueryResult{
-
+        double minTokenLength { get; }
+        double topNCount { get; }
         double durationMs { get; }
         List<InventoryItem> data { get; }
     }
     public struct QueryResult : IQueryResult{
-        public QueryResult(double _durationMs, List<InventoryItem> _data){
+        public QueryResult(double _durationMs, List<InventoryItem> _data, int _minTokenLength, int _topNCount){
             this.durationMs = _durationMs;
+            this.minTokenLength = _minTokenLength;
+            this.topNCount = _topNCount;
             this.data = _data;
         }
-        public QueryResult(double _durationMs, List<IInventoryItem> _data){
+        public QueryResult(double _durationMs, List<IInventoryItem> _data, int _minTokenLength, int _topNCount){
             this.durationMs = _durationMs;
             this.data = new List<InventoryItem>();
+            this.minTokenLength = _minTokenLength;
+            this.topNCount = _topNCount;
             foreach(IInventoryItem item in _data){
                 this.data.Add((InventoryItem)item);
             }
         }
         public double durationMs { get; }
+        public double minTokenLength { get; }
+        public double topNCount { get; }
         public List<InventoryItem> data { get; }
 
         public override string ToString() {
-            string resAggregation = "";
+            string resAggregation = Environment.NewLine;
             foreach(InventoryItem res in this.data){
-                resAggregation = resAggregation + res.ToString(true);
+                resAggregation = resAggregation + "\t\t\t\t" + res.ToString(true);
             }
             return $@"
-                \n\nQueries Records ({this.durationMs})ms: \n{resAggregation}
+
+                Query Record ({this.durationMs}ms) for top '{this.topNCount}' tokens with length greater or equal to '{this.minTokenLength}': 
+{resAggregation}
             ";
         } 
     }
@@ -81,28 +90,41 @@ namespace BookTypes
             idType = _id.IndexOf("http") == -1 ? "book-hash" : "book-url";
             wordsCount  = _wordsCount;
             uniqueWordsCount  = _uniqueWordsCount;
-            mostFrequentWord  = _mostFrequentWord;
-            longestWord  = _longestWord;
+            mostFrequentWord  = new InventoryItem(_mostFrequentWord.key, _mostFrequentWord.frequency);
+            longestWord  = new InventoryItem(_longestWord.key, _longestWord.frequency);
             summaryDurationSec  = _summaryDurationSec;
-            results = _results;
+
+            this.results = new List<QueryResult>();
+            foreach(IQueryResult item in _results){
+                this.results.Add((QueryResult)item);
+            }
         }
 
         public string id { get; }
         public string idType { get; }
         public int wordsCount { get; }
         public int uniqueWordsCount { get; }
-        public IInventoryItem mostFrequentWord { get; }
-        public IInventoryItem longestWord { get; }
+        public InventoryItem mostFrequentWord { get; }
+        public InventoryItem longestWord { get; }
         public double summaryDurationSec { get; }
-        public List<IQueryResult> results {get; }
+        public List<QueryResult> results {get; }
 
         public override string ToString() {
+
+            string resAggregation = "";
+            foreach(QueryResult res in this.results){
+                resAggregation = resAggregation + res.ToString();
+            }
+
+        
             return $@"
-                \nThe book has id: '{id}' (idType) with '{wordsCount}' entries and '{uniqueWordsCount}' different ones.
-                \nThe book was processed in '{summaryDurationSec}' seconds
-                \nMost Frequent Record: {mostFrequentWord.ToString()}
-                \nLongest Record: {longestWord.ToString()}
-                \nQueries Records: \n{results.ToString()}
+            The book has id: '{id}' ({idType}) with '{wordsCount}' entries and '{uniqueWordsCount}' different ones.
+            The book was processed in '{summaryDurationSec}' seconds
+            Most Frequent Record: {mostFrequentWord.ToString()}
+            Longest Record: {longestWord.ToString()}
+
+            Queries Records: 
+                {resAggregation}
             ";
         } 
 

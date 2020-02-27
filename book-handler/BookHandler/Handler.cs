@@ -66,7 +66,7 @@ namespace BookHandler
         {
             List<IInventoryItem> results;
             double durationMs = bookInventorier.Query(tokenToFreqDict, lenghtToTokenDict, minLength, topNCount, out results);
-            QueryResult res = new QueryResult(durationMs, results);
+            QueryResult res = new QueryResult(durationMs, results, minLength, topNCount);
 
             return (IQueryResult)res;
         }

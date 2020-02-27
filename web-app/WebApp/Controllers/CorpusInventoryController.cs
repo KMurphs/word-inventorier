@@ -14,10 +14,7 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class CorpusInventoryController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+
 
         private readonly ILogger<CorpusInventoryController> _logger;
         private readonly CorpusInventoryModel corpusModel;
@@ -28,20 +25,40 @@ namespace WebApp.Controllers
             corpusModel = new CorpusInventoryModel();
         }
 
-
-        [HttpGet]
-        [Route("api/[controller]/test")]
-        public IEnumerable<BookSummary> GetOne()
+        // https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1
+        // https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-3.1&tabs=visual-studio
+        [HttpGet("{id}")]
+        public BookSummary GetOne(string id)
         {
-            return corpusModel.GetBooks();
+            return new BookSummary(corpusModel.GetBookByID(id));
         }
 
 
 
         [HttpGet]
-        public IEnumerable<BookSummary> Get()
+        public List<BookSummary> Get()
         {
-            return corpusModel.GetBooks();
+            List<BookSummary> res = new List<BookSummary>();
+            List<DBBookSummary> books = corpusModel.GetBooks();
+            foreach(DBBookSummary book in books){
+                res.Add(new BookSummary(book));
+            }
+            return res;
+        }
+
+
+        [HttpPost()]
+        public async Task<BookSummary> ProcessBook([FromBody] ApiQuery content)
+        {
+            Console.WriteLine(content);
+
+            DBBookSummary book = corpusModel.GetBookWithID(content.book);
+            if(book == null){
+                book = await corpusModel.ProcessNewBook(content.book);
+            }
+
+            List<IQueryResult> results = corpusModel.Query(content.queries, book.frequencyStructure, book.lengthsStructure);
+            return new BookSummary(book.id, book.meta, book.wordsCount, book.uniqueWordsCount, book.mostFrequentWord, book.longestWord, book.summaryDurationSec, results);
         }
     }
 }

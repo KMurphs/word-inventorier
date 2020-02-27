@@ -26,7 +26,7 @@ namespace BookHandler.Tests
             List<Query> queries = new List<Query>();
             queries.Add(new Query(5, 0, 100));
             queries.Add(new Query(5, 4, 100));
-            BookSummary res = await bookHandler.Handle(inputStr, queries);
+            BookSummaryAndStructures res = await bookHandler.Handle(inputStr);
             Console.WriteLine(res.ToString());
             
         // public string id { get; }
@@ -38,9 +38,9 @@ namespace BookHandler.Tests
         // public double summaryDurationSec { get; }
         // public List<QueryResult> results {get; }
 
-            Assert.True(res.id == bookId, "HTTP Get Request can be made, and the response is a book");
-            Assert.True(res.idType == bookType, "HTTP Get Request can be made, and the response is a book");
-            Assert.True(res.mostFrequentWord.key == mostFreq, "HTTP Get Request can be made, and the response is a book");
+            Assert.True(res.summary.id == bookId, "HTTP Get Request can be made, and the response is a book");
+            Assert.True(res.summary.idType == bookType, "HTTP Get Request can be made, and the response is a book");
+            Assert.True(res.summary.mostFrequentWord.key == mostFreq, "HTTP Get Request can be made, and the response is a book");
             // Assert.True(false, "HTTP Get Request can be made, and the response is a book");
 
             Assert.That(async () => {return 1;}, Is.EqualTo(1).After(100));

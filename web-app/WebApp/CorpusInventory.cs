@@ -1,15 +1,14 @@
 using System;
+using System.Collections.Generic;
+using BookTypes;
 
 namespace WebApp
 {
-    public class CorpusInventory
+    public struct ApiQuery
     {
-        public DateTime Date { get; set; }
+        public string book { get; set; }
 
-        public int TemperatureC { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-
-        public string Summary { get; set; }
+        public List<Query> queries { get; set; }
     }
+
 }

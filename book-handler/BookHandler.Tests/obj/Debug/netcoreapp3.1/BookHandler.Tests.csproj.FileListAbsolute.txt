@@ -100,3 +100,8 @@ C:\PersonalProjects\corpus-word-inventory\book-handler\BookHandler.Tests\bin\Deb
 C:\PersonalProjects\corpus-word-inventory\book-handler\BookHandler.Tests\obj\Debug\netcoreapp3.1\BookHandler.Tests.csproj.CopyComplete
 C:\PersonalProjects\corpus-word-inventory\book-handler\BookHandler.Tests\obj\Debug\netcoreapp3.1\BookHandler.Tests.dll
 C:\PersonalProjects\corpus-word-inventory\book-handler\BookHandler.Tests\obj\Debug\netcoreapp3.1\BookHandler.Tests.pdb
+C:\PersonalProjects\corpus-word-inventory\book-handler\BookHandler.Tests\bin\Debug\netcoreapp3.1\DnsClient.dll
+C:\PersonalProjects\corpus-word-inventory\book-handler\BookHandler.Tests\bin\Debug\netcoreapp3.1\MongoDB.Bson.dll
+C:\PersonalProjects\corpus-word-inventory\book-handler\BookHandler.Tests\bin\Debug\netcoreapp3.1\MongoDB.Driver.dll
+C:\PersonalProjects\corpus-word-inventory\book-handler\BookHandler.Tests\bin\Debug\netcoreapp3.1\MongoDB.Driver.Core.dll
+C:\PersonalProjects\corpus-word-inventory\book-handler\BookHandler.Tests\bin\Debug\netcoreapp3.1\SharpCompress.dll

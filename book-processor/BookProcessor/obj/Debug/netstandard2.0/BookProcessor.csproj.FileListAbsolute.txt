@@ -1,0 +1,8 @@
+C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\bin\Debug\netstandard2.0\BookProcessor.deps.json
+C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\bin\Debug\netstandard2.0\BookProcessor.dll
+C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\bin\Debug\netstandard2.0\BookProcessor.pdb
+C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\obj\Debug\netstandard2.0\BookProcessor.csprojAssemblyReference.cache
+C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\obj\Debug\netstandard2.0\BookProcessor.AssemblyInfoInputs.cache
+C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\obj\Debug\netstandard2.0\BookProcessor.AssemblyInfo.cs
+C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\obj\Debug\netstandard2.0\BookProcessor.dll
+C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\obj\Debug\netstandard2.0\BookProcessor.pdb

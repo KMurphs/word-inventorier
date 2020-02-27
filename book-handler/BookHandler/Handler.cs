@@ -17,7 +17,7 @@ namespace BookHandler
     {
         private Processor bookProcessor;
         private Inventorier bookInventorier;
-        public async Task<BookSummary> Handle(string bookSrc, int topN_inFreq = 50, int topN_inFreqLongerthan_L = 50, int Length_L = 6){
+        public async Task<BookSummary> Handle(string bookSrc, List<Query> queries){
             BookSummary bookSummary;
             this.bookProcessor = new Processor();
             this.bookInventorier = new Inventorier();
@@ -44,8 +44,10 @@ namespace BookHandler
 
             // Query Inventory against query parameters
             List<IQueryResult> results = new List<IQueryResult>();
-            results.Add(QueryWrapper(freqs, lengths, 0, topN_inFreq));
-            results.Add(QueryWrapper(freqs, lengths, Length_L, topN_inFreqLongerthan_L));
+            
+            foreach(Query query in queries){
+                results.Add(QueryWrapper(freqs, lengths, query.minLength, query.maxLength, query.topN));
+            }
 
             
 
@@ -62,11 +64,11 @@ namespace BookHandler
             return bookSummary;
 
         }
-        public IQueryResult QueryWrapper(IDictionary<string, int> tokenToFreqDict, IDictionary<int, LinkedList<string>> lenghtToTokenDict, int minLength, int topNCount)
+        public IQueryResult QueryWrapper(IDictionary<string, int> tokenToFreqDict, IDictionary<int, LinkedList<string>> lenghtToTokenDict, int minLength, int maxLength, int topNCount)
         {
             List<IInventoryItem> results;
-            double durationMs = bookInventorier.Query(tokenToFreqDict, lenghtToTokenDict, minLength, topNCount, out results);
-            QueryResult res = new QueryResult(durationMs, results, minLength, topNCount);
+            double durationMs = bookInventorier.Query(tokenToFreqDict, lenghtToTokenDict, minLength, maxLength, topNCount, out results);
+            QueryResult res = new QueryResult(durationMs, results, minLength, maxLength, topNCount);
 
             return (IQueryResult)res;
         }

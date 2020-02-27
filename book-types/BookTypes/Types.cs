@@ -4,6 +4,19 @@ using System.Collections.Generic;
 namespace BookTypes
 {
 
+    public struct Query{
+
+        public Query(int _topN, int _minLength, int _maxLength){
+            this.topN = _topN;
+            this.minLength = _minLength;
+            this.maxLength = _maxLength;
+        }
+        public int topN { get; }
+        public int minLength { get; }
+        public int maxLength { get; }
+
+    }  
+
 
     public interface IInventoryItem{
 
@@ -34,21 +47,24 @@ namespace BookTypes
 
     public interface IQueryResult{
         double minTokenLength { get; }
+        double maxTokenLength { get; }
         double topNCount { get; }
         double durationMs { get; }
         List<InventoryItem> data { get; }
     }
     public struct QueryResult : IQueryResult{
-        public QueryResult(double _durationMs, List<InventoryItem> _data, int _minTokenLength, int _topNCount){
+        public QueryResult(double _durationMs, List<InventoryItem> _data, int _minTokenLength, int _maxTokenLength, int _topNCount){
             this.durationMs = _durationMs;
             this.minTokenLength = _minTokenLength;
+            this.maxTokenLength = _maxTokenLength;
             this.topNCount = _topNCount;
             this.data = _data;
         }
-        public QueryResult(double _durationMs, List<IInventoryItem> _data, int _minTokenLength, int _topNCount){
+        public QueryResult(double _durationMs, List<IInventoryItem> _data, int _minTokenLength, int _maxTokenLength, int _topNCount){
             this.durationMs = _durationMs;
             this.data = new List<InventoryItem>();
             this.minTokenLength = _minTokenLength;
+            this.maxTokenLength = _maxTokenLength;
             this.topNCount = _topNCount;
             foreach(IInventoryItem item in _data){
                 this.data.Add((InventoryItem)item);
@@ -56,6 +72,7 @@ namespace BookTypes
         }
         public double durationMs { get; }
         public double minTokenLength { get; }
+        public double maxTokenLength { get; }
         public double topNCount { get; }
         public List<InventoryItem> data { get; }
 
@@ -66,7 +83,7 @@ namespace BookTypes
             }
             return $@"
 
-                Query Record ({this.durationMs}ms) for top '{this.topNCount}' tokens with length greater or equal to '{this.minTokenLength}': 
+                Query Record ({this.durationMs}ms) for top '{this.topNCount}' tokens with length between '{this.minTokenLength}' and '{this.maxTokenLength}': 
 {resAggregation}
             ";
         } 

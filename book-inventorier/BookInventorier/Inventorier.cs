@@ -97,7 +97,9 @@ namespace BookInventorier
         }
 
 
-        public double Query(IDictionary<string, int> tokenToFreqDict, IDictionary<int, LinkedList<string>> lenghtToTokenDict, int minLength, int topNCount, out List<IInventoryItem> results){
+
+
+        public double Query(IDictionary<string, int> tokenToFreqDict, IDictionary<int, LinkedList<string>> lenghtToTokenDict, int minLength, int maxLength, int topNCount, out List<IInventoryItem> results){
             
             // Keep track of function of execution time
             var watch = System.Diagnostics.Stopwatch.StartNew();         
@@ -124,7 +126,7 @@ namespace BookInventorier
 
 
             foreach(int lengthKey in lenghtToTokenDict.Keys){
-                if(lengthKey < minLength){
+                if(lengthKey < minLength || lengthKey > maxLength){
                     continue;
                 }
 

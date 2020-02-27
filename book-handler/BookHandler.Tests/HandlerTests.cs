@@ -23,7 +23,10 @@ namespace BookHandler.Tests
         {
 
             // bookHandler.Handle(inputStr, topN_inFreq = 50, topN_inFreqLongerthan_L = 50, Length_L = 6);
-            BookSummary res = await bookHandler.Handle(inputStr, 5, 5, 4);
+            List<Query> queries = new List<Query>();
+            queries.Add(new Query(5, 0, 100));
+            queries.Add(new Query(5, 4, 100));
+            BookSummary res = await bookHandler.Handle(inputStr, queries);
             Console.WriteLine(res.ToString());
             
         // public string id { get; }

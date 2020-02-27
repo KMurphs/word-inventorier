@@ -138,7 +138,7 @@ namespace BookInventorier.NUnitTests
         {     
             List<IInventoryItem> results;
 
-            double durationMs = bookInventorier.Query(freqDict, lengthsDict, 3, 50, out results);
+            double durationMs = bookInventorier.Query(freqDict, lengthsDict, 3, 10, 50, out results);
             Console.WriteLine($"Query took: {durationMs}ms");//1.7s
             foreach(InventoryItem item in results){
                 Console.WriteLine(item.ToString());

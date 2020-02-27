@@ -24,6 +24,8 @@
     ".NETCoreApp,Version=v3.1": {
       "WebApp/1.0.0": {
         "dependencies": {
+          "BookHandler": "1.0.0",
+          "BookTypes": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -303,6 +305,58 @@
         },
         "compile": {
           "WebApp.dll": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.22727"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "BookHandler/1.0.0": {
+        "dependencies": {
+          "BookInventorier": "1.0.0",
+          "BookProcessor": "1.0.0",
+          "BookTypes": "1.0.0"
+        },
+        "runtime": {
+          "BookHandler.dll": {}
+        },
+        "compile": {
+          "BookHandler.dll": {}
+        }
+      },
+      "BookInventorier/1.0.0": {
+        "dependencies": {
+          "BookTypes": "1.0.0",
+          "Newtonsoft.Json": "12.0.1"
+        },
+        "runtime": {
+          "BookInventorier.dll": {}
+        },
+        "compile": {
+          "BookInventorier.dll": {}
+        }
+      },
+      "BookProcessor/1.0.0": {
+        "runtime": {
+          "BookProcessor.dll": {}
+        },
+        "compile": {
+          "BookProcessor.dll": {}
+        }
+      },
+      "BookTypes/1.0.0": {
+        "runtime": {
+          "BookTypes.dll": {}
+        },
+        "compile": {
+          "BookTypes.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -1947,6 +2001,33 @@
   },
   "libraries": {
     "WebApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pBR3wCgYWZGiaZDYP+HHYnalVnPJlpP1q55qvVb+adrDHmFMDc1NAKio61xTwftK3Pw5h7TZJPJEEVMd6ty8rg==",
+      "path": "newtonsoft.json/12.0.1",
+      "hashPath": "newtonsoft.json.12.0.1.nupkg.sha512"
+    },
+    "BookHandler/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BookInventorier/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BookProcessor/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BookTypes/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

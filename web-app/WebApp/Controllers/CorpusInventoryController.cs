@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WebApp.Models;
+using BookTypes;
+
 
 namespace WebApp.Controllers
 {
@@ -17,23 +20,28 @@ namespace WebApp.Controllers
         };
 
         private readonly ILogger<CorpusInventoryController> _logger;
+        private readonly CorpusInventoryModel corpusModel;
 
         public CorpusInventoryController(ILogger<CorpusInventoryController> logger)
         {
             _logger = logger;
+            corpusModel = new CorpusInventoryModel();
         }
 
+
         [HttpGet]
-        public IEnumerable<CorpusInventory> Get()
+        [Route("api/[controller]/test")]
+        public IEnumerable<BookSummary> GetOne()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new CorpusInventory
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return corpusModel.GetBooks();
+        }
+
+
+
+        [HttpGet]
+        public IEnumerable<BookSummary> Get()
+        {
+            return corpusModel.GetBooks();
         }
     }
 }

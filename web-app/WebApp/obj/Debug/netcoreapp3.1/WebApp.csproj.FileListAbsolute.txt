@@ -16,3 +16,13 @@ C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\obj\Debug\netcoreapp3.1
 C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\obj\Debug\netcoreapp3.1\staticwebassets\WebApp.StaticWebAssets.xml
 C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\obj\Debug\netcoreapp3.1\WebApp.dll
 C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\obj\Debug\netcoreapp3.1\WebApp.pdb
+C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\bin\Debug\netcoreapp3.1\BookHandler.dll
+C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\bin\Debug\netcoreapp3.1\BookInventorier.dll
+C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\bin\Debug\netcoreapp3.1\BookProcessor.dll
+C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\bin\Debug\netcoreapp3.1\BookTypes.dll
+C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\bin\Debug\netcoreapp3.1\BookHandler.pdb
+C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\bin\Debug\netcoreapp3.1\BookInventorier.pdb
+C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\bin\Debug\netcoreapp3.1\BookProcessor.pdb
+C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\bin\Debug\netcoreapp3.1\BookTypes.pdb
+C:\PersonalProjects\corpus-word-inventory\web-app\WebApp\obj\Debug\netcoreapp3.1\WebApp.csproj.CopyComplete

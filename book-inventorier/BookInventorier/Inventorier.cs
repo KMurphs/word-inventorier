@@ -40,9 +40,7 @@ namespace BookInventorier
                     if(!lenghtToTokenDict.ContainsKey(tokenLength)){
 
                         // a dictionary of lengths tying to a linked list of keys
-                        LinkedList<string> l = new LinkedList<string>();
-                        l.AddFirst(curr);
-                        lenghtToTokenDict.Add(tokenLength, l );
+                        lenghtToTokenDict.Add(tokenLength, new LinkedList<string>(new List<string>(){curr}));
                     }else{
 
                         // the key is appended to previous keys with the same lengths

@@ -1,0 +1,7 @@
+C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\bin\Release\netstandard2.0\BookTypes.deps.json
+C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\bin\Release\netstandard2.0\BookTypes.dll
+C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\bin\Release\netstandard2.0\BookTypes.pdb
+C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Release\netstandard2.0\BookTypes.AssemblyInfoInputs.cache
+C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Release\netstandard2.0\BookTypes.AssemblyInfo.cs
+C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Release\netstandard2.0\BookTypes.dll
+C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Release\netstandard2.0\BookTypes.pdb

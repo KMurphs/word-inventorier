@@ -5,3 +5,4 @@ C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\obj\Relea
 C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\obj\Release\netstandard2.0\BookProcessor.AssemblyInfo.cs
 C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\obj\Release\netstandard2.0\BookProcessor.dll
 C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\obj\Release\netstandard2.0\BookProcessor.pdb
+C:\PersonalProjects\corpus-word-inventory\book-processor\BookProcessor\obj\Release\netstandard2.0\BookProcessor.csprojAssemblyReference.cache

@@ -10,7 +10,7 @@ if '%arg1%'=='build' (
 
 :Copy
 echo Copying Files Over
-robocopy build ..\web-app\WebApp\wwwroot
+robocopy build ..\web-app\WebApp\wwwroot /MIR
 
 
 cd ..\web-app\WebApp
@@ -27,8 +27,14 @@ docker push registry.heroku.com/corpus-inventory/web
 heroku container:release web --app corpus-inventory
 heroku apps:open -a corpus-inventory
 
-
+REM https://devhints.io/heroku
 REM While Testing
-docker build -t corpus-inventory C:\\PersonalProjects\\corpus-word-inventory\\web-app\\WebApp\\bin\\Release\\netcoreapp3.1\\publish
+docker build -t corpus-inventory C:\\PersonalProjects\\corpus-word-inventory\\web-app\\WebApp\\bin\\Release\\netcoreapp3.1\\publish --force-rm
+docker tag corpus-inventory registry.heroku.com/corpus-inventory/web
 docker push registry.heroku.com/corpus-inventory/web
+heroku container:release web --app corpus-inventory
 heroku apps:open -a corpus-inventory
+
+
+heroku ps -a corpus-inventory
+heroku ps:exec -a corpus-inventory

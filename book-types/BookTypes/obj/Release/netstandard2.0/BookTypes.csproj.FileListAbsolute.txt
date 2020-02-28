@@ -5,3 +5,4 @@ C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Release\netst
 C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Release\netstandard2.0\BookTypes.AssemblyInfo.cs
 C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Release\netstandard2.0\BookTypes.dll
 C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Release\netstandard2.0\BookTypes.pdb
+C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Release\netstandard2.0\BookTypes.csprojAssemblyReference.cache

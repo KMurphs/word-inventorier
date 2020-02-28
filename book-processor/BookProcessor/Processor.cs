@@ -12,7 +12,7 @@ namespace BookProcessor
         public string Sanitize(string inStr){
             Regex r = new Regex("[^a-z0-9- ]", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
             string sanitizedStr = r.Replace(inStr, "");
-            return sanitizedStr;
+            return sanitizedStr.ToLower();
         }
         public async Task<string> FetchCorpus(string url, Boolean sanitizeBook = true)
         {

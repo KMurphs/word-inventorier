@@ -20,11 +20,15 @@ namespace BookHandler
         public string getVersion(){
             return "1.0";
         }
+
+        public Handler(){
+            this.bookProcessor = new Processor();
+            this.bookInventorier = new Inventorier();
+        }
         // public async Task<BookSummary> Handle(string bookSrc, List<Query> queries){
         public async Task<BookSummaryAndStructures> Handle(string bookSrc){
             
-            this.bookProcessor = new Processor();
-            this.bookInventorier = new Inventorier();
+
             string sanitizedBook = "";
             string bookID = GetHashString(bookSrc);
             string bookMeta = "";

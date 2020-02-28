@@ -17,12 +17,15 @@ namespace WebApp.Controllers
 
 
         private readonly ILogger<CorpusInventoryController> _logger;
-        private readonly CorpusInventoryModel corpusModel;
+
+        // private static readonly CorpusInventoryModel;
 
         public CorpusInventoryController(ILogger<CorpusInventoryController> logger)
         {
             _logger = logger;
-            corpusModel = new CorpusInventoryModel();
+            // corpusModel = new CorpusInventoryModel();
+            Console.WriteLine($"Corpus Model is Initialized: {CorpusInventoryModel.isInitialized}");
+            CorpusInventoryModel.initCorpusInventoryModel();
         }
 
         // https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-3.1
@@ -30,7 +33,7 @@ namespace WebApp.Controllers
         [HttpGet("{id}")]
         public BookSummary GetOne(string id)
         {
-            return new BookSummary(corpusModel.GetBookByID(id));
+            return new BookSummary(CorpusInventoryModel.GetBookByID(id));
         }
 
 
@@ -40,7 +43,7 @@ namespace WebApp.Controllers
         {
             // https://stackoverflow.com/questions/9478613/how-to-deserialize-a-bsondocument-object-back-to-class/9479341
             List<BookSummary> res = new List<BookSummary>();
-            List<DBBookSummary> books = corpusModel.GetBooks();
+            List<DBBookSummary> books = CorpusInventoryModel.GetBooks();
             foreach(DBBookSummary book in books){
                 res.Add(new BookSummary(book));
             }
@@ -54,12 +57,12 @@ namespace WebApp.Controllers
             Console.WriteLine(content);
 
             DBBookSummary book = null;
-            //book = corpusModel.GetBookWithID(content.book);
+            book = CorpusInventoryModel.GetBookWithID(content.book);
             if(book == null){
-                book = await corpusModel.ProcessNewBook(content.book);
+                book = await CorpusInventoryModel.ProcessNewBook(content.book);
             }
 
-            List<IQueryResult> results = corpusModel.Query(content.queries, book.frequencyStructure, book.lengthsStructure);
+            List<IQueryResult> results = CorpusInventoryModel.Query(content.queries, book.frequencyStructure, book.lengthsStructure);
             return new BookSummary(book.id, book.meta, book.wordsCount, book.uniqueWordsCount, book.mostFrequentWord, book.longestWord, book.summaryDurationSec, results);
         }
     }

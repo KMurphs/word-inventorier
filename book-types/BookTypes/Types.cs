@@ -191,6 +191,7 @@ namespace BookTypes
     public class DBBookSummary
     {
         public DBBookSummary(BookSummaryAndStructures bookAndStruct){
+            _id = ObjectId.GenerateNewId();
             id = bookAndStruct.summary.id;
             meta = bookAndStruct.summary.meta;
             idType = bookAndStruct.summary.idType;
@@ -204,6 +205,7 @@ namespace BookTypes
             longestWord = bookAndStruct.summary.longestWord;
         }
         public DBBookSummary(BsonDocument book){
+            _id = ObjectId.GenerateNewId();
             id = book["id"].AsString;
             meta = book["meta"].AsString;
             idType = book["idType"].AsString;
@@ -218,7 +220,7 @@ namespace BookTypes
         }
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string ObjectId { get; set;}
+        public ObjectId _id{ get; set;}
         public string id { get; set;}
         public string meta { get; set;}
         public string idType { get; set; }

@@ -8,8 +8,10 @@ using BookHandler;
 using BookTypes;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 namespace WebApp.Models
 {
     
@@ -22,7 +24,7 @@ namespace WebApp.Models
         private string dbSummaryCollectionName = "corpus-summaries";
         private MongoClient dbClient;
         private IMongoDatabase dbCorpus;
-        private IMongoCollection<DBBookSummary> dbCollection;
+        private IMongoCollection<BsonDocument> dbCollection;
 
         public CorpusInventoryModel()
         {
@@ -42,7 +44,7 @@ namespace WebApp.Models
 
 
             dbCorpus = dbClient.GetDatabase(dbName);
-            dbCollection = dbCorpus.GetCollection<DBBookSummary>(dbSummaryCollectionName);
+            dbCollection = dbCorpus.GetCollection<BsonDocument>(dbSummaryCollectionName);
 
             var dbList = dbClient.ListDatabases().ToList();
             Console.WriteLine("The list of databases on this server is: ");
@@ -54,8 +56,14 @@ namespace WebApp.Models
 
         public List<DBBookSummary> GetBooks(){
 
-            // return dbCollection.Find(_ => true).ToListAsync();
-            return dbCollection.Find(_ => true).ToList();
+            var books = dbCollection.Find(new BsonDocument()).ToList();
+
+            List<DBBookSummary> res = new List<DBBookSummary>();
+            foreach(BsonDocument book in books){
+                res.Add(new DBBookSummary(book));
+            }
+
+            return res;
         }
     
     
@@ -65,21 +73,20 @@ namespace WebApp.Models
         }
         public DBBookSummary GetBookByID(string bookId){
 
-            // var dbFilter = Builders<BsonDocument>.Filter.Eq("id", bookId);
-            // var dbDocument = dbCollection.Find(dbFilter).FirstOrDefault();
-            var dbDocuments = dbCollection.Find(x => x.id == bookId).ToList();
-            // Console.WriteLine(dbDocument.ToString());
-            // DBBookSummary docs = (DBBookSummary)dbDocuments[0];
-
-            return dbDocuments.Count > 0 ? (DBBookSummary)dbDocuments[0] : null;
+            var dbFilter = Builders<BsonDocument>.Filter.Eq("id", bookId);
+            var book = dbCollection.Find(dbFilter).FirstOrDefault();
+            return new DBBookSummary(book);;
         }
         public async Task<DBBookSummary> ProcessNewBook(string inBook){
 
             BookSummaryAndStructures bookSummaryAndStructures = await bookHandler.Handle(inBook);
 
             DBBookSummary insertData = new DBBookSummary(bookSummaryAndStructures);
+            var _insertData = insertData.ToBsonDocument();
+            // var _insertData = JsonConvert.SerializeObject<DBBookSummary>(insertData);
 
-            await dbCollection.InsertOneAsync(insertData);
+            dbCollection.InsertOneAsync(_insertData);
+            // await dbCollection.InsertOneAsync(insertData);
 
             return insertData;
         }

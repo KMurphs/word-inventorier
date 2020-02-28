@@ -25,9 +25,9 @@ namespace BookTypes
 
     public interface IInventoryItem{
 
-        string key { get; }
-        int frequency { get; }
-        int length { get; }
+        string key { get; set; }
+        int frequency { get; set; }
+        int length { get; set; }
 
     }
     public struct InventoryItem : IInventoryItem{
@@ -36,16 +36,25 @@ namespace BookTypes
             frequency = _frequency;
             length = _key.Length;
         }
-        public string key { get; }
-        public int frequency { get; }
-        public int length { get; }
+        public InventoryItem(BsonDocument item){
+            key = item["key"].AsString;
+            frequency = item["frequency"].AsInt32;
+            length = item["length"].AsInt32;
+        }
+        public string key { get; set; }
+        public int frequency { get; set; }
+        public int length { get; set; }
         public string ToString(Boolean addNewLine = false) => $"Record entry is for token '{key}' - Occurs '{frequency}' times in corpus - Token has '{length}' characters {(addNewLine?Environment.NewLine:"")}";
     }
 
 
 
 
-
+    public struct _InventoryItem : IInventoryItem{
+        public string key { get; set; }
+        public int frequency { get; set; }
+        public int length { get; set; }
+    }
 
 
 
@@ -193,6 +202,19 @@ namespace BookTypes
             frequencyStructure = bookAndStruct.frequencyStructure;
             mostFrequentWord = bookAndStruct.summary.mostFrequentWord;
             longestWord = bookAndStruct.summary.longestWord;
+        }
+        public DBBookSummary(BsonDocument book){
+            id = book["id"].AsString;
+            meta = book["meta"].AsString;
+            idType = book["idType"].AsString;
+            wordsCount = book["wordsCount"].AsInt32;
+            uniqueWordsCount = book["uniqueWordsCount"].AsInt32;
+            summaryDurationSec = book["summaryDurationSec"].AsDouble;
+            createdAt = book["createdAt"].AsDouble;
+            lengthsStructure = book["lengthsStructure"].AsString;
+            frequencyStructure = book["frequencyStructure"].AsString;
+            mostFrequentWord = new InventoryItem(book["mostFrequentWord"].ToBsonDocument());
+            longestWord = new InventoryItem(book["longestWord"].ToBsonDocument());
         }
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

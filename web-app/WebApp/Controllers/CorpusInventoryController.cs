@@ -38,6 +38,7 @@ namespace WebApp.Controllers
         [HttpGet]
         public List<BookSummary> Get()
         {
+            // https://stackoverflow.com/questions/9478613/how-to-deserialize-a-bsondocument-object-back-to-class/9479341
             List<BookSummary> res = new List<BookSummary>();
             List<DBBookSummary> books = corpusModel.GetBooks();
             foreach(DBBookSummary book in books){
@@ -52,7 +53,8 @@ namespace WebApp.Controllers
         {
             Console.WriteLine(content);
 
-            DBBookSummary book = corpusModel.GetBookWithID(content.book);
+            DBBookSummary book = null;
+            //book = corpusModel.GetBookWithID(content.book);
             if(book == null){
                 book = await corpusModel.ProcessNewBook(content.book);
             }

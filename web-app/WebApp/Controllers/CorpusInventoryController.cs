@@ -53,8 +53,11 @@ namespace WebApp.Controllers
 
         [HttpPost()]
         public async Task<BookSummary> ProcessBook([FromBody] ApiQuery content)
+        // public async Task<Object> ProcessBook([FromBody] Object content)
         {
-            Console.WriteLine(content);
+            Console.WriteLine($"Received Query: {content}");
+            Console.WriteLine($"Received Query: {content.book}");
+            Console.WriteLine($"Received Query: {content.queries}");
 
             DBBookSummary book = null;
             book = CorpusInventoryModel.GetBookWithID(content.book);
@@ -64,6 +67,7 @@ namespace WebApp.Controllers
 
             List<IQueryResult> results = CorpusInventoryModel.Query(content.queries, book.frequencyStructure, book.lengthsStructure);
             return new BookSummary(book.id, book.meta, book.wordsCount, book.uniqueWordsCount, book.mostFrequentWord, book.longestWord, book.summaryDurationSec, results);
+            // return content;
         }
     }
 }

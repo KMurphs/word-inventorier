@@ -193,6 +193,8 @@ namespace BookInventorier
             return durationMs;
         }
 
+
+
         public Boolean Deserialize(
             string inStrFreqs, 
             string inStrLengths,

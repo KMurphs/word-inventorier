@@ -38,6 +38,22 @@ namespace WebApp
                 app.UseDeveloperExceptionPage();
             }
 
+
+            // Add no cors for localhost react
+            app.Use(async (context, nextMiddleware) =>
+            {
+                context.Response.OnStarting(() =>
+                {
+                    // Allow reacts tests while in development
+                    // context.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:3000");
+                    context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                    return Task.FromResult(0);
+                });
+                await nextMiddleware();
+            });
+
+
+
             // app.UseHttpsRedirection();
             app.UseDefaultFiles();
             app.UseStaticFiles();

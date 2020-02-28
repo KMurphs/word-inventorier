@@ -102,8 +102,9 @@ namespace BookInventorier.NUnitTests
             bookInventorier.Deserialize(strFreqs, strLengths, out freqs, out lengths);
 
 
+
             foreach(string key in freqDict.Keys){
-                Assert.True(freqs[key] == freqDict[key], "Returns correct frequencies after serialization and deserialization");
+                Assert.True(freqs[key] == freqDict[key], "Returns correct frequencies after serialization and deserialization...");
             }
             foreach(int key in lengthsDict.Keys){
                 Assert.True(lengths[key].Count == lengthsDict[key].Count, "Returns correct number of bucket element for a count of key lengths");

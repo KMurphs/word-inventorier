@@ -2,7 +2,7 @@
   text-align: center;
   width: 100vw;
   max-width: 700px;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0,0,0,0.4);
   height: 100vh;
   margin: 0 auto;
   display: flex;
@@ -10,7 +10,7 @@
   align-items: stretch;
   justify-content: flex-start;
   padding: 1rem;
-
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 
@@ -74,17 +74,17 @@
   cursor: pointer;
 }
 .book-selector textarea{
-  padding: .5rem;
+  padding: 1rem;
   font-family: Arial, Helvetica, sans-serif;
   overflow-y: auto;
 }
 
 .book-selector .view-result{
   color: white;
-  background-color: var(--main-color);
+  background-color: var(--secondary-color);
 }
 .book-selector .view-result:hover{
-  background-color: var(--main-color-dark);
+  background-color: var(--secondary-color-dark);
 }
 
 
@@ -95,16 +95,16 @@
 }
 
 .app-container .queries-area .add-query{
-  background-color: rgba(0,0,0,0.7);
+  background-color: #ffffff;
   height: 50px;
-  color: #beb7b7;
+  color: var(--main-color);
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   font-size: 2.5rem;
   cursor: pointer;
-  opacity: .4;
+  /* opacity: .4; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .app-container .queries-area .add-query:hover{
@@ -121,3 +121,35 @@
 }
 
 
+.app-container .progressbar{
+  height: 3px;
+  width: 0%;
+  background-color: var(--main-color-light);
+}
+.app-container .progressbar.progressbar--running  {
+  animation-name: progress;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes progress {
+  from {width: 0%;}
+  to {width: 100%;}
+}
+
+
+
+
+.feedback p {
+  color: white;
+  font-size: .8rem;
+  margin-top: .5rem;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+
+
+.modal-container--bg-white .page-component{
+  background-color: white;
+}

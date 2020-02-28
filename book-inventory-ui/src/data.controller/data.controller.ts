@@ -31,6 +31,7 @@ export default class DataController {
       this.urlBase = this.urlBaseProduction;
     }
     this.urlBase = this.urlBaseDevelopment;
+    this.urlBase = this.urlBaseProduction;
     // this.setUiData = setUiData
 
     // const _this = this

@@ -40,7 +40,7 @@ const QueryEditor: React.FC<TProps> = ({data, onChange}) => {
                 </div>
 
                 <div className="query-item">
-                  <div className={"supporting-text"}>Enter minimum length of tokens of interest</div>
+                  <div className={"supporting-text"}>Enter maximum length of tokens of interest</div>
                   <CustomInputNumberUndefined value={localData.maxLength} handleChange={(val)=>setLocalData(val, TUIQueryItemEnum.MAX)} />
                 </div>
 

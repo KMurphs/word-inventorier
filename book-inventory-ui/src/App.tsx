@@ -7,6 +7,8 @@ import { CustomInputNumberUndefined } from './components/CustomInput/CustomInput
 import Page from './components/Pages/Page';
 import QueryEditor from './components/QueryEditor/QueryEditor';
 import DataController from './data.controller/data.controller';
+import QueryViewer from './components/QueryViewer/QueryViewer';
+import SummaryViewer from './components/SummaryViewer/SummaryViewer';
 
 
 
@@ -18,9 +20,13 @@ function App() {
 
   const [isModalActive, setIsModalActive] = useState<boolean>(false)
   const [isEditingQuery, setIsEditingQuery] = useState<boolean>(false)
+  const [isViewingResult, setIsViewingResult] = useState<boolean>(false)
+  const [isViewingSummary, setIsViewingSummary] = useState<boolean>(false)
+  const [isFetching, setIsFetching] = useState<boolean>(false)
   const [indexOfQueryOnModal, setIndexOfQueryOnModal] = useState<number>(-1)
   const [hasResults, setHasResults] = useState<boolean>(false)
   const [textToProcess, setTextToProcess] = useState<string>("")
+  const [feedback, setFeedback] = useState<string>("")
   const [queries, setQueries] = useState<TUIQueryItem[]>([])
   const [queriesResults, setQueriesResults] = useState<TBookSummary|null>()
 
@@ -30,12 +36,12 @@ function App() {
     setIsModalActive(true)
   }
   const handleQueryView = (queryIndex: number)=>{
-    setIsEditingQuery(true)
+    setIsViewingResult(true)
     setIndexOfQueryOnModal(queryIndex)
     setIsModalActive(true)
   }
   const handleResultSummaryView = () =>{
-    setIsEditingQuery(true)
+    setIsViewingSummary(true)
     // setIndexOfQueryOnModal(queryIndex)
     setIsModalActive(true)
   }
@@ -45,14 +51,45 @@ function App() {
   const resetUi = ()=>{
     setQueries([]);
     setIsEditingQuery(false)
+    setIsViewingResult(false)
+    setIsViewingSummary(false)
     setIndexOfQueryOnModal(-1)
     setIsModalActive(false)
     setTextToProcess("")
   }
+  const handleModalClose = ()=>{
+    
+    setIsModalActive(false)
+
+    setTimeout(()=>{
+      setIsEditingQuery(false)
+      setIsViewingResult(false)
+      setIsViewingSummary(false)
+      setIndexOfQueryOnModal(-1)
+    }, 300)
+    
+  }
   const handleBookProcessing = async ()=>{
+    
+    setTimeout(()=>{
+      setIsFetching(true)
+      setHasResults(false)
+      setFeedback("Processing Text. This will take a minute... or two...")
+    }, 0)
+    
     const res = await dc.current?.processBook({book: textToProcess, queries: queries}, ()=>{})
     setQueriesResults(res)
-    setHasResults(true)
+    
+
+    setTimeout(()=>{
+      setIsFetching(false)
+      setHasResults(true)
+      setFeedback("Text was successfully processed... ")
+    }, 0)
+
+    setTimeout(()=>{
+      setFeedback("")
+    }, 3000)
   }
   console.warn("[App]: Query Results: ", queriesResults)
   return (
@@ -68,8 +105,14 @@ function App() {
           <textarea onChange={(evt)=>setTextToProcess(evt.target.value)}
                     placeholder="Enter the text to be processed, or its url..."
                     defaultValue={textToProcess}
+                    value={textToProcess}
           >
           </textarea>
+          <div className={`progressbar ${isFetching ? 'progressbar--running' : ''}`}></div>
+
+          <div className="feedback">
+            {feedback && (<p>{feedback}</p>)}
+          </div>
         </section>
 
 
@@ -104,9 +147,9 @@ function App() {
 
 
 
-        <section className="modal-container">
-          <Modal isActive={isModalActive} onDeactivate={()=>setIsModalActive(false)}>
-            <Page onClose={()=>setIsModalActive(false)}>
+        <section className={`modal-container ${isViewingResult || isViewingSummary ? 'modal-container--bg-white' : ''}`}>
+          <Modal isActive={isModalActive} onDeactivate={()=>handleModalClose()} >
+            <Page onClose={()=>handleModalClose()}>
               {
                 isEditingQuery && (
                   <QueryEditor  data={queries[indexOfQueryOnModal]} 
@@ -122,6 +165,17 @@ function App() {
                                 })
                               })}
                   />
+                )
+              }
+              {
+                isViewingResult && queriesResults && (
+                  <QueryViewer data={queriesResults?.results[indexOfQueryOnModal]} onClose={()=>{}}/>
+                )
+              }
+
+              {
+                isViewingSummary && queriesResults && (
+                  <SummaryViewer data={queriesResults} onClose={()=>{}}/>
                 )
               }
             </Page>

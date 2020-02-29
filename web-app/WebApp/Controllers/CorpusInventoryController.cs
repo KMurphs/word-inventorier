@@ -66,7 +66,7 @@ namespace WebApp.Controllers
             }
 
             List<IQueryResult> results = CorpusInventoryModel.Query(content.queries, book.frequencyStructure, book.lengthsStructure);
-            return new BookSummary(book.id, book.meta, book.wordsCount, book.uniqueWordsCount, book.mostFrequentWord, book.longestWord, book.summaryDurationSec, results);
+            return new BookSummary(book.id, book.meta, book.wordsCount, book.uniqueWordsCount, book.mostFrequentWord, book.longestWord, book.leastFrequentWord, book.shortestWord, book.summaryDurationSec, results);
             // return content;
         }
     }

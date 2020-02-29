@@ -19,13 +19,13 @@ dotnet publish -c Release
 
 REM Docker must be up
 REM Dockerfile must be in publish directory
-heroku container:login
-heroku apps:create corpus-inventory
-docker build -t corpus-inventory C:\\PersonalProjects\\corpus-word-inventory\\web-app\\WebApp\\bin\\Release\\netcoreapp3.1\\publish
-docker tag corpus-inventory registry.heroku.com/corpus-inventory/web
-docker push registry.heroku.com/corpus-inventory/web
-heroku container:release web --app corpus-inventory
-heroku apps:open -a corpus-inventory
+REM heroku container:login
+REM heroku apps:create corpus-inventory
+REM docker build -t corpus-inventory C:\\PersonalProjects\\corpus-word-inventory\\web-app\\WebApp\\bin\\Release\\netcoreapp3.1\\publish
+REM docker tag corpus-inventory registry.heroku.com/corpus-inventory/web
+REM docker push registry.heroku.com/corpus-inventory/web
+REM heroku container:release web --app corpus-inventory
+REM heroku apps:open -a corpus-inventory
 
 REM https://devhints.io/heroku
 REM While Testing

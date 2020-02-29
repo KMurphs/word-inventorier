@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\PersonalProjects\\corpus-word-inventory\\book-processor\\BookProcessor\\BookProcessor.csproj": {
-                "projectPath": "C:\\PersonalProjects\\corpus-word-inventory\\book-processor\\BookProcessor\\BookProcessor.csproj"
+              "C:\\PersonalProjects\\corpus-word-inventory\\book-types\\BookTypes\\BookTypes.csproj": {
+                "projectPath": "C:\\PersonalProjects\\corpus-word-inventory\\book-types\\BookTypes\\BookTypes.csproj"
               }
             }
           }
@@ -47,19 +47,15 @@
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[16.2.0, )"
+              "version": "[16.4.0, )"
             },
-            "coverlet.collector": {
+            "NUnit3TestAdapter": {
               "target": "Package",
-              "version": "[1.0.1, )"
+              "version": "[3.15.1, )"
             },
-            "xunit": {
+            "nunit": {
               "target": "Package",
-              "version": "[2.4.0, )"
-            },
-            "xunit.runner.visualstudio": {
-              "target": "Package",
-              "version": "[2.4.0, )"
+              "version": "[3.12.0, )"
             }
           },
           "imports": [
@@ -81,14 +77,14 @@
         }
       }
     },
-    "C:\\PersonalProjects\\corpus-word-inventory\\book-processor\\BookProcessor\\BookProcessor.csproj": {
+    "C:\\PersonalProjects\\corpus-word-inventory\\book-types\\BookTypes\\BookTypes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\PersonalProjects\\corpus-word-inventory\\book-processor\\BookProcessor\\BookProcessor.csproj",
-        "projectName": "BookProcessor",
-        "projectPath": "C:\\PersonalProjects\\corpus-word-inventory\\book-processor\\BookProcessor\\BookProcessor.csproj",
+        "projectUniqueName": "C:\\PersonalProjects\\corpus-word-inventory\\book-types\\BookTypes\\BookTypes.csproj",
+        "projectName": "BookTypes",
+        "projectPath": "C:\\PersonalProjects\\corpus-word-inventory\\book-types\\BookTypes\\BookTypes.csproj",
         "packagesPath": "C:\\Users\\stephane.kibonge.PARSEC\\.nuget\\packages\\",
-        "outputPath": "C:\\PersonalProjects\\corpus-word-inventory\\book-processor\\BookProcessor\\obj\\",
+        "outputPath": "C:\\PersonalProjects\\corpus-word-inventory\\book-types\\BookTypes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -118,6 +114,14 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
+            "MongoDB.Bson": {
+              "target": "Package",
+              "version": "[2.9.3, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.9.3, )"
+            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",

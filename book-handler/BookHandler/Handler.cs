@@ -39,7 +39,7 @@ namespace BookHandler
                 bookMeta = bookSrc;
             }else{
                 sanitizedBook = bookProcessor.Sanitize(bookSrc);
-                bookMeta = bookSrc.Substring(0, 10);
+                bookMeta = bookSrc.Substring(0, bookSrc.Length < 50 ? bookSrc.Length : 50);
             }
 
             // Perform inventory on book
@@ -47,8 +47,10 @@ namespace BookHandler
             IDictionary<int, LinkedList<string>> lengths;
             IInventoryItem mostFrequentToken;
             IInventoryItem longestToken;
+            IInventoryItem leastFrequentToken;
+            IInventoryItem shortestToken;
             int bookLength = 0;
-            double durationMs = bookInventorier.Process(sanitizedBook, out freqs, out lengths, out mostFrequentToken, out longestToken, out bookLength);
+            double durationMs = bookInventorier.Process(sanitizedBook, out freqs, out lengths, out mostFrequentToken, out longestToken, out leastFrequentToken, out shortestToken, out bookLength);
 
             // Serialize data structure for db
             string strFreqs;
@@ -75,6 +77,8 @@ namespace BookHandler
                 freqs.Count,
                 mostFrequentToken, 
                 longestToken, 
+                leastFrequentToken, 
+                shortestToken, 
                 durationMs/1000, 
                 new List<IQueryResult>()
                 //results

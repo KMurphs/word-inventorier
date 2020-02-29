@@ -3,7 +3,6 @@ import './App.css';
 import { TUIQueryItem, TBookSummary } from './data.controller/data.types';
 import Query from './components/Query/Query';
 import Modal from './components/Modal/Modal';
-import { CustomInputNumberUndefined } from './components/CustomInput/CustomInput';
 import Page from './components/Pages/Page';
 import QueryEditor from './components/QueryEditor/QueryEditor';
 import DataController from './data.controller/data.controller';
@@ -56,6 +55,9 @@ function App() {
     setIndexOfQueryOnModal(-1)
     setIsModalActive(false)
     setTextToProcess("")
+    setIsFetching(false)
+    setHasResults(false)
+    setFeedback("")
   }
   const handleModalClose = ()=>{
     
@@ -91,6 +93,11 @@ function App() {
       setFeedback("")
     }, 3000)
   }
+  const handleCopy = (evt: any, text: string)=>{
+    evt.preventDefault();
+    console.log('[App]: \n', text);
+    navigator.clipboard.writeText(text);
+  }
   console.warn("[App]: Query Results: ", queriesResults)
   return (
     <main className="App">
@@ -104,7 +111,7 @@ function App() {
 
           <textarea onChange={(evt)=>setTextToProcess(evt.target.value)}
                     placeholder="Enter the text to be processed, or its url..."
-                    defaultValue={textToProcess}
+                    // defaultValue={textToProcess}
                     value={textToProcess}
           >
           </textarea>
@@ -169,13 +176,13 @@ function App() {
               }
               {
                 isViewingResult && queriesResults && (
-                  <QueryViewer data={queriesResults?.results[indexOfQueryOnModal]} onClose={()=>{}}/>
+                  <QueryViewer data={queriesResults?.results[indexOfQueryOnModal]} onCopy={(evt, text)=>handleCopy(evt, text)}/>
                 )
               }
 
               {
                 isViewingSummary && queriesResults && (
-                  <SummaryViewer data={queriesResults} onClose={()=>{}}/>
+                  <SummaryViewer data={queriesResults} onCopy={(evt, text)=>handleCopy(evt, text)}/>
                 )
               }
             </Page>

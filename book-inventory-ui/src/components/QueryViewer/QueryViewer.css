@@ -84,3 +84,30 @@
 .query-viewer .query-meta p.data-item{
   font-size: .8rem;
 }
+
+
+
+.query-copy{
+  position: absolute;
+  /* right: .7rem; */
+  left: 9rem;
+  /* right: calc(50% - 1.2rem); */
+  font-size: 1rem;
+  color: var(--secondary-color-dark);
+  top: 3rem;
+  top: 2.3rem;
+}
+.query-copy span{
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.1);
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  align-items: center;
+}
+.query-copy span:hover{
+  background-color: rgba(0,0,0,0.2);
+  /* color: var(--secondary-color); */
+}

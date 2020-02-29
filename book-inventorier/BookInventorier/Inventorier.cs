@@ -13,13 +13,17 @@ namespace BookInventorier
     public class Inventorier
     {
         public double Process(
-                string sanitizedStr, 
+                string _sanitizedStr, 
                 out IDictionary<string, int> tokenToFreqDict,
                 out IDictionary<int, LinkedList<string>> lenghtToTokenDict,
                 out IInventoryItem mostFrequentToken,
                 out IInventoryItem longestToken,
+                out IInventoryItem leastFrequentToken,
+                out IInventoryItem shortestToken,
                 out int tokensCount
         ){
+            string sanitizedStr = _sanitizedStr == null ? "" : _sanitizedStr;
+
             // Keep track of function of execution time
             var watch = System.Diagnostics.Stopwatch.StartNew();
             
@@ -31,10 +35,14 @@ namespace BookInventorier
             tokensCount = tokens.Length;
 
             // Some Meta Data about current book/corpus
-            int maxFreq = 0;
+            int maxFreq = Int32.MinValue;
             string maxFreqKey = "";
-            int maxLen = 0;
+            int maxLen = Int32.MinValue;
             string maxLenKey = "";
+            int minFreq = Int32.MaxValue;
+            string minFreqKey = "";
+            int minLen = Int32.MaxValue;
+            string minLenKey = "";
 
             //Traverse tokens list in O(N)
             for(int i = 0; i < tokens.Length; i++){
@@ -62,6 +70,11 @@ namespace BookInventorier
                             maxLen = tokenLength;
                             maxLenKey = curr;
                         }
+                        // Collect Meta Data: tracking the shortest token
+                        if(minLen > tokenLength){
+                            minLen = tokenLength;
+                            minLenKey = curr;
+                        }
 
                     }else{
 
@@ -80,6 +93,11 @@ namespace BookInventorier
                         maxFreq = currFreq;
                         maxFreqKey = curr;
                     }
+                    // Collect Meta Data: tracking the least frequent token
+                    if(minFreq > currFreq){
+                        minFreq = currFreq;
+                        minFreqKey = curr;
+                    }
 
                 }
             }
@@ -90,11 +108,41 @@ namespace BookInventorier
             Console.WriteLine($"Inventory took: {durationMs}ms");//1.7s
 
             // Pack Meta Data
-            mostFrequentToken = new InventoryItem(maxFreqKey, maxFreq);
-            longestToken = new InventoryItem(maxLenKey, tokenToFreqDict[maxLenKey]);
+            if(sanitizedStr == ""){
+                tokensCount = 0;
+                mostFrequentToken = new InventoryItem("", 0);
+                leastFrequentToken = new InventoryItem("", 0);
+                longestToken = new InventoryItem("", 0);
+                shortestToken = new InventoryItem("", 0);
+            }else{
+                mostFrequentToken = new InventoryItem(maxFreqKey == "" ? minLenKey : maxFreqKey, maxFreqKey == "" ? 1 : maxFreq);
+                leastFrequentToken = new InventoryItem(minFreqKey == "" ? minLenKey : minFreqKey, minFreqKey == "" ? 1 : minFreq);
+                longestToken = new InventoryItem(maxLenKey, tokenToFreqDict[maxLenKey]);
+                shortestToken = new InventoryItem(minLenKey, tokenToFreqDict[minLenKey]);
+            }
 
             return durationMs;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

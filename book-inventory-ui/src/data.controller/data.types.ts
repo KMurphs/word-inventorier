@@ -6,7 +6,9 @@ export type TBookSummary = {
   wordsCount: number,
   uniqueWordsCount: number,
   mostFrequentWord: TTokenSummary,
+  leastFrequentWord: TTokenSummary,
   longestWord: TTokenSummary,
+  shortestWord: TTokenSummary,
   summaryDurationSec: number,
   createdAt: number,
   _createdAt: string,
@@ -64,7 +66,9 @@ const typeConverter: TTypeConverter = {
       _createdAt: bookObj["createdAt"] ? timestampToLocaleString(bookObj["createdAt"]) : "Invalid Date",
 
       mostFrequentWord: this.toTokenSummary(bookObj["mostFrequentWord"]),
+      leastFrequentWord: this.toTokenSummary(bookObj["leastFrequentWord"]),
       longestWord: this.toTokenSummary(bookObj["longestWord"]),
+      shortestWord: this.toTokenSummary(bookObj["shortestWord"]),
       
       results: bookObj["results"] ? bookObj["results"].map((res: any) => this.toQuerySummary(res)) : []
     }

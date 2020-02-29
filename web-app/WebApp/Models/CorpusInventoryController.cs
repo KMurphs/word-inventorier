@@ -38,7 +38,7 @@ namespace WebApp.Models
             
             isInitialized = true;
 
-            connection_string = "mongodb+srv://kmurphs:Murphy321!@butane-detector-cyvjy.mongodb.net/test?retryWrites=true&w=majority";       
+            // connection_string = "mongodb+srv://kmurphs:Murphy321!@butane-detector-cyvjy.mongodb.net/test?retryWrites=true&w=majority";       
             dbClient = new MongoClient(connection_string);
             // var dbList = dbClient.ListDatabases().ToList();
             // MongoClient client = new MongoClient();

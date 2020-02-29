@@ -120,7 +120,7 @@ namespace BookTypes
 
 
     public struct BookSummary{
-        public BookSummary(string _id, string _meta, int _wordsCount, int _uniqueWordsCount, IInventoryItem _mostFrequentWord, IInventoryItem _longestWord, double _summaryDurationSec, List<IQueryResult> _results)
+        public BookSummary(string _id, string _meta, int _wordsCount, int _uniqueWordsCount, IInventoryItem _mostFrequentWord, IInventoryItem _longestWord, IInventoryItem _leastFrequentWord, IInventoryItem _shortestWord, double _summaryDurationSec, List<IQueryResult> _results)
         {
             id = _id;
             meta = _meta;
@@ -129,7 +129,9 @@ namespace BookTypes
             createdAt  = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
             uniqueWordsCount  = _uniqueWordsCount;
             mostFrequentWord  = new InventoryItem(_mostFrequentWord.key, _mostFrequentWord.frequency);
+            leastFrequentWord  = new InventoryItem(_leastFrequentWord.key, _leastFrequentWord.frequency);
             longestWord  = new InventoryItem(_longestWord.key, _longestWord.frequency);
+            shortestWord  = new InventoryItem(_shortestWord.key, _shortestWord.frequency);
             summaryDurationSec  = _summaryDurationSec;
 
             this.results = new List<QueryResult>();
@@ -146,7 +148,9 @@ namespace BookTypes
             createdAt  = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
             uniqueWordsCount  = dbObj.uniqueWordsCount;
             mostFrequentWord  = new InventoryItem(dbObj.mostFrequentWord.key, dbObj.mostFrequentWord.frequency);
+            leastFrequentWord  = new InventoryItem(dbObj.leastFrequentWord.key, dbObj.leastFrequentWord.frequency);
             longestWord  = new InventoryItem(dbObj.longestWord.key, dbObj.longestWord.frequency);
+            shortestWord  = new InventoryItem(dbObj.shortestWord.key, dbObj.shortestWord.frequency);
             summaryDurationSec  = dbObj.summaryDurationSec;
 
             this.results = new List<QueryResult>();
@@ -157,7 +161,9 @@ namespace BookTypes
         public int wordsCount { get; }
         public int uniqueWordsCount { get; }
         public InventoryItem mostFrequentWord { get; }
+        public InventoryItem leastFrequentWord { get; }
         public InventoryItem longestWord { get; }
+        public InventoryItem shortestWord { get; }
         public double summaryDurationSec { get; }
         public double createdAt { get; }
         public List<QueryResult> results {get; set;}
@@ -202,7 +208,9 @@ namespace BookTypes
             lengthsStructure = bookAndStruct.lengthsStructure;
             frequencyStructure = bookAndStruct.frequencyStructure;
             mostFrequentWord = bookAndStruct.summary.mostFrequentWord;
+            leastFrequentWord = bookAndStruct.summary.leastFrequentWord;
             longestWord = bookAndStruct.summary.longestWord;
+            shortestWord = bookAndStruct.summary.shortestWord;
         }
         public DBBookSummary(BsonDocument book){
             _id = ObjectId.GenerateNewId();
@@ -216,7 +224,9 @@ namespace BookTypes
             lengthsStructure = book["lengthsStructure"].AsString;
             frequencyStructure = book["frequencyStructure"].AsString;
             mostFrequentWord = new InventoryItem(book["mostFrequentWord"].ToBsonDocument());
+            leastFrequentWord = new InventoryItem(book["leastFrequentWord"].ToBsonDocument());
             longestWord = new InventoryItem(book["longestWord"].ToBsonDocument());
+            shortestWord = new InventoryItem(book["shortestWord"].ToBsonDocument());
         }
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -227,7 +237,9 @@ namespace BookTypes
         public int wordsCount { get; set; }
         public int uniqueWordsCount { get; set; }
         public InventoryItem mostFrequentWord { get; set; }
+        public InventoryItem leastFrequentWord { get; set; }
         public InventoryItem longestWord { get; set; }
+        public InventoryItem shortestWord { get; set; }
         public double summaryDurationSec { get; set; }
         public double createdAt { get; set; }
         public string frequencyStructure { get; set;}

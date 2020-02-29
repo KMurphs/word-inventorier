@@ -20,7 +20,7 @@ Created at: ${data._createdAt}
 
 Book Contains '${data.wordsCount}' words in total of which '${data.uniqueWordsCount}' are unique
 Most Frequent word is '${data.mostFrequentWord.key}' with frequency '${data.mostFrequentWord.frequency}' and length '${data.mostFrequentWord.length}'
-Least Frequent word is '${data.leastFrequentWord.key}' with frequency '${data.leastFrequentWord.frequency}' and length '${data.leastFrequentWord.length}'
+Least Repeated word is '${data.leastFrequentWord.key}' which is repeated '${data.leastFrequentWord.frequency}' times with a length '${data.leastFrequentWord.length}'
 Longest word is '${data.longestWord.key}' with frequency '${data.longestWord.frequency}' and length '${data.longestWord.length}'
 Shortest word is '${data.shortestWord.key}' with frequency '${data.shortestWord.frequency}' and length '${data.shortestWord.length}'
 `;
@@ -65,7 +65,7 @@ Shortest word is '${data.shortestWord.key}' with frequency '${data.shortestWord.
         </div>
         
         <div className="data-container">
-          <h3>{`Least Frequent word is '${data.leastFrequentWord.key}' with frequency '${data.leastFrequentWord.frequency}' and length '${data.leastFrequentWord.length}'`}</h3>
+          <h3>{`Least Repeated word is '${data.leastFrequentWord.key}' which is repeated '${data.leastFrequentWord.frequency}' times with a length of '${data.leastFrequentWord.length}'`}</h3>
           <p>Token</p>
           <p>Frequency</p>
           <p>Length</p>

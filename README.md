@@ -12,3 +12,6 @@ Access the application live at:
 [https://corpus-inventory.herokuapp.com/](https://corpus-inventory.herokuapp.com/)
 ```
 
+## Front End
+The front end is a typical React project. A generic react readme file is included in ``book-inventory-ui``.
+Once the react project is built, the ``push-ui-to-backend.bat`` script can be used to push the app to heroku

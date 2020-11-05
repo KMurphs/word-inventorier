@@ -1,5 +1,7 @@
 @echo off
 
+@REM Usage push-ui-to-backend.bat
+@REM Usage push-ui-to-backend.bat build
 set arg1=%1
 if '%arg1%'=='build' (
   echo Build Ui Project
@@ -8,15 +10,19 @@ if '%arg1%'=='build' (
   goto :Copy
 )
 
+@REM Copy ui build files to webapp public folder
 :Copy
 echo Copying Files Over
 robocopy build ..\web-app\WebApp\wwwroot /MIR
 
 
+@REM Build and pblish web app project
 cd ..\web-app\WebApp
 dotnet build -c Release
 dotnet publish -c Release
 
+
+@REM Push Applciation in docker container, then push container to heroku
 REM Docker must be up
 REM Dockerfile must be in publish directory
 REM heroku container:login

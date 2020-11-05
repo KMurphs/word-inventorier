@@ -9,9 +9,26 @@ namespace BookInventorier
 
 
 
-
+    /// <summary>
+    /// Heart of the application. The class will process some text to return a dictionary of word frequencies and word lengths that summarize the text.
+    /// The class also has the ability to serialize and deserialize these data structure so they can be stored (in a database) and retrieved later.
+    /// It also provide method to query these structures and obtain top "N" most frequent words with lengths that are between some minimum and maximum. 
+    /// </summary>
     public class Inventorier
     {
+
+        /// <summary>
+        /// Method to process the sanitized input string, and extract word frequencies and lengths information in dictionary data structures
+        /// </summary>
+        /// <param name="_sanitizedStr">Input string to be processed</param>
+        /// <param name="tokenToFreqDict">Output Dictionary summarizing word frequency information of the input text</param>
+        /// <param name="lenghtToTokenDict">Output Dictionary summarizing word lengths information of the input text</param>
+        /// <param name="mostFrequentToken">Output string indicating the most frequent word in the input text</param>
+        /// <param name="longestToken">Output string indicating the longest word in the input text</param>
+        /// <param name="leastFrequentToken">Output string indicating the least frequent word in the input text</param>
+        /// <param name="shortestToken">Output string indicating the shortest word in the input text</param>
+        /// <param name="tokensCount">Output number indicating how many different words are in the input text</param>
+        /// <returns>Float number indicating in ms how long the process took</returns>
         public double Process(
                 string _sanitizedStr, 
                 out IDictionary<string, int> tokenToFreqDict,
@@ -146,7 +163,16 @@ namespace BookInventorier
 
 
 
-
+        /// <summary>
+        /// Method allowing querying of the summarizing data structures for top "N" most frequent words with lengths that are between some minimum and maximum.  
+        /// </summary>
+        /// <param name="tokenToFreqDict">Input Dictionary summarizing word frequency information of the input text</param>
+        /// <param name="lenghtToTokenDict">Input Dictionary summarizing word lengths information of the input text</param>
+        /// <param name="minLength">String that determine the minimum length of words of interest</param>
+        /// <param name="maxLength">String that determine the maximum length of words of interest</param>
+        /// <param name="topNCount">Number that determine how many of top most frequent word with acceptable length to return</param>
+        /// <param name="results">Output object containing the result of the query</param>
+        /// <returns>Float number indicating in ms how long the process took</returns>
         public double Query(IDictionary<string, int> tokenToFreqDict, IDictionary<int, LinkedList<string>> lenghtToTokenDict, int minLength, int maxLength, int topNCount, out List<IInventoryItem> results){
             
             // Keep track of function of execution time
@@ -243,6 +269,14 @@ namespace BookInventorier
 
 
 
+        /// <summary>
+        /// Utilitiy to deserialize the data structure summarizing the processed text.
+        /// </summary>
+        /// <param name="inStrFreqs">Input string representing the serialized "freqs" data structure summarizing word frequency information of the input text</param>
+        /// <param name="inStrLengths">Input string representing the serialized "lengths" data structure summarizing word lengths information of the input text</param>
+        /// <param name="freqs">Output Dictionary summarizing word frequencies information of the input text</param>
+        /// <param name="lengths">Output Dictionary summarizing word lengths information of the input text</param>
+        /// <returns>Boolean True on error. False if everything went okay </returns>
         public Boolean Deserialize(
             string inStrFreqs, 
             string inStrLengths,
@@ -263,6 +297,15 @@ namespace BookInventorier
 
             return hadErrors;
         }
+        /// <summary>
+        /// Utilities to serialize the data structure summarizing the processed text 
+        /// It allows these structures to be saved in a database and retrieved later on
+        /// </summary>
+        /// <param name="inFreqs">Input Dictionary summarizing word frequencies information of the input text</param>
+        /// <param name="inLengths">Input Dictionary summarizing word lengths information of the input text</param>
+        /// <param name="strFreqs">String representing serialized "inFreqs" input</param>
+        /// <param name="strLengths">String representing serialized "inLengths" input</param>
+        /// <returns>Boolean True on error. False if everything went okay </returns>
         public Boolean Serialize(
             IDictionary<string, int> inFreqs, 
             IDictionary<int, LinkedList<string>> inLengths, 

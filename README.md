@@ -7,9 +7,7 @@ Project used to build an inventory of words from a body of text while keeping tr
   - The Container is deployed on Heroku. See ``web-app\WebApp\bin\Release\netcoreapp3.1`` folder.
 
 
-Access the application live at:
-
-[https://corpus-inventory.herokuapp.com/](https://corpus-inventory.herokuapp.com/)
+Access the application live at: [https://corpus-inventory.herokuapp.com/](https://corpus-inventory.herokuapp.com/)
 
 
 ## Front End

@@ -1,9 +1,17 @@
-
+/**
+ * This function will build and make a http request, then package the response and return it.
+ * Works with GET, POST, PUT
+ * @param  {string} _url
+ * @param  {{[key:string]:any}} parameters?
+ * @param  {string="GET"} method
+ * @param  {{[key:string]:string}} headers?
+ * @returns Promise
+ */
 const httpRequest = (
                       _url: string, 
                       parameters?: {[key: string]:any},
                       method: string = "GET",
-                      headers?: {[key:string]: string}) => {
+                      headers?: {[key:string]: string}): Promise<any> => {
 
   
   let _header = {'content-type': 'application/json'}

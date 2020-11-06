@@ -269,6 +269,17 @@ namespace BookInventorier
 
 
 
+
+
+
+
+
+
+
+
+
+
+
         /// <summary>
         /// Utilitiy to deserialize the data structure summarizing the processed text.
         /// </summary>
@@ -297,6 +308,9 @@ namespace BookInventorier
 
             return hadErrors;
         }
+        
+        
+        
         /// <summary>
         /// Utilities to serialize the data structure summarizing the processed text 
         /// It allows these structures to be saved in a database and retrieved later on

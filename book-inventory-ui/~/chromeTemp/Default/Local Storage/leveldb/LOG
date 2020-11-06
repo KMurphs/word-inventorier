@@ -1,0 +1,36 @@
+2020/03/06-08:32:02.009 429c Reusing MANIFEST C:\PersonalProjects\corpus-word-inventory\book-inventory-ui\~\chromeTemp\Default\Local Storage\leveldb/MANIFEST-000001
+2020/03/06-08:32:02.011 429c Recovering log #3
+2020/03/06-08:32:02.011 429c Reusing old log C:\PersonalProjects\corpus-word-inventory\book-inventory-ui\~\chromeTemp\Default\Local Storage\leveldb/000003.log 
+2020/03/06-08:48:29.799 44f4 Level-0 table #5: started
+2020/03/06-08:48:29.875 44f4 Level-0 table #5: 315624 bytes OK
+2020/03/06-08:48:29.879 44f4 Delete type=0 #3
+2020/03/06-10:56:35.149 44f4 Level-0 table #7: started
+2020/03/06-10:56:35.165 44f4 Level-0 table #7: 330704 bytes OK
+2020/03/06-10:56:35.168 44f4 Delete type=0 #4
+2020/03/06-11:07:14.979 44f4 Level-0 table #9: started
+2020/03/06-11:07:14.992 44f4 Level-0 table #9: 329833 bytes OK
+2020/03/06-11:07:14.995 44f4 Delete type=0 #6
+2020/03/06-11:07:43.634 44f4 Level-0 table #11: started
+2020/03/06-11:07:43.645 44f4 Level-0 table #11: 331037 bytes OK
+2020/03/06-11:07:43.648 44f4 Delete type=0 #8
+2020/03/06-11:11:31.615 44f4 Level-0 table #13: started
+2020/03/06-11:11:31.639 44f4 Level-0 table #13: 330996 bytes OK
+2020/03/06-11:11:31.642 44f4 Delete type=0 #10
+2020/03/06-11:54:26.315 44f4 Level-0 table #15: started
+2020/03/06-11:54:26.322 44f4 Level-0 table #15: 25719 bytes OK
+2020/03/06-11:54:26.324 44f4 Delete type=0 #12
+2020/03/06-11:54:26.325 44f4 Compacting 4@0 + 1@1 files
+2020/03/06-11:54:26.350 44f4 Generated table #16@0: 73 keys, 356519 bytes
+2020/03/06-11:54:26.350 44f4 Compacted 4@0 + 1@1 files => 356519 bytes
+2020/03/06-11:54:26.352 44f4 compacted to: files[ 0 1 1 0 0 0 0 ]
+2020/03/06-11:54:26.352 44f4 Delete type=2 #7
+2020/03/06-11:54:26.352 44f4 Delete type=2 #9
+2020/03/06-11:54:26.352 44f4 Delete type=2 #11
+2020/03/06-11:54:26.352 44f4 Delete type=2 #13
+2020/03/06-11:54:26.352 44f4 Delete type=2 #15
+2020/03/06-14:14:01.518 44f4 Level-0 table #18: started
+2020/03/06-14:14:01.527 44f4 Level-0 table #18: 28116 bytes OK
+2020/03/06-14:14:01.529 44f4 Delete type=0 #14
+2020/03/06-14:35:05.769 44f4 Level-0 table #20: started
+2020/03/06-14:35:05.784 44f4 Level-0 table #20: 334286 bytes OK
+2020/03/06-14:35:05.785 44f4 Delete type=0 #17

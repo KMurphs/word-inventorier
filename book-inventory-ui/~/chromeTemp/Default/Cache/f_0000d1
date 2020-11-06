@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Idiomatic Redux: The History and Implementation of React-Redux &middot;  Mark&#39;s Dev Blog" />
+  
+  <meta property="og:site_name" content="Mark&#39;s Dev Blog" />
+  <meta property="og:url" content="//blog.isquaredsoftware.com/2018/11/react-redux-history-implementation/" />
+  <meta property="og:image" content="//blog.isquaredsoftware.com/images/logo.png" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:published_time" content="2018-11-22T23:50:00-05:00" />
+  
+  <meta property="og:article:tag" content="react" />
+  
+  <meta property="og:article:tag" content="redux" />
+  
+  <meta property="og:article:tag" content="internals" />
+  
+  <meta property="og:article:tag" content="history" />
+  
+  
+
+  <title>
+     Idiomatic Redux: The History and Implementation of React-Redux &middot;  Mark&#39;s Dev Blog
+  </title>
+
+  <link rel="stylesheet" href="//blog.isquaredsoftware.com/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//blog.isquaredsoftware.com/css/main.css" />
+  <link rel="stylesheet" href="//blog.isquaredsoftware.com/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="//blog.isquaredsoftware.com/css/monokai.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans" type="text/css">
+  <link rel="shortcut icon" href="//blog.isquaredsoftware.com/images/favicon.ico?2016-09-13" />
+  <link rel="apple-touch-icon" href="//blog.isquaredsoftware.com/images/apple-touch-icon.png?2016-09-13" />
+  
+</head>
+<body>
+    
+  <header class="global-header">  
+    <section class="header-text">
+      <h1><a href="//blog.isquaredsoftware.com/">Mark&#39;s Dev Blog</a></h1>
+      
+      <div class="tag-line">
+        Random musings on React, Redux, and more
+      </div>
+      
+      <div class="sns-links hidden-print">
+  
+  
+  <a href="https://twitter.com/acemarke" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="https://github.com/markerikson" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  <a href="https://stackoverflow.com/users/62937/markerikson" target="_blank">
+    <i class="fa fa-stack-overflow"></i>
+  </a>
+  
+  
+  <a href="https://linkedin.com/in/markerikson" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+  
+</div>
+
+      
+      <a href="//blog.isquaredsoftware.com/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; ">
+		<div class="alert alert-success text-center" role="alert" style="margin-top: 5px; margin-right: 5px; max-width: 550px;">
+			My "Practical Redux" tutorial series is now <br />
+			<a href="https://www.educative.io/collection/5687753853370368/5707702298738688" class="alert-link">an interactive course on Educative.io!</a><br />
+			Check out <a href="http://blog.isquaredsoftware.com/2017/11/practical-redux-educative-course/" class="alert-link">the course announcement post</a> for more details.	  
+		</div>
+	</div>
+	
+  <header>
+    <h1 class="text-primary">Idiomatic Redux: The History and Implementation of React-Redux</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2018-11-22T23:50:00-05:00">
+          Nov 22, 2018
+        </time>
+      </div>
+      <div class="pull-right">
+        
+        <span class="post-tag small"><a href="//blog.isquaredsoftware.com//tags/react">#react</a></span>
+        
+        <span class="post-tag small"><a href="//blog.isquaredsoftware.com//tags/redux">#redux</a></span>
+        
+        <span class="post-tag small"><a href="//blog.isquaredsoftware.com//tags/internals">#internals</a></span>
+        
+        <span class="post-tag small"><a href="//blog.isquaredsoftware.com//tags/history">#history</a></span>
+        
+      </div>
+    </div>
+	
+        
+	    
+    	<p><a href="" id="series"></a>This is a post in the <a href="/series/idiomatic-redux"><b>Idiomatic Redux</b></a> series.
+        <hr/>
+	 
+  </header>
+  <section>
+    <p><em>Some history and explanations of how React-Redux got its API, and how it works internally</em></p>
+
+<p></p>
+
+<h2 id="intro">Intro</h2>
+
+<p>React-Redux is conceptually pretty simple.  It subscribes to the Redux store, checks to see if the data your component wants has changed, and re-renders your component.</p>
+
+<p>However, there's a lot of internal complexity to make that happen, and most people aren't aware of all the work that React-Redux does internally.  I'd like to dig through some of the design decisions and implementation details of how React-Redux works, and how those implementation details have changed over time.</p>
+
+<blockquote>
+<p><strong>Note</strong>: This post was originally written before the release of React-Redux v6.  It has since been updated to cover the final release of v6, and the development and release of v7.0 and v7.1.</p>
+</blockquote>
+
+<h4 id="table-of-contents">Table of Contents</h4>
+
+<ul>
+<li><a href="#integrating-redux-with-a-ui">Integrating Redux with a UI</a></li>
+<li><a href="#connect-in-a-nutshell"><code>connect</code> in a Nutshell</a></li>
+<li><a href="#development-history-of-the-react-redux-api">Development History of the React-Redux API</a></li>
+<li><a href="#v4-x">v4.x</a></li>
+<li><a href="#v5-x">v5.x</a></li>
+<li><a href="#v6-0">v6.0</a></li>
+<li><a href="#v7-0">v7.0</a></li>
+<li><a href="#v7-1-hooks">v7.1: Hooks?!?!</a></li>
+<li><a href="#the-future">The Future</a></li>
+<li><a href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+
+<h2 id="integrating-redux-with-a-ui">Integrating Redux with a UI</h2>
+
+<h3 id="understanding-redux-store-subscriptions">Understanding Redux Store Subscriptions</h3>
+
+<p>It's been said that &quot;Redux is just a [dumb] event emitter&quot;.  There's actually a fair amount of truth in that statement.  Earlier MVC frameworks like Backbone would allow triggering any string as an event, and automatically trigger events like <code>&quot;change:firstName&quot;</code> in models.  Redux, on the other hand, only has a single event type:  &quot;some action was dispatched&quot;.</p>
+
+<p>As a reminder, here's what a miniaturized (but valid) implementation of the Redux store looks like:</p>
+
+<pre><code class="language-js">function createStore(reducer) {
+    var state;
+    var listeners = []
+
+    function getState() {
+        return state
+    }
+    
+    function subscribe(listener) {
+        listeners.push(listener)
+        return function unsubscribe() {
+            var index = listeners.indexOf(listener)
+            listeners.splice(index, 1)
+        }
+    }
+    
+    function dispatch(action) {
+        state = reducer(state, action)
+        listeners.forEach(listener =&gt; listener())
+    }
+
+    dispatch({})
+
+    return { dispatch, subscribe, getState }
+}
+</code></pre>
+
+<p>Let's focus in particular on the <code>dispatch()</code> implementation.  Notice that it doesn't check to see if the root state actually changed or not - <strong>it runs <em>every</em> subscriber callback after <em>every</em> dispatched action, regardless of whether there was any meaningful change to the state or not</strong>.</p>
+
+<p>In addition, <strong>the store state is not passed to the subscriber callbacks</strong> - it's up to each subscriber to call <code>store.getState()</code> if desired to retrieve the latest state.  (See the <a href="https://redux.js.org/faq/designdecisions#why-doesnt-redux-pass-the-state-and-action-to-subscribers">Redux FAQ entry on why the state isn't passed to subscribers</a> for more details.)</p>
+
+<h3 id="the-standard-ui-update-cycle">The Standard UI Update Cycle</h3>
+
+<p>Using Redux with <em>any</em> UI layer requires <a href="https://blog.isquaredsoftware.com/presentations/workshops/redux-fundamentals/ui-layer.html#/4">the same consistent set of steps</a>:</p>
+
+<ol>
+<li>Create a Redux store</li>
+<li>Subscribe to updates</li>
+<li>Inside the subscription callback:
+
+<ol>
+<li>Get the current store state</li>
+<li>Extract the data needed by this piece of UI</li>
+<li>Update the UI with the data</li>
+</ol></li>
+<li>If necessary, render the UI with initial state</li>
+<li>Respond to UI inputs by dispatching Redux actions</li>
+</ol>
+
+<p>Here's an example with a vanilla JS &quot;counter&quot; app, where the &quot;state&quot; is a single number:</p>
+
+<pre><code class="language-js">// 1) Create a store
+const store = createStore(counter)
+
+// 2) Subscribe to store updates
+store.subscribe(render);
+
+const valueEl = document.getElementById('value');
+
+// 3. When the subscription callback runs:
+function render() {
+    // 3.1) Get the current store state
+    const state = store.getState();
+
+    // 3.2) Extract the data you want
+    const newValue = state.toString();
+
+    // 3.3) Update the UI with the new value
+    valueEl.innerHTML = newValue;
+}
+
+// 4) Display the UI with the initial store state
+render();
+
+// 5) Dispatch actions based on UI inputs
+document.getElementById(&quot;increment&quot;)
+    .addEventListener('click', () =&gt; {
+        store.dispatch({type : &quot;INCREMENT&quot;});
+    })
+</code></pre>
+
+<p><strong>Every Redux UI integration layer is simply a fancier version of those steps.</strong></p>
+
+<p>You <em>could</em> do this manually, in every React, component, <a href="https://blog.isquaredsoftware.com/presentations/workshops/redux-fundamentals/ui-layer.html#/7">but it would quickly get out of hand</a>, especially once you <a href="https://blog.isquaredsoftware.com/presentations/workshops/redux-fundamentals/ui-layer.html#/9">start trying to cut down on unnecessary UI updates</a>.</p>
+
+<p>Clearly, the process of subscribing to the store, checking for updated data, and triggering a re-render can be made more generic and reusable.  That's where React-Redux and the <code>connect</code> API come in.</p>
+
+<h2 id="connect-in-a-nutshell"><code>connect</code> in a Nutshell</h2>
+
+<p>About a year after Redux came out, Dan Abramov wrote a gist entitled <a href="https://gist.github.com/gaearon/1d19088790e70ac32ea636c025ba424e">connect.js explained</a>.  It contains a miniature version of <code>connect</code> to illustrate how it works conceptually.  It's worth pasting that here for emphasis:</p>
+
+<pre><code class="language-jsx">// connect() is a function that injects Redux-related props into your component.
+// You can inject data and callbacks that change that data by dispatching actions.
+function connect(mapStateToProps, mapDispatchToProps) {
+  // It lets us inject component as the last step so people can use it as a decorator.
+  // Generally you don't need to worry about it.
+  return function (WrappedComponent) {
+    // It returns a component
+    return class extends React.Component {
+      render() {
+        return (
+          // that renders your component
+          &lt;WrappedComponent
+            {/* with its props  */}
+            {...this.props}
+            {/* and additional props calculated from Redux store */}
+            {...mapStateToProps(store.getState(), this.props)}
+            {...mapDispatchToProps(store.dispatch, this.props)}
+          /&gt;
+        )
+      }
+      
+      componentDidMount() {
+        // it remembers to subscribe to the store so it doesn't miss updates
+        this.unsubscribe = store.subscribe(this.handleChange.bind(this))
+      }
+      
+      componentWillUnmount() {
+        // and unsubscribe later
+        this.unsubscribe()
+      }
+    
+      handleChange() {
+        // and whenever the store state changes, it re-renders.
+        this.forceUpdate()
+      }
+    }
+  }
+}
+
+// This is not the real implementation but a mental model.
+// It skips the question of where we get the &quot;store&quot; from (answer: `&lt;Provider&gt;` puts it in React context)
+// and it skips any performance optimizations (real connect() makes sure we don't re-render in vain).
+
+// The purpose of connect() is that you don't have to think about
+// subscribing to the store or perf optimizations yourself, and
+// instead you can specify how to get props based on Redux store state
+</code></pre>
+
+<p>We can see the key aspects of the API here:</p>
+
+<ul>
+<li><code>connect</code> is a function returning a function returning a wrapper component.</li>
+<li>The wrapped component's props are a combination of the wrapper component's props, the values from <code>mapState</code>, and the values from <code>mapDispatch</code>.</li>
+<li>Each wrapper component is an individual subscriber to the Redux store.</li>
+<li>The wrapper component abstracts away the details of <em>which</em> store you're using, <em>how</em> it's interacting with the store, and optimizing performance so that your own component only re-renders when it needs to.</li>
+<li>You simply specify how to extract the data your component needs based on the store state, and the functions it can call to dispatch actions to the store</li>
+</ul>
+
+<p>But, this miniature example hand-waves a lot of the details.  In particular, as the comments point out:</p>
+
+<ul>
+<li>Where does the store come from?</li>
+<li>How does <code>connect</code> check to see if your component needs to actually update?</li>
+<li>How does it implement the optimizations?</li>
+</ul>
+
+<p>And beyond that, how did we even end up with an API that looks like this in the first place?</p>
+
+<h2 id="development-history-of-the-react-redux-api">Development History of the React-Redux API</h2>
+
+<h3 id="early-iterations">Early Iterations</h3>
+
+<p>The first few versions of Redux included React bindings as part of the main package.  I won't go through those versions specifically, but you can see the changes in the release notes and READMEs for these early releases:</p>
+
+<ul>
+<li><a href="https://github.com/reduxjs/redux/tree/v0.2.0">v0.2.0</a></li>
+<li><a href="https://github.com/reduxjs/redux/releases/tag/v0.3.0">v0.3.0</a></li>
+<li><a href="https://github.com/reduxjs/redux/releases/tag/v0.5.0">v0.5.0</a></li>
+<li><a href="https://github.com/reduxjs/redux/releases/tag/v0.6.0">v0.6.0</a></li>
+<li><a href="https://github.com/reduxjs/redux/releases/tag/v0.8.0">v0.8.0</a></li>
+<li><a href="https://github.com/reduxjs/redux/releases/tag/v0.9.0">v0.9.0</a></li>
+</ul>
+
+<p>Fun side note: amazingly, all that iteration took place over a single week!</p>
+
+<p>It took another three weeks to get up to <a href="https://github.com/reduxjs/redux/releases/tag/v1.0.0-rc">v1.0.0-rc</a>, which is where the meaningful history begins.</p>
+
+<h3 id="original-api-design-constraints">Original API Design Constraints</h3>
+
+<p>React-Redux was split out as a separate repo in July 2015, just before Redux v1.0.0-rc came out.</p>
+
+<p>Dan filed <a href="https://github.com/reduxjs/react-redux/issues/1">React-Redux issue #1: Alternative API Proposals</a> to discuss what the final API should look like.  In that issue, he listed a number of design constraints that should guide how the final API worked:</p>
+
+<blockquote>
+<p>Common pain points:<br />
+- Not intuitive how way to separate smart and dumb components with <code>&lt;Connector&gt;</code>, <code>@connect</code><br />
+- You have to manually bind action creators with <code>bindActionCreators</code> helper which <a href="https://github.com/gaearon/redux/pull/86">some don't like</a><br />
+- Too much nesting for small examples (<code>&lt;Provider&gt;</code>, <code>&lt;Connector&gt;</code> both need function children)</p>
+
+<p>Let's go wild here. Post your alternative API suggestions.</p>
+
+<p>They should satisfy the following criteria:<br />
+- Some component at the root must hold the <code>store</code> instance. (Akin to <code>&lt;Provider&gt;</code>)<br />
+- It should be possible to connect to state no matter how deep in the tree<br />
+- It should be possible to select the state you're interested in with a <code>select</code> function<br />
+- Smart / dumb components separation needs to be encouraged<br />
+- There should be one obvious way to separate smart / dumb components<br />
+- It should be obvious how to turn your functions into action creators<br />
+- Smart components should probably be able to react to updates to the state in <code>componentDidUpdate</code><br />
+- Smart components' <code>select</code> function needs to be able to take their props into account<br />
+- Smart component should be able to do something before/after dumb component dispatches an action<br />
+- We should have <code>shouldComponentUpdate</code> wherever we can</p>
+</blockquote>
+
+<p>These criteria form the basis for the React-Redux API that we have today, and help explain why it works the way it does.</p>
+
+<p>The biggest points that came out of that discussion were using <code>connect</code> as a function instead of a decorator, and how to handle binding action creators.</p>
+
+<p>Another fun side note: the <a href="https://react-redux.js.org/docs/using-react-redux/connect-dispatching-actions-with-mapdispatchtoprops#defining-mapdispatchtoprops-as-an-object">&quot;object shorthand&quot; for binding action creators</a> was one of Dan's first suggestions for the API:</p>
+
+<blockquote>
+<p>Perhaps we can even go further and bind automatically if an object is passed.</p>
+</blockquote>
+
+<h3 id="finalizing-the-api">Finalizing the API</h3>
+
+<p>The next few releases continued iterating on the <code>connect</code> API.  Highlights of the changes:</p>
+
+<ul>
+<li><a href="https://github.com/reduxjs/react-redux/releases/tag/v0.5.0">v0.5.0</a>: introduced the <code>mapState</code>, <code>mapDispatch</code>, and <code>mergeProps</code> arguments</li>
+<li><a href="https://github.com/reduxjs/react-redux/releases/tag/v0.6.0">v0.6.0</a>: used immutability and reference checks to determine if re-rendering is necessary</li>
+<li><a href="https://github.com/reduxjs/react-redux/releases/tag/v0.8.0">v0.8.0</a>: added the ability to pass <code>store</code> as a prop</li>
+<li><a href="https://github.com/reduxjs/react-redux/releases/tag/v0.9.0">v0.9.0</a>: added the <code>ownProps</code> arguments to <code>mapState/mapDispatch</code></li>
+<li><a href="https://github.com/reduxjs/react-redux/releases/tag/v1.0.0">v1.0.0</a>: <code>&lt;Provider&gt;</code>s single child had to be a function that returned an element</li>
+<li><a href="https://github.com/reduxjs/react-redux/releases/tag/v2.0.0">v2.0.0</a>: no longer supported &quot;magically&quot; hot reloading reducers</li>
+<li><a href="https://github.com/reduxjs/react-redux/releases/tag/v2.1.0">v2.1.0</a>: added an <code>options</code> argument</li>
+<li><a href="https://github.com/reduxjs/react-redux/releases/tag/v3.0.0">v3.0.0</a>: moved the initial <code>mapState/mapDispatch</code> calls to be part of the first render, to avoid state staleness issues</li>
+</ul>
+
+<p>Continuing the observations, at one point <a href="https://github.com/reduxjs/react-redux/issues/86#issuecomment-137237015">Dan warned against connecting leaf components</a>:</p>
+
+<blockquote>
+<p>We do warn in the documentation that we encourage you to follow React flow and avoid connect()ing leaf components.</p>
+</blockquote>
+
+<p>This is particularly amusing, given that <a href="https://redux.js.org/faq/reactredux#should-i-only-connect-my-top-component-or-can-i-connect-multiple-components-in-my-tree">we now recommend connecting components anywhere in the tree you feel it would be useful</a>.</p>
+
+<p>That brings us up to what I'd say is the &quot;modern era&quot; of the React-Redux API, starting with version 4.</p>
+
+<h2 id="v4-x">v4.x</h2>
+
+<p><strong><a href="https://github.com/reduxjs/react-redux/releases/tag/v4.0.0">React-Redux v4.0.0</a></strong> came out in October 2015, and had four major changes:</p>
+
+<ul>
+<li>React 0.14 as a minimum and a peer dependency</li>
+<li>No more React native-specific entry point</li>
+<li><code>&lt;Provider&gt;</code> no longer accepted a function as a child, but rather a standard React element</li>
+<li>Refs to the child component now required the <code>withRef</code> option, instead of always being enabled</li>
+</ul>
+
+<p>In addition, <a href="https://github.com/reduxjs/react-redux/releases/tag/v4.3.0">v4.3.0</a> added the &quot;factory function&quot; syntax of <code>mapState/mapDispatch</code> to allow per-component-instance memoization of selectors.</p>
+
+<p>I would consider 4.x the first &quot;complete&quot; version of the React-Redux API.  As such, it's worth digging in to some of its implementation details, as well as some common points that define the overall behavior of the API across versions.</p>
+
+<h3 id="api-behavior">API Behavior</h3>
+
+<h4 id="every-wrapper-component-instance-is-a-separate-store-subscriber">Every Wrapper Component Instance is a Separate Store Subscriber</h4>
+
+<p>This one's pretty simple.  If I have a connected list component, and it renders 10 connected list item children, that's 11 separate calls to <code>store.subscribe()</code>.  That <em>also</em> means that <strong>if I have N connected components in the tree, then N subscriber callbacks are run for <em>every</em> dispatched action!</strong>.</p>
+
+<p>Every single subscriber callback is then responsible for doing its own checks to see if that particular component actually needs to update or not, based on the store state and props.</p>
+
+<h4 id="ui-updates-require-store-immutability">UI Updates Require Store Immutability</h4>
+
+<p>We've already established that the Redux store will run <em>all</em> subscriber callbacks after <em>every</em> dispatched action, regardless of whether the state actually changed or not.</p>
+
+<p><strong>In order to implement efficient UI updates, React-Redux assumes you have updated the store state immutably, so it can use reference comparisons to determine if the state changed.</strong></p>
+
+<p>This occurs in three stages:</p>
+
+<ol>
+<li>When a <code>connect</code> wrapper component's subscriber callback runs, it first calls <code>store.getState()</code>, and checks to see if <code>prevStoreState !== storeState</code>.  If the store state did <em>not</em> change by reference, then it will stop right there and bail out of any further update work, because it assumes that no other part of the store state changed.<br /></li>
+<li>If the root state <em>has</em> changed, the wrapper component then runs your <code>mapState</code> function, and does a &quot;shallow equality&quot; comparison between the current result and the last result.  If any of the fields have changed by reference, then your component probably needs to be updated.</li>
+<li>Assuming that there was some change in the <code>mapState</code> or <code>mapDispatch</code> results, the <code>mergeProps()</code> function is run to combine the <code>stateProps</code> from <code>mapState</code>, <code>dispatchProps</code> from <code>mapDispatch</code>, and <code>ownProps</code> from the wrapper component itself.  A final check is done to see if the merged props result has changed since the last time, and if there's no change, the wrapped component will not be re-rendered.</li>
+</ol>
+
+<blockquote>
+<p><strong>Note</strong>: The root state comparison relies on a specific optimization in <code>combineReducers</code>, which checks to see if any state slices were changed while processing an action, and if not, returns the previous state object instead of a new one.  <strong>This is a key reason why mutating your state results in your React UI components not updating!</strong></p>
+</blockquote>
+
+<h4 id="the-store-instance-is-passed-down-via-legacy-context">The Store Instance is Passed Down via Legacy Context</h4>
+
+<p>In v4, rendering <code>&lt;Provider store={store}&gt;</code> puts that store instance into the legacy context API, as <code>context.store</code>.  Any nested class component could then request that <code>context.store</code> be attached to the component.</p>
+
+<p>The biggest reason why the entire store was put into context was because context itself was flawed.  If you put an initial value into context in a parent, and some child requested that value, it would receive the correct value.  However, if the parent component put an updated value by that name into context, and there was an intervening component that skipped rendering using <code>shouldComponentUpdate -&gt; false</code>, the nested component would never see the updated value.  That's one of the reasons why the React team always discouraged people from using legacy context directly, suggesting that any uses should be wrapped up in an abstraction so that when a &quot;future replacement for context&quot; came out, it would be easier to migrate.  (See the <a href="https://reactjs.org/docs/legacy-context.html">React &quot;Legacy Context&quot; docs page</a> and Michel Westrate's article <a href="https://medium.com/@mweststrate/how-to-safely-use-react-context-b7e343eff076">How to Safely Use React Context</a> for more details.)</p>
+
+<p>So, one workaround was to put an <em>event emitter instance</em> into context, instead of an actual value.  The nested components could grab the emitter instance on first render and subscribe directly, thus bypassing the <code>sCU</code> &quot;roadblocks&quot; to receive updates.  React-Redux did this, as did libraries like <code>react-broadcast</code>.</p>
+
+<h4 id="connected-components-accept-a-store-as-a-prop">Connected Components Accept a Store as a Prop</h4>
+
+<p>In addition to checking for the store instance in context, the wrapper components can optionally accept a store instance as a prop named <code>store</code> instead, like <code>&lt;MyConnectedComponent store={store}&gt;</code>.  This works because each component subscribes to the store individually, so this component just gets that store a different way.</p>
+
+<p>This is mostly useful for rendering connected components in a test without putting a <code>&lt;Provider&gt;</code> around it, but does mean you could have a connected component in the middle of your tree that uses a different store than all the other components around it.</p>
+
+<h3 id="implementation-details">Implementation Details</h3>
+
+<h4 id="update-logic-was-directly-in-the-wrapper-component">Update Logic was Directly in the Wrapper Component</h4>
+
+<p>Up through v4, all of the logic was part of the <code>connect</code> component class itself, including handling store updates, calling <code>mapState</code>, and determining if the wrapped component needed to re-render.</p>
+
+<p>There's a couple interesting observations out of this.  First, <a href="https://github.com/reduxjs/react-redux/blob/v4.3.0/src/components/connect.js#L213-L216">the wrapper component always called <code>setState()</code> whenever the root store state had changed</a>, before it tries to do anything else.</p>
+
+<p>Second, as a result, the <em>real</em> work of running <code>mapState</code> and determining if anything has changed <a href="https://github.com/reduxjs/react-redux/blob/v4.3.0/src/components/connect.js#L228-L285">was actually done directly in the <code>render</code> method</a>.</p>
+
+<p>This meant that any update to the Redux store required <em>all</em> wrapper components to re-render themselves in order to determine if their wrapped components actually need to update or not.  That's a lot of components re-rendering every time, and also meant React was <em>always</em> getting called on every meaningful store update.</p>
+
+<h4 id="child-component-rendering-was-optimized-via-memoized-react-elements">Child Component Rendering was Optimized Via Memoized React Elements</h4>
+
+<p>It's not well documented, but React has a particular performance optimization built-in.  Normally, when a component renders, it creates new child elements every time:</p>
+
+<pre><code class="language-jsx">render() {
+    // Turns into: React.createElement(ChildComponent, {a : 42})
+    return &lt;ChildComponent a={42} /&gt;;
+}
+</code></pre>
+
+<p>Every call to <code>React.createElement()</code> returns a new element object like <code>{type : ChildComponent, props : {a : 42}, children : []}</code>.  So, normally every re-render results in all-new element objects being created.</p>
+
+<p>However, if you return the exact same element objects as before, React will skip updating those specific elements as an optimization.  (This is the basis for <a href="https://babeljs.io/docs/en/babel-plugin-transform-react-constant-elements">@babel/plugin-transform-react-constant-elements</a>, and the behavior is discussed some in <a href="https://github.com/facebook/react/issues/3226">React issue #3226</a>).</p>
+
+<p>The v4 implementation takes advantage of this, by <a href="https://github.com/reduxjs/react-redux/blob/v4.3.0/src/components/connect.js#L268-L283">memoizing the element for the child component</a> to skip updating it if not needed.  This is necessary because the wrapper component is itself already re-rendering, so it needs some way to <em>not</em> have the child re-render.</p>
+
+<h2 id="v5-x">v5.x</h2>
+
+<p>Up through v4, React-Redux was still primarily the work of Dan Abramov, albeit with a number of external contributions.  Dan had given me commit rights after I wrote the Redux FAQ, and I'd spent enough time working on issues and looking the code that I felt comfortable giving more feedback beyond just how to use Redux.  However, by mid 2016 Dan had joined the React team at Facebook, and was getting busy there, so he told Tim Dorr and I that we were now the primary maintainers.</p>
+
+<p>About that time, a user named <a href="https://github.com/jimbolla">Jim Bolla</a> filed an issue asking about <a href="https://github.com/reduxjs/react-redux/issues/403">an unusual use of <code>connect</code></a>.  During the discussion, Jim commented that he was working on &quot;an alternate version of <code>connect</code>&quot;, and I mentally dismissed that.</p>
+
+<p>A few days after that, though, Jim filed <a href="https://github.com/reduxjs/react-redux/issues/405">a follow-up issue asking for feedback on his alternate implementation</a>.  We discussed some of the complexities in <code>connect</code>'s implementation, and how those related to the use cases it was trying to solve, but I again otherwise didn't think much of it.</p>
+
+<p>To my surprise, a couple days later Jim created <strong><a href="https://github.com/reduxjs/react-redux/issues/407">issue #407: Completely rewrite connect() to offer advanced API, separate concerns, and (probably) resolve a lot of those pesky edge cases</a></strong> as a precursor to filing an actual PR.  I was still really skeptical and began pointing out concerns and edge cases, but to my (pleasant) surprise, Jim kept taking my feedback and improving his WIP branch.  This included producing some benchmarks which indicated that his version was noticeably faster than v4 in some particular scenarios.</p>
+
+<p>Jim's efforts <a href="https://github.com/reduxjs/react-redux/issues/407#issuecomment-227925119">eventually won me over</a>, and we began seriously collaborating on pushing his rewrite forward.  That became <strong><a href="https://github.com/reduxjs/react-redux/pull/416">PR #416: Rewrite connect() for better performance and extensibility </a></strong>.</p>
+
+<p>The rewrite was released as <strong><a href="https://github.com/reduxjs/react-redux/releases/tag/v5.0.0">v5.0.0</a></strong> in December 2016.  The biggest changes were:</p>
+
+<ul>
+<li>Logic was moved from the wrapper component into memoized selectors</li>
+<li>Enforceed top-down subscription updates</li>
+<li>Added a new <code>connectAdvanced</code> API</li>
+<li>More customization of comparison options</li>
+<li>Overall performance improvements</li>
+</ul>
+
+<p>All of this while keeping the same public <code>connect</code> API compatible with v4.</p>
+
+<p>v5 also resolved <a href="https://github.com/reduxjs/react-redux/pull/416#issuecomment-233144992">a large number of existing issues</a> as well.</p>
+
+<p>There were various bugfixes up through <a href="https://github.com/reduxjs/react-redux/releases/tag/v5.0.7">v5.0.7</a>, and <a href="https://github.com/reduxjs/react-redux/releases/tag/v5.1.0">v5.1.0</a> recently added support for passing React's new built-in component types like <code>memo</code> and <code>lazy</code> into <code>connect</code>.</p>
+
+<p>Let's dig through some of the details.</p>
+
+<h3 id="api-behavior-1">API Behavior</h3>
+
+<h4 id="top-down-updates">Top-Down Updates</h4>
+
+<p>The <code>connect</code> wrapper components subscribe to the store in <code>componentDidMount</code>.  However, because that lifecycle fires bottom-to-top in a new component tree, it was possible for child components to subscribe to the store before their parents did.  Up through v4, that resulted in some <a href="https://github.com/reduxjs/react-redux/issues/292">nasty recurring bugs</a>.</p>
+
+<p>As an example, imagine a connected list with 10 connected list item children.  If they all render right away, the list items will subscribe before the list parent.  If you then delete the data for one of the items from the store, the list item component's <code>mapState</code> would run before the parent's did.  This usually meant that the list item's <code>mapState</code> would throw an error and break the component tree.</p>
+
+<p>v5 enforced the idea of top-down updates.  Components higher in the tree <em>always</em> subscribe to the store before their children do.  That way, in a scenario like the connected list, deleting an item from the store will result in the parent updating first, and re-rendering without that list item child before the child even has a chance to run its own <code>mapState</code>.  This gives much more predictable behavior, and aligns with how React itself works.</p>
+
+<p>We'll discuss the specifics of how this is implemented separately.</p>
+
+<h4 id="connectadvanced"><code>connectAdvanced</code></h4>
+
+<p><code>connect</code> is fairly opinionated.  It lets you extract data from the store via <code>mapState</code>, and prepare functions that dispatch actions via <code>mapDispatch</code>, but it doesn't let you use store state data in <code>mapDispatch</code> to prevent performance footguns.  It does provide the <code>mergeProps</code> argument as an escape hatch, but that's separate.</p>
+
+<p>However, for users that want more flexibility (such as Jim himself), v5 adds a new <code>connectAdvanced</code> API.  Rather than taking <code>(mapState, mapDispatch)</code>, it asks you to pass in a &quot;selector factory&quot;.  A selector instance will be created for each component and given a reference to <code>dispatch</code>, and the selectors will be called with <code>(state, ownProps)</code> on all future updates from the store or the wrapper component.  That way, you can customize exactly how you want to handle derived props based on those inputs.</p>
+
+<p>The original <code>connect</code> API is now actually implemented as a specific set of selector functions and options to <code>connectAdvanced</code>.</p>
+
+<h3 id="implementation-notes">Implementation Notes</h3>
+
+<h4 id="logic-is-implemented-in-memoized-selectors">Logic is Implemented in Memoized Selectors</h4>
+
+<p>v5 moves all of the state derivation logic out of the wrapper component and into a separate set of homegrown memoized selector functions.  These selectors specifically implement all of the <code>connect</code> API behavior, like:</p>
+
+<ul>
+<li>Checking if the root state has changed</li>
+<li>Handling the various forms of <code>mapState</code> and <code>mapDispatch</code> ( <code>(state)</code> vs <code>(state, ownProps)</code>, <code>mapDispatch</code> as an object vs function, etc)</li>
+<li>Calling <code>mapState</code>, <code>mapDispatch</code>, and <code>mergeProps</code></li>
+<li>Calculating the new child props and determining if a re-render is actually necessary</li>
+</ul>
+
+<p>As a result, the subscriber callbacks can run extremely quickly, without involving React at all.  In fact, React will only get involved once the wrapper component <em>knows</em> the child should re-render, and it uses a dummy <code>this.setState({})</code> call to queue up that re-render.  (We probably could have used <code>forceUpdate()</code> instead, but I don't think it makes any difference in this case.)</p>
+
+<p>This is the biggest reason why v5 is generally faster than v4.</p>
+
+<h4 id="custom-top-down-subscription-logic">Custom Top-Down Subscription Logic</h4>
+
+<p>In order to enforce top-down subscriptions, v5 introduced <a href="https://github.com/reduxjs/react-redux/blob/v5.1.1/src/utils/Subscription.js">a custom <code>Subscription</code> class</a>.  Internally, <code>connect</code> actually puts both the store instance <em>and</em> an instance of <code>Subscription</code> into legacy context.  If no subscription exists in context, that component will subscribe to the store directly, as it must be high up in the tree.  Otherwise, it subscribes to the <code>Subscription</code> instance.  This means that each connected component is effectively subscribing to its nearest connected ancestor.</p>
+
+<p>When an action is dispatched, the uppermost connected components will have their callbacks be triggered right away.  If they do need to re-render, they call <code>setState()</code>, and wait until <code>componentDidUpdate</code> to trigger notification of the next tier of connected components.  If no update is necessary, the next tier is notified right away.</p>
+
+<p>This works, but it also requires some very tricky logic in both the <code>Subscription</code> class and the wrapper component itself (including dynamically adding and removing a <code>componentDidUpdate</code> function to micro-optimize perf).</p>
+
+<h2 id="v6-0">v6.0</h2>
+
+<h3 id="motivations">Motivations</h3>
+
+<p>v5 was great.  It performed faster than v4 in almost all scenarios we've seen, and it added more flexibility.</p>
+
+<p>However, the React team has continued to innovate.  In particular, React 16.3 introduced the new <code>React.createContext()</code> API, which is an officially supported replacement for the legacy context API, and encouraged for production use.  With <code>createContext</code> now available, they've been <a href="https://github.com/facebook/react/pull/13728">encouraging the community to migrate away from legacy context</a>.</p>
+
+<p>They've also been working on &quot;concurrent React&quot;, an umbrella that describes future capabilities like <a href="https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html">&quot;time-slicing&quot; and &quot;Suspense&quot;</a>.  Long-term, there are questions about how synchronous external stores like Redux will work correctly when React is running in concurrent mode.</p>
+
+<p>With that in mind, we had several discussion threads about how React-Redux should work with concurrent React (<a href="https://github.com/reduxjs/react-redux/issues/890">#890</a>, <a href="https://github.com/reduxjs/react-redux/issues/950">#950</a>), as well as how to deal with the deprecation warnings when used in <code>&lt;StrictMode&gt;</code></p>
+
+<p>We originally planned on releasing a 5.1.0 release to fix <code>&lt;StrictMode&gt;</code> issues, but <a href="https://github.com/reduxjs/react-redux/releases/tag/v5.1.0-test.1">that test release turned out to be very broken</a>.  When we tried to fix the breakage, <a href="https://github.com/reduxjs/react-redux/pull/980">our attempts turned out to drastically hurt performance</a>, as well as add way too much complexity.</p>
+
+<p>We ultimately decided to <a href="https://github.com/reduxjs/react-redux/pull/980#issuecomment-410924304">not put out a direct fix for <code>&lt;StrictMode&gt;</code> warnings in 5.x</a>, and instead moved on to work on v6.</p>
+
+<p>The primary drivers for v6 development were:</p>
+
+<ul>
+<li><strong>Use <code>createContext</code> instead of legacy context</strong></li>
+<li><strong>Fix <code>&lt;StrictMode&gt;</code> warnings</strong></li>
+<li><strong>Be more compatible with concurrent React behavior going forward</strong></li>
+</ul>
+
+<p>We went through several experimental PRs (particularly <a href="https://github.com/reactjs/react-redux/pull/898">#898</a> and <a href="https://github.com/reduxjs/react-redux/pull/995">#995</a>) before settling on <strong><a href="https://github.com/reduxjs/react-redux/pull/1000">PR #1000: Use React.createContext()</a></strong> as the best approach.  Another contributor named <a href="https://github.com/cellog">Greg Beaver</a> had been working with us on the <code>&lt;StrictMode&gt;</code> issues, and he and I submitted &quot;competing&quot; candidate PRs for v6 with varying internal implementations.  His approach turned out to be <em>slightly</em> faster than mine, so we went with that PR, and I was then able to further optimize the PR.</p>
+
+<h3 id="api-changes">API Changes</h3>
+
+<p>We released <strong><a href="https://github.com/reduxjs/react-redux/releases/tag/v6.0.0">React-Redux v6.0</a></strong> in early December 2018.  The primary changes were:</p>
+
+<ul>
+<li><strong>Internal</strong>: Uses <code>createContext</code> internally instead of legacy context</li>
+<li><strong>Internal</strong>: Changes to how the components subscribe and receive the updated state from the store</li>
+<li><strong>Breaking</strong>: The <code>withRef</code> option has been removed in favor of using React's <code>forwardRef</code> capability</li>
+<li><strong>Breaking</strong>: Passing a store as a prop is no longer supported</li>
+</ul>
+
+<p>Note that <strong>there were only two minor breaking changes to the public API!</strong>.  React-Redux has a fairly comprehensive <a href="https://github.com/reduxjs/react-redux/tree/v6.0.0-beta.1/test/components">suite of unit tests for <code>connect</code> and <code>&lt;Provider</code>&gt;</a>, and v6 passed the same unit tests as v5 (with appropriate changes in the tests to match some of the implementation changes).  v6 also ran safely inside a <code>&lt;StrictMode&gt;</code> tag without any warnings.</p>
+
+<p>Because of that, for most apps, React-Redux v6 was a drop-in upgrade!  We did require React 16.4 as a minimum because of using <code>createContext</code>, but other than that, many apps were able to just bump to the new version.  The biggest set of issues came from various community libraries that relied on accessing the store instance directly from legacy context, which broke.</p>
+
+<p>However, <strong>the implementation changes did result in different behavior tradeoffs</strong>.  Let's look at the changes in detail.</p>
+
+<h3 id="implementation-notes-1">Implementation Notes</h3>
+
+<h4 id="v6-the-store-state-is-passed-down-via-createcontext">v6: The Store State is Passed Down via <code>createContext</code></h4>
+
+<p>In every version up through v5.x, the Redux store instance itself was put into context, and every connected component subscribed directly.  In v6, that changed drastically.</p>
+
+<p><strong>In v6:</strong></p>
+
+<ul>
+<li><strong>The Redux <em>store state</em> is put into an instance of the new <code>createContext</code> API</strong></li>
+<li><strong>There is only <em>one</em> store subscriber: the <code>&lt;Provider&gt;</code> component</strong></li>
+</ul>
+
+<p>This had all kinds of ripple effects across the implementation.</p>
+
+<p>It's fair to ask why we chose to change this aspect.  We certainly <em>could</em> have put the store instance into <code>createContext</code>, but there's several reasons why it made sense to put the store <em>state</em> into context instead.</p>
+
+<p><strong>The largest reason was to improve compatibility with &quot;concurrent React&quot;, because the entire tree will see a single consistent state value</strong>.  The very short explanation on this is that React's &quot;time-slicing&quot; and &quot;Suspense&quot; features can potentially cause problems when used with external synchronous state management tools.  As one example, Andrew Clark has described &quot;tearing&quot; as a possible problem, where different parts of the component tree see different values during the same component tree re-render pass.  By passing down the current state via context, we can ensure that the entire tree sees the same state value, because React takes care of that for us.</p>
+
+<p>The long-term goal was to hopefully prevent weird bugs when React-Redux is used with concurrent-mode React.  (We do have other questions we need to solve regarding how to fully make use of Suspense - <a href="https://www.reddit.com/r/reactjs/comments/9xnvs2/how_does_concurrent_react_update_priorities_work/e9toant/?context=3">I wrote an extensive Reddit comment describing the aspects we might need to solve</a>.)</p>
+
+<p>Related to this, React-Redux has previously faced numerous problems around dispatching in constructors and <code>componentWillMount</code> (see <a href="https://github.com/reduxjs/react-redux/search?q=dispatch+componentwillmount&amp;type=Issues">some related issues</a> ).  Switching to passing the state via context was meant to eliminate those edge cases.</p>
+
+<p><strong>Another big reason was that we got &quot;top-down updates&quot; for free!</strong>  Context inherently propagates top-down and ties into the render process.  So, if the data for a list item is deleted, the list parent will naturally re-render before the list item does.  As a result, for v6 we were able to delete that custom <code>Subscription</code> logic - we no longer needed it!  That was less code that we had to maintain, and a slightly smaller package size as a result.</p>
+
+<p>In addition, the original reason for passing the store instance no longer exists, because <strong><code>createContext</code> correctly propagates value changes past <code>shouldComponentUpdate</code> blockers</strong>.</p>
+
+<p>Finally, while this would have changed either way we handled the state-vs-store question, <strong>switching to <code>createContext</code> fixed bugs when mixing old and new context together</strong>.  There's already been a number of bugs filed that indicate weird things happen if you use both  forms of context in the same component, and Dan has also said that <a href="https://github.com/reduxjs/react-redux/issues/1083#issuecomment-439958259">having old context being used anywhere in a component tree slows things down some</a>.</p>
+
+<p>Putting the store state into context did have some interesting implications around performance, which we'll get to in a bit.</p>
+
+<h4 id="update-logic-is-selectors-used-in-rendering">Update Logic is Selectors, Used In Rendering</h4>
+
+<p>The new context API relies on a &quot;render props&quot; approach for receiving the values put into context, like:</p>
+
+<pre><code class="language-jsx">&lt;MyContext.Consumer&gt;
+{ (contextValue) =&gt; {
+    // render something with the new context value here
+}}
+&lt;/MyContext.Consumer&gt;
+</code></pre>
+
+<p>This means that context updates are directly tied to the wrapper component's <code>render</code> function.</p>
+
+<p>v6 still used the exact same set of selector functions for <code>connect</code> as v5 did.  However, there was also some additional memoization logic built into the wrapper component itself to help with the rendering process.  (I initially tried adding a second inner wrapper component and doing tricks with <code>getDerivedStateFromProps</code>, but adding an additional selector in the one wrapper component proved to be more efficient.)</p>
+
+<p>As part of that, <strong>v6 re-used the &quot;memoized React child element&quot; trick</strong> to indicate that the wrapped component shouldn't be re-rendered.  As with v4, this is because updates are tied to the wrapper component re-rendering, so we need a way to bail out if the child doesn't need to update.  (In fact, v6 doesn't even actually implement <code>shouldComponentUpdate</code>, because this trick is equivalent in terms of when the child updates.)</p>
+
+<h4 id="the-withref-option-is-replaced-by-forwardref">The <code>withRef</code> Option is Replaced by <code>forwardRef</code></h4>
+
+<p>One of the acknowledged downsides to Higher-Order Components is that they don't easily allow you to get access to the wrapped component inside.  React 16.3 introduced a new <a href="https://reactjs.org/docs/forwarding-refs.html"><code>React.forwardRef</code> API</a> as a solution.  Libraries can use this to allow end users to put a <code>ref</code> on the HOC, but actually get back the real wrapped component instance.</p>
+
+<p>We've added that in v6, which means that the old <code>withRef</code> option is no longer needed.  Since this does add an additional layer of wrapping (and therefore a bit more work for React to do), it's still opt-in via the new <code>{forwardRef : true}</code> option.</p>
+
+<h4 id="no-more-store-as-a-prop">No More <code>store</code> as a Prop</h4>
+
+<p>This was a consequence of changing from individual subscriptions per component, to a single subscription in <code>&lt;Provider&gt;</code>.  Since the components no longer subscribe, passing a store directly as a prop was meaningless, and so it was removed.</p>
+
+<p>As mentioned earlier, the two main use cases for this were avoiding rendering <code>&lt;Provider&gt;</code> in tests, and allowing portions of the component tree to read from another store.  The unit test use case was something that did require changes in your codebase, for folks who were actually rendering connected components in their unit tests.  For the &quot;alternate store&quot; use case, we added the ability to pass your own custom context object as a prop to <code>&lt;Provider&gt;</code> and connected components, allowing them to read from a different store if desired, hoping that would be a sufficient alternative.</p>
+
+<p>(I originally intended the API to involve passing a <code>Context.Provider</code> as a prop to <code>&lt;Provider&gt;</code> and passing a <code>Context.Consumer</code> as a prop to a connected component.  However, the <code>useContext()</code> hook requires an entire context object, not just a consumer, despite my requests to the React team to allow it to work with just a consumer.  So, the thought was that if we ever switched to using hooks internally to read from context, we'd need the whole context object in the wrapper component, so best to just require that as a prop now.)</p>
+
+<h4 id="accessing-the-store-via-context-has-changed">Accessing the Store via Context Has Changed</h4>
+
+<p>While it's never been part of our public API, it's common knowledge that any component could get a reference to the Redux store by declaring the appropriate <code>contextTypes</code> and using <code>this.context.store</code>.  Many community libraries took advantage of this.  For example, <code>connected-react-router</code> <a href="https://github.com/supasate/connected-react-router/blob/b197430be6315eb8c70f98be96ff67825653add5/src/ConnectedRouter.js#L23-L47">adds an extra subscription to handle location changes</a>, while <code>react-redux-subspace</code> <a href="https://github.com/ioof-holdings/redux-subspace/blob/d4c95fbf50fc93e4abfa2bcff742a51f249f0ad7/packages/react-redux-subspace/src/components/SubspaceProvider.js#L15-L21">intercepts the store and passes down a wrapped-up version that presents an altered view of the state</a>.</p>
+
+<p>Obviously, this is unsupported, and any library that does this kind of thing is risking things breaking... and in v6, that all broke because we weren't using legacy context any more.  However, we wanted to allow the community the ability to build customized solutions on top of React-Redux if desired.</p>
+
+<p>Each connected component needs the current store state, <em>and</em> a reference to the store's <code>dispatch</code> function so that it can implement <code>mapDispatch</code> correctly.  In one early PR, I had the <code>&lt;Provider&gt;</code> putting <code>{storeState, dispatch}</code> into context to handle that.</p>
+
+<p>However, in v6 final, we actually put both the <em>store state</em> and the <em>store instance</em> into context, so the context value actually looks like <code>{storeState, store}</code>.  That way, the components could reference <code>store.dispatch</code>.  In addition, we're exporting our default instance of <code>ReactReduxContext</code>.  <em>If</em> someone wants to, they can render that context consumer, retrieve the store instance, and do something with it.</p>
+
+<p>Again, it wasn't an official API, but the goal was to make it possible for folks to build on that if needed.</p>
+
+<h3 id="performance-implications">Performance Implications</h3>
+
+<p>When we were working on the attempt to fix the initial failed 5.1.0 version, we ran some benchmarks to see how the altered version compared to 5.0.7.  The large perf slowdown was a big reason why we abandoned that attempt.</p>
+
+<p>In response, <a href="https://github.com/reduxjs/react-redux-benchmarks">I set up a benchmarks repo that could compare multiple versions of React-Redux together</a>.  We used that throughout the development of v6, comparing our various WIP builds against each other and v6.</p>
+
+<p>Based on those benchmarks, <strong>we expected that React-Redux v6 would be sufficiently fast enough for almost all real-world apps</strong>.</p>
+
+<p>Having said that, there's some caveats.</p>
+
+<p>When I first envisioned switching over to <code>createContext</code>, I had hoped that it would be a potential boost to performance.  After all, we would be going from N subscriber calls on every action down to just 1.  Unfortunately, that isn't the case.</p>
+
+<p><strong>In <em>artificial stress test benchmarks</em>, v6 was generally slower than v5.... but the amount varies, and the reasons are complex.</strong></p>
+
+<h4 id="understanding-the-performance-differences">Understanding the Performance Differences</h4>
+
+<p>In v5, a dispatched action would result in N subscriber callbacks executing.  But, thanks to the heavily memoized selector functions used with <code>connect</code>, only wrapper components whose data had changed would actually call <code>this.setState()</code> to trigger a re-render.  That meant that React only got involved when updates were needed.</p>
+
+<p>In v6, <code>&lt;Provider&gt;</code> has the only subscriber callback.  However, in order to safely handle state changes, it immediately calls <code>setState()</code> using the functional updater form:</p>
+
+<pre><code class="language-js">    this.unsubscribe = store.subscribe(() =&gt; {
+      const newStoreState = store.getState()
+
+      if (!this._isMounted) {
+        return
+      }
+
+      this.setState(providerState =&gt; {
+        // If the value is the same, skip the unnecessary state update.
+        if (providerState.storeState === newStoreState) {
+          return null
+        }
+
+        return { storeState: newStoreState }
+      })
+    })
+</code></pre>
+
+<p>It does try to optimize some by skipping any further work if the store state hasn't changed, but this means that <strong>React will immediately and always get involved after each dispatched action.</strong></p>
+
+<p>The next issue is that <strong>React has to trace through the component tree to find all of the matching context consumers</strong>.  In a simple app structure, React would sort of do this automatically anyway, because calling <code>setState()</code> in the root component would recursively cause the entire component tree to be re-rendered.</p>
+
+<p>However, many components in the tree may be blocking updates, whether it be manually-implemented <code>shouldComponentUpdate -&gt; false</code>, instances of <code>PureComponent</code> or <code>React.memo()</code>, or <code>connect</code> wrappers that are skipping re-renders of their children.  Let's assume for sake of the example that the topmost <code>&lt;App&gt;</code> component simply has <code>shouldComponentUpdate -&gt; false</code>, thus blocking updates further down when <code>&lt;Provider&gt;</code> calls <code>setState()</code>.  In this case, React still has to traverse the entire rendered component tree to find all the consumers.</p>
+
+<p>React is fast, but that work does take time.  The speed of context updates affects more than just React-Redux.  The maintainer of <code>react-beautiful-dnd</code> opened up <strong><a href="https://github.com/facebook/react/issues/13739">React issue #13739: React Context value propagation performance</a></strong> to discuss some of the perf implications.  In that thread, Dan and Dominic suggested that the current handling of nested context updates is somewhat naive, and could potentially be optimized further down the road.</p>
+
+<h4 id="performance-benchmarks">Performance Benchmarks</h4>
+
+<p>When I finished cleanup and optimization on the PR that became v6 beta, I did a final set of runs against our benchmarks.  <a href="https://github.com/reduxjs/react-redux/pull/1000#issuecomment-436140264">You can view those benchmark results here</a>.  Summarizing:</p>
+
+<ul>
+<li>Both an earlier WIP v6 iteration and the final version of the v6 PR were slower than v5, in all benchmark scenarios</li>
+<li>That said, the final v6 build was by far the fastest of the v6 versions</li>
+<li>The amount of relative slowdown varied based on the benchmark scenario.  It was most pronounced with a totally flat tree of rapidly-updating components (~20% slower), much less so with deeper trees and other update patterns (2% slower).</li>
+</ul>
+
+<p>I'd like to re-emphasize that <strong>these are totally artificial stress-test benchmarks!</strong>.  We needed some way to objectively compare different builds for performance, and so we set up scenarios that deliberately cranked up the numbers of components and frequency of dispatched actions until all the builds began slowing down.</p>
+
+<p>(Note: I'd happily accept more help from the community in fleshing out the benchmarks suite, to help us come up with some more realistic scenarios.  Also, anyone ought to be able to clone the benchmarks repo, drop in a particular build of React-Redux, and replicate the approximate results on your own machine.)</p>
+
+<h2 id="v7-0">v7.0</h2>
+
+<h3 id="motivations-1">Motivations</h3>
+
+<p>I've observed a number of times that the single best way to get feedback on a piece of software is to release it as a final version.  Doesn't matter how much you advertise alphas and betas, and beg people to try them out, A) most people won't try them out, and B) the few folks who do simply can't match the breadth of ways that people are using your code.</p>
+
+<p>v6 fit that pattern to a T.  Soon after we released it, folks began filing issues listing various issues they encountered trying to upgrade.  The most common issue was actually with third-party libraries that were trying (and now failing) to access the store directly.  Notable examples included <code>connected-react-router</code>, <code>react-redux-firebase</code>, <code>react-redux-subspace</code>, and even <code>redux-form</code>.  We couldn't do anything about that, beyond poke maintainers and offer some suggestions on an upgrade path.</p>
+
+<p>Other issues, however, were more concerning.  The biggest one was performance.  Despite my hopes that v6 would be &quot;fast enough&quot; in real-world apps, several users <a href="https://github.com/reduxjs/react-redux/issues/1164">complained of noticeable slowdowns in various scenarios</a>.</p>
+
+<p>Another major issue was that our use of context turned out to be a bad foundation for eventually creating a hooks-based API.  There was a giant React discussion issue on <a href="https://github.com/facebook/react/issues/14110">potential ways to bail out of updates caused by context in function components</a>.  Despite some early promising comments, it ultimately resulted in the React team saying that they weren't going to address that particular use case any time soon.  In addition, Sebastian Markbage specifically described new context as <a href="https://github.com/facebook/react/issues/14110#issuecomment-448074060">&quot;not meant to be used for Flux-like state propagation&quot;</a>.</p>
+
+<p>Finally, a few specific (but vocal) users raised concerns about <a href="https://github.com/reduxjs/react-redux/issues/1161">the removal of <code>store</code> as a prop</a>.  The combination of Enzyme's implementation and limitations, and our use of context, effectively made it impossible for them to continue shallow-testing connected components.</p>
+
+<p>In response, in early February 2019 I filed <strong><a href="https://github.com/reduxjs/react-redux/issues/1177">issue #1177: React-Redux Roadmap: v6, Context, Subscriptions, and Hooks</a></strong>.  It's a monster post, laying out those concerns in greater detail, and trying to establish a direction for what a potential v7 might look like that would solve those issues.  Rather than duplicate it here, please read through it to understand the challenges and how the process evolved.</p>
+
+<p>In particular, the React team (and specifically Dan Abramov and Sebastian Markbage) encouraged us to move back to using direct store subscriptions in components to improve performance.  Dan also encouraged us to make use of React's <code>unstable_batchedUpdates()</code> API as well.</p>
+
+<h3 id="development">Development</h3>
+
+<p>When I filed that roadmap issue, I didn't have any specific ideas on how we were going to reimplement <code>connect</code> to achieve them.  Fortunately, I had some free time on my hands, and jumped right into experimenting with ideas.</p>
+
+<p>Given the constraints we'd seen with accessing context in class component lifecycles, <a href="https://github.com/reduxjs/react-redux/issues/1177#issuecomment-461185008">I opted to try a brand-new implementation using React's new hooks APIs</a>.  I ended up bringing back the custom <code>Subscription</code> class from v5, but the <a href="https://github.com/reduxjs/react-redux/issues/1177#issuecomment-461678923">initial benchmark results weren't promising</a>.</p>
+
+<p>A day later, though, I made a breakthrough: <a href="https://github.com/reduxjs/react-redux/issues/1177#issuecomment-461699799">wrapping <code>connect</code> in <code>React.memo()</code></a> drastically improved performance!  Comparisons showed it was at <em>least</em> as fast as v5, and even faster in some scenarios.</p>
+
+<p>I began publishing alphas for people to play with.  Over the next few weeks, the community poked and prodded, and found several issues that we fixed.  At one point, I wrote <a href="https://github.com/reduxjs/react-redux/issues/1177#issuecomment-468959889">an insanely detailed step-by-step data flow analysis comparing how v5, v6, v7-alpha.1, and v7-alpha.2 process updates and re-renders</a>.</p>
+
+<p>The mile-long issue thread had a number of digressions and debates on various topics, including the need for tiered subscriptions, if a class component approach could still work, whether peer dependency bumps require a new major version of this package, and much more.</p>
+
+<p>Finally, in early April, we published <strong><a href="https://github.com/reduxjs/react-redux/releases/tag/v7.0.1">React-Redux v7.0</a></strong> as final.  The reception has been universally positive.  Folks who were seeing slowdowns with v6 reported that v7 was vastly faster across the board.</p>
+
+<h3 id="implementation-notes-2">Implementation Notes</h3>
+
+<h4 id="connect-is-implemented-using-hooks"><code>connect</code> Is Implemented Using Hooks</h4>
+
+<p>The <code>connect</code> wrapper component had always been a class component.  As of v7, <a href="https://github.com/reduxjs/react-redux/blob/5c69baf817527ee9a742c9dc4d541945cb7d1719/src/components/connectAdvanced.js#L158"><code>connect</code> is now a function component that uses hooks inside</a>.  This made some aspects simpler (access to values from context, easy memoization of child elements), but complicated others (timing of effect callbacks).</p>
+
+<p>We initially executed subscriptions in <code>useEffect()</code>, but later concluded we needed to use <code>useLayoutEffect()</code> to ensure they're added synchronously.  Unfortunately, the React team chose to <a href="https://github.com/facebook/react/issues/14927">print warnings when <code>useLayoutEffect()</code> is used in an SSR environment</a>.  We had to do <a href="https://github.com/reduxjs/react-redux/blob/01966db91e33aca533bb62f9f7a69ccd16ba6282/src/components/connectAdvanced.js#L35-L45">some hacky environment detection  and call <code>useEffect()</code> in SSR instead</a>.  Neither of them run, but at least <code>useEffect()</code> doesn't warn.</p>
+
+<h4 id="the-return-of-direct-component-subscriptions">The Return of Direct Component Subscriptions</h4>
+
+<p>As with v5 and earlier, v7 wrapper components all subscribe to the store directly, and only get React involved when the selector logic determines that the wrapper component needs to re-render.  This was the first key step in bringing performance back to the level of v5.</p>
+
+<h4 id="use-of-react-s-batched-updates-api">Use of React's Batched Updates API</h4>
+
+<p>React has always had an API called <code>unstable_batchedUpdates()</code>.  Internally, React wraps all your event handlers inside of that, which is what allows React to batch together multiple state updates from one event tick into a single render pass.</p>
+
+<p>The React team urged us to use <code>unstable_batchedUpdates()</code> directly in React-Redux.  This was tricky, because it's actually exported from renderers like ReactDOM and React Native, not the core React package.  React-Redux <em>should</em> work with any React renderer, so we couldn't add a direct dependency on either of those.  We had to write some different wrapper files so that the <code>&quot;react-dom&quot;</code> import would get loaded in a web environment, and the <code>&quot;react-native&quot;</code> import when used with RN.  For apps that might be using React-Redux with an alternate renderer, we added an additional entry point that falls back to a dummy batching implementation.</p>
+
+<p>There have been <a href="https://github.com/tappleby/redux-batched-subscribe">other Redux addons that make use of batched updates</a>.  I didn't want to dictate anything about what enhancers and store setup were needed.  Instead, I was able to
+<a href="https://github.com/reduxjs/react-redux/blob/5c69baf817527ee9a742c9dc4d541945cb7d1719/src/utils/Subscription.js#L25-L299">use the batching inside our custom <code>Subscription</code> class</a>, and <a href="https://github.com/reduxjs/react-redux/blob/5c69baf817527ee9a742c9dc4d541945cb7d1719/src/components/Provider.js#L13">updated <code>&lt;Provider&gt;</code> to create a root subscription</a>.</p>
+
+<h4 id="use-of-react-memo-for-prop-optimizations">Use of <code>React.memo()</code> for Prop Optimizations</h4>
+
+<p><code>connect</code> has always implemented optimizations similar to what <code>React.PureComponent</code> now does, but more extensive.  It does checks on incoming props from the parent component, but ultimately only renders if the <em>merged</em> <code>stateProps + dispatchProps + ownProps</code> have changed.</p>
+
+<p>React 16.6 introduced <a href="https://reactjs.org/docs/react-api.html#reactmemo"><code>React.memo()</code></a> as an alternative to use of <code>shouldComponentUpdate</code> or <code>PureComponent</code>.  Like <code>PureComponent</code>, it checks to see if updates are necessary by doing a shallow comparison of previous and current props.  Unlike <code>PureComponent</code>, which is an alternate base class component, <code>React.memo()</code> is a new component type that can wrap around either class or function components.  In addition, it returns a very special object that looks like <code>{$$typeof: REACT_MEMO_TYPE, type : WrappedComponent, compareFunction}</code> (<a href="https://github.com/facebook/react/blob/769b1f270e1251d9dbdce0fcbd9e92e502d059b8/packages/react/src/memo.js#L27-L31">see implementation reference</a>).  This is interesting, because up until now all React components have been functions of some kind (as JS classes are actually functions).  For the first time, a React component type may actually be an object instead, and so code that tries to determine if a value is a component by seeing if it's a function is now wrong.</p>
+
+<p>Naturally, this meant that once we released v7, we began getting issues saying that people's code had broken because there were checks expecting all components are functions.</p>
+
+<h3 id="api-changes-1">API Changes</h3>
+
+<h4 id="return-of-store-as-a-prop">Return of <code>store</code> as a Prop</h4>
+
+<p>Now that components are subscribing to the store themselves again, it was easy to re-add the ability for connected components to accept <code>store</code> as a prop once more.  That resolved the issues from it being removed.</p>
+
+<h4 id="new-batch-api">New <code>batch()</code> API</h4>
+
+<p>Since we'd already gone to the trouble of ensuring that we could import <code>unstable_batchedUpdates()</code> in both web and RN environments, we decided to re-export it as a public API named <code>batch()</code>.  This allows end users to wrap parts of their code that are triggering multiple state updates outside of React's event handlers (such as an async function or a thunk), and minimize the number of re-renders that occur.</p>
+
+<h2 id="v7-1-hooks">v7.1: Hooks?!?!</h2>
+
+<h3 id="motivations-2">Motivations</h3>
+
+<p>As soon as React hooks were announced, <a href="https://github.com/reduxjs/react-redux/issues/1063">people began asking when React-Redux would include a hooks-based public API</a>.  (The React Hooks FAQ <a href="https://reactjs.org/docs/hooks-faq.html#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router">even mentioned &quot;<code>useRedux()&quot;</code> as a hypothetical hook</a>.)</p>
+
+<p>By the time React hooks were officially released, there were already <a href="https://twitter.com/adamklein500/status/1072457324932067329">numerous third-party Redux hooks libraries</a>.  (I later put together <a href="https://docs.google.com/spreadsheets/d/1JfjcpaZkNjRLzA35uuPQpDLfKc-Z8LqSP7GJaUjH19o">a spreadsheet comparing the various library APIs and their popularity</a>.)</p>
+
+<p>Clearly, it was a question of <em>when</em> we would develop and publish a hooks API, not &quot;if&quot;.</p>
+
+<h3 id="development-1">Development</h3>
+
+<p>The v7.0 work derailed the hooks API discussions for a while.  As we found out in <a href="https://github.com/facebook/react/issues/14110">React #14110: Provide more ways to bail out inside Hooks</a>, there's no way to stop updates caused by <code>useContext()</code>.  That incredibly long discussion led to the React team advising us to switch back to direct subscriptions, and that meant that getting v7.0 out the door was a prerequisite for any kind of a hooks API.</p>
+
+<p>After the initial hooks discussion thread got derailed, I <a href="https://github.com/reduxjs/react-redux/issues/1179">opened up a new API discussion thread</a> in February based on some of the v7 discussions.   The discussion continued there for a while, but I didn't pay much attention.  In fact, as of late March 2019, <a href="https://github.com/reduxjs/react-redux/issues/1179#issuecomment-475722015">I replied to an &quot;ETA?&quot; question saying I was busy, and it was unlikely to be any time soon</a>.</p>
+
+<p>But, with v7 in beta and nearing release, my mind started poking at the hooks question.  About that time, I <a href="https://twitter.com/acemarke/status/1109520804860051456">published a Twitter poll asking what I should focus my time on next</a>, and 82% selected &quot;Hooks&quot;.  Clearly, the people had spoken :)</p>
+
+<p>I started actively participating in the discussion thread, and we soon figured out there were some major issues we'd have to deal with.  In particular, we couldn't enforce top-down updates in a hooks environment, because v7 relies on overriding context values to pass down nested <code>Subscription</code> instances, and you can't render context values from a hook.  This meant users would potentially encounter the &quot;zombie child&quot; issue again.</p>
+
+<p>I finally spent a couple days doing some analysis of all the third-party hooks libs I'd seen and the various approaches that had been offered, and wrote <a href="https://github.com/reduxjs/react-redux/issues/1179#issuecomment-480547676">a summary of how I thought we might be able to move forward</a>.</p>
+
+<p>There were some ensuing digressions on topics such as use of Proxies to track updates and whether we could use the v6 and v7 approaches in parallel.  After much extended debate, we concluded that we'd basically just have to give up on a technical solution to the &quot;zombie child&quot; issue, document the potential concerns, and move on.</p>
+
+<p>A user named Jonathan Ziller had put together a package implementing his proposed set of hooks APIs, and <a href="https://github.com/reduxjs/react-redux/issues/1179#issuecomment-484559515">I finally suggested we should take that implementation as a PR</a>.  After more bikeshedding over hook names, <a href="https://github.com/reduxjs/react-redux/releases/tag/v7.1.0-alpha.1">we finally published our first alpha</a>, which contained five hooks:</p>
+
+<ul>
+<li><code>useSelector</code></li>
+<li><code>useActions</code></li>
+<li><code>useDispatch</code></li>
+<li><code>useRedux</code></li>
+<li><code>useStore</code></li>
+</ul>
+
+<p>The alpha cycle led to <a href="https://github.com/reduxjs/react-redux/issues/1252">another monster discussion thread (250 comments)</a>.  During that process, we made three major changes:</p>
+
+<ul>
+<li><a href="https://github.com/reduxjs/react-redux/releases/tag/v7.1.0-alpha.3">v7.1-alpha.3 dropped <code>useRedux</code></a>, on the grounds that it didn't provide anything useful</li>
+<li><a href="https://github.com/reduxjs/react-redux/releases/tag/v7.1.0-alpha.4">v7.1-alpha.4 dropped <code>useActions</code></a>, after Dan Abramov strongly argued that it added too much complexity (including naming and variable scoping clashes)</li>
+<li><a href="https://github.com/reduxjs/react-redux/releases/tag/v7.1.0-alpha.5">v7.1-alpha.5 changed from shallow to reference equality for determining updates</a>, under the idea that users would be more likely to select specific values rather than returning grouped objects</li>
+</ul>
+
+<p>After sitting in alpha for a couple months, we finally zoomed through the RC stage and put out <strong><a href="https://github.com/reduxjs/react-redux/releases/tag/v7.1.0">React-Redux v7.1.0</a></strong> in early June.  (I was about to give <a href="/2019/06/presentation-react-redux-deep-dive/">a talk based on this post at ReactNext</a>, so we ended up publishing v7.1 the night before the talk so I could announce it was live.)</p>
+
+<h3 id="api-changes-2">API Changes</h3>
+
+<h5 id="hooks">Hooks!</h5>
+
+<p>As mentioned, we ultimately wound up shipping three hooks:</p>
+
+<ul>
+<li><code>useSelector</code>: subscribes to the store and returns the selected value</li>
+<li><code>useDispatch</code>: returns the store's <code>dispatch</code> function</li>
+<li><code>useStore</code>: returns the store instance itself</li>
+</ul>
+
+<p>Due to the lack of top-down subscription enforcement, we made sure to <a href="https://react-redux.js.org/api/hooks#usage-warnings">document potential edge cases</a> so that people are aware of those issues.</p>
+
+<p>We also ended up adding <a href="https://react-redux.js.org/api/hooks#hooks-recipes">copy-pasteable recipes for <code>useActions</code> and <code>useShallowEqualSelector</code></a> to the docs as well.</p>
+
+<h2 id="the-future">The Future</h2>
+
+<p>The existing <code>connect</code> API has been incredibly successful overall, and there's hundreds of thousands of apps using it.  Our hooks API is new and certainly not as battle-tested, but we iterated on it sufficiently that I'm confident in how it works.</p>
+
+<p>I'm truly hoping that React-Redux has stabilized after all the v6/v7 churn.  I'm thankful that we managed to keep the public APIs consistent, since that meant that most folks were able to upgrade v5-&gt;v6-&gt;v7 without any real breaking changes.  Still, I dislike that we've had to bump through a couple major versions, and hopefully we can leave things alone for a while.</p>
+
+<p>But, a maintainer's work is never done.  Some possible future considerations:</p>
+
+<h3 id="alternate-apis">Alternate APIs</h3>
+
+<p>Prior to the announcement of hooks, we were frequently asked to provide  <a href="https://github.com/reduxjs/react-redux/issues/799">a &quot;render props&quot; form of <code>connect</code></a>.  Now that hooks are a thing, that's unlikely to ever happen.</p>
+
+<p>Beyond that, perhaps there's some alternative API approach that would be easier to use and work better with concurrent React down the road, and we just haven't thought of it yet.</p>
+
+<h3 id="concurrent-react">Concurrent React</h3>
+
+<p>The React world has been eagerly awaiting the release of React's &quot;Concurrent Mode&quot; since Dan helped publicize it in his <a href="https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html">JSConf Iceland 2018 talk &quot;Beyond React 16&quot;</a>.  The React team published <a href="https://reactjs.org/blog/2018/11/27/react-16-roadmap.html">a roadmap in late 2018</a> suggesting they hoped to have it out by mid-2019, but as of June that hasn't happened yet, and recent comments indicate it'll still be a while.</p>
+
+<p>Flarnie Marchan (formerly on the React core team) did a great talk at ReactNext in June entitled <a href="https://youtu.be/V1Ly-8Z1wQA">&quot;Ready for Concurrent Mode?&quot;</a>, where she laid how a summary of how Concurrent Mode works and some potential issues with existing code.  It's very worth watching.</p>
+
+<p>Long-term, we don't know how React-Redux will be able to fully interact with Concurrent Mode, largely because it isn't out and documented yet for us to be able to understand it.  Someone just filed <a href="https://github.com/reduxjs/react-redux/issues/1351">an issue asking about our Concurrent Mode compat status</a>, and the answer is: &quot;we dunno, we'll figure it out down the road&quot;.  Keep an eye on that issue for future discussions.</p>
+
+<h3 id="future-context-improvements">Future Context Improvements?</h3>
+
+<p>The most disappointing thing about v6 is that it <em>worked</em>, it just wasn't fast enough for real-world usage.  It's possible that React might someday make changes to the context API that would allow us to reconsider context-based state propagation as a viable approach again.</p>
+
+<p>As a potential example, Josh Story just filed React RFCs describing two potential rewrites of context:  <a href="https://github.com/reactjs/rfcs/pull/118">lazy context propagation</a> for faster updates with less overhead, and <a href="https://github.com/reactjs/rfcs/pull/119">context selectors</a> to determine if contexts should update, as a replacement for <code>observedBits</code>.  He also filed a proof-of-concept React-Redux PR <a href="https://github.com/reduxjs/react-redux/pull/1350">to rewrite <code>connect</code> to use that context selectors implementation</a>.  Obviously, a lot would have to happen before we could ever actually use that (RFCs accepted, changes merged into React, new versions published), and it would require a new major version of React-Redux, but there's some potential there.</p>
+
+<h3 id="magic">Magic?</h3>
+
+<p>Back when v6 was in development, I wrote a long post on ways we could potentially use Proxies for tracking state dependencies and optimize context updates based on that info: <a href="https://github.com/reduxjs/react-redux/issues/1018">React-Redux issue #1018: Investigate use of context + observedBits for performance optimization</a>.</p>
+
+<p>Since then, Daishi Kato has been experimenting with various similar approaches, and currently has a small library called <a href="https://github.com/dai-shi/reactive-react-redux"><code>reactive-react-redux</code></a> that implements a Proxy-based <code>useTrackedState()</code> hook as an alternative to React-Redux.  Long-term, that kind of approach is very intriguing.</p>
+
+<p>I'd certainly love to hear feedback from the community on what forms of &quot;magic&quot; are acceptable, especially around optimizing component updates.</p>
+
+<h2 id="final-thoughts">Final Thoughts</h2>
+
+<p>Hopefully this journey through time and release notes has been informative.  As you've seen, <strong>React-Redux has never been &quot;magic&quot; - just smart about implementing optimizations so you don't have to</strong>.  For all the internal complexity, it's still just a matter of subscribing to the store, checking to see what data your component needs, and re-rendering it when necessary.  The implementations have changed, but the goals haven't.</p>
+
+<p>This should also help explain <strong>why you should use React-Redux instead of trying to write subscription logic yourself in your components</strong>.  The Redux team has put countless hours into optimizing performance, handling edge cases, and dealing with changes in the ecosystem.  You should take advantage of all the hard work that's gone into this API! :)</p>
+
+<p>As always, if you've got questions, please leave a comment, file an issue, or ping me <strong>@acemarke</strong> on Reactiflux and Twitter.</p>
+
+<h2 id="further-information">Further Information</h2>
+
+<ul>
+<li><a href="/2019/06/presentation-react-redux-deep-dive/">ReactNext 2019 talk: A Deep Dive into React_Redux</a></li>
+</ul>
+  </section>
+
+	
+	
+	<hr/>
+	<section>
+	<p><a href="" id="series"></a>This is a post in the <a href="/series/idiomatic-redux"><b>Idiomatic Redux</b></a> series.
+	Other posts in this series:</p>
+	
+	
+	<ul class="series">
+	
+		<li>Oct 09, 2016 - 
+		
+			<a href="//blog.isquaredsoftware.com/2016/10/idiomatic-redux-why-use-action-creators/"><b>Idiomatic Redux: Why use action creators?</b> </a>
+		
+		</li>
+	
+		<li>Jan 02, 2017 - 
+		
+			<a href="//blog.isquaredsoftware.com/2017/01/idiomatic-redux-thoughts-on-thunks-sagas-abstraction-and-reusability/"><b>Idiomatic Redux: Thoughts on Thunks, Sagas, Abstraction, and Reusability</b> </a>
+		
+		</li>
+	
+		<li>May 09, 2017 - 
+		
+			<a href="//blog.isquaredsoftware.com/2017/05/idiomatic-redux-tao-of-redux-part-1/"><b>Idiomatic Redux: The Tao of Redux, Part 1 - Implementation and Intent</b> </a>
+		
+		</li>
+	
+		<li>May 10, 2017 - 
+		
+			<a href="//blog.isquaredsoftware.com/2017/05/idiomatic-redux-tao-of-redux-part-2/"><b>Idiomatic Redux: The Tao of Redux, Part 2 - Practice and Philosophy</b> </a>
+		
+		</li>
+	
+		<li>Dec 22, 2017 - 
+		
+			<a href="//blog.isquaredsoftware.com/2017/12/idiomatic-redux-using-reselect-selectors/"><b>Idiomatic Redux: Using Reselect Selectors for Encapsulation and Performance</b> </a>
+		
+		</li>
+	
+		<li>Nov 22, 2018 - 
+		
+			<b>Idiomatic Redux: The History and Implementation of React-Redux</b>
+		
+		</li>
+	
+		<li>Oct 23, 2019 - 
+		
+			<a href="//blog.isquaredsoftware.com/2019/10/redux-starter-kit-1.0/"><b>Idiomatic Redux: Redux Toolkit 1.0</b> </a>
+		
+		</li>
+	
+	</ul>
+	</section>
+ 
+
+  <footer>
+    
+         
+  
+    
+    <hr />
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'marksdevblog';
+      (function() {
+        if (window.location.hostname == "localhost") return;
+        
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    <section class="author-info row">
+      
+       
+      
+      <div class="author-meta col-md-12" style="display: flex; justify-content: space-between; align-items: center;">
+            
+            <ul class="pager">
+      <li class="previous"><a href="//blog.isquaredsoftware.com/2018/11/git-js-history-rewriting/"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      </ul>
+      
+      <div style="display: flex; justify-content: center; align-items: center;">
+       
+       <div class="author-avatar">
+        <img alt="Author Avatar" src="/images/avatar.jpg" />
+        </div>
+        <div>
+        
+        
+        
+        <h1 class="author-name text-primary">Mark Erikson</h1>
+        
+        
+        <div class="author-bio">Collector of interesting links, answerer of questions</div>
+        
+        </div>
+      </div>
+      
+      
+      <ul class="pager">
+      <li class="next"><a href="//blog.isquaredsoftware.com/2019/01/blogged-answers-debugging-tips/">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+      </div>
+      
+      
+      </ul>
+    </section>
+    <hr />
+  </footer>
+</article>
+
+  <aside>
+    <div class="row top-buffer">
+
+      
+        
+          <div class="col-xs-12 col-sm-8 col-md-8">
+        
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <h2 class="panel-title">Recent Posts</h2>
+                  </div>
+                  <div class="list-group">
+                      
+                          <a href="/2020/02/blogged-answers-why-redux-toolkit-uses-thunks-for-async-logic/" class="list-group-item">Blogged Answers: Why Redux Toolkit Uses Thunks for Async Logic</a>
+                      
+                          <a href="/2020/02/blogged-answers-coder-vs-tech-lead---balancing-roles/" class="list-group-item">Blogged Answers: Coder vs Tech Lead - Balancing Roles</a>
+                      
+                          <a href="/2020/01/blogged-answers-react-redux-and-context-behavior/" class="list-group-item">Blogged Answers: React, Redux, and Context Behavior</a>
+                      
+                          <a href="/2020/01/blogged-answers-years-in-review-2018-2019/" class="list-group-item">Blogged Answers: Years in Review, 2018-2019</a>
+                      
+                          <a href="/2020/01/blogged-answers-reasons-to-use-thunks/" class="list-group-item">Blogged Answers: Reasons to Use Thunks</a>
+                      
+                  </div>
+              </div>
+          </div>
+      
+      
+
+      
+
+      
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="display: flex">
+                    <h2 class="panel-title">Top Tags</h2>
+                    <div style="margin-left: 10px;"><a href="/tags/">(All Tags)</a></div>
+                </div>
+                <div class="list-group">
+                    
+                    
+                    
+                    <a href="/tags/redux" class="list-group-item">
+                        <span class="badge">43</span>
+                        redux
+                    </a>
+                    
+                    <a href="/tags/javascript" class="list-group-item">
+                        <span class="badge">38</span>
+                        javascript
+                    </a>
+                    
+                    <a href="/tags/react" class="list-group-item">
+                        <span class="badge">32</span>
+                        react
+                    </a>
+                    
+                    <a href="/tags/presentation" class="list-group-item">
+                        <span class="badge">12</span>
+                        presentation
+                    </a>
+                    
+                    <a href="/tags/project-minimek" class="list-group-item">
+                        <span class="badge">10</span>
+                        project-minimek
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+      
+      
+      
+      
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Series</h2>
+                </div>
+                <div class="list-group">
+                    
+                    
+                    <a href="/series/blogged-answers" class="list-group-item">
+						<span class="badge">13</span>
+                        Blogged Answers
+                    </a>
+                    
+                    <a href="/series/codebase-conversion" class="list-group-item">
+						<span class="badge">2</span>
+                        Codebase Conversion
+                    </a>
+                    
+                    <a href="/series/declaratively-rendering-earth-in-3d" class="list-group-item">
+						<span class="badge">2</span>
+                        Declaratively Rendering Earth In 3d
+                    </a>
+                    
+                    <a href="/series/idiomatic-redux" class="list-group-item">
+						<span class="badge">7</span>
+                        Idiomatic Redux
+                    </a>
+                    
+                    <a href="/series/newsletter" class="list-group-item">
+						<span class="badge">6</span>
+                        Newsletter
+                    </a>
+                    
+                    <a href="/series/practical-redux" class="list-group-item">
+						<span class="badge">13</span>
+                        Practical Redux
+                    </a>
+                    
+                    <a href="/series/presentations" class="list-group-item">
+						<span class="badge">13</span>
+                        Presentations
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+      
+
+    </div>
+</aside>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      
+    </div>
+    <div class="sns-links hidden-print">
+  
+  
+  <a href="https://twitter.com/acemarke" target="_blank">
+    <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  
+  
+  
+  <a href="https://github.com/markerikson" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  <a href="https://stackoverflow.com/users/62937/markerikson" target="_blank">
+    <i class="fa fa-stack-overflow"></i>
+  </a>
+  
+  
+  <a href="https://linkedin.com/in/markerikson" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+  
+</div>
+
+    <a href="https://paypal.me/acemarke/20"><img src="//blog.isquaredsoftware.com/images/PaypalTipJar.png" width=69 height=38/></a>
+  </footer>
+
+  <script src="//blog.isquaredsoftware.com/js/prism.js"></script>
+  <script>
+      Prism.highlightAll(false);
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-205364-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

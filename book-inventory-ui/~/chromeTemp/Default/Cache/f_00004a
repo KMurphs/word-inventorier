@@ -1,0 +1,639 @@
+webpackHotUpdate("main",{
+
+/***/ "./src/components/QueryViewer/QueryViewer.tsx":
+/*!****************************************************!*\
+  !*** ./src/components/QueryViewer/QueryViewer.tsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _QueryViewer_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QueryViewer.css */ "./src/components/QueryViewer/QueryViewer.css");
+/* harmony import */ var _QueryViewer_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_QueryViewer_css__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\PersonalProjects\\corpus-word-inventory\\book-inventory-ui\\src\\components\\QueryViewer\\QueryViewer.tsx";
+
+
+
+const QueryViewer = ({
+  data,
+  onClose,
+  onCopy
+}) => {
+  const summary = `
+Query Summary (${(data.durationMs / 1000).toFixed(2)}sec)
+Created at: ${data._createdAt}
+Execution Time: ${(data.durationMs / 1000).toFixed(2)}sec
+Query Definition: Searching for top '${data.uiQuery.topN}' most frequent tokens with length between '${data.uiQuery.minLength}' and '${data.uiQuery.maxLength}'
+
+Query Results:
+` + data.data.reduce((acc, res, index) => acc + `${index + 1} - Found '${res.key}' with frequency '${res.frequency}' and length '${res.length}'\n`, "");
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-viewer",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-copy",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-copy",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: undefined
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-meta",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: undefined
+  }, "Meta Data"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: undefined
+  }, "Query Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    },
+    __self: undefined
+  }, data._createdAt), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: undefined
+  }, "Query Duration"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: undefined
+  }, (data.durationMs / 1000).toFixed(2), "sec"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-object",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 44
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 45
+    },
+    __self: undefined
+  }, "Query Summary"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
+    },
+    __self: undefined
+  }, "Searching for top '", data.uiQuery.topN, "' most frequent tokens with length between '", data.uiQuery.minLength, "' and '", data.uiQuery.maxLength, "'"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 47
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: undefined
+  }, "Token Count"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: undefined
+  }, "Minimum Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: undefined
+  }, "Maximum Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: undefined
+  }, data.uiQuery.topN), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: undefined
+  }, data.uiQuery.minLength), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
+    },
+    __self: undefined
+  }, data.uiQuery.maxLength))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-result",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 58
+    },
+    __self: undefined
+  }, "Query Results"), data.data.map(res => {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "data-container",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 63
+      },
+      __self: undefined
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 64
+      },
+      __self: undefined
+    }, `Found '${res.key}' with frequency '${res.frequency}' and length '${res.length}'`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 65
+      },
+      __self: undefined
+    }, "Token"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 66
+      },
+      __self: undefined
+    }, "Frequency"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 67
+      },
+      __self: undefined
+    }, "Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "data-item data-item-token",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 68
+      },
+      __self: undefined
+    }, res.key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "data-item",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 69
+      },
+      __self: undefined
+    }, res.frequency), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "data-item",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 70
+      },
+      __self: undefined
+    }, res.length));
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (QueryViewer);
+
+/***/ }),
+
+/***/ "./src/components/SummaryViewer/SummaryViewer.tsx":
+/*!********************************************************!*\
+  !*** ./src/components/SummaryViewer/SummaryViewer.tsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SummaryViewer_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SummaryViewer.css */ "./src/components/SummaryViewer/SummaryViewer.css");
+/* harmony import */ var _SummaryViewer_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_SummaryViewer_css__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\PersonalProjects\\corpus-word-inventory\\book-inventory-ui\\src\\components\\SummaryViewer\\SummaryViewer.tsx";
+
+
+
+const SummaryViewer = ({
+  data,
+  onClose,
+  onCopy
+}) => {
+  const summary = `
+Book Summary (${data.summaryDurationSec.toFixed(2)}sec)
+BookID: ${data.id} - ${data.idType}
+Created at: ${data._createdAt}
+
+Book Contains '${data.wordsCount}' words in total of which '${data.uniqueWordsCount}' are unique
+Most Frequent word is '${data.mostFrequentWord.key}' with frequency '${data.mostFrequentWord.frequency}' and length '${data.mostFrequentWord.length}'
+Least Frequent word is '${data.leastFrequentWord.key}' with frequency '${data.leastFrequentWord.frequency}' and length '${data.leastFrequentWord.length}'
+Longest word is '${data.longestWord.key}' with frequency '${data.longestWord.frequency}' and length '${data.longestWord.length}'
+Shortest word is '${data.shortestWord.key}' with frequency '${data.shortestWord.frequency}' and length '${data.shortestWord.length}'
+`;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "summary-viewer",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "summary-copy",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-copy",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: undefined
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "summary-meta",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: undefined
+  }, "Meta Data"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    },
+    __self: undefined
+  }, "ID"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: undefined
+  }, `${data.id.substr(0, 20)}... - ${data.idType}`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: undefined
+  }, "Info"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 40
+    },
+    __self: undefined
+  }, `${data.meta}${data.idType === 'book-hash' ? '...' : ''}`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 41
+    },
+    __self: undefined
+  }, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 42
+    },
+    __self: undefined
+  }, data._createdAt), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 43
+    },
+    __self: undefined
+  }, "Duration"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 44
+    },
+    __self: undefined
+  }, data.summaryDurationSec.toFixed(2), "sec"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "summary-data",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: undefined
+  }, "Summary"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: undefined
+  }, "Words Count"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
+    },
+    __self: undefined
+  }, data.wordsCount), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: undefined
+  }, "Unique Words"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 55
+    },
+    __self: undefined
+  }, data.uniqueWordsCount)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 58
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 59
+    },
+    __self: undefined
+  }, `Most Frequent word is '${data.mostFrequentWord.key}' with frequency '${data.mostFrequentWord.frequency}' and length '${data.mostFrequentWord.length}'`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 60
+    },
+    __self: undefined
+  }, "Token"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 61
+    },
+    __self: undefined
+  }, "Frequency"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 62
+    },
+    __self: undefined
+  }, "Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item data-item-token",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 63
+    },
+    __self: undefined
+  }, data.mostFrequentWord.key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 64
+    },
+    __self: undefined
+  }, data.mostFrequentWord.frequency), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 65
+    },
+    __self: undefined
+  }, data.mostFrequentWord.length)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 68
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 69
+    },
+    __self: undefined
+  }, `Longest word is '${data.longestWord.key}' with frequency '${data.longestWord.frequency}' and length '${data.longestWord.length}'`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 70
+    },
+    __self: undefined
+  }, "Token"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 71
+    },
+    __self: undefined
+  }, "Frequency"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 72
+    },
+    __self: undefined
+  }, "Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item data-item-token",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 73
+    },
+    __self: undefined
+  }, data.longestWord.key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 74
+    },
+    __self: undefined
+  }, data.longestWord.frequency), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 75
+    },
+    __self: undefined
+  }, data.longestWord.length)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 78
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 79
+    },
+    __self: undefined
+  }, `Least Frequent word is '${data.leastFrequentWord.key}' with frequency '${data.leastFrequentWord.frequency}' and length '${data.leastFrequentWord.length}'`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 80
+    },
+    __self: undefined
+  }, "Token"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: undefined
+  }, "Frequency"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 82
+    },
+    __self: undefined
+  }, "Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item data-item-token",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 83
+    },
+    __self: undefined
+  }, data.leastFrequentWord.key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 84
+    },
+    __self: undefined
+  }, data.leastFrequentWord.frequency), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 85
+    },
+    __self: undefined
+  }, data.leastFrequentWord.length)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 88
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 89
+    },
+    __self: undefined
+  }, `Shortest word is '${data.shortestWord.key}' with frequency '${data.shortestWord.frequency}' and length '${data.shortestWord.length}'`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 90
+    },
+    __self: undefined
+  }, "Token"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 91
+    },
+    __self: undefined
+  }, "Frequency"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 92
+    },
+    __self: undefined
+  }, "Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item data-item-token",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 93
+    },
+    __self: undefined
+  }, data.shortestWord.key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 94
+    },
+    __self: undefined
+  }, data.shortestWord.frequency), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95
+    },
+    __self: undefined
+  }, data.shortestWord.length))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SummaryViewer);
+
+/***/ })
+
+})
+//# sourceMappingURL=main.86d82bbbfd7343230385.hot-update.js.map

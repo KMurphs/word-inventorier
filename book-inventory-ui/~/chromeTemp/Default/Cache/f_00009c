@@ -1,0 +1,397 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Hooks · React Redux</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h1&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;hooks&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#hooks&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Hooks&lt;/h1&gt;
+"/><meta name="docsearch:version" content="7.2"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Hooks · React Redux"/><meta property="og:type" content="website"/><meta property="og:url" content="https://react-redux.js.org/index.html"/><meta property="og:description" content="&lt;h1&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;hooks&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#hooks&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Hooks&lt;/h1&gt;
+"/><meta property="og:image" content="https://react-redux.js.org/img/redux-logo-landscape.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://react-redux.js.org/img/redux-logo-twitter.png"/><link rel="shortcut icon" href="/img/favicon/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-130598673-2', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/sidebarScroll.js"></script><script type="text/javascript" src="/scripts/codeblock.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/redux_white.svg" alt="React Redux"/><h2 class="headerTitleWithLogo">React Redux</h2></a><a href="/versions"><h3>7.2</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/introduction/quick-start" target="_self">Quick Start</a></li><li class="siteNavGroupActive"><a href="/using-react-redux/connect-mapstate" target="_self">Using React Redux</a></li><li class="siteNavGroupActive"><a href="/api/connect" target="_self">API</a></li><li class=""><a href="https://www.github.com/reduxjs/react-redux" target="_self">Github</a></li><li class=""><a href="/introduction/quick-start#help-and-discussion" target="_self">Need help?</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>API Reference</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul><li class="navListItem"><a class="navItem" href="/introduction/quick-start">Quick Start</a></li><li class="navListItem"><a class="navItem" href="/introduction/basic-tutorial">Basic Tutorial</a></li><li class="navListItem"><a class="navItem" href="/introduction/why-use-react-redux">Why Use React Redux?</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using React Redux</h3><ul><li class="navListItem"><a class="navItem" href="/using-react-redux/connect-mapstate">Connect: Extracting Data with mapStateToProps</a></li><li class="navListItem"><a class="navItem" href="/using-react-redux/connect-mapdispatch">Connect: Dispatching Actions with mapDispatchToProps</a></li><li class="navListItem"><a class="navItem" href="/using-react-redux/accessing-store">Accessing the Store</a></li><li class="navListItem"><a class="navItem" href="/using-react-redux/static-typing">Static Typing</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API Reference</h3><ul><li class="navListItem"><a class="navItem" href="/api/connect">connect()</a></li><li class="navListItem"><a class="navItem" href="/api/provider">Provider</a></li><li class="navListItem"><a class="navItem" href="/api/connect-advanced">connectAdvanced()</a></li><li class="navListItem"><a class="navItem" href="/api/batch">batch()</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/api/hooks">Hooks</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Guides</h3><ul><li class="navListItem"><a class="navItem" href="/troubleshooting">Troubleshooting</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="hooks"></a><a href="#hooks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hooks</h1>
+<p>React's new <a href="https://reactjs.org/docs/hooks-intro.html">&quot;hooks&quot; APIs</a> give function components the ability to use local component state, execute side effects, and more.</p>
+<p>React Redux now offers a set of hook APIs as an alternative to the existing <code>connect()</code> Higher Order Component. These APIs allow you to subscribe to the Redux store and dispatch actions, without having to wrap your components in <code>connect()</code>.</p>
+<p>These hooks were first added in v7.1.0.</p>
+<h2><a class="anchor" aria-hidden="true" id="using-hooks-in-a-react-redux-app"></a><a href="#using-hooks-in-a-react-redux-app" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using Hooks in a React Redux App</h2>
+<p>As with <code>connect()</code>, you should start by wrapping your entire application in a <code>&lt;Provider&gt;</code> component to make the store available throughout the component tree:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> store = createStore(rootReducer)
+
+ReactDOM.render(
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>,
+  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'root'</span>)
+)
+</code></pre>
+<p>From there, you may import any of the listed React Redux hooks APIs and use them within your function components.</p>
+<h2><a class="anchor" aria-hidden="true" id="useselector"></a><a href="#useselector" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>useSelector()</code></h2>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> result: any = useSelector(selector: <span class="hljs-built_in">Function</span>, equalityFn?: <span class="hljs-built_in">Function</span>)
+</code></pre>
+<p>Allows you to extract data from the Redux store state, using a selector function.</p>
+<blockquote>
+<p><strong>Note</strong>: The selector function should be <a href="https://en.wikipedia.org/wiki/Pure_function">pure</a> since it is potentially executed multiple times and at arbitrary points in time.</p>
+</blockquote>
+<p>The selector is approximately equivalent to the <a href="../using-react-redux/connect-mapstate"><code>mapStateToProps</code> argument to <code>connect</code></a> conceptually. The selector will be called with the entire Redux store state as its only argument. The selector will be run whenever the function component renders (unless its reference hasn't changed since a previous render of the component so that a cached result can be returned by the hook without re-running the selector). <code>useSelector()</code> will also subscribe to the Redux store, and run your selector whenever an action is dispatched.</p>
+<p>However, there are some differences between the selectors passed to <code>useSelector()</code> and a <code>mapState</code> function:</p>
+<ul>
+<li>The selector may return any value as a result, not just an object. The return value of the selector will be used as the return value of the <code>useSelector()</code> hook.</li>
+<li>When an action is dispatched, <code>useSelector()</code> will do a reference comparison of the previous selector result value and the current result value. If they are different, the component will be forced to re-render. If they are the same, the component will not re-render.</li>
+<li>The selector function does <em>not</em> receive an <code>ownProps</code> argument. However, props can be used through closure (see the examples below) or by using a curried selector.</li>
+<li>Extra care must be taken when using memoizing selectors (see examples below for more details).</li>
+<li><code>useSelector()</code> uses strict <code>===</code> reference equality checks by default, not shallow equality (see the following section for more details).</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: There are potential edge cases with using props in selectors that may cause errors. See the <a href="#usage-warnings">Usage Warnings</a> section of this page for further details.</p>
+</blockquote>
+<p>You may call <code>useSelector()</code> multiple times within a single function component. Each call to <code>useSelector()</code> creates an individual subscription to the Redux store. Because of the React update batching behavior used in React Redux v7, a dispatched action that causes multiple <code>useSelector()</code>s in the same component to return new values <em>should</em> only result in a single re-render.</p>
+<h3><a class="anchor" aria-hidden="true" id="equality-comparisons-and-updates"></a><a href="#equality-comparisons-and-updates" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Equality Comparisons and Updates</h3>
+<p>When the function component renders, the provided selector function will be called and its result will be returned
+from the <code>useSelector()</code> hook. (A cached result may be returned by the hook without re-running the selector if it's the same function reference as on a previous render of the component.)</p>
+<p>However, when an action is dispatched to the Redux store, <code>useSelector()</code> only forces a re-render if the selector result
+appears to be different than the last result. As of v7.1.0-alpha.5, the default comparison is a strict <code>===</code> reference
+comparison. This is different than <code>connect()</code>, which uses shallow equality checks on the results of <code>mapState</code> calls
+to determine if re-rendering is needed. This has several implications on how you should use <code>useSelector()</code>.</p>
+<p>With <code>mapState</code>, all individual fields were returned in a combined object. It didn't matter if the return object was
+a new reference or not - <code>connect()</code> just compared the individual fields. With <code>useSelector()</code>, returning a new object
+every time will <em>always</em> force a re-render by default. If you want to retrieve multiple values from the store, you can:</p>
+<ul>
+<li>Call <code>useSelector()</code> multiple times, with each call returning a single field value</li>
+<li>Use Reselect or a similar library to create a memoized selector that returns multiple values in one object, but
+only returns a new object when one of the values has changed.</li>
+<li>Use the <code>shallowEqual</code> function from React-Redux as the <code>equalityFn</code> argument to <code>useSelector()</code>, like:</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { shallowEqual, useSelector } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+
+<span class="hljs-comment">// later</span>
+<span class="hljs-keyword">const</span> selectedData = useSelector(selectorReturningObject, shallowEqual)
+</code></pre>
+<p>The optional comparison function also enables using something like Lodash's <code>_.isEqual()</code> or Immutable.js's comparison capabilities.</p>
+<h3><a class="anchor" aria-hidden="true" id="useselector-examples"></a><a href="#useselector-examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>useSelector</code> Examples</h3>
+<p>Basic usage:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> { useSelector } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> CounterComponent = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> counter = useSelector(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.counter)
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{counter}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+}
+</code></pre>
+<p>Using props via closure to determine what to extract:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> { useSelector } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> TodoListItem = <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> todo = useSelector(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.todos[props.id])
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{todo.text}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="using-memoizing-selectors"></a><a href="#using-memoizing-selectors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using memoizing selectors</h4>
+<p>When using <code>useSelector</code> with an inline selector as shown above, a new instance of the selector is created whenever the component is rendered. This works as long as the selector does not maintain any state. However, memoizing selectors (e.g. created via <code>createSelector</code> from <code>reselect</code>) do have internal state, and therefore care must be taken when using them. Below you can find typical usage scenarios for memoizing selectors.</p>
+<p>When the selector does only depend on the state, simply ensure that it is declared outside of the component so that the same selector instance is used for each render:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> { useSelector } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+<span class="hljs-keyword">import</span> { createSelector } <span class="hljs-keyword">from</span> <span class="hljs-string">'reselect'</span>
+
+<span class="hljs-keyword">const</span> selectNumOfDoneTodos = createSelector(
+  <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.todos,
+  todos =&gt; todos.filter(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> todo.isDone).length
+)
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> DoneTodosCounter = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> NumOfDoneTodos = useSelector(selectNumOfDoneTodos)
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{NumOfDoneTodos}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> App = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Number of done todos:<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">DoneTodosCounter</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span>
+  )
+}
+</span></code></pre>
+<p>The same is true if the selector depends on the component's props, but will only ever be used in a single instance of a single component:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> { useSelector } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+<span class="hljs-keyword">import</span> { createSelector } <span class="hljs-keyword">from</span> <span class="hljs-string">'reselect'</span>
+
+<span class="hljs-keyword">const</span> selectNumOfTodosWithIsDoneValue = createSelector(
+  <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.todos,
+  (_, isDone) =&gt; isDone,
+  (todos, isDone) =&gt; todos.filter(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> todo.isDone === isDone).length
+)
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> TodoCounterForIsDoneValue = <span class="hljs-function">(<span class="hljs-params">{ isDone }</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> NumOfTodosWithIsDoneValue = useSelector(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span>
+    selectNumOfTodosWithIsDoneValue(state, isDone)
+  )
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{NumOfTodosWithIsDoneValue}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> App = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    &lt;&gt;
+      &lt;span&gt;Number of done todos:&lt;/span&gt;
+      &lt;TodoCounterForIsDoneValue isDone={true} /&gt;
+    &lt;/&gt;
+  )
+}
+</code></pre>
+<p>However, when the selector is used in multiple component instances and depends on the component's props, you need to ensure that each component instance gets its own selector instance (see <a href="https://github.com/reduxjs/reselect#accessing-react-props-in-selectors">here</a> for a more thorough explanation of why this is necessary):</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React, { useMemo } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> { useSelector } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+<span class="hljs-keyword">import</span> { createSelector } <span class="hljs-keyword">from</span> <span class="hljs-string">'reselect'</span>
+
+<span class="hljs-keyword">const</span> makeNumOfTodosWithIsDoneSelector = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span>
+  createSelector(
+    <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.todos,
+    (_, isDone) =&gt; isDone,
+    (todos, isDone) =&gt; todos.filter(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> todo.isDone === isDone).length
+  )
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> TodoCounterForIsDoneValue = <span class="hljs-function">(<span class="hljs-params">{ isDone }</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> selectNumOfTodosWithIsDone = useMemo(
+    makeNumOfTodosWithIsDoneSelector,
+    []
+  )
+
+  <span class="hljs-keyword">const</span> numOfTodosWithIsDoneValue = useSelector(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span>
+    selectNumOfTodosWithIsDone(state, isDone)
+  )
+
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{numOfTodosWithIsDoneValue}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> App = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> (
+    &lt;&gt;
+      &lt;span&gt;Number of done todos:&lt;/span&gt;
+      &lt;TodoCounterForIsDoneValue isDone={true} /&gt;
+      &lt;span&gt;Number of unfinished todos:&lt;/span&gt;
+      &lt;TodoCounterForIsDoneValue isDone={false} /&gt;
+    &lt;/&gt;
+  )
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="removed-useactions"></a><a href="#removed-useactions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Removed: <code>useActions()</code></h2>
+<h2><a class="anchor" aria-hidden="true" id="usedispatch"></a><a href="#usedispatch" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>useDispatch()</code></h2>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> dispatch = useDispatch()
+</code></pre>
+<p>This hook returns a reference to the <code>dispatch</code> function from the Redux store. You may use it to dispatch actions as needed.</p>
+<h4><a class="anchor" aria-hidden="true" id="examples"></a><a href="#examples" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> { useDispatch } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> CounterComponent = <span class="hljs-function">(<span class="hljs-params">{ value }</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> dispatch = useDispatch()
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{value}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> dispatch({ type: 'increment-counter' })}&gt;
+        Increment counter
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  )
+}
+</code></pre>
+<p>When passing a callback using <code>dispatch</code> to a child component, it is recommended to memoize it with <code>useCallback</code>, since otherwise child components may render unnecessarily due to the changed reference.</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React, { useCallback } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> { useDispatch } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> CounterComponent = <span class="hljs-function">(<span class="hljs-params">{ value }</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> dispatch = useDispatch()
+  <span class="hljs-keyword">const</span> incrementCounter = useCallback(
+    <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> dispatch({ <span class="hljs-attr">type</span>: <span class="hljs-string">'increment-counter'</span> }),
+    [dispatch]
+  )
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{value}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">MyIncrementButton</span> <span class="hljs-attr">onIncrement</span>=<span class="hljs-string">{incrementCounter}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  )
+}
+
+export const MyIncrementButton = React.memo(({ onIncrement }) =&gt; (
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onIncrement}</span>&gt;</span>Increment counter<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+))
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="usestore"></a><a href="#usestore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>useStore()</code></h2>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> store = useStore()
+</code></pre>
+<p>This hook returns a reference to the same Redux store that was passed in to the <code>&lt;Provider&gt;</code> component.</p>
+<p>This hook should probably not be used frequently. Prefer <code>useSelector()</code> as your primary choice. However, this may be useful for less common scenarios that do require access to the store, such as replacing reducers.</p>
+<h4><a class="anchor" aria-hidden="true" id="examples-1"></a><a href="#examples-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Examples</h4>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> { useStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> CounterComponent = <span class="hljs-function">(<span class="hljs-params">{ value }</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> store = useStore()
+
+  <span class="hljs-comment">// EXAMPLE ONLY! Do not do this in a real app.</span>
+  <span class="hljs-comment">// The component will not automatically update if the store state changes</span>
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{store.getState()}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="custom-context"></a><a href="#custom-context" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom context</h2>
+<p>The <code>&lt;Provider&gt;</code> component allows you to specify an alternate context via the <code>context</code> prop. This is useful if you're building a complex reusable component, and you don't want your store to collide with any Redux store your consumers' applications might use.</p>
+<p>To access an alternate context via the hooks API, use the hook creator functions:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> {
+  Provider,
+  createStoreHook,
+  createDispatchHook,
+  createSelectorHook
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+
+<span class="hljs-keyword">const</span> MyContext = React.createContext(<span class="hljs-literal">null</span>)
+
+<span class="hljs-comment">// Export your custom hooks if you wish to use them in other files.</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useStore = createStoreHook(MyContext)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useDispatch = createDispatchHook(MyContext)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useSelector = createSelectorHook(MyContext)
+
+<span class="hljs-keyword">const</span> myStore = createStore(rootReducer)
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyProvider</span>(<span class="hljs-params">{ children }</span>) </span>{
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">context</span>=<span class="hljs-string">{MyContext}</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{myStore}</span>&gt;</span>
+      {children}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>
+  )
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="usage-warnings"></a><a href="#usage-warnings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Usage Warnings</h2>
+<h3><a class="anchor" aria-hidden="true" id="stale-props-and-zombie-children"></a><a href="#stale-props-and-zombie-children" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Stale Props and &quot;Zombie Children&quot;</h3>
+<p>One of the most difficult aspects of React Redux's implementation is ensuring that if your <code>mapStateToProps</code> function is defined as <code>(state, ownProps)</code>, it will be called with the &quot;latest&quot; props every time. Up through version 4, there were recurring bugs reported involving edge case situations, such as errors thrown from a <code>mapState</code> function for a list item whose data had just been deleted.</p>
+<p>Starting with version 5, React Redux has attempted to guarantee that consistency with <code>ownProps</code>. In version 7, that is implemented using a custom <code>Subscription</code> class internally in <code>connect()</code>, which forms a nested hierarchy. This ensures that connected components lower in the tree will only receive store update notifications once the nearest connected ancestor has been updated. However, this relies on each <code>connect()</code> instance overriding part of the internal React context, supplying its own unique <code>Subscription</code> instance to form that nesting, and rendering the <code>&lt;ReactReduxContext.Provider&gt;</code> with that new context value.</p>
+<p>With hooks, there is no way to render a context provider, which means there's also no nested hierarchy of subscriptions. Because of this, the &quot;stale props&quot; and &quot;zombie child&quot; issues may potentially re-occur in an app that relies on using hooks instead of <code>connect()</code>.</p>
+<p>Specifically, &quot;stale props&quot; means any case where:</p>
+<ul>
+<li>a selector function relies on this component's props to extract data</li>
+<li>a parent component <em>would</em> re-render and pass down new props as a result of an action</li>
+<li>but this component's selector function executes before this component has had a chance to re-render with those new props</li>
+</ul>
+<p>Depending on what props were used and what the current store state is, this <em>may</em> result in incorrect data being returned from the selector, or even an error being thrown.</p>
+<p>&quot;Zombie child&quot; refers specifically to the case where:</p>
+<ul>
+<li>Multiple nested connected components are mounted in a first pass, causing a child component to subscribe to the store before its parent</li>
+<li>An action is dispatched that deletes data from the store, such as a todo item</li>
+<li>The parent component <em>would</em> stop rendering that child as a result</li>
+<li>However, because the child subscribed first, its subscription runs before the parent stops rendering it. When it reads a value from the store based on props, that data no longer exists, and if the extraction logic is not careful, this may result in an error being thrown.</li>
+</ul>
+<p><code>useSelector()</code> tries to deal with this by catching all errors that are thrown when the selector is executed due to a store update (but not when it is executed during rendering). When an error occurs, the component will be forced to render, at which point the selector is executed again. This works as long as the selector is a pure function and you do not depend on the selector throwing errors.</p>
+<p>If you prefer to deal with this issue yourself, here are some possible options for avoiding these problems altogether with <code>useSelector()</code>:</p>
+<ul>
+<li>Don't rely on props in your selector function for extracting data</li>
+<li>In cases where you do rely on props in your selector function <em>and</em> those props may change over time, <em>or</em> the data you're extracting may be based on items that can be deleted, try writing the selector functions defensively. Don't just reach straight into <code>state.todos[props.id].name</code> - read <code>state.todos[props.id]</code> first, and verify that it exists before trying to read <code>todo.name</code>.</li>
+<li>Because <code>connect</code> adds the necessary <code>Subscription</code> to the context provider and delays evaluating child subscriptions until the connected component has re-rendered, putting a connected component in the component tree just above the component using <code>useSelector</code> will prevent these issues as long as the connected component gets re-rendered due to the same store update as the hooks component.</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: For a longer description of this issue, see <a href="https://kaihao.dev/posts/Stale-props-and-zombie-children-in-Redux">&quot;Stale props and zombie children in Redux&quot; by Kai Hao</a>, <a href="https://gist.github.com/markerikson/faac6ae4aca7b82a058e13216a7888ec">this chat log that describes the problems in more detail</a>, and <a href="https://github.com/reduxjs/react-redux/issues/1179">issue #1179</a>.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="performance"></a><a href="#performance" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Performance</h3>
+<p>As mentioned earlier, by default <code>useSelector()</code> will do a reference equality comparison of the selected value when running the selector function after an action is dispatched, and will only cause the component to re-render if the selected value changed. However, unlike <code>connect()</code>, <code>useSelector()</code> does not prevent the component from re-rendering due to its parent re-rendering, even if the component's props did not change.</p>
+<p>If further performance optimizations are necessary, you may consider wrapping your function component in <code>React.memo()</code>:</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> CounterComponent = <span class="hljs-function">(<span class="hljs-params">{ name }</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> counter = useSelector(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.counter)
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      {name}: {counter}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  )
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> MemoizedCounterComponent = React.memo(CounterComponent)
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="hooks-recipes"></a><a href="#hooks-recipes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hooks Recipes</h2>
+<p>We've pared down our hooks API from the original alpha release, focusing on a more minimal set of API primitives.
+However, you may still wish to use some of the approaches we tried in your own apps. These examples should be ready
+to copy and paste into your own codebase.</p>
+<h3><a class="anchor" aria-hidden="true" id="recipe-useactions"></a><a href="#recipe-useactions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Recipe: <code>useActions()</code></h3>
+<p>This hook was in our original alpha release, but removed in <code>v7.1.0-alpha.4</code>, based on <a href="https://github.com/reduxjs/react-redux/issues/1252#issuecomment-488160930">Dan Abramov's suggestion</a>.
+That suggestion was based on &quot;binding action creators&quot; not being as useful in a hooks-based use case, and causing too
+much conceptual overhead and syntactic complexity.</p>
+<p>You should probably prefer to call the <a href="#usedispatch"><code>useDispatch</code></a> hook in your components to retrieve a reference to <code>dispatch</code>,
+and manually call <code>dispatch(someActionCreator())</code> in callbacks and effects as needed. You may also use the Redux
+<a href="https://redux.js.org/api/bindactioncreators"><code>bindActionCreators</code></a> function in your own code to bind action creators,
+or &quot;manually&quot; bind them like <code>const boundAddTodo = (text) =&gt; dispatch(addTodo(text))</code>.</p>
+<p>However, if you'd like to still use this hook yourself, here's a copy-pastable version that supports passing in action
+creators as a single function, an array, or an object.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { bindActionCreators } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>
+<span class="hljs-keyword">import</span> { useDispatch } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+<span class="hljs-keyword">import</span> { useMemo } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useActions</span>(<span class="hljs-params">actions, deps</span>) </span>{
+  <span class="hljs-keyword">const</span> dispatch = useDispatch()
+  <span class="hljs-keyword">return</span> useMemo(
+    <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(actions)) {
+        <span class="hljs-keyword">return</span> actions.map(<span class="hljs-function"><span class="hljs-params">a</span> =&gt;</span> bindActionCreators(a, dispatch))
+      }
+      <span class="hljs-keyword">return</span> bindActionCreators(actions, dispatch)
+    },
+    deps ? [dispatch, ...deps] : [dispatch]
+  )
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="recipe-useshallowequalselector"></a><a href="#recipe-useshallowequalselector" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Recipe: <code>useShallowEqualSelector()</code></h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { useSelector, shallowEqual } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">useShallowEqualSelector</span>(<span class="hljs-params">selector</span>) </span>{
+  <span class="hljs-keyword">return</span> useSelector(selector, shallowEqual)
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="additional-considerations-when-using-hooks"></a><a href="#additional-considerations-when-using-hooks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Additional considerations when using hooks</h3>
+<p>There are some architectural trade offs to take into consideration when deciding whether to use hooks or not. Mark Erikson summarizes these nicely in his two blog posts <a href="https://blog.isquaredsoftware.com/2019/07/blogged-answers-thoughts-on-hooks/">Thoughts on React Hooks, Redux, and Separation of Concerns</a> and <a href="https://blog.isquaredsoftware.com/2019/09/presentation-hooks-hocs-tradeoffs/">Hooks, HOCs, and Tradeoffs</a>.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2020-3-2</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/api/batch"><span class="arrow-prev">← </span><span>batch()</span></a><a class="docs-next button" href="/troubleshooting"><span>Troubleshooting</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#using-hooks-in-a-react-redux-app">Using Hooks in a React Redux App</a></li><li><a href="#useselector"><code>useSelector()</code></a><ul class="toc-headings"><li><a href="#equality-comparisons-and-updates">Equality Comparisons and Updates</a></li><li><a href="#useselector-examples"><code>useSelector</code> Examples</a></li></ul></li><li><a href="#removed-useactions">Removed: <code>useActions()</code></a></li><li><a href="#usedispatch"><code>useDispatch()</code></a></li><li><a href="#usestore"><code>useStore()</code></a></li><li><a href="#custom-context">Custom context</a></li><li><a href="#usage-warnings">Usage Warnings</a><ul class="toc-headings"><li><a href="#stale-props-and-zombie-children">Stale Props and &quot;Zombie Children&quot;</a></li><li><a href="#performance">Performance</a></li></ul></li><li><a href="#hooks-recipes">Hooks Recipes</a><ul class="toc-headings"><li><a href="#recipe-useactions">Recipe: <code>useActions()</code></a></li><li><a href="#recipe-useshallowequalselector">Recipe: <code>useShallowEqualSelector()</code></a></li><li><a href="#additional-considerations-when-using-hooks">Additional considerations when using hooks</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/redux_white.svg" alt="React Redux" width="66" height="58"/></a><div><h5>Docs</h5><a href="/introduction/quick-start">Introduction</a><a href="/using-react-redux/connect-mapstate">Using React Redux</a><a href="/api/connect">API Reference</a><a href="/troubleshooting">Guides</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/react-redux" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/0ZcbPKXt5bZ6au5t">Discord</a></div><div><h5>More</h5><a href="https://github.com/reduxjs/react-redux/">GitHub</a><a class="github-button" href="https://github.com/reduxjs/react-redux" data-icon="octicon-star" data-count-href="/reduxjs/react-redux/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><a href="https://www.netlify.com"><img src="https://www.netlify.com/img/global/badges/netlify-light.svg" alt="Deploys by Netlify"/></a></div></section><section class="copyright">Copyright (c) 2015-present Dan Abramov and the Redux documentation authors.<br/>Some icons copyright <a href="https://fontawesome.com/license/free" style="color:white">Font Awesome</a> and <a href="https://thenounproject.com" style="color:white">Noun Project</a> (<a href="https://thenounproject.com/term/certificate/1945625/" style="color:white">prasong tadoungsorn</a>, <a href="https://thenounproject.com/term/box/1664404/" style="color:white">Vladimir Belochkin</a>, <a href="https://thenounproject.com/term/rocket/1245262/" style="color:white">Atif Arshad</a>)</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '2d058d216b7fd5d68d481fd48ee72c06',
+                indexName: 'react-redux',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

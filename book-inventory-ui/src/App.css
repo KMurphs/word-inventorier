@@ -1,0 +1,159 @@
+.App {
+  text-align: center;
+  width: 100vw;
+  max-width: 700px;
+  background-color: rgba(0,0,0,0.4);
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.app-container{
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  gap: 1rem 1rem;
+  grid-template-rows: 150px 1fr 50px;
+}
+.app-container section{
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.submit-button-area{
+  /* position: fixed;
+  bottom: 1rem;
+  width: 100vw;
+  left: 0; */
+}
+.submit-button-area button{
+  /* width: calc(100% - 2rem); */
+  width: 100%;
+}
+
+
+
+
+
+
+.app-container .book-selector{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  min-height: 150px;
+  
+
+  position: relative;
+}
+.book-selector .selector-icons{
+  position: absolute;
+
+  right: .5rem;
+  top: .5rem;
+}
+.book-selector .reset-selection,
+.book-selector .view-result{
+
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.1);
+  /* padding: .5rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-bottom: .5rem;
+  color: var(--main-color);
+  cursor: pointer;
+}
+.book-selector textarea{
+  padding: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-y: auto;
+}
+
+.book-selector .view-result{
+  color: white;
+  background-color: var(--secondary-color);
+}
+.book-selector .reset-selection:hover{
+  background-color: rgba(0,0,0,0.25);
+  /* color: var(--main-color-light); */
+}
+.book-selector .view-result:hover{
+  background-color: var(--secondary-color-dark);
+}
+
+
+.app-container .queries-area{
+  /* background-color: rgba(0,0,0,0.2); */
+  min-height: 100px;
+  overflow-y: auto;
+}
+
+.app-container .queries-area .add-query{
+  background-color: #ffffff;
+  height: 50px;
+  color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 2.5rem;
+  cursor: pointer;
+  /* opacity: .4; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.app-container .queries-area .add-query:hover{
+  opacity: 1;
+}
+.app-container .queries-area .add-query span{
+  position: absolute;
+  bottom: 0.3rem;
+  right: .9rem;
+  font-size: .7rem;
+}
+.app-container .queries-area .add-query i{
+  /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19); */
+}
+
+
+.app-container .progressbar{
+  height: 3px;
+  width: 0%;
+  background-color: var(--main-color-light);
+}
+.app-container .progressbar.progressbar--running  {
+  animation-name: progress;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes progress {
+  from {width: 0%;}
+  to {width: 100%;}
+}
+
+
+
+
+.feedback p {
+  color: white;
+  font-size: .8rem;
+  margin-top: .5rem;
+  text-align: left;
+  padding-left: 1rem;
+}
+
+
+
+.modal-container--bg-white .page-component{
+  background-color: white;
+}

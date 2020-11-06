@@ -1,0 +1,2701 @@
+(this["webpackJsonpbook-inventory-ui"] = this["webpackJsonpbook-inventory-ui"] || []).push([["main"],{
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/App.css":
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/App.css ***!
+  \************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".App {\r\n  text-align: center;\r\n  width: 100vw;\r\n  max-width: 700px;\r\n  background-color: rgba(0,0,0,0.4);\r\n  height: 100vh;\r\n  margin: 0 auto;\r\n  display: flex;\r\n  /* flex-direction: column; */\r\n  align-items: stretch;\r\n  justify-content: flex-start;\r\n  padding: 1rem;\r\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n}\r\n\r\n\r\n.app-container{\r\n  display: grid;\r\n  width: 100%;\r\n  grid-template-columns: 1fr;\r\n  grid-gap: 1rem 1rem;\r\n  gap: 1rem 1rem;\r\n  grid-template-rows: 150px 1fr 50px;\r\n}\r\n.app-container section{\r\n  border-radius: 4px;\r\n  overflow: hidden;\r\n}\r\n\r\n.submit-button-area{\r\n  /* position: fixed;\r\n  bottom: 1rem;\r\n  width: 100vw;\r\n  left: 0; */\r\n}\r\n.submit-button-area button{\r\n  /* width: calc(100% - 2rem); */\r\n  width: 100%;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n.app-container .book-selector{\r\n  width: 100%;\r\n  display: grid;\r\n  grid-template-columns: 1fr;\r\n  grid-template-rows: 1fr;\r\n  min-height: 150px;\r\n  \r\n\r\n  position: relative;\r\n}\r\n.book-selector .selector-icons{\r\n  position: absolute;\r\n\r\n  right: .5rem;\r\n  top: .5rem;\r\n}\r\n.book-selector .reset-selection,\r\n.book-selector .view-result{\r\n\r\n  border-radius: 50%;\r\n  background-color: rgba(0,0,0,0.1);\r\n  /* padding: .5rem; */\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  width: 1.8rem;\r\n  height: 1.8rem;\r\n  margin-bottom: .5rem;\r\n  color: var(--main-color);\r\n  cursor: pointer;\r\n}\r\n.book-selector textarea{\r\n  padding: 1rem;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  overflow-y: auto;\r\n}\r\n\r\n.book-selector .view-result{\r\n  color: white;\r\n  background-color: var(--secondary-color);\r\n}\r\n.book-selector .reset-selection:hover{\r\n  background-color: rgba(0,0,0,0.25);\r\n  /* color: var(--main-color-light); */\r\n}\r\n.book-selector .view-result:hover{\r\n  background-color: var(--secondary-color-dark);\r\n}\r\n\r\n\r\n.app-container .queries-area{\r\n  /* background-color: rgba(0,0,0,0.2); */\r\n  min-height: 100px;\r\n  overflow-y: auto;\r\n}\r\n\r\n.app-container .queries-area .add-query{\r\n  background-color: #ffffff;\r\n  height: 50px;\r\n  color: var(--main-color);\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  position: relative;\r\n  font-size: 2.5rem;\r\n  cursor: pointer;\r\n  /* opacity: .4; */\r\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n}\r\n.app-container .queries-area .add-query:hover{\r\n  opacity: 1;\r\n}\r\n.app-container .queries-area .add-query span{\r\n  position: absolute;\r\n  bottom: 0.3rem;\r\n  right: .9rem;\r\n  font-size: .7rem;\r\n}\r\n.app-container .queries-area .add-query i{\r\n  /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19); */\r\n}\r\n\r\n\r\n.app-container .progressbar{\r\n  height: 3px;\r\n  width: 0%;\r\n  background-color: var(--main-color-light);\r\n}\r\n.app-container .progressbar.progressbar--running  {\r\n  animation-name: progress;\r\n  animation-duration: 10s;\r\n  animation-iteration-count: infinite;\r\n}\r\n\r\n@keyframes progress {\r\n  from {width: 0%;}\r\n  to {width: 100%;}\r\n}\r\n\r\n\r\n\r\n\r\n.feedback p {\r\n  color: white;\r\n  font-size: .8rem;\r\n  margin-top: .5rem;\r\n  text-align: left;\r\n  padding-left: 1rem;\r\n}\r\n\r\n\r\n\r\n.modal-container--bg-white .page-component{\r\n  background-color: white;\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/CustomInput/CustomInput.css":
+/*!*******************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/components/CustomInput/CustomInput.css ***!
+  \*******************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".custom-input {\r\n    position: relative;\r\n}\r\n\r\n.custom-input::before,\r\n.custom-input::after {\r\n    content: '';\r\n    height: 1px;\r\n    border: none;\r\n    background: #999;\r\n    bottom: 0;\r\n    width: 100%;\r\n    position: absolute;\r\n    left: 0;\r\n}\r\n\r\n.custom-input::after {\r\n    transform: scaleX(0);\r\n    height: 2px;\r\n    background: #555;\r\n}\r\n\r\n.custom-input:not(.custom-input--disabled):hover::after {\r\n    transform: scaleX(1);\r\n}\r\n\r\n.custom-input input {\r\n    padding: 0.5rem .5rem;\r\n    font-size: .9rem;\r\n    border: none;\r\n    border-radius: 3px;\r\n    outline: none;\r\n    width: 100%;\r\n    padding-right: 2rem\r\n}\r\n\r\n.custom-input input:active {\r\n    outline: none;\r\n}\r\n\r\n.custom-input .pen-icon {\r\n    position: absolute;\r\n    right: 0.5rem;\r\n    top: 0;\r\n    height: 100%;\r\n    color: #999;\r\n}\r\n\r\n.custom-input:hover .pen-icon {\r\n    color: #555;\r\n}\r\n\r\n.custom-input.custom-input--disabled .disabling-overlay {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    background-color: rgba(0, 0, 40, 0.5);\r\n    z-index: 100;\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Modal/Modal.css":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/components/Modal/Modal.css ***!
+  \*******************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".modal-container {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    /* height: 100vh; */\r\n    height: 0;\r\n    width: 100vw;\r\n    /* width: 0; */\r\n    background-color: rgba(0, 0, 0, 0.4);\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    overflow: hidden;\r\n    z-index: 100;\r\n}\r\n\r\n.modal-container--active {\r\n    height: 100vh;\r\n    /* width: 100vw; */\r\n}\r\n\r\n.modal-container .modal-children-container {\r\n    min-width: 100px;\r\n    min-height: 50px;\r\n    background-color: rgba(0, 0, 0, 0.4);\r\n    border-radius: 4px;\r\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n    /* padding: .5rem; */\r\n    margin-top: -20rem;\r\n    opacity: 0;\r\n    transition: all .5s;\r\n    overflow: hidden;\r\n}\r\n\r\n.modal-container .modal-children--visible {\r\n    margin-top: 0;\r\n    opacity: 1;\r\n    transition: all .5s;\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Pages/Page.css":
+/*!******************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/components/Pages/Page.css ***!
+  \******************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".page-component {\r\n    position: relative;\r\n    background-color: #ccc;\r\n    padding: .5rem;\r\n    padding-top: 1.5rem;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.page-component .close-page {\r\n    position: absolute;\r\n    top: .5rem;\r\n    right: .5rem;\r\n    font-size: 1.5rem;\r\n    width: 1.5rem;\r\n    height: 1.5rem;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n    border-radius: 50%;\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Query/Query.css":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/components/Query/Query.css ***!
+  \*******************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".query-container{\r\n  color: #eee;\r\n  background-color: rgba(0,0,0,.4);\r\n  background-color: var(--main-color-dark);\r\n  margin-bottom: .5rem;\r\n  padding: .3rem .5rem;\r\n  padding-bottom: .5rem;\r\n  border-radius: 4px;\r\n\r\n  text-align: left;\r\n}\r\n.query-container .query-header{\r\n  position: relative;\r\n}\r\n.query-container .query-index{\r\n  color: #aaa;\r\n  font-size: .8rem;\r\n  margin-bottom: .8rem;\r\n}\r\n.query-container .query-icons{\r\n  right: 0;\r\n  top: 0;\r\n  position: absolute;\r\n  /* width: 50%; */\r\n  display: flex;\r\n}\r\n.query-container .query-icons span{\r\n  display: flex;\r\n  width: 1.8rem;\r\n  height: 1.8rem;\r\n  justify-content: center;\r\n  align-items: center;\r\n  border-radius: 50%;\r\n  background-color: rgba(125,125,125,.4);\r\n  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);\r\n  transition: all .4s;\r\n  cursor: pointer;\r\n  margin-left: .5rem;\r\n  transform: scale(.9);\r\n}\r\n\r\n.query-container .query-icons span:hover{\r\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n  color: white;\r\n  background-color: rgba(0,0,0,.4);\r\n  transition: all .4s;\r\n}\r\n\r\n.query-container .query-text{\r\n  font-size: .9rem;\r\n}\r\n\r\n.query-container .query-icons  .query-result{\r\n  background-color: var(--secondary-color-dark);\r\n}\r\n.query-container .query-icons  .query-result:hover{\r\n  background-color: var(--secondary-color-dark);\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/QueryEditor/QueryEditor.css":
+/*!*******************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/components/QueryEditor/QueryEditor.css ***!
+  \*******************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".query-editor{\r\n  padding: 1rem;\r\n}\r\n.query-item{\r\n  width: 220px;\r\n  text-align: left;\r\n  margin-bottom: 1.5rem;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: stretch;\r\n  flex-direction: column;\r\n}\r\n.query-item .supporting-text{\r\n  color: #333;\r\n  font-size: .7rem;\r\n  margin-bottom: .3rem;\r\n}\r\n.query-item .btn{\r\n  margin: 0;\r\n  margin-top: .5rem;\r\n  padding: .7rem 1rem;\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/QueryViewer/QueryViewer.css":
+/*!*******************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/components/QueryViewer/QueryViewer.css ***!
+  \*******************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".query-viewer{\r\n  text-align: left;\r\n  max-height: 80vh;\r\n  overflow-y: auto;\r\n  padding: 1rem;\r\n  max-width: 90vw;\r\n  overflow-x: hidden;\r\n}\r\n\r\n\r\n\r\n.query-viewer .query-meta{\r\n  margin-bottom: 1.5rem;\r\n}\r\n.query-viewer .query-meta h1{\r\n  margin-bottom: .7rem;\r\n}\r\n.query-viewer .query-meta .data-container{\r\n  display: grid;\r\n  grid-template-columns: 150px 1fr;\r\n  grid-template-rows: 1.5rem;\r\n}\r\n\r\n\r\n\r\n.query-viewer .query-object{\r\n  margin-bottom: 1.5rem;\r\n}\r\n.query-viewer .query-object h1{\r\n  margin-bottom: .7rem;\r\n}\r\n.query-viewer .query-object h3{\r\n  font-size: .75rem;\r\n  margin-bottom: .3rem;\r\n}\r\n.query-viewer .query-object .data-container{\r\n  display: grid;\r\n  grid-template-columns: 1fr 1fr 1fr;\r\n  grid-template-rows: 1.5rem;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n.query-viewer .query-result{\r\n  margin-bottom: 1.5rem;\r\n}\r\n.query-viewer .query-result h1{\r\n  margin-bottom: .7rem;\r\n}\r\n.query-viewer .query-result h3{\r\n  font-size: .75rem;\r\n  margin-bottom: .3rem;\r\n  grid-column: 1/4;\r\n}\r\n.query-viewer .query-result .data-container{\r\n  display: grid;\r\n  grid-template-columns: 1fr 1fr 1fr;\r\n  grid-template-columns: 1fr 100px 50px;\r\n  grid-template-rows: 1.5rem;\r\n  grid-template-rows: 1.5rem;\r\n  margin-bottom: 1rem;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n.query-viewer h3{\r\n  color: #888;\r\n}\r\n.query-viewer p{\r\n  font-size: .8rem;\r\n  color: #aaa;\r\n}\r\n.query-viewer p.data-item{\r\n  font-size: 1.2rem;\r\n  color: var(--main-color);\r\n  font-weight: bold;\r\n}\r\n\r\n.query-viewer .query-meta p.data-item{\r\n  font-size: .8rem;\r\n}\r\n\r\n\r\n\r\n.query-copy{\r\n  position: absolute;\r\n  /* right: .7rem; */\r\n  left: 9rem;\r\n  /* right: calc(50% - 1.2rem); */\r\n  font-size: 1rem;\r\n  color: var(--secondary-color-dark);\r\n  top: 3rem;\r\n  top: 2.3rem;\r\n}\r\n.query-copy span{\r\n  border-radius: 50%;\r\n  background-color: rgba(0,0,0,0.1);\r\n  width: 1.8rem;\r\n  height: 1.8rem;\r\n  display: flex;\r\n  justify-content: center;\r\n  cursor: pointer;\r\n  align-items: center;\r\n}\r\n.query-copy span:hover{\r\n  background-color: rgba(0,0,0,0.2);\r\n  /* color: var(--secondary-color); */\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/SummaryViewer/SummaryViewer.css":
+/*!***********************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/components/SummaryViewer/SummaryViewer.css ***!
+  \***********************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, ".summary-viewer{\r\n  text-align: left;\r\n  max-height: 80vh;\r\n  overflow-y: auto;\r\n  padding: 1rem;\r\n  max-width: 90vw;\r\n  overflow-x: hidden;\r\n}\r\n\r\n\r\n.summary-viewer .summary-meta{\r\n  margin-bottom: 1.5rem;\r\n}\r\n.summary-viewer .summary-meta h1{\r\n  margin-bottom: .7rem;\r\n}\r\n.summary-viewer .summary-meta .data-container{\r\n  display: grid;\r\n  grid-template-columns: 90px 1fr;\r\n  grid-template-rows: 1.8rem 2.5rem  1.8rem 1.8rem;\r\n}\r\n\r\n\r\n\r\n.summary-viewer .summary-data{\r\n  margin-bottom: 1.5rem;\r\n}\r\n.summary-viewer .summary-data h1{\r\n  margin-bottom: .7rem;\r\n}\r\n.summary-viewer .summary-data .data-container:first-of-type{\r\n  display: grid;\r\n  grid-template-columns: 150px 1fr;\r\n  grid-template-rows: 1.5rem;\r\n}\r\n\r\n\r\n.summary-viewer .data-container h3{\r\n  font-size: .75rem;\r\n  margin-bottom: .3rem;\r\n  grid-column: 1/4;\r\n}\r\n.summary-viewer .summary-data .data-container{\r\n  display: grid;\r\n  grid-template-columns: 1fr 1fr 1fr;\r\n  grid-template-columns: 1fr 100px 50px;\r\n  grid-template-rows: 1.8rem 1.5rem 1.5rem;\r\n  margin-bottom: 1rem;\r\n  margin-top: 1rem;\r\n}\r\n\r\n\r\n\r\n\r\n.summary-viewer h3{\r\n  color: #888;\r\n}\r\n.summary-viewer p{\r\n  font-size: .8rem;\r\n  color: #aaa;\r\n}\r\n.summary-viewer p.data-item{\r\n  font-size: 1.2rem;\r\n  color: var(--main-color);\r\n  font-weight: bold;\r\n}\r\n\r\n.summary-viewer .summary-meta p.data-item{\r\n  font-size: .8rem;\r\n}\r\n\r\n.data-item-token{\r\n  word-break: break-all;\r\n}\r\n\r\n\r\n\r\n\r\n.summary-copy{\r\n  position: absolute;\r\n  /* right: .7rem; */\r\n  left: 9rem;\r\n  /* right: calc(50% - 1.2rem); */\r\n  font-size: 1rem;\r\n  color: var(--secondary-color-dark);\r\n  top: 3rem;\r\n  top: 2.4rem;\r\n}\r\n.summary-copy span{\r\n  border-radius: 50%;\r\n  background-color: rgba(0,0,0,0.1);\r\n  width: 1.8rem;\r\n  height: 1.8rem;\r\n  display: flex;\r\n  justify-content: center;\r\n  cursor: pointer;\r\n  align-items: center;\r\n}\r\n.summary-copy span:hover{\r\n  background-color: rgba(0,0,0,0.2);\r\n  /* color: var(--secondary-color); */\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/index.css ***!
+  \**************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "body {\r\n  margin: 0;\r\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\r\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\r\n    sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n  background: url(\"/imgs/bg-reduced.jpg\");\r\n  background-position: left center;\r\n  background-size: cover;\r\n  background-repeat: no-repeat;\r\n  background-attachment: fixed;\r\n  --main-color: #cf5454;\r\n  --secondary-color: #16c18a;\r\n  --main-color-dark: #8b3232;\r\n  --secondary-color-dark: #0b7b57;\r\n  --main-color-light: #ff6a6a;\r\n  --secondary-color-light: #74caae;\r\n\r\n}\r\n\r\ncode {\r\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\r\n    monospace;\r\n}\r\n\r\n#root{\r\n  background-color: rgba(0,0,0,0.5);\r\n}\r\n\r\nbody *,\r\nbody *:after,\r\nbody *:before {\r\n    transition: all .4s;\r\n    box-sizing: border-box;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n.btn{\r\n  padding: 1rem .5rem;\r\n  margin: 0 auto;\r\n  border-radius: 4px;\r\n  border: none;\r\n  min-width: 200px;\r\n  transition: all .4s;\r\n  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);\r\n}\r\n\r\n.btn:hover{\r\n  transition: all .4s;\r\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n}\r\n\r\n\r\n.btn-main{\r\n  color: white;\r\n  background-color: var(--main-color);\r\n}\r\n.btn-main:hover{\r\n  background-color: var(--main-color-dark);\r\n}\r\n\r\n\r\n.bg-white{\r\n  background-color: white;\r\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./src/App.css":
+/*!*********************!*\
+  !*** ./src/App.css ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./App.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/App.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./App.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/App.css", function() {
+		var newContent = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./App.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/App.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/App.tsx":
+/*!*********************!*\
+  !*** ./src/App.tsx ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.css */ "./src/App.css");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Query_Query__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Query/Query */ "./src/components/Query/Query.tsx");
+/* harmony import */ var _components_Modal_Modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Modal/Modal */ "./src/components/Modal/Modal.tsx");
+/* harmony import */ var _components_Pages_Page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Pages/Page */ "./src/components/Pages/Page.tsx");
+/* harmony import */ var _components_QueryEditor_QueryEditor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/QueryEditor/QueryEditor */ "./src/components/QueryEditor/QueryEditor.tsx");
+/* harmony import */ var _data_controller_data_controller__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./data.controller/data.controller */ "./src/data.controller/data.controller.ts");
+/* harmony import */ var _components_QueryViewer_QueryViewer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/QueryViewer/QueryViewer */ "./src/components/QueryViewer/QueryViewer.tsx");
+/* harmony import */ var _components_SummaryViewer_SummaryViewer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/SummaryViewer/SummaryViewer */ "./src/components/SummaryViewer/SummaryViewer.tsx");
+var _jsxFileName = "C:\\PersonalProjects\\corpus-word-inventory\\book-inventory-ui\\src\\App.tsx";
+
+
+
+
+
+
+
+
+
+
+function App() {
+  let dc = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
+  dc.current === null && (dc.current = new _data_controller_data_controller__WEBPACK_IMPORTED_MODULE_6__["default"]());
+  console.log('[App]: Data Controller Version: ', dc.current.getVersion());
+  const [isModalActive, setIsModalActive] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [isEditingQuery, setIsEditingQuery] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [isViewingResult, setIsViewingResult] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [isViewingSummary, setIsViewingSummary] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [isFetching, setIsFetching] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [indexOfQueryOnModal, setIndexOfQueryOnModal] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(-1);
+  const [hasResults, setHasResults] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [textToProcess, setTextToProcess] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
+  const [feedback, setFeedback] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("");
+  const [queries, setQueries] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const [queriesResults, setQueriesResults] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])();
+
+  const handleQueryEdit = queryIndex => {
+    setIsEditingQuery(true);
+    setIndexOfQueryOnModal(queryIndex);
+    setIsModalActive(true);
+  };
+
+  const handleQueryView = queryIndex => {
+    setIsViewingResult(true);
+    setIndexOfQueryOnModal(queryIndex);
+    setIsModalActive(true);
+  };
+
+  const handleResultSummaryView = () => {
+    setIsViewingSummary(true); // setIndexOfQueryOnModal(queryIndex)
+
+    setIsModalActive(true);
+  };
+
+  const handleQueryRemoval = queryIndex => {
+    setQueries(qs => qs.filter((q, index) => index !== queryIndex));
+  };
+
+  const resetUi = () => {
+    setQueries([]);
+    setIsEditingQuery(false);
+    setIsViewingResult(false);
+    setIsViewingSummary(false);
+    setIndexOfQueryOnModal(-1);
+    setIsModalActive(false);
+    setTextToProcess("");
+    setIsFetching(false);
+    setHasResults(false);
+    setFeedback("");
+  };
+
+  const handleModalClose = () => {
+    setIsModalActive(false);
+    setTimeout(() => {
+      setIsEditingQuery(false);
+      setIsViewingResult(false);
+      setIsViewingSummary(false);
+      setIndexOfQueryOnModal(-1);
+    }, 300);
+  };
+
+  const handleBookProcessing = async () => {
+    var _dc$current;
+
+    setTimeout(() => {
+      setIsFetching(true);
+      setHasResults(false);
+      setFeedback("Processing Text. This will take a minute... or two...");
+    }, 0);
+    const res = await ((_dc$current = dc.current) === null || _dc$current === void 0 ? void 0 : _dc$current.processBook({
+      book: textToProcess,
+      queries: queries
+    }, () => {}));
+    setQueriesResults(res);
+    setTimeout(() => {
+      setIsFetching(false);
+      setHasResults(true);
+      setFeedback("Text was successfully processed... ");
+    }, 0);
+    setTimeout(() => {
+      setFeedback("");
+    }, 3000);
+  };
+
+  const handleCopy = (evt, text) => {
+    evt.preventDefault();
+    console.log('[App]: \n', text);
+    navigator.clipboard.writeText(text);
+  };
+
+  console.warn("[App]: Query Results: ", queriesResults);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
+    className: "App",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 103
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "app-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 104
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "book-selector",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 106
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "selector-icons",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 107
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "reset-selection",
+    onClick: evt => resetUi(),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 108
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-reply-all",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 108
+    },
+    __self: this
+  })), hasResults && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "view-result",
+    onClick: evt => handleResultSummaryView(),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 109
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-eye",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 109
+    },
+    __self: this
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    onChange: evt => setTextToProcess(evt.target.value),
+    placeholder: "Enter the text to be processed, or its url..." // defaultValue={textToProcess}
+    ,
+    value: textToProcess,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 112
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: `progressbar ${isFetching ? 'progressbar--running' : ''}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 118
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "feedback",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 120
+    },
+    __self: this
+  }, feedback && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 121
+    },
+    __self: this
+  }, feedback))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "queries-area",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 128
+    },
+    __self: this
+  }, queries && queries.map((query, index) => react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Query_Query__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    data: query,
+    key: index,
+    hasResults: hasResults,
+    index: index + 1,
+    onChange: () => handleQueryEdit(index),
+    onView: () => handleQueryView(index),
+    onRemove: () => handleQueryRemoval(index),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 131
+    },
+    __self: this
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "add-query",
+    onClick: evt => setQueries(queries => [...queries, {
+      minLength: 0,
+      maxLength: 10,
+      topN: 50
+    }]),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 134
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-plus",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 136
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 137
+    },
+    __self: this
+  }, "*Add Query"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "submit-button-area",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 146
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-main",
+    onClick: evt => handleBookProcessing(),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 147
+    },
+    __self: this
+  }, "Process Content")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: `modal-container ${isViewingResult || isViewingSummary ? 'modal-container--bg-white' : ''}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 157
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Modal_Modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    isActive: isModalActive,
+    onDeactivate: () => handleModalClose(),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 158
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Pages_Page__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    onClose: () => handleModalClose(),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 159
+    },
+    __self: this
+  }, isEditingQuery && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_QueryEditor_QueryEditor__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    data: queries[indexOfQueryOnModal],
+    onChange: data => setQueries(qs => {
+      setTimeout(() => {
+        setIsEditingQuery(false);
+      }, 300);
+      setIsModalActive(false);
+      return qs.map((q, index) => {
+        index === indexOfQueryOnModal && (q = { ...data
+        });
+        return q;
+      });
+    }),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 162
+    },
+    __self: this
+  }), isViewingResult && queriesResults && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_QueryViewer_QueryViewer__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    data: queriesResults === null || queriesResults === void 0 ? void 0 : queriesResults.results[indexOfQueryOnModal],
+    onCopy: (evt, text) => handleCopy(evt, text),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 179
+    },
+    __self: this
+  }), isViewingSummary && queriesResults && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_SummaryViewer_SummaryViewer__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    data: queriesResults,
+    onCopy: (evt, text) => handleCopy(evt, text),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 185
+    },
+    __self: this
+  }))))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./src/components/CustomInput/CustomInput.css":
+/*!****************************************************!*\
+  !*** ./src/components/CustomInput/CustomInput.css ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./CustomInput.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/CustomInput/CustomInput.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./CustomInput.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/CustomInput/CustomInput.css", function() {
+		var newContent = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./CustomInput.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/CustomInput/CustomInput.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/components/CustomInput/CustomInput.tsx":
+/*!****************************************************!*\
+  !*** ./src/components/CustomInput/CustomInput.tsx ***!
+  \****************************************************/
+/*! exports provided: CustomInputText, CustomInputNumber, CustomInputTextPassword, CustomInputNumberPassword, CustomInputNumberUndefined */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomInputText", function() { return CustomInputText; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomInputNumber", function() { return CustomInputNumber; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomInputTextPassword", function() { return CustomInputTextPassword; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomInputNumberPassword", function() { return CustomInputNumberPassword; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomInputNumberUndefined", function() { return CustomInputNumberUndefined; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _CustomInput_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CustomInput.css */ "./src/components/CustomInput/CustomInput.css");
+/* harmony import */ var _CustomInput_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_CustomInput_css__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\PersonalProjects\\corpus-word-inventory\\book-inventory-ui\\src\\components\\CustomInput\\CustomInput.tsx";
+
+
+
+const CustomInputText = ({
+  value,
+  handleChange,
+  extraClasses,
+  placeholder,
+  disabled
+}) => {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: `custom-input align-self-stretch flex flex-column ${extraClasses} ${disabled ? 'custom-input--disabled' : ''}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 27
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "disabling-overlay",
+    onClick: evt => {
+      evt.stopPropagation();
+      evt.preventDefault();
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: undefined
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    value: value,
+    onChange: evt => handleChange(evt.target.value),
+    placeholder: placeholder,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: undefined
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "pen-icon flex-centered",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-pen",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  })));
+};
+
+const CustomInputNumber = ({
+  value,
+  handleChange,
+  extraClasses,
+  placeholder,
+  disabled,
+  min,
+  max,
+  step
+}) => {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: `custom-input align-self-stretch flex flex-column ${extraClasses} ${disabled ? 'custom-input--disabled' : ''}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "disabling-overlay",
+    onClick: evt => {
+      evt.stopPropagation();
+      evt.preventDefault();
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: undefined
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "number",
+    value: value,
+    onChange: evt => handleChange(evt.target.value),
+    min: min,
+    max: max,
+    step: step,
+    placeholder: placeholder,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: undefined
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "pen-icon flex-centered",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 40
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-pen",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 40
+    },
+    __self: undefined
+  })));
+};
+
+const CustomInputNumberUndefined = ({
+  value,
+  handleChange,
+  extraClasses,
+  placeholder,
+  disabled,
+  min,
+  max,
+  step
+}) => {
+  // This component will allow the input field to remain empty while the user is typing.
+  // It is therefore agnostic of the empty/undefined/null value policy of the higher compoennt/source of truth
+  // While the field is empty the last value from the source of truth is cached.
+  // This only works under the assumption that the value can only change from this field, and that the source of
+  // truth does not in anyway coerce/update/cahnge this value
+  // To allow the field to remain empty while the user is typing
+  // Give the illusion to the source of truth (higher component) that the value never becomes empty:
+  // When it actually does, cache the current value received from props and send that to the source of truth
+  // on subsequent re-renders until the user enters a non null value
+  // thus allowing the input field to remain empty, and prevent it to be coerced to some value by a source
+  // of truth that does not like empty fields...
+  const willPotentiallyCacheThis = value.toString();
+  const [cachedValue, setCachedValue] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])();
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: `custom-input align-self-stretch flex flex-column ${extraClasses} ${disabled ? 'custom-input--disabled' : ''}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 63
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "disabling-overlay",
+    onClick: evt => {
+      evt.stopPropagation();
+      evt.preventDefault();
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 64
+    },
+    __self: undefined
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "number",
+    value: cachedValue ? '' : value,
+    onChange: evt => {
+      if (!evt.target.value) {
+        setCachedValue(willPotentiallyCacheThis);
+        handleChange(willPotentiallyCacheThis);
+      } else {
+        setCachedValue(undefined);
+        handleChange(evt.target.value);
+      }
+    },
+    min: min,
+    max: max,
+    step: step,
+    placeholder: placeholder,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 65
+    },
+    __self: undefined
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "pen-icon flex-centered",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 74
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-pen",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 74
+    },
+    __self: undefined
+  })));
+};
+
+const CustomInputTextPassword = ({
+  value,
+  handleChange,
+  extraClasses,
+  placeholder,
+  disabled
+}) => {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: `custom-input align-self-stretch flex flex-column ${extraClasses} ${disabled ? 'custom-input--disabled' : ''}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 83
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "disabling-overlay",
+    onClick: evt => {
+      evt.stopPropagation();
+      evt.preventDefault();
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 84
+    },
+    __self: undefined
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    value: value,
+    onChange: evt => handleChange(evt.target.value),
+    placeholder: placeholder,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 85
+    },
+    __self: undefined
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "pen-icon flex-centered",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 86
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-pen",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 86
+    },
+    __self: undefined
+  })));
+};
+
+const CustomInputNumberPassword = ({
+  value,
+  handleChange,
+  extraClasses,
+  placeholder,
+  disabled
+}) => {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: `custom-input align-self-stretch flex flex-column ${extraClasses} ${disabled ? 'custom-input--disabled' : ''}`,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 93
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "disabling-overlay",
+    onClick: evt => {
+      evt.stopPropagation();
+      evt.preventDefault();
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 94
+    },
+    __self: undefined
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    pattern: "[0-9]*",
+    value: value === 'NaN' ? '' : value,
+    onChange: evt => handleChange(evt.target.value),
+    placeholder: placeholder,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 95
+    },
+    __self: undefined
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "pen-icon flex-centered",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 96
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-pen",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 96
+    },
+    __self: undefined
+  })));
+};
+
+CustomInputText.defaultProps = {
+  value: '',
+  extraClasses: '',
+  placeholder: 'Your Input Here',
+  disabled: false
+};
+CustomInputNumber.defaultProps = {
+  value: 0,
+  extraClasses: '',
+  placeholder: 'Your Input Here',
+  min: -1 * Number.MAX_SAFE_INTEGER,
+  max: Number.MAX_SAFE_INTEGER,
+  step: 1,
+  disabled: false
+};
+CustomInputTextPassword.defaultProps = { ...CustomInputText.defaultProps
+};
+CustomInputNumberPassword.defaultProps = { ...CustomInputText.defaultProps
+};
+
+
+/***/ }),
+
+/***/ "./src/components/Modal/Modal.css":
+/*!****************************************!*\
+  !*** ./src/components/Modal/Modal.css ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./Modal.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Modal/Modal.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./Modal.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Modal/Modal.css", function() {
+		var newContent = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./Modal.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Modal/Modal.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/components/Modal/Modal.tsx":
+/*!****************************************!*\
+  !*** ./src/components/Modal/Modal.tsx ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Modal_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modal.css */ "./src/components/Modal/Modal.css");
+/* harmony import */ var _Modal_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Modal_css__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\PersonalProjects\\corpus-word-inventory\\book-inventory-ui\\src\\components\\Modal\\Modal.tsx";
+
+
+
+const Modal = ({
+  children,
+  onDeactivate,
+  isActive
+}) => {
+  const [isChildVisible, setIsChildVisible] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  let isChildActivated = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(false);
+
+  if (isActive && !isChildActivated.current && !isChildVisible) {
+    isChildActivated.current = true;
+    setTimeout(() => {
+      setIsChildVisible(true);
+    }, 300);
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: `modal-container ${isActive ? 'modal-container--active' : ''}`,
+    onClick: evt => {
+      isChildActivated.current = false;
+      onDeactivate();
+      setIsChildVisible(false);
+      evt.stopPropagation();
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 25
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: `modal-children-container ${isChildVisible ? 'modal-children--visible' : ''}`,
+    onClick: evt => evt.stopPropagation(),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: undefined
+  }, children));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Modal);
+
+/***/ }),
+
+/***/ "./src/components/Pages/Page.css":
+/*!***************************************!*\
+  !*** ./src/components/Pages/Page.css ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./Page.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Pages/Page.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./Page.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Pages/Page.css", function() {
+		var newContent = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./Page.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Pages/Page.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/components/Pages/Page.tsx":
+/*!***************************************!*\
+  !*** ./src/components/Pages/Page.tsx ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Page_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Page.css */ "./src/components/Pages/Page.css");
+/* harmony import */ var _Page_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Page_css__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\PersonalProjects\\corpus-word-inventory\\book-inventory-ui\\src\\components\\Pages\\Page.tsx";
+
+
+
+const Page = ({
+  children,
+  onClose
+}) => {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-component",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-content",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    },
+    __self: undefined
+  }, children), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "close-page",
+    onClick: evt => onClose(),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-times-circle",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: undefined
+  }))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Page);
+
+/***/ }),
+
+/***/ "./src/components/Query/Query.css":
+/*!****************************************!*\
+  !*** ./src/components/Query/Query.css ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./Query.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Query/Query.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./Query.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Query/Query.css", function() {
+		var newContent = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./Query.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/Query/Query.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/components/Query/Query.tsx":
+/*!****************************************!*\
+  !*** ./src/components/Query/Query.tsx ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Query_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Query.css */ "./src/components/Query/Query.css");
+/* harmony import */ var _Query_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Query_css__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\PersonalProjects\\corpus-word-inventory\\book-inventory-ui\\src\\components\\Query\\Query.tsx";
+
+
+
+const Query = ({
+  data,
+  index,
+  onChange,
+  onView,
+  hasResults,
+  onRemove
+}) => {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-header",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "query-index",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    },
+    __self: undefined
+  }, "Query\xA0", index), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "query-icons",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 25
+    },
+    __self: undefined
+  }, hasResults && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "query-result",
+    onClick: evt => onView(),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-eye",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: undefined
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "query-edit",
+    onClick: evt => onRemove(),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-minus",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: undefined
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "query-remove",
+    onClick: evt => onChange(),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-pencil-alt",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: undefined
+  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "query-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: undefined
+  }, `Retrieve top ${data.topN} most frequent tokens from text with length between ${data.minLength} and ${data.maxLength}`));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Query);
+
+/***/ }),
+
+/***/ "./src/components/QueryEditor/QueryEditor.css":
+/*!****************************************************!*\
+  !*** ./src/components/QueryEditor/QueryEditor.css ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./QueryEditor.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/QueryEditor/QueryEditor.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./QueryEditor.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/QueryEditor/QueryEditor.css", function() {
+		var newContent = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./QueryEditor.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/QueryEditor/QueryEditor.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/components/QueryEditor/QueryEditor.tsx":
+/*!****************************************************!*\
+  !*** ./src/components/QueryEditor/QueryEditor.tsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _QueryEditor_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QueryEditor.css */ "./src/components/QueryEditor/QueryEditor.css");
+/* harmony import */ var _QueryEditor_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_QueryEditor_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _CustomInput_CustomInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../CustomInput/CustomInput */ "./src/components/CustomInput/CustomInput.tsx");
+var _jsxFileName = "C:\\PersonalProjects\\corpus-word-inventory\\book-inventory-ui\\src\\components\\QueryEditor\\QueryEditor.tsx";
+
+
+
+var TUIQueryItemEnum;
+
+(function (TUIQueryItemEnum) {
+  TUIQueryItemEnum[TUIQueryItemEnum["TOPN"] = 0] = "TOPN";
+  TUIQueryItemEnum[TUIQueryItemEnum["MIN"] = 1] = "MIN";
+  TUIQueryItemEnum[TUIQueryItemEnum["MAX"] = 2] = "MAX";
+})(TUIQueryItemEnum || (TUIQueryItemEnum = {}));
+
+const QueryEditor = ({
+  data,
+  onChange
+}) => {
+  const [localData, _setLocalData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(data);
+
+  const setLocalData = (val, field) => {
+    let tmp = localData;
+    field === TUIQueryItemEnum.TOPN && (tmp.topN = parseFloat(val));
+    field === TUIQueryItemEnum.MIN && (tmp.minLength = parseFloat(val));
+    field === TUIQueryItemEnum.MAX && (tmp.maxLength = parseFloat(val));
+
+    _setLocalData({ ...tmp
+    });
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-editor",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "supporting-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: undefined
+  }, "Enter minimum length of tokens of interest"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CustomInput_CustomInput__WEBPACK_IMPORTED_MODULE_2__["CustomInputNumberUndefined"], {
+    value: localData.topN,
+    handleChange: val => setLocalData(val, TUIQueryItemEnum.TOPN),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: undefined
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "supporting-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: undefined
+  }, "Enter minimum length of tokens of interest"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CustomInput_CustomInput__WEBPACK_IMPORTED_MODULE_2__["CustomInputNumberUndefined"], {
+    value: localData.minLength,
+    handleChange: val => setLocalData(val, TUIQueryItemEnum.MIN),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: undefined
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 42
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "supporting-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 43
+    },
+    __self: undefined
+  }, "Enter maximum length of tokens of interest"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CustomInput_CustomInput__WEBPACK_IMPORTED_MODULE_2__["CustomInputNumberUndefined"], {
+    value: localData.maxLength,
+    handleChange: val => setLocalData(val, TUIQueryItemEnum.MAX),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 44
+    },
+    __self: undefined
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 47
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-main",
+    onClick: () => onChange({ ...localData
+    }),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: undefined
+  }, "Save Query")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (QueryEditor);
+
+/***/ }),
+
+/***/ "./src/components/QueryViewer/QueryViewer.css":
+/*!****************************************************!*\
+  !*** ./src/components/QueryViewer/QueryViewer.css ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./QueryViewer.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/QueryViewer/QueryViewer.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./QueryViewer.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/QueryViewer/QueryViewer.css", function() {
+		var newContent = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./QueryViewer.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/QueryViewer/QueryViewer.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/components/QueryViewer/QueryViewer.tsx":
+/*!****************************************************!*\
+  !*** ./src/components/QueryViewer/QueryViewer.tsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _QueryViewer_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./QueryViewer.css */ "./src/components/QueryViewer/QueryViewer.css");
+/* harmony import */ var _QueryViewer_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_QueryViewer_css__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\PersonalProjects\\corpus-word-inventory\\book-inventory-ui\\src\\components\\QueryViewer\\QueryViewer.tsx";
+
+
+
+const QueryViewer = ({
+  data,
+  onCopy
+}) => {
+  const summary = `
+Query Summary (${(data.durationMs / 1000).toFixed(2)}sec)
+Created at: ${data._createdAt}
+Execution Time: ${(data.durationMs / 1000).toFixed(2)}sec
+Query Definition: Searching for top '${data.uiQuery.topN}' most frequent tokens with length between '${data.uiQuery.minLength}' and '${data.uiQuery.maxLength}'
+
+Query Results:
+` + data.data.reduce((acc, res, index) => acc + `${index + 1} - Found '${res.key}' with frequency '${res.frequency}' and length '${res.length}'\n`, "");
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-viewer",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-copy",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    onClick: evt => onCopy && onCopy(evt, summary),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-copy",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-meta",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: undefined
+  }, "Meta Data"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: undefined
+  }, "Query Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: undefined
+  }, data._createdAt), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    },
+    __self: undefined
+  }, "Query Duration"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: undefined
+  }, (data.durationMs / 1000).toFixed(2), "sec"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-object",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 43
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 44
+    },
+    __self: undefined
+  }, "Query Summary"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 45
+    },
+    __self: undefined
+  }, "Searching for top '", data.uiQuery.topN, "' most frequent tokens with length between '", data.uiQuery.minLength, "' and '", data.uiQuery.maxLength, "'"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 47
+    },
+    __self: undefined
+  }, "Token Count"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: undefined
+  }, "Minimum Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: undefined
+  }, "Maximum Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: undefined
+  }, data.uiQuery.topN), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: undefined
+  }, data.uiQuery.minLength), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: undefined
+  }, data.uiQuery.maxLength))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "query-result",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 56
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57
+    },
+    __self: undefined
+  }, "Query Results"), data.data.map((res, index) => {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "data-container",
+      key: index,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 62
+      },
+      __self: undefined
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 63
+      },
+      __self: undefined
+    }, `Found '${res.key}' with frequency '${res.frequency}' and length '${res.length}'`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 64
+      },
+      __self: undefined
+    }, "Token"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 65
+      },
+      __self: undefined
+    }, "Frequency"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 66
+      },
+      __self: undefined
+    }, "Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "data-item data-item-token",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 67
+      },
+      __self: undefined
+    }, res.key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "data-item",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 68
+      },
+      __self: undefined
+    }, res.frequency), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "data-item",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 69
+      },
+      __self: undefined
+    }, res.length));
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (QueryViewer);
+
+/***/ }),
+
+/***/ "./src/components/SummaryViewer/SummaryViewer.css":
+/*!********************************************************!*\
+  !*** ./src/components/SummaryViewer/SummaryViewer.css ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./SummaryViewer.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/SummaryViewer/SummaryViewer.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./SummaryViewer.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/SummaryViewer/SummaryViewer.css", function() {
+		var newContent = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../../../node_modules/postcss-loader/src??postcss!./SummaryViewer.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/components/SummaryViewer/SummaryViewer.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/components/SummaryViewer/SummaryViewer.tsx":
+/*!********************************************************!*\
+  !*** ./src/components/SummaryViewer/SummaryViewer.tsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SummaryViewer_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SummaryViewer.css */ "./src/components/SummaryViewer/SummaryViewer.css");
+/* harmony import */ var _SummaryViewer_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_SummaryViewer_css__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "C:\\PersonalProjects\\corpus-word-inventory\\book-inventory-ui\\src\\components\\SummaryViewer\\SummaryViewer.tsx";
+
+
+
+const SummaryViewer = ({
+  data,
+  onCopy
+}) => {
+  const summary = `
+Book Summary (${data.summaryDurationSec.toFixed(2)}sec)
+BookID: ${data.id} - ${data.idType}
+Created at: ${data._createdAt}
+
+Book Contains '${data.wordsCount}' words in total of which '${data.uniqueWordsCount}' are unique
+Most Frequent word is '${data.mostFrequentWord.key}' with frequency '${data.mostFrequentWord.frequency}' and length '${data.mostFrequentWord.length}'
+Least Frequent word is '${data.leastFrequentWord.key}' with frequency '${data.leastFrequentWord.frequency}' and length '${data.leastFrequentWord.length}'
+Longest word is '${data.longestWord.key}' with frequency '${data.longestWord.frequency}' and length '${data.longestWord.length}'
+Shortest word is '${data.shortestWord.key}' with frequency '${data.shortestWord.frequency}' and length '${data.shortestWord.length}'
+`;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "summary-viewer",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "summary-copy",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    onClick: evt => onCopy && onCopy(evt, summary),
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-copy",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 31
+    },
+    __self: undefined
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "summary-meta",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: undefined
+  }, "Meta Data"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: undefined
+  }, "ID"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37
+    },
+    __self: undefined
+  }, `${data.id.substr(0, 20)}... - ${data.idType}`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: undefined
+  }, "Info"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: undefined
+  }, `${data.meta}${data.idType === 'book-hash' ? '...' : ''}`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 40
+    },
+    __self: undefined
+  }, "Timestamp"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 41
+    },
+    __self: undefined
+  }, data._createdAt), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 42
+    },
+    __self: undefined
+  }, "Duration"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 43
+    },
+    __self: undefined
+  }, data.summaryDurationSec.toFixed(2), "sec"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "summary-data",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: undefined
+  }, "Summary"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51
+    },
+    __self: undefined
+  }, "Words Count"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: undefined
+  }, data.wordsCount), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
+    },
+    __self: undefined
+  }, "Unique Words"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: undefined
+  }, data.uniqueWordsCount)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 58
+    },
+    __self: undefined
+  }, `Most Frequent word is '${data.mostFrequentWord.key}' with frequency '${data.mostFrequentWord.frequency}' and length '${data.mostFrequentWord.length}'`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 59
+    },
+    __self: undefined
+  }, "Token"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 60
+    },
+    __self: undefined
+  }, "Frequency"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 61
+    },
+    __self: undefined
+  }, "Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item data-item-token",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 62
+    },
+    __self: undefined
+  }, data.mostFrequentWord.key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 63
+    },
+    __self: undefined
+  }, data.mostFrequentWord.frequency), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 64
+    },
+    __self: undefined
+  }, data.mostFrequentWord.length)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 67
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 68
+    },
+    __self: undefined
+  }, `Least Frequent word is '${data.leastFrequentWord.key}' with frequency '${data.leastFrequentWord.frequency}' and length '${data.leastFrequentWord.length}'`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 69
+    },
+    __self: undefined
+  }, "Token"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 70
+    },
+    __self: undefined
+  }, "Frequency"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 71
+    },
+    __self: undefined
+  }, "Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item data-item-token",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 72
+    },
+    __self: undefined
+  }, data.leastFrequentWord.key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 73
+    },
+    __self: undefined
+  }, data.leastFrequentWord.frequency), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 74
+    },
+    __self: undefined
+  }, data.leastFrequentWord.length)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 78
+    },
+    __self: undefined
+  }, `Longest word is '${data.longestWord.key}' with frequency '${data.longestWord.frequency}' and length '${data.longestWord.length}'`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 79
+    },
+    __self: undefined
+  }, "Token"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 80
+    },
+    __self: undefined
+  }, "Frequency"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 81
+    },
+    __self: undefined
+  }, "Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item data-item-token",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 82
+    },
+    __self: undefined
+  }, data.longestWord.key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 83
+    },
+    __self: undefined
+  }, data.longestWord.frequency), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 84
+    },
+    __self: undefined
+  }, data.longestWord.length)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "data-container",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 87
+    },
+    __self: undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 88
+    },
+    __self: undefined
+  }, `Shortest word is '${data.shortestWord.key}' with frequency '${data.shortestWord.frequency}' and length '${data.shortestWord.length}'`), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 89
+    },
+    __self: undefined
+  }, "Token"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 90
+    },
+    __self: undefined
+  }, "Frequency"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 91
+    },
+    __self: undefined
+  }, "Length"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item data-item-token",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 92
+    },
+    __self: undefined
+  }, data.shortestWord.key), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 93
+    },
+    __self: undefined
+  }, data.shortestWord.frequency), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "data-item",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 94
+    },
+    __self: undefined
+  }, data.shortestWord.length))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SummaryViewer);
+
+/***/ }),
+
+/***/ "./src/data.controller/data.controller.ts":
+/*!************************************************!*\
+  !*** ./src/data.controller/data.controller.ts ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DataController; });
+/* harmony import */ var _utils_data_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/data.fetch */ "./src/data.controller/utils/data.fetch.ts");
+/* harmony import */ var _data_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data.types */ "./src/data.controller/data.types.ts");
+
+
+class DataController {
+  // private urlBaseDevelopment: string = "https://localhost:5051/";
+  // private urlBaseProduction: string = "https://corpus-inventory.herokuapp.com/";
+  // private urlBaseProduction: string = `${window.location.origin}/`; //Prevent the cors error between http and https
+  // private urlGetABook: string = "api/corpusinventory/{id}";
+  // private setUiData: Function
+  // private timerID: any
+  // private dataRefreshRateSec: number = 15;
+  getVersion() {
+    return '1.0';
+  } // constructor(setUiData: Function){
+
+
+  constructor() {
+    this.urlBaseDevelopment = "http://localhost:5050/";
+    this.urlBase = "";
+    this.urlGetAllBooks = "api/corpusinventory";
+    this.urlProcessABook = "api/corpusinventory";
+    // Determine whether we shoudl use dev urls or production urls at heroku
+    // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    //   console.warn("[DC]: App is in Development Mode");
+    //   this.urlBase = this.urlBaseDevelopment;
+    // } else {
+    //   console.warn("[DC]: App is in Production Mode");
+    //   this.urlBase = this.urlBaseProduction;
+    // }
+    // this.urlBase = this.urlBaseDevelopment;
+    // this.urlBase = this.urlBaseProduction;
+    this.urlBase = `${window.location.origin}/`;
+
+    if (this.urlBase.indexOf("localhost") !== -1) {
+      this.urlBase = this.urlBaseDevelopment;
+    } // this.setUiData = setUiData
+    // const _this = this
+    // this.timerID = setInterval(()=>{
+    //   _this.getBooks()
+    // }, this.dataRefreshRateSec)
+
+  } // Makes sure we are talking to right backend
+
+
+  buildURL(url) {
+    return `${this.urlBase}${url}`;
+  }
+
+  async getBooks() {
+    let rawBooks = await Object(_utils_data_fetch__WEBPACK_IMPORTED_MODULE_0__["default"])(this.buildURL(this.urlGetAllBooks));
+    return rawBooks.map(rawBook => _data_types__WEBPACK_IMPORTED_MODULE_1__["typeConverter"].toBookSummary(rawBook));
+  }
+
+  async getBookById(bookId) {
+    let rawBook = await Object(_utils_data_fetch__WEBPACK_IMPORTED_MODULE_0__["default"])(`${this.buildURL(this.urlGetAllBooks)}/${bookId}`);
+    return _data_types__WEBPACK_IMPORTED_MODULE_1__["typeConverter"].toBookSummary(rawBook);
+  }
+
+  processBook(uiQuery, cb) {
+    return new Promise(async (resolve, reject) => {
+      await Object(_utils_data_fetch__WEBPACK_IMPORTED_MODULE_0__["default"])(`${this.buildURL(this.urlProcessABook)}`, uiQuery, "POST").then(res => {
+        console.log(res);
+        cb();
+        resolve(_data_types__WEBPACK_IMPORTED_MODULE_1__["typeConverter"].toBookSummary(res));
+      }).catch(err => {
+        reject(err);
+      });
+    });
+  }
+
+}
+
+/***/ }),
+
+/***/ "./src/data.controller/data.types.ts":
+/*!*******************************************!*\
+  !*** ./src/data.controller/data.types.ts ***!
+  \*******************************************/
+/*! exports provided: typeConverter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "typeConverter", function() { return typeConverter; });
+const timestampToLocaleString = ts => new Date(new Date(ts).getTime() - new Date().getTimezoneOffset() * 60000).toISOString().replace(/.[0-9]+Z$/, '').replace('T', ' ');
+
+const typeConverter = {
+  toBookSummary(bookObj) {
+    return {
+      id: bookObj["id"] ? bookObj["id"] : "",
+      meta: bookObj["meta"] ? bookObj["meta"] : "",
+      idType: bookObj["idType"] ? bookObj["idType"] : "",
+      wordsCount: bookObj["wordsCount"] || bookObj["wordsCount"] === 0 ? bookObj["wordsCount"] : NaN,
+      uniqueWordsCount: bookObj["uniqueWordsCount"] || bookObj["uniqueWordsCount"] === 0 ? bookObj["uniqueWordsCount"] : NaN,
+      summaryDurationSec: bookObj["summaryDurationSec"] || bookObj["summaryDurationSec"] === 0 ? bookObj["summaryDurationSec"] : NaN,
+      createdAt: bookObj["createdAt"] ? bookObj["createdAt"] : 0,
+      _createdAt: bookObj["createdAt"] ? timestampToLocaleString(bookObj["createdAt"]) : "Invalid Date",
+      mostFrequentWord: this.toTokenSummary(bookObj["mostFrequentWord"]),
+      leastFrequentWord: this.toTokenSummary(bookObj["leastFrequentWord"]),
+      longestWord: this.toTokenSummary(bookObj["longestWord"]),
+      shortestWord: this.toTokenSummary(bookObj["shortestWord"]),
+      results: bookObj["results"] ? bookObj["results"].map(res => this.toQuerySummary(res)) : []
+    };
+  },
+
+  toQuerySummary(resObj) {
+    return {
+      uiQuery: this.toUIQueryItem(resObj["minTokenLength"], resObj["maxTokenLength"], resObj["topNCount"]),
+      createdAt: resObj["createdAt"] ? resObj["createdAt"] : 0,
+      _createdAt: resObj["createdAt"] ? timestampToLocaleString(resObj["createdAt"]) : "Invalid Date",
+      durationMs: resObj["durationMs"] || resObj["durationMs"] === 0 ? resObj["durationMs"] : NaN,
+      data: resObj["data"] ? resObj["data"].map(item => this.toTokenSummary(item)) : []
+    };
+  },
+
+  toTokenSummary(tokenObj) {
+    return {
+      key: tokenObj["key"] ? tokenObj["key"] : "",
+      frequency: tokenObj["frequency"] || tokenObj["frequency"] === 0 ? tokenObj["frequency"] : NaN,
+      length: tokenObj["length"] || tokenObj["length"] === 0 ? tokenObj["length"] : NaN
+    };
+  },
+
+  toUIQueryItem(minTokenLength, maxTokenLength, topNCount) {
+    return {
+      minLength: minTokenLength || minTokenLength === 0 ? minTokenLength : NaN,
+      maxLength: maxTokenLength || maxTokenLength === 0 ? maxTokenLength : NaN,
+      topN: topNCount || topNCount === 0 ? topNCount : NaN
+    };
+  }
+
+};
+
+
+/***/ }),
+
+/***/ "./src/data.controller/utils/data.fetch.ts":
+/*!*************************************************!*\
+  !*** ./src/data.controller/utils/data.fetch.ts ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const httpRequest = (_url, parameters, method = "GET", headers) => {
+  let _header = {
+    'content-type': 'application/json'
+  };
+  let url = _url; // Build generic options for fetch api
+
+  let options = {
+    method: method,
+    headers: { ..._header,
+      ...headers
+    } // mode: 'no-cors'
+
+  }; // Process Parameters/body
+
+  if (parameters) {
+    switch (method.toLowerCase()) {
+      case 'get':
+        // Build Request parameters in url 
+        // Filter parameters to get non empty items on object
+        const keys = Object.keys(parameters);
+        const validParams = Object.values(parameters).reduce((acc, item, index) => {
+          item && (acc[keys[index]] = item);
+          return acc;
+        }, {}); // If parameters are not empty, append to url
+
+        if (Object.values(validParams).join("")) {
+          url = url + Object.keys(validParams).reduce((acc, key, index) => `${acc}${index === 0 ? '?' : '&'}${key}=${validParams[key]}`, '');
+        }
+
+        break;
+
+      default:
+        // By default parameters will become the json body of the request
+        options["body"] = JSON.stringify(parameters);
+        break;
+    }
+  }
+
+  console.log(`[fetch] Fetching at '${url}' with options '${JSON.stringify(options)}'`);
+  return new Promise((resolve, reject) => {
+    fetch(url, options) // fakeFetch(url, options)
+    .then(res => res.json()).then(data => resolve(data)).catch(err => reject(err));
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (httpRequest);
+
+/***/ }),
+
+/***/ "./src/index.css":
+/*!***********************!*\
+  !*** ./src/index.css ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css", function() {
+		var newContent = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/index.tsx":
+/*!***********************!*\
+  !*** ./src/index.tsx ***!
+  \***********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ "./src/index.css");
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App */ "./src/App.tsx");
+/* harmony import */ var _serviceWorker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./serviceWorker */ "./src/serviceWorker.ts");
+var _jsxFileName = "C:\\PersonalProjects\\corpus-word-inventory\\book-inventory-ui\\src\\index.tsx";
+
+
+
+
+
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 7
+  },
+  __self: undefined
+}), document.getElementById('root')); // If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+
+_serviceWorker__WEBPACK_IMPORTED_MODULE_4__["unregister"]();
+
+/***/ }),
+
+/***/ "./src/serviceWorker.ts":
+/*!******************************!*\
+  !*** ./src/serviceWorker.ts ***!
+  \******************************/
+/*! exports provided: register, unregister */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unregister", function() { return unregister; });
+// This optional code is used to register a service worker.
+// register() is not called by default.
+// This lets the app load faster on subsequent visits in production, and gives
+// it offline capabilities. However, it also means that developers (and users)
+// will only see deployed updates on subsequent visits to a page, after all the
+// existing tabs open on the page have been closed, since previously cached
+// resources are updated in the background.
+// To learn more about the benefits of this model and instructions on how to
+// opt-in, read https://bit.ly/CRA-PWA
+const isLocalhost = Boolean(window.location.hostname === 'localhost' || // [::1] is the IPv6 localhost address.
+window.location.hostname === '[::1]' || // 127.0.0.0/8 are considered localhost for IPv4.
+window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));
+function register(config) {
+  if (false) {}
+}
+
+function registerValidSW(swUrl, config) {
+  navigator.serviceWorker.register(swUrl).then(registration => {
+    registration.onupdatefound = () => {
+      const installingWorker = registration.installing;
+
+      if (installingWorker == null) {
+        return;
+      }
+
+      installingWorker.onstatechange = () => {
+        if (installingWorker.state === 'installed') {
+          if (navigator.serviceWorker.controller) {
+            // At this point, the updated precached content has been fetched,
+            // but the previous service worker will still serve the older
+            // content until all client tabs are closed.
+            console.log('New content is available and will be used when all ' + 'tabs for this page are closed. See https://bit.ly/CRA-PWA.'); // Execute callback
+
+            if (config && config.onUpdate) {
+              config.onUpdate(registration);
+            }
+          } else {
+            // At this point, everything has been precached.
+            // It's the perfect time to display a
+            // "Content is cached for offline use." message.
+            console.log('Content is cached for offline use.'); // Execute callback
+
+            if (config && config.onSuccess) {
+              config.onSuccess(registration);
+            }
+          }
+        }
+      };
+    };
+  }).catch(error => {
+    console.error('Error during service worker registration:', error);
+  });
+}
+
+function checkValidServiceWorker(swUrl, config) {
+  // Check if the service worker can be found. If it can't reload the page.
+  fetch(swUrl, {
+    headers: {
+      'Service-Worker': 'script'
+    }
+  }).then(response => {
+    // Ensure service worker exists, and that we really are getting a JS file.
+    const contentType = response.headers.get('content-type');
+
+    if (response.status === 404 || contentType != null && contentType.indexOf('javascript') === -1) {
+      // No service worker found. Probably a different app. Reload the page.
+      navigator.serviceWorker.ready.then(registration => {
+        registration.unregister().then(() => {
+          window.location.reload();
+        });
+      });
+    } else {
+      // Service worker found. Proceed as normal.
+      registerValidSW(swUrl, config);
+    }
+  }).catch(() => {
+    console.log('No internet connection found. App is running in offline mode.');
+  });
+}
+
+function unregister() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then(registration => {
+      registration.unregister();
+    }).catch(error => {
+      console.error(error.message);
+    });
+  }
+}
+
+/***/ }),
+
+/***/ 1:
+/*!***************************************************************************************************************!*\
+  !*** multi (webpack)/hot/dev-server.js ./node_modules/react-dev-utils/webpackHotDevClient.js ./src/index.tsx ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! C:\PersonalProjects\corpus-word-inventory\book-inventory-ui\node_modules\webpack\hot\dev-server.js */"./node_modules/webpack/hot/dev-server.js");
+__webpack_require__(/*! C:\PersonalProjects\corpus-word-inventory\book-inventory-ui\node_modules\react-dev-utils\webpackHotDevClient.js */"./node_modules/react-dev-utils/webpackHotDevClient.js");
+module.exports = __webpack_require__(/*! C:\PersonalProjects\corpus-word-inventory\book-inventory-ui\src\index.tsx */"./src/index.tsx");
+
+
+/***/ })
+
+},[[1,"runtime-main",1]]]);
+//# sourceMappingURL=main.chunk.js.map

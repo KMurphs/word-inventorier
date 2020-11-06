@@ -1,0 +1,450 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Basic Tutorial · React Redux</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;h1&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;basic-tutorial&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#basic-tutorial&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Basic Tutorial&lt;/h1&gt;
+"/><meta name="docsearch:version" content="7.2"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Basic Tutorial · React Redux"/><meta property="og:type" content="website"/><meta property="og:url" content="https://react-redux.js.org/index.html"/><meta property="og:description" content="&lt;h1&gt;&lt;a class=&quot;anchor&quot; aria-hidden=&quot;true&quot; id=&quot;basic-tutorial&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#basic-tutorial&quot; aria-hidden=&quot;true&quot; class=&quot;hash-link&quot;&gt;&lt;svg class=&quot;hash-link-icon&quot; aria-hidden=&quot;true&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Basic Tutorial&lt;/h1&gt;
+"/><meta property="og:image" content="https://react-redux.js.org/img/redux-logo-landscape.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://react-redux.js.org/img/redux-logo-twitter.png"/><link rel="shortcut icon" href="/img/favicon/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai.min.css"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-130598673-2', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="/scripts/sidebarScroll.js"></script><script type="text/javascript" src="/scripts/codeblock.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/redux_white.svg" alt="React Redux"/><h2 class="headerTitleWithLogo">React Redux</h2></a><a href="/versions"><h3>7.2</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/introduction/quick-start" target="_self">Quick Start</a></li><li class="siteNavGroupActive"><a href="/using-react-redux/connect-mapstate" target="_self">Using React Redux</a></li><li class="siteNavGroupActive"><a href="/api/connect" target="_self">API</a></li><li class=""><a href="https://www.github.com/reduxjs/react-redux" target="_self">Github</a></li><li class=""><a href="/introduction/quick-start#help-and-discussion" target="_self">Need help?</a></li><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>Introduction</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul><li class="navListItem"><a class="navItem" href="/introduction/quick-start">Quick Start</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/introduction/basic-tutorial">Basic Tutorial</a></li><li class="navListItem"><a class="navItem" href="/introduction/why-use-react-redux">Why Use React Redux?</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Using React Redux</h3><ul><li class="navListItem"><a class="navItem" href="/using-react-redux/connect-mapstate">Connect: Extracting Data with mapStateToProps</a></li><li class="navListItem"><a class="navItem" href="/using-react-redux/connect-mapdispatch">Connect: Dispatching Actions with mapDispatchToProps</a></li><li class="navListItem"><a class="navItem" href="/using-react-redux/accessing-store">Accessing the Store</a></li><li class="navListItem"><a class="navItem" href="/using-react-redux/static-typing">Static Typing</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API Reference</h3><ul><li class="navListItem"><a class="navItem" href="/api/connect">connect()</a></li><li class="navListItem"><a class="navItem" href="/api/provider">Provider</a></li><li class="navListItem"><a class="navItem" href="/api/connect-advanced">connectAdvanced()</a></li><li class="navListItem"><a class="navItem" href="/api/batch">batch()</a></li><li class="navListItem"><a class="navItem" href="/api/hooks">Hooks</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Guides</h3><ul><li class="navListItem"><a class="navItem" href="/troubleshooting">Troubleshooting</a></li></ul></div></div></section></div><script>
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="basic-tutorial"></a><a href="#basic-tutorial" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Basic Tutorial</h1>
+<p>To see how to use React Redux in practice, we’ll show a step-by-step example by creating a todo list app.</p>
+<h2><a class="anchor" aria-hidden="true" id="a-todo-list-example"></a><a href="#a-todo-list-example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>A Todo List Example</h2>
+<p><strong>Jump to</strong></p>
+<ul>
+<li>🤞 <a href="https://codesandbox.io/s/9on71rvnyo">Just show me the code</a></li>
+<li>👆 <a href="#providing-the-store">Providing the store</a></li>
+<li>✌️ <a href="#connecting-the-components">Connecting the Component</a></li>
+</ul>
+<p><strong>The React UI Components</strong></p>
+<p>We have implemented our React UI components as follows:</p>
+<ul>
+<li><code>TodoApp</code> is the entry component for our app. It renders the header, the <code>AddTodo</code>, <code>TodoList</code>, and <code>VisibilityFilters</code> components.</li>
+<li><code>AddTodo</code> is the component that allows a user to input a todo item and add to the list upon clicking its “Add Todo” button:
+<ul>
+<li>It uses a controlled input that sets state upon <code>onChange</code>.</li>
+<li>When the user clicks on the “Add Todo” button, it dispatches the action (that we will provide using React Redux) to add the todo to the store.</li>
+</ul></li>
+<li><code>TodoList</code> is the component that renders the list of todos:
+<ul>
+<li>It renders the filtered list of todos when one of the <code>VisibilityFilters</code> is selected.</li>
+</ul></li>
+<li><code>Todo</code> is the component that renders a single todo item:
+<ul>
+<li>It renders the todo content, and shows that a todo is completed by crossing it out.</li>
+<li>It dispatches the action to toggle the todo's complete status upon <code>onClick</code>.</li>
+</ul></li>
+<li><code>VisibilityFilters</code> renders a simple set of filters: <em>all</em>, <em>completed</em>, and <em>incomplete.</em> Clicking on each one of them filters the todos:
+<ul>
+<li>It accepts an <code>activeFilter</code> prop from the parent that indicates which filter is currently selected by the user. An active filter is rendered with an underscore.</li>
+<li>It dispatches the <code>setFilter</code> action to update the selected filter.</li>
+</ul></li>
+<li><code>constants</code> holds the constants data for our app.</li>
+<li>And finally <code>index</code> renders our app to the DOM.</li>
+</ul>
+<p><br /></p>
+<p><strong>The Redux Store</strong></p>
+<p>The Redux portion of the application has been set up using the <a href="https://redux.js.org">patterns recommended in the Redux docs</a>:</p>
+<ul>
+<li>Store
+<ul>
+<li><code>todos</code>: A normalized reducer of todos. It contains a <code>byIds</code> map of all todos and a <code>allIds</code> that contains the list of all ids.</li>
+<li><code>visibilityFilters</code>: A simple string <code>all</code>, <code>completed</code>, or <code>incomplete</code>.</li>
+</ul></li>
+<li>Action Creators
+<ul>
+<li><code>addTodo</code> creates the action to add todos. It takes a single string variable <code>content</code> and returns an <code>ADD_TODO</code> action with <code>payload</code> containing a self-incremented <code>id</code> and <code>content</code></li>
+<li><code>toggleTodo</code> creates the action to toggle todos. It takes a single number variable <code>id</code> and returns a <code>TOGGLE_TODO</code> action with <code>payload</code> containing <code>id</code> only</li>
+<li><code>setFilter</code> creates the action to set the app’s active filter. It takes a single string variable <code>filter</code> and returns a <code>SET_FILTER</code> action with <code>payload</code> containing the <code>filter</code> itself</li>
+</ul></li>
+<li>Reducers
+<ul>
+<li>The <code>todos</code> reducer
+<ul>
+<li>Appends the <code>id</code> to its <code>allIds</code> field and sets the todo within its <code>byIds</code> field upon receiving the <code>ADD_TODO</code> action</li>
+<li>Toggles the <code>completed</code> field for the todo upon receiving the <code>TOGGLE_TODO</code> action</li>
+</ul></li>
+<li>The <code>visibilityFilters</code> reducer sets its slice of store to the new filter it receives from the <code>SET_FILTER</code> action payload</li>
+</ul></li>
+<li>Action Types
+<ul>
+<li>We use a file <code>actionTypes.js</code> to hold the constants of action types to be reused</li>
+</ul></li>
+<li>Selectors
+<ul>
+<li><code>getTodoList</code> returns the <code>allIds</code> list from the <code>todos</code> store</li>
+<li><code>getTodoById</code> finds the todo in the store given by <code>id</code></li>
+<li><code>getTodos</code> is slightly more complex. It takes all the <code>id</code>s from <code>allIds</code>, finds each todo in <code>byIds</code>, and returns the final array of todos</li>
+<li><code>getTodosByVisibilityFilter</code> filters the todos according to the visibility filter</li>
+</ul></li>
+</ul>
+<p>You may check out <a href="https://codesandbox.io/s/6vwyqrpqk3">this CodeSandbox</a> for the source code of the UI components and the unconnected Redux store described above.</p>
+<p><br /></p>
+<p>We will now show how to connect this store to our app using React Redux.</p>
+<h3><a class="anchor" aria-hidden="true" id="providing-the-store"></a><a href="#providing-the-store" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Providing the Store</h3>
+<p>First we need to make the <code>store</code> available to our app. To do this, we wrap our app with the <code>&lt;Provider /&gt;</code> API provided by React Redux.</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-comment">// index.js</span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+<span class="hljs-keyword">import</span> TodoApp <span class="hljs-keyword">from</span> <span class="hljs-string">'./TodoApp'</span>
+
+<span class="hljs-keyword">import</span> { Provider } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+<span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">'./redux/store'</span>
+
+<span class="hljs-keyword">const</span> rootElement = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'root'</span>)
+ReactDOM.render(
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">TodoApp</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>,
+  rootElement
+)
+</code></pre>
+<p>Notice how our <code>&lt;TodoApp /&gt;</code> is now wrapped with the <code>&lt;Provider /&gt;</code> with <code>store</code> passed in as a prop.</p>
+<p><img src="https://i.imgur.com/LV0XvwA.png" alt=""></p>
+<h3><a class="anchor" aria-hidden="true" id="connecting-the-components"></a><a href="#connecting-the-components" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Connecting the Components</h3>
+<p>React Redux provides a <code>connect</code> function for you to read values from the Redux store (and re-read the values when the store updates).</p>
+<p>The <code>connect</code> function takes two arguments, both optional:</p>
+<ul>
+<li><p><code>mapStateToProps</code>: called every time the store state changes. It receives the entire store state, and should return an object of data this component needs.</p></li>
+<li><p><code>mapDispatchToProps</code>: this parameter can either be a function, or an object.</p>
+<ul>
+<li>If it’s a function, it will be called once on component creation. It will receive <code>dispatch</code> as an argument, and should return an object full of functions that use <code>dispatch</code> to dispatch actions.</li>
+<li>If it’s an object full of action creators, each action creator will be turned into a prop function that automatically dispatches its action when called. <strong>Note</strong>: We recommend using this “object shorthand” form.</li>
+</ul></li>
+</ul>
+<p>Normally, you’ll call <code>connect</code> in this way:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function">(<span class="hljs-params">state, ownProps</span>) =&gt;</span> ({
+  <span class="hljs-comment">// ... computed data from state and optionally ownProps</span>
+})
+
+<span class="hljs-keyword">const</span> mapDispatchToProps = {
+  <span class="hljs-comment">// ... normally is an object full of action creators</span>
+}
+
+<span class="hljs-comment">// `connect` returns a new function that accepts the component to wrap:</span>
+<span class="hljs-keyword">const</span> connectToStore = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
+<span class="hljs-comment">// and that function returns the connected, wrapper component:</span>
+<span class="hljs-keyword">const</span> ConnectedComponent = connectToStore(Component)
+
+<span class="hljs-comment">// We normally do both in one step, like this:</span>
+connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component)
+</code></pre>
+<p>Let’s work on <code>&lt;AddTodo /&gt;</code> first. It needs to trigger changes to the <code>store</code> to add new todos. Therefore, it needs to be able to <code>dispatch</code> actions to the store. Here’s how we do it.</p>
+<p>Our <code>addTodo</code> action creator looks like this:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// redux/actions.js</span>
+<span class="hljs-keyword">import</span> { ADD_TODO } <span class="hljs-keyword">from</span> <span class="hljs-string">'./actionTypes'</span>
+
+<span class="hljs-keyword">let</span> nextTodoId = <span class="hljs-number">0</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> addTodo = <span class="hljs-function"><span class="hljs-params">content</span> =&gt;</span> ({
+  <span class="hljs-attr">type</span>: ADD_TODO,
+  <span class="hljs-attr">payload</span>: {
+    <span class="hljs-attr">id</span>: ++nextTodoId,
+    content
+  }
+})
+
+<span class="hljs-comment">// ... other actions</span>
+</code></pre>
+<p>By passing it to <code>connect</code>, our component receives it as a prop, and it will automatically dispatch the action when it’s called.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// components/AddTodo.js</span>
+
+<span class="hljs-comment">// ... other imports</span>
+<span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+<span class="hljs-keyword">import</span> { addTodo } <span class="hljs-keyword">from</span> <span class="hljs-string">'../redux/actions'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddTodo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-comment">// ... component implementation</span>
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(
+  <span class="hljs-literal">null</span>,
+  { addTodo }
+)(AddTodo)
+</code></pre>
+<p>Notice now that <code>&lt;AddTodo /&gt;</code> is wrapped with a parent component called <code>&lt;Connect(AddTodo) /&gt;</code>. Meanwhile, <code>&lt;AddTodo /&gt;</code> now gains one prop: the <code>addTodo</code> action.</p>
+<p><img src="https://i.imgur.com/u6aXbwl.png" alt=""></p>
+<p>We also need to implement the <code>handleAddTodo</code> function to let it dispatch the <code>addTodo</code> action and reset the input</p>
+<pre><code class="hljs css language-jsx"><span class="hljs-comment">// components/AddTodo.js</span>
+
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>
+<span class="hljs-keyword">import</span> { addTodo } <span class="hljs-keyword">from</span> <span class="hljs-string">'../redux/actions'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddTodo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-comment">// ...</span>
+
+  handleAddTodo = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-comment">// dispatches actions to add todo</span>
+    <span class="hljs-keyword">this</span>.props.addTodo(<span class="hljs-keyword">this</span>.state.input)
+
+    <span class="hljs-comment">// sets state back to empty string</span>
+    <span class="hljs-keyword">this</span>.setState({ <span class="hljs-attr">input</span>: <span class="hljs-string">''</span> })
+  }
+
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+          <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> this.updateInput(e.target.value)}
+          value={this.state.input}
+        /&gt;
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"add-todo"</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.handleAddTodo}</span>&gt;</span>
+          Add Todo
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    )
+  }
+}
+
+export default connect(
+  null,
+  { addTodo }
+)(AddTodo)
+</span></code></pre>
+<p>Now our <code>&lt;AddTodo /&gt;</code> is connected to the store. When we add a todo it would dispatch an action to change the store. We are not seeing it in the app because the other components are not connected yet. If you have the Redux DevTools Extension hooked up, you should see the action being dispatched:</p>
+<p><img src="https://i.imgur.com/kHvkqhI.png" alt=""></p>
+<p>You should also see that the store has changed accordingly:</p>
+<p><img src="https://i.imgur.com/yx27RVC.png" alt=""></p>
+<p>The <code>&lt;TodoList /&gt;</code> component is responsible for rendering the list of todos. Therefore, it needs to read data from the store. We enable it by calling <code>connect</code> with the <code>mapStateToProps</code> parameter, a function describing which part of the data we need from the store.</p>
+<p>Our <code>&lt;Todo /&gt;</code> component takes the todo item as props. We have this information from the <code>byIds</code> field of the <code>todos</code>. However, we also need the information from the <code>allIds</code> field of the store indicating which todos and in what order they should be rendered. Our <code>mapStateToProps</code> function may look like this:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// components/TodoList.js</span>
+
+<span class="hljs-comment">// ...other imports</span>
+<span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-redux"</span>;
+
+<span class="hljs-keyword">const</span> TodoList = <span class="hljs-comment">// ... UI component implementation</span>
+
+<span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> { byIds, allIds } = state.todos || {};
+  <span class="hljs-keyword">const</span> todos =
+    allIds &amp;&amp; allIds.length
+      ? allIds.map(<span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> (byIds ? { ...byIds[id], id } : <span class="hljs-literal">null</span>))
+      : <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">return</span> { todos };
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps)(TodoList);
+</code></pre>
+<p>Luckily we have a selector that does exactly this. We may simply import the selector and use it here.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// redux/selectors.js</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> getTodosState = <span class="hljs-function"><span class="hljs-params">store</span> =&gt;</span> store.todos
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> getTodoList = <span class="hljs-function"><span class="hljs-params">store</span> =&gt;</span>
+  getTodosState(store) ? getTodosState(store).allIds : []
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> getTodoById = <span class="hljs-function">(<span class="hljs-params">store, id</span>) =&gt;</span>
+  getTodosState(store) ? { ...getTodosState(store).byIds[id], id } : {}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> getTodos = <span class="hljs-function"><span class="hljs-params">store</span> =&gt;</span>
+  getTodoList(store).map(<span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> getTodoById(store, id))
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// components/TodoList.js</span>
+
+<span class="hljs-comment">// ...other imports</span>
+<span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-redux"</span>;
+<span class="hljs-keyword">import</span> { getTodos } <span class="hljs-keyword">from</span> <span class="hljs-string">"../redux/selectors"</span>;
+
+<span class="hljs-keyword">const</span> TodoList = <span class="hljs-comment">// ... UI component implementation</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> ({ <span class="hljs-attr">todos</span>: getTodos(state) }))(TodoList);
+</code></pre>
+<p>We recommend encapsulating any complex lookups or computations of data in selector functions. In addition, you can further optimize the performance by using <a href="https://github.com/reduxjs/reselect">Reselect</a> to write “memoized” selectors that can skip unnecessary work. (See <a href="https://redux.js.org/recipes/computingderiveddata#sharing-selectors-across-multiple-components">the Redux docs page on Computing Derived Data</a> and the blog post <a href="https://blog.isquaredsoftware.com/2017/12/idiomatic-redux-using-reselect-selectors/">Idiomatic Redux: Using Reselect Selectors for Encapsulation and Performance</a> for more information on why and how to use selector functions.)</p>
+<p>Now that our <code>&lt;TodoList /&gt;</code> is connected to the store. It should receive the list of todos, map over them, and pass each todo to the <code>&lt;Todo /&gt;</code> component. <code>&lt;Todo /&gt;</code> will in turn render them to the screen. Now try adding a todo. It should come up on our todo list!</p>
+<p><img src="https://i.imgur.com/N68xvrG.png" alt=""></p>
+<p>We will connect more components. Before we do this, let’s pause and learn a bit more about <code>connect</code> first.</p>
+<h3><a class="anchor" aria-hidden="true" id="common-ways-of-calling-connect"></a><a href="#common-ways-of-calling-connect" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Common ways of calling <code>connect</code></h3>
+<p>Depending on what kind of components you are working with, there are different ways of calling <code>connect</code> , with the most common ones summarized as below:</p>
+<table>
+<thead>
+<tr><th></th><th>Do Not Subscribe to the Store</th><th>Subscribe to the Store</th></tr>
+</thead>
+<tbody>
+<tr><td>Do Not Inject Action Creators</td><td><code>connect()(Component)</code></td><td><code>connect(mapStateToProps)(Component)</code></td></tr>
+<tr><td>Inject Action Creators</td><td><code>connect(null, mapDispatchToProps)(Component)</code></td><td><code>connect(mapStateToProps, mapDispatchToProps)(Component)</code></td></tr>
+</tbody>
+</table>
+<h4><a class="anchor" aria-hidden="true" id="do-not-subscribe-to-the-store-and-do-not-inject-action-creators"></a><a href="#do-not-subscribe-to-the-store-and-do-not-inject-action-creators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Do not subscribe to the store and do not inject action creators</h4>
+<p>If you call <code>connect</code> without providing any arguments, your component will:</p>
+<ul>
+<li><em>not</em> re-render when the store changes</li>
+<li>receive <code>props.dispatch</code> that you may use to manually dispatch action</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// ... Component</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect()(Component) <span class="hljs-comment">// Component will receive `dispatch` (just like our &lt;TodoList /&gt;!)</span>
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="subscribe-to-the-store-and-do-not-inject-action-creators"></a><a href="#subscribe-to-the-store-and-do-not-inject-action-creators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Subscribe to the store and do not inject action creators</h4>
+<p>If you call <code>connect</code> with only <code>mapStateToProps</code>, your component will:</p>
+<ul>
+<li>subscribe to the values that <code>mapStateToProps</code> extracts from the store, and re-render only when those values have changed</li>
+<li>receive <code>props.dispatch</code> that you may use to manually dispatch action</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// ... Component</span>
+<span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.partOfState
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps)(Component)
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="do-not-subscribe-to-the-store-and-inject-action-creators"></a><a href="#do-not-subscribe-to-the-store-and-inject-action-creators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Do not subscribe to the store and inject action creators</h4>
+<p>If you call <code>connect</code> with only <code>mapDispatchToProps</code>, your component will:</p>
+<ul>
+<li><em>not</em> re-render when the store changes</li>
+<li>receive each of the action creators you inject with <code>mapDispatchToProps</code> as props and automatically dispatch the actions upon being called</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { addTodo } <span class="hljs-keyword">from</span> <span class="hljs-string">'./actionCreators'</span>
+<span class="hljs-comment">// ... Component</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(
+  <span class="hljs-literal">null</span>,
+  { addTodo }
+)(Component)
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="subscribe-to-the-store-and-inject-action-creators"></a><a href="#subscribe-to-the-store-and-inject-action-creators" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Subscribe to the store and inject action creators</h4>
+<p>If you call <code>connect</code> with both <code>mapStateToProps</code> and <code>mapDispatchToProps</code>, your component will:</p>
+<ul>
+<li>subscribe to the values that <code>mapStateToProps</code> extracts from the store, and re-render only when those values have changed</li>
+<li>receive all of the action creators you inject with <code>mapDispatchToProps</code> as props and automatically dispatch the actions upon being called.</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> actionCreators <span class="hljs-keyword">from</span> <span class="hljs-string">'./actionCreators'</span>
+<span class="hljs-comment">// ... Component</span>
+<span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.partOfState
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(
+  mapStateToProps,
+  actionCreators
+)(Component)
+</code></pre>
+<p>These four cases cover the most basic usages of <code>connect</code>. To read more about <code>connect</code>, continue reading our <a href="../api/connect.md">API section</a> that explains it in more detail.</p>
+<!-- TODO: Put up link to the page that further explains connect -->
+<hr>
+<p>Now let’s connect the rest of our <code>&lt;TodoApp /&gt;</code>.</p>
+<p>How should we implement the interaction of toggling todos? A keen reader might already have an answer. If you have your environment set up and have followed through up until this point, now is a good time to leave it aside and implement the feature by yourself. There would be no surprise that we connect our <code>&lt;Todo /&gt;</code> to dispatch <code>toggleTodo</code> in a similar way:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// components/Todo.js</span>
+
+<span class="hljs-comment">// ... other imports</span>
+<span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-redux"</span>;
+<span class="hljs-keyword">import</span> { toggleTodo } <span class="hljs-keyword">from</span> <span class="hljs-string">"../redux/actions"</span>;
+
+<span class="hljs-keyword">const</span> Todo = <span class="hljs-comment">// ... component implementation</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(
+  <span class="hljs-literal">null</span>,
+  { toggleTodo }
+)(Todo);
+</code></pre>
+<p>Now our todo’s can be toggled complete. We’re almost there!</p>
+<p><img src="https://i.imgur.com/4UBXYtj.png" alt=""></p>
+<p>Finally, let’s implement our <code>VisibilityFilters</code> feature.</p>
+<p>The <code>&lt;VisibilityFilters /&gt;</code> component needs to be able to read from the store which filter is currently active, and dispatch actions to the store. Therefore, we need to pass both a <code>mapStateToProps</code> and <code>mapDispatchToProps</code>. The <code>mapStateToProps</code> here can be a simple accessor of the <code>visibilityFilter</code> state. And the <code>mapDispatchToProps</code> will contain the <code>setFilter</code> action creator.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// components/VisibilityFilters.js</span>
+
+<span class="hljs-comment">// ... other imports</span>
+<span class="hljs-keyword">import</span> { connect } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-redux"</span>;
+<span class="hljs-keyword">import</span> { setFilter } <span class="hljs-keyword">from</span> <span class="hljs-string">"../redux/actions"</span>;
+
+<span class="hljs-keyword">const</span> VisibilityFilters = <span class="hljs-comment">// ... component implementation</span>
+
+<span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> { <span class="hljs-attr">activeFilter</span>: state.visibilityFilter };
+};
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(
+  mapStateToProps,
+  { setFilter }
+)(VisibilityFilters);
+</code></pre>
+<p>Meanwhile, we also need to update our <code>&lt;TodoList /&gt;</code> component to filter todos according to the active filter. Previously the <code>mapStateToProps</code> we passed to the <code>&lt;TodoList /&gt;</code> <code>connect</code> function call was simply the selector that selects the whole list of todos. Let’s write another selector to help filtering todos by their status.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// redux/selectors.js</span>
+
+<span class="hljs-comment">// ... other selectors</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> getTodosByVisibilityFilter = <span class="hljs-function">(<span class="hljs-params">store, visibilityFilter</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> allTodos = getTodos(store)
+  <span class="hljs-keyword">switch</span> (visibilityFilter) {
+    <span class="hljs-keyword">case</span> VISIBILITY_FILTERS.COMPLETED:
+      <span class="hljs-keyword">return</span> allTodos.filter(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> todo.completed)
+    <span class="hljs-keyword">case</span> VISIBILITY_FILTERS.INCOMPLETE:
+      <span class="hljs-keyword">return</span> allTodos.filter(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> !todo.completed)
+    <span class="hljs-keyword">case</span> VISIBILITY_FILTERS.ALL:
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> allTodos
+  }
+}
+</code></pre>
+<p>And connecting to the store with the help of the selector:</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// components/TodoList.js</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> { visibilityFilter } = state
+  <span class="hljs-keyword">const</span> todos = getTodosByVisibilityFilter(state, visibilityFilter)
+  <span class="hljs-keyword">return</span> { todos }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps)(TodoList)
+</code></pre>
+<p>Now we've finished a very simple example of a todo app with React Redux. All our components are connected! Isn't that nice? 🎉🎊</p>
+<p><img src="https://i.imgur.com/ONqer2R.png" alt=""></p>
+<h2><a class="anchor" aria-hidden="true" id="links"></a><a href="#links" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Links</h2>
+<ul>
+<li><a href="https://redux.js.org/basics/usage-with-react">Usage with React</a></li>
+<li><a href="https://blog.isquaredsoftware.com/presentations/workshops/redux-fundamentals/react-redux.html">Using the React Redux Bindings</a></li>
+<li><a href="https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e">Higher Order Components in Depth</a></li>
+<li><a href="https://redux.js.org/recipes/computingderiveddata#sharing-selectors-across-multiple-components">Computing Derived Data</a></li>
+<li><a href="https://blog.isquaredsoftware.com/2017/12/idiomatic-redux-using-reselect-selectors/">Idiomatic Redux: Using Reselect Selectors for Encapsulation and Performance</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="get-more-help"></a><a href="#get-more-help" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Get More Help</h2>
+<ul>
+<li><a href="https://www.reactiflux.com">Reactiflux</a> Redux channel</li>
+<li><a href="https://stackoverflow.com/questions/tagged/react-redux">StackOverflow</a></li>
+<li><a href="https://github.com/reduxjs/react-redux/issues/">GitHub Issues</a></li>
+</ul>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-12-30</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/introduction/quick-start"><span class="arrow-prev">← </span><span>Quick Start</span></a><a class="docs-next button" href="/introduction/why-use-react-redux"><span>Why Use React Redux?</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#a-todo-list-example">A Todo List Example</a><ul class="toc-headings"><li><a href="#providing-the-store">Providing the Store</a></li><li><a href="#connecting-the-components">Connecting the Components</a></li><li><a href="#common-ways-of-calling-connect">Common ways of calling <code>connect</code></a></li></ul></li><li><a href="#links">Links</a></li><li><a href="#get-more-help">Get More Help</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/redux_white.svg" alt="React Redux" width="66" height="58"/></a><div><h5>Docs</h5><a href="/introduction/quick-start">Introduction</a><a href="/using-react-redux/connect-mapstate">Using React Redux</a><a href="/api/connect">API Reference</a><a href="/troubleshooting">Guides</a></div><div><h5>Community</h5><a href="http://stackoverflow.com/questions/tagged/react-redux" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discord.gg/0ZcbPKXt5bZ6au5t">Discord</a></div><div><h5>More</h5><a href="https://github.com/reduxjs/react-redux/">GitHub</a><a class="github-button" href="https://github.com/reduxjs/react-redux" data-icon="octicon-star" data-count-href="/reduxjs/react-redux/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><a href="https://www.netlify.com"><img src="https://www.netlify.com/img/global/badges/netlify-light.svg" alt="Deploys by Netlify"/></a></div></section><section class="copyright">Copyright (c) 2015-present Dan Abramov and the Redux documentation authors.<br/>Some icons copyright <a href="https://fontawesome.com/license/free" style="color:white">Font Awesome</a> and <a href="https://thenounproject.com" style="color:white">Noun Project</a> (<a href="https://thenounproject.com/term/certificate/1945625/" style="color:white">prasong tadoungsorn</a>, <a href="https://thenounproject.com/term/box/1664404/" style="color:white">Vladimir Belochkin</a>, <a href="https://thenounproject.com/term/rocket/1245262/" style="color:white">Atif Arshad</a>)</section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '2d058d216b7fd5d68d481fd48ee72c06',
+                indexName: 'react-redux',
+                inputSelector: '#search_input_react',
+                algoliaOptions: {}
+              });
+            </script></body></html>

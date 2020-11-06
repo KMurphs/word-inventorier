@@ -1,0 +1,579 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>A Visual Guide to State in React</title>
+<meta name="description" content="React's state is one of the more difficult concepts to learn. What is state and what goes in it?">
+<meta name="keywords" content="react">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="A Visual Guide to State in React">
+<meta name="twitter:description" content="React's state is one of the more difficult concepts to learn. What is state and what goes in it?">
+<meta name="twitter:site" content="@dceddia">
+<meta name="twitter:creator" content="@dceddia">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://daveceddia.com/images/visual-state-guide.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Visual Guide to State in React">
+<meta property="og:description" content="React's state is one of the more difficult concepts to learn. What is state and what goes in it?">
+
+<meta property="og:image" content="https://daveceddia.com/images/visual-state-guide.png">
+
+<meta property="og:url" content="https://daveceddia.com/visual-guide-to-state-in-react/">
+<meta property="og:site_name" content="Dave Ceddia">
+
+
+
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400|PT+Serif:400,400i,700" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="canonical" href="https://daveceddia.com/visual-guide-to-state-in-react/">
+<link href="https://daveceddia.com/feed.xml" type="application/atom+xml" rel="alternate" title="Dave Ceddia Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="fb:admins" content="50205984" />
+
+<meta property="dc:page_id" content="visual-guide-to-state-in-react">
+
+<!-- For all browsers -->
+<link rel="stylesheet" type="text/css" href="https://daveceddia.com/assets/css/site.min.css?v=4">
+
+<!-- Preload the CSS and fonts for Commento if we have comments -->
+
+  <link rel="preload" href="https://commento.daveceddia.com/css/commento.css" as="style">
+  <link rel="preload" href="https://commento.daveceddia.com/fonts/source-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://commento.daveceddia.com/fonts/source-sans-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+
+
+
+<!-- Webfonts -->
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="https://daveceddia.com/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="https://daveceddia.com/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="https://daveceddia.com/favicon.ico?v=2">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="https://daveceddia.com/favicon.png?v=2">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="https://daveceddia.com/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://daveceddia.com/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://daveceddia.com/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://daveceddia.com/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<nav role="navigation" id="site-nav">
+	<header>
+    
+		<a href="https://daveceddia.com/" class="site-logo" rel="home" title="Dave Ceddia">
+      <img
+        src="https://daveceddia.com/images/logo.png"
+        srcset="https://daveceddia.com/images/logo@2x.png 2x"
+        alt="Dave Ceddia logo"/>
+		</a>
+    
+    <h1 class="site-title"><a href="https://daveceddia.com/">Dave Ceddia</a></h1>
+		<h2 class="site-description" itemprop="description">Articles to help you learn and master frontend development with React.</h2>
+	</header>
+  <ul>
+  
+    
+    <li>
+    	<a  href="https://daveceddia.com/courses/" >Courses</a>
+    </li>
+  
+    
+    <li>
+    	<a  href="https://daveceddia.com/archives/" >All Posts</a>
+    </li>
+  
+    
+    <li>
+    	<a  href="https://daveceddia.com/about/" >About</a>
+    </li>
+  
+  </ul>
+</nav>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <span class="entry-tags"><a href="https://daveceddia.com/tags/#react" title="Pages tagged react">react</a></span>
+        
+          <h1 class="entry-title">A Visual Guide to State in React</h1>
+        
+      </header>
+      <footer class="entry-meta muted-centered" style="color: #3b5e82;">
+        
+        <span class="author vcard">By <span class="fn">Dave Ceddia</span></span>
+        
+          
+            <span>updated <span class="entry-date date modified"><time datetime="2019-02-21T01:57:22+00:00"><i class="fa fa-pencil"></i> February 20, 2019</time></span></span>
+          
+        
+        
+      </footer>
+      <div class="entry-content">
+        
+        <p><img src="https://daveceddia.com/images/visual-state-guide.png" alt="A Visual Guide to React State" class="center" /></p>
+
+<p>React’s “state” is one of the more difficult concepts to learn. Not just what to put in state, but what it actually <em>is</em> and what it’s for. And also how Redux is related to React state.</p>
+
+<p>I hope to clear up some of the confusion in this article.</p>
+
+<h3 id="you-keep-using-that-word">You Keep Using That Word…</h3>
+
+<p>First off, the word “state” is a little ambiguous. In one sense, “state” means the current visual representation of the app on screen. It could be in a “loading” state, or it could be in an “error” state. That’s not quite what it means in React parlance, though.</p>
+
+<p>In the React sense, “state” is an object that represents the parts of the app that can change. Each component can maintain its own state, which lives in an object called <code class="highlighter-rouge">this.state</code>.</p>
+
+<p>Simply put, if you’d like your app to <em>do</em> anything – if you want interactivity, adding and deleting things, logging in and out – that will involve state.</p>
+
+<h3 id="what-react-state-looks-like">What React State Looks Like</h3>
+
+<p>Imagine you have an app that, at this particular moment in time, looks like this:</p>
+
+<p><img src="https://daveceddia.com/images/home-monitor.png" alt="A home monitor app" class="center" /></p>
+
+<p>Looking at this image, pick out the parts that could change over time (yeah, that’s basically everything).</p>
+
+<p><img src="https://daveceddia.com/images/home-monitor-highlighted.png" alt="The app with stateful parts highlighted" class="center" /></p>
+
+<p>Now we can gave these things names (time, power usage, indoor temperature, outdoor temperature), and describe them with a JavaScript object like this:</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="nl">currentTime</span><span class="p">:</span> <span class="s2">"2016-10-12T22:25:42.564Z"</span><span class="p">,</span>
+  <span class="nx">power</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">min</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">current</span><span class="p">:</span> <span class="mi">37</span><span class="p">,</span>
+    <span class="nx">max</span><span class="p">:</span> <span class="mi">100</span>
+  <span class="p">},</span>
+  <span class="nx">indoorTemperature</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">min</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="nx">current</span><span class="p">:</span> <span class="mf">72.0</span><span class="p">,</span>
+    <span class="nx">max</span><span class="p">:</span> <span class="mf">100.0</span>
+  <span class="p">},</span>
+  <span class="nx">outdoorTemperature</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">min</span><span class="p">:</span> <span class="o">-</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="nx">current</span><span class="p">:</span> <span class="mf">84.0</span><span class="p">,</span>
+    <span class="nx">max</span><span class="p">:</span> <span class="mf">120.0</span>
+  <span class="p">},</span>
+  <span class="nx">tempUnits</span><span class="p">:</span> <span class="s2">"F"</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This object describes the <em>entire state of this app</em>. And that, in a nutshell, is what React’s state is for.</p>
+
+<p>Notice that the fields don’t correspond perfectly with the UI. That’s ok. It’ll be easy enough to format the date, use the min and max values to draw the graphs to the correct scale, and so on.</p>
+
+<p>The point remains: change the <code class="highlighter-rouge">state</code> object to change how the app looks.</p>
+
+<p>Reader <em>foobarwtf</em> points out that <code class="highlighter-rouge">min</code> and <code class="highlighter-rouge">max</code> don’t change, and since they never change, why are they inside <code class="highlighter-rouge">state</code>? Well, it’s common to put responses from the server into state. If you fetch the current temperature data, and that data includes <code class="highlighter-rouge">min</code> and <code class="highlighter-rouge">max</code>, it’s best to save them inside state with the rest of it. Because, while it looks “obvious” that these values won’t change, you wouldn’t want to duplicate hard-coded values on both the server and client. What if the server changed its calibration? What if the user installed a 200A power system? And so on.</p>
+
+<p>So: while state is generally reserved for things that change, it’s also a good place to put “volatile” information like data that came from a server call.</p>
+
+<h3 id="how-to-change-state">How To Change State</h3>
+
+<p>If anything in the state changes… say, the temperature goes up to 75° inside, the app should refresh to reflect that new reality. This is what React does when state is changed: it <strong>re-renders</strong> the entire app.</p>
+
+<p>Here are some reasons why state might change:</p>
+
+<ul>
+  <li>The user clicks or taps a button</li>
+  <li>Some data is received from the server – either from a websocket message, or from a response to a previous request</li>
+  <li>A timer goes off – perhaps there’s a timer that fires every second to update the current time onscreen</li>
+</ul>
+
+<p>So, how does React <em>know</em> that state has changed? Is it continually polling for changes? Watching for events, like Angular does? Nope. Nothing that fancy.</p>
+
+<p>React knows when state has changed because <em>you tell it explicitly</em>, by calling <code class="highlighter-rouge">this.setState</code> from inside a component. In other words, there’s no “magic.” React will only re-render when you tell it to.</p>
+
+<h3 id="state-changes-in-a-counter">State Changes in a Counter</h3>
+
+<p>The home monitor app above is a nice example of state in action, but I’m going to scale back to a simple “counter” app to show how state changes over time.</p>
+
+<p>Here’s how it works:</p>
+
+<ul>
+  <li>There’s a number displayed, starting off at 0</li>
+  <li>You click a button (this causes a call to a <code class="highlighter-rouge">handleClick</code> function you designate)</li>
+  <li>The counter increments by 1 (you call <code class="highlighter-rouge">setState</code> to make this happen)</li>
+  <li>React re-renders the app in response to the state change</li>
+</ul>
+
+<p><img src="https://daveceddia.com/images/counter-state-progression.png" alt="How state progresses in the counter app" class="center" /></p>
+
+<h3 id="show-me-the-code">Show Me The Code</h3>
+
+<p>Quick review:</p>
+
+<ul>
+  <li>React maintains state as an object</li>
+  <li>You can change that object by calling <code class="highlighter-rouge">setState</code></li>
+  <li>React will re-render every time you call <code class="highlighter-rouge">setState</code></li>
+</ul>
+
+<p>Here are 2 more important points:</p>
+
+<ul>
+  <li>You should NOT change <code class="highlighter-rouge">this.state</code> directly, ever. Use <code class="highlighter-rouge">this.setState</code>.</li>
+  <li>State changes are asynchronous. If you read from <code class="highlighter-rouge">this.state</code> immediately after calling <code class="highlighter-rouge">this.setState</code>, it probably won’t reflect the changes yet.</li>
+</ul>
+
+<p>Here’s the code for that counter component above:</p>
+
+<script async="" src="//jsfiddle.net/67675ag9/embed/js,css,result/"></script>
+
+<h3 id="visualize-how-the-code-runs-with-the-debugger">Visualize How The Code Runs With The Debugger</h3>
+
+<p>The devtools debugger is invaluable in tracking down bugs, but it’s also a great way to see the order in which your code runs. Set breakpoints at key locations and hit “Play” (or Refresh). Here’s how the counter app works:</p>
+
+<p><img src="https://daveceddia.com/images/react-state-debugger.gif" alt="How state progresses in the counter app" class="center" /></p>
+
+<h3 id="details-details">Details, Details</h3>
+
+<p>In this article I’ve said state is a single object that describes the entire app – but in practice, it is broken down into smaller pieces. The best way to do this is to keep state in the “container” components, and keep it out of the “presentational” ones.</p>
+
+<p>If you are using Redux, you actually <em>will</em> have one big state object that describes the entire app. That’s basically what Redux does: one huge object  represents the app’s state, and then reducers and <code class="highlighter-rouge">mapStateToProps</code> carve it up into pieces relevant to each component.</p>
+
+<p>I hope this helped clarify state for you. Leave any questions or comments below!</p>
+
+<h3 id="translations">Translations</h3>
+
+<p>This article has been translated to <a href="http://blog.zacorp.ru/frontend/vizualnoe-rukovodstvo-po-sostoyaniyu-v-react/">Russian</a> and <a href="https://www.vobour.com/book/view/3wKFokAjFncKKCiQg">Korean</a>.</p>
+
+        
+          <div class="workshop-cta">
+  
+    <p>
+      Learning React can be a struggle &mdash; so many libraries and tools!<br/>
+      My advice? Ignore all of them :)<br/>
+      For a step-by-step approach, check out my <a href="https://purereact.com">Pure React workshop</a>.
+    </p>
+  
+  <div class="think-in-react">
+    <img
+      src="https://daveceddia.com/images/pure-react-plant-sm.png"
+      srcset="https://daveceddia.com/images/pure-react-plant-sm@2x.png 2x"
+      alt="Pure React plant"/>
+    <div class="think-in-react--cta">
+      <h3>Learn to think in React</h3>
+      <ul>
+        <li>90+ screencast lessons</li>
+        <li>Full transcripts and closed captions</li>
+        <li>All the code from the lessons</li>
+        <li>Developer interviews</li>
+      </ul>
+      <a href="https://purereact.com">
+        Start learning Pure React now
+      </a>
+    </div>
+    <div class="notch"></div>
+  </div>
+  <div class="testimonial">
+    <p>Dave Ceddia’s Pure React is a work of enormous clarity and depth. Hats off. I'm a React trainer in London and would thoroughly recommend this to all front end devs wanting to upskill or consolidate.</p>
+    <div class="testimonial--author">
+      <img src="https://daveceddia.com/images/alan-lavender.jpg" alt="Alan Lavender">
+      <div>
+        <div class="testimonial--name">Alan Lavender</div>
+        <div class="testimonial--handle">@lavenderlens</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+        
+          
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+  <div class="dc_form_container ">
+    <div class="dc_success_msg" style="display:none;">
+      Success! Now check your email.
+    </div>
+
+    <!--  Form starts here  -->
+    
+    <form class="dc_signup_form" action="/s/signup" method="POST">
+    
+      <h4 class="dc_title">
+Learn the basics of React in 5 days
+</h4>
+      <div class="dc_description">
+        
+<div>
+  <p>Finally understand how React works! You will:</p>
+  <div class="prec-bullet">🎉 Get something on screen</div>
+  <div class="prec-bullet">💄 Write dynamic components</div>
+  <div class="prec-bullet">🏃 Make it interactive</div>
+  <div class="prec-bullet">😎 Fetch real data</div>
+  <p class="prec-bullet">🛳 Put it online</p>
+  <p>5 days, 5 emails. Walk away with the basics and a plan!</p>
+  <p style="text-align:center;">Get Lesson 1 right now 👇 </p>
+</div>
+
+      </div>
+
+      <div class="dc_error_msg" style="display:none">
+        There was an error submitting your subscription. Please try again.
+      </div>
+
+      <div class="dc_field">
+        <label class="dc_label" for="dc_email" style="display: none">Email Address</label>
+        <input type="email" name="email" placeholder="Your email address" required="">
+      </div>
+      <input type="hidden" name="page_id" value="visual-guide-to-state-in-react" />
+      <input type="hidden" name="form_id" value="pure-react-email-course" />
+      <input type="hidden" name="form_version" value="3" />
+      <input type="hidden" name="tag" value="734384," />
+      <button class="dc_subscribe_button" type="submit">
+        Send Me Lesson 1
+      </button>
+      <div class="dc_guarantee">
+        I respect your email privacy. Unsubscribe any time.
+      </div>
+    </form>
+
+    
+<form class="dc_gdpr_form" action="/s/signup/gdpr" method="POST" style="display:none;">
+
+  <p>Before we go on, I have to ask...</p>
+  <div class="dc_form_field">
+    <label>
+      <input type="checkbox" name="confirm_answer" value="true"/>
+      <span>consent</span>
+    </label>
+  </div>
+  <br/>
+
+  <div class="dc_error_msg" style="display:none">
+    There was an error submitting your subscription. Please try again.
+  </div>
+
+  <input type="hidden" name="email" value="FILL_IN_WITH_JS" />
+  <input type="hidden" name="firstName" value="FILL_IN_WITH_JS" />
+  <input type="hidden" name="gdpr" value="FILL_IN_WITH_JS" />
+  <input type="hidden" name="captcha" value="FILL_IN_WITH_JS" />
+  <input type="hidden" name="sign" value="FILL_IN_WITH_JS" />
+  <input type="hidden" name="confirm" value="FILL_IN_WITH_JS" />
+  <input type="hidden" name="tag" value="734384" />
+  <input type="hidden" name="page_id" value="visual-guide-to-state-in-react" />
+  <input type="hidden" name="form_id" value="pure-react-email-course" />
+  <input type="hidden" name="form_version" value="3" />
+  <button type="submit" class="dc_subscribe_button">
+    Finish
+  </button>
+</form>
+
+  </div>
+
+  <style type="text/css">
+    .dc_form_container {
+      border-top: 4px solid #3166de;
+      border-bottom: 4px solid #3166de;
+      padding: 1em;
+      background: #f8faff;
+      font-family: "Open Sans", sans-serif;
+      margin-bottom: 2.5rem;
+    }
+    .dc_form_container .dc_title {
+      margin-top: 0;
+      text-align: center;
+      font-weight: 400;
+      font-size: 30px;
+    }
+    .dc_form_container .dc_description {
+      margin-bottom: 10px;
+    }
+    .dc_signup_form, .dc_gdpr_form {
+      margin-bottom: 0;
+      position: relative;
+    }
+    .dc_signup_form input, .dc_gdpr_form input {
+      width: 100%;
+      padding: 20px 12px;
+    }
+    .dc_gdpr_form input[type="checkbox"] {
+      width: initial;
+      margin: 0;
+      margin-right: 5px;
+    }
+    .dc_subscribe_button {
+      margin: 0 auto;
+      display: block;
+      width: 100%;
+      max-width: 250px;
+      font-size: 18px;
+      background: orange;
+      color: #583900;
+      border-color: #e29609;
+      height: auto;
+      margin-bottom: 5px;
+    }
+    .dc_subscribe_button[disabled] {
+      opacity: 0.5;
+    }
+    .dc_subscribe_button[disabled]:hover {
+      opacity: 0.5;
+      color: #583900;
+    }
+    .dc_guarantee {
+      font-size: 12px;
+      text-align: center;
+      opacity: 0.7;
+    }
+    .dc_success_msg {
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #8dc74a;
+      border-radius: 2px;
+      background: #F1F8E9;
+      text-align: center;
+    }
+    .dc_error_msg {
+      background: #FFEBEE;
+      padding: 10px;
+      margin-bottom: 5px;
+      border: 2px solid #C62828;
+    }
+  </style>
+</div>
+
+
+<style>
+img.dc_form_img {
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.prec-bullet {
+  margin-left: 15px;
+}
+</style>
+
+          
+        
+        
+          <div id="commento"></div>
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper muted-centered">
+  <footer role="contentinfo">
+    
+
+<span>&copy; 2020 Dave Ceddia.</span>
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  window.BASE_URL = 'https://daveceddia.com';
+</script>
+
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100838734ns.gif" /></p></noscript>
+
+<script type="text/javascript">
+  var loadClicky;
+  var loadGA;
+  var loadCommento;
+
+
+  loadGA = function() {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-82635227-1', 'auto');
+    ga('require', 'displayfeatures');
+    ga('require', 'linkid');
+    ga('send', 'pageview');
+  }
+
+
+
+  var clicky_site_ids = clicky_site_ids || [];
+  clicky_site_ids.push(100838734);
+  loadClicky = function() {
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = '//static.getclicky.com/js';
+    ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+  };
+
+
+
+  loadCommento = function() {
+    var element = document.createElement("script");
+    element.src = "https://commento.daveceddia.com/js/commento.js";
+    document.body.appendChild(element);
+  }
+
+
+  function loadJS() {
+    var element = document.createElement("script");
+    element.src = "https://daveceddia.com/assets/js/scripts.min.js";
+    document.body.appendChild(element);
+
+    if(loadClicky) loadClicky();
+    if(loadGA) loadGA();
+    if(loadCommento) loadCommento();
+  }
+
+  if (window.addEventListener) {
+    window.addEventListener("load", loadJS, false);
+  } else if (window.attachEvent) {
+    window.attachEvent("onload", loadJS);
+  } else {
+    window.onload = loadJS;
+  }
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head prefix='og: http://ogp.me/ns# article: http://ogp.me/ns/article#'>
+<meta charset='utf-8'>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+<meta content='width=device-width,initial-scale=1,shrink-to-fit=no' name='viewport'>
+<meta content='NOODP' name='robots'>
+<meta content='React Redux launched support for Hooks. We will explore the new `useSelector` and `useDispatch` hooks and look into the tradeoffs of using these hooks versus the `connect` higher-order component.' name='description'>
+<link href='https://twitter.com/stephenhanson' rel='author'>
+
+<meta content='summary' name='twitter:card'>
+<meta content='@thoughtbot' name='twitter:site'>
+<meta content='https://thoughtbot.com/blog/using-redux-with-react-hooks' name='twitter:url'>
+<meta content='Using Redux with React Hooks' name='twitter:title'>
+<meta content='React Redux launched support for Hooks. We will explore the new <code>useSelector</code> and <code>useDispatch</code> hooks and look into the tradeoffs of using these hooks versus the <code>connect</code> higher-order component.' name='twitter:description'>
+<meta content='https://images.thoughtbot.com/blog-vellum-image-uploads/BbwVghQmSvetg9BiHbHx_virtual-dom-of-death.png' name='twitter:image'>
+
+<meta content='article' property='og:type'>
+<meta content='thoughtbot' property='og:site_name'>
+<meta content='https://thoughtbot.com/blog/using-redux-with-react-hooks' property='og:url'>
+<meta content='Using Redux with React Hooks' property='og:title'>
+<meta content='React Redux launched support for Hooks. We will explore the new <code>useSelector</code> and <code>useDispatch</code> hooks and look into the tradeoffs of using these hooks versus the <code>connect</code> higher-order component.' property='og:description'>
+<meta content='https://images.thoughtbot.com/blog-vellum-image-uploads/BbwVghQmSvetg9BiHbHx_virtual-dom-of-death.png' property='og:image'>
+<meta content='Deeply nested DOM tree due to components wrapped with connect function' property='og:image:alt'>
+<meta content='2019-07-30' property='article:published_time'>
+<meta content='2019-11-20 15:46:28 UTC' property='article:modified_time'>
+
+<link rel="shortcut icon" type="image/x-icon" href="https://thoughtbot.com/blog/assets/favicon-f2dbb21c91d2db85a5cb89a59e2b72cca851b16f03caffad1f8375cb8e957e0a.ico" />
+<link rel="apple-touch-icon" type="image/x-icon" href="https://thoughtbot.com/blog/assets/apple-touch-icon-f5660bd740993647d20c17d16b3fae2697e73d818752f2d4f3045e49d8b80153.png" />
+<title>Using Redux with React Hooks</title>
+<link as='font' crossorigin href='https://thoughtbot.com/blog/assets/CalibreWeb-Semibold-64e3f6d368a145501964ec17ff971f6c82317cf18caf945e175b3c3983b75042.woff2' rel='preload' type='font/woff2'>
+<link as='font' crossorigin href='https://thoughtbot.com/blog/assets/CalibreWeb-Regular-da9622e19b7a5a81a90396acb72684272ff5505f3ceb94869d7f6a400763b577.woff2' rel='preload' type='font/woff2'>
+<link rel="stylesheet" media="all" href="https://thoughtbot.com/blog/assets/application-37277f5124bbfeba74719c0bf7935f644993339ebdb4346fc4b4aeb124cea6fc.css" />
+
+<link href='https://feeds.feedburner.com/GiantRobotsSmashingIntoOtherGiantRobots' rel='alternate' type='application/rss+xml'>
+</head>
+<body>
+<nav class='site-nav'>
+<a class="site-nav-skip-link" href="#main-content">Skip to main content</a>
+<a class="site-nav-logo-link line-height-zero" href="/blog"><svg xmlns="http://www.w3.org/2000/svg" role="img" width="146" height="35" viewBox="0 0 146 35" aria-labelledby="adr20pg9h29nlewsjk9979in7pjtxw5a" class="site-nav-logo"><title id="adr20pg9h29nlewsjk9979in7pjtxw5a">Blog home</title><g><path d="M25.077 25.778l-.432-.43c.235-.18.387-.463.387-.78 0-.543-.44-.982-.983-.982-.544 0-.983.44-.983.98 0 .32.154.606.392.785l-.433.432c-.348-.29-.57-.785-.57-1.273 0-.392.145-.534.38-1.085h-.193v-4.96h-.277v10.557l.277.267v.75h-4.97v-.75l.67-.353h.157V25.63h-1.655v3.392l.552.267v.846l-4.695.008v-.855l.455-.337-.006-10.488h-.448v4.96h-.256c.236.55.38.692.38 1.084 0 .486-.22.95-.57 1.243l-.43-.418c.237-.18.39-.456.39-.777 0-.542-.44-.977-.98-.977-.544 0-.984.442-.984.983 0 .318.152.602.387.78l-.433.433c-.345-.292-.605-.726-.605-1.212 0-.39.34-.75.34-1.027v-7.695c0-.296.295-.533.59-.533h14.09c.297 0 .507.238.507.534v7.695c.55.276.445.635.445 1.027 0 .484-.153.92-.498 1.21zM14.05 9.094h7.183c.296 0 .582.132.582.427v4.677c0 .294-.286.685-.582.685H14.05c-.293 0-.52-.39-.52-.685V9.52c0-.294.227-.426.52-.426zm6.446-1.52l-.433.616c-.548-.525-1.437-.874-2.418-.874-.985 0-1.877.35-2.425.88l-.432-.617c.684-.616 1.71-1.006 2.857-1.006 1.143 0 2.167.388 2.85 1zm-.007-.96c-.745-.563-1.746-.872-2.818-.872-1.073 0-2.073.31-2.817.87-.176.134-.33.276-.465.427l-.436-.622C14.794 5.558 16.147 5 17.672 5c1.49 0 2.813.532 3.658 1.358l-.434.618c-.12-.128-.256-.25-.407-.363zM17.644 3.49c1.846 0 3.488.662 4.53 1.69l-.43.612c-.894-.94-2.398-1.56-4.1-1.56-1.706 0-3.214.62-4.107 1.566l-.43-.614c1.042-1.03 2.686-1.694 4.537-1.694zM17.642.077C8.022.077.225 7.857.225 17.46c0 9.598 7.798 17.38 17.417 17.38 9.62 0 17.417-7.782 17.417-17.38C35.06 7.857 27.26.076 17.64.076z"></path><path d="M15.812 11.97c-.257 0-.467-.21-.467-.467 0-.26.21-.467.467-.467.26 0 .47.208.47.467 0 .258-.21.467-.47.467zm0-1.38c-.504 0-.913.41-.913.913 0 .503.408.913.912.913.505 0 .915-.41.915-.913 0-.504-.41-.913-.915-.913zM19.483 11.97c-.258 0-.467-.21-.467-.467 0-.26.21-.467.467-.467.258 0 .47.208.47.467 0 .258-.212.467-.47.467zm0-1.38c-.506 0-.916.41-.916.913 0 .503.41.913.916.913.505 0 .915-.41.915-.913 0-.504-.41-.913-.915-.913z"></path></g><g><path d="M61.728 23.69h-2.406v-5.67c0-1.06-.17-1.832-.51-2.313-.34-.482-.916-.722-1.725-.722-.965 0-1.71.346-2.236 1.04v7.665h-2.405V7.765h2.406v6.116c.74-.622 1.563-.934 2.47-.934 2.94 0 4.408 1.692 4.408 5.075v5.67M63.45 18.425c0-.765.126-1.483.374-2.156s.603-1.253 1.065-1.742c.46-.488 1.02-.874 1.68-1.157.66-.282 1.395-.424 2.204-.424.81 0 1.54.142 2.193.425.653.284 1.21.673 1.672 1.17.46.494.818 1.075 1.074 1.74.256.665.383 1.38.383 2.145 0 .764-.124 1.48-.372 2.144-.25.664-.604 1.245-1.065 1.74-.46.496-1.022.885-1.682 1.168-.66.283-1.395.425-2.204.425-.823 0-1.56-.142-2.214-.425-.653-.283-1.21-.67-1.67-1.157-.463-.488-.818-1.065-1.066-1.73-.248-.665-.373-1.387-.373-2.165zm2.47 0c0 1.06.253 1.903.757 2.526.504.624 1.203.935 2.097.935.895 0 1.594-.31 2.098-.934.503-.622.755-1.464.755-2.525 0-1.062-.252-1.9-.755-2.517-.504-.615-1.203-.923-2.098-.923-.894 0-1.593.308-2.097.923-.504.616-.756 1.455-.756 2.517zM84.975 23.69H82.76l-.105-.785c-.71.665-1.555.998-2.534.998-2.866 0-4.3-1.65-4.3-4.948v-5.818h2.406v5.648c0 1.062.178 1.837.532 2.326.355.49.916.733 1.682.733.937 0 1.647-.325 2.13-.977v-7.73h2.405V23.69M91.546 29c-.824 0-1.547-.086-2.172-.256-.625-.17-1.143-.4-1.554-.69-.412-.29-.724-.623-.937-.998-.213-.375-.32-.775-.32-1.2 0-1.033.597-1.82 1.79-2.357-.668-.37-1.002-.857-1.002-1.466 0-.637.37-1.132 1.108-1.486-1.12-.78-1.682-1.918-1.682-3.42 0-.593.1-1.15.3-1.665.197-.517.48-.96.85-1.328.37-.368.82-.658 1.352-.87.532-.212 1.132-.32 1.8-.32.95 0 1.78.228 2.49.68.682-.34 1.47-.51 2.364-.51h.532l-.19 1.55h-.81c-.242 0-.512.022-.81.065.497.693.745 1.486.745 2.378 0 .566-.096 1.1-.288 1.603-.19.504-.472.946-.84 1.328-.37.382-.82.683-1.353.903-.533.22-1.133.33-1.8.33-.44 0-.852-.043-1.235-.128-.213.113-.32.255-.32.425 0 .127.047.234.14.318.09.085.244.163.457.234.213.07.5.137.862.2.362.065.82.132 1.374.202.468.07.95.163 1.447.277.497.112.95.282 1.363.508.412.227.752.524 1.022.892s.42.842.447 1.422c0 1.02-.447 1.837-1.34 2.453-.896.616-2.16.924-3.79.924zm-.47-14.228c-.68 0-1.202.213-1.564.637-.362.424-.543.997-.543 1.72 0 .72.184 1.295.553 1.72.37.424.894.636 1.576.636.68 0 1.202-.216 1.563-.647.362-.433.544-1.01.544-1.732s-.185-1.292-.554-1.71c-.37-.417-.894-.626-1.576-.626zm.576 9.534l-1.47-.212c-.453.14-.822.346-1.106.615-.284.268-.426.587-.426.955 0 .48.25.867.745 1.157.497.29 1.193.436 2.087.436.894 0 1.614-.142 2.16-.425.547-.283.82-.65.82-1.104 0-.412-.24-.72-.723-.925-.484-.205-1.18-.37-2.088-.5zM121.32 23.903c-1.092 0-2.03-.347-2.81-1.04l-.085.827h-2.235V7.765h2.406v6.094c.695-.61 1.604-.914 2.725-.914.767 0 1.463.142 2.088.425.624.284 1.156.67 1.596 1.158.44.49.78 1.07 1.022 1.74.242.674.362 1.392.362 2.157 0 .764-.117 1.48-.35 2.144-.235.664-.572 1.245-1.012 1.74-.44.496-.973.885-1.597 1.168-.626.283-1.328.425-2.11.425zm-.19-8.918c-.824 0-1.47.304-1.938.913-.47.608-.703 1.45-.703 2.527 0 1.104.233 1.957.702 2.558.468.602 1.114.902 1.937.902.85 0 1.53-.32 2.033-.966.504-.645.755-1.476.755-2.495 0-1.02-.248-1.848-.745-2.485-.496-.637-1.178-.955-2.044-.955zM107.016 23.69h-2.406v-5.67c0-1.06-.17-1.832-.51-2.313-.342-.482-.917-.722-1.726-.722-.965 0-1.71.346-2.235 1.04v7.665h-2.407V7.765h2.406v6.116c.737-.622 1.56-.934 2.47-.934 2.937 0 4.406 1.692 4.406 5.075v5.67M114.393 21.928l-.213 1.975h-1.83c-.47 0-.88-.07-1.236-.213-.355-.14-.65-.332-.884-.573-.234-.24-.408-.524-.52-.85-.115-.325-.172-.68-.172-1.06V15.09h-1.597l.214-1.953h1.384V10l2.406-.254v3.39h2.47v1.955h-2.47v5.012c0 .44.014.782.043 1.03.028.247.1.428.213.54.113.115.29.185.532.213.24.03.575.043 1 .043h.66M127.674 18.425c0-.765.124-1.483.373-2.156.248-.673.603-1.253 1.064-1.742.463-.488 1.023-.874 1.683-1.157.66-.282 1.395-.424 2.204-.424.81 0 1.54.142 2.193.425.653.284 1.21.673 1.67 1.17.463.494.82 1.075 1.077 1.74.255.665.383 1.38.383 2.145 0 .764-.124 1.48-.373 2.144-.248.664-.603 1.245-1.064 1.74-.46.496-1.022.885-1.682 1.168-.66.283-1.394.425-2.203.425-.823 0-1.56-.142-2.214-.425-.653-.283-1.21-.67-1.672-1.157-.46-.488-.815-1.065-1.063-1.73-.25-.665-.373-1.387-.373-2.165zm2.47 0c0 1.06.252 1.903.756 2.526.504.624 1.203.935 2.097.935.894 0 1.593-.31 2.097-.934.504-.622.756-1.464.756-2.525 0-1.062-.252-1.9-.756-2.517-.504-.615-1.203-.923-2.097-.923-.894 0-1.593.308-2.097.923-.504.616-.756 1.455-.756 2.517zM145.09 21.928l-.213 1.975h-1.83c-.47 0-.88-.07-1.236-.213-.354-.14-.65-.332-.883-.573-.234-.24-.408-.524-.52-.85-.115-.325-.172-.68-.172-1.06V15.09h-1.597l.213-1.953h1.385V10l2.406-.254v3.39h2.47v1.955h-2.47v5.012c0 .44.015.782.044 1.03.028.247.1.428.213.54.113.115.29.185.532.213.24.03.574.043 1 .043h.66M50.723 21.928l-.213 1.975h-1.83c-.47 0-.88-.07-1.236-.213-.355-.14-.65-.332-.884-.573-.234-.24-.408-.524-.522-.85-.113-.325-.17-.68-.17-1.06V15.09H44.27l.214-1.953h1.384V10l2.406-.254v3.39h2.47v1.955h-2.47v5.012c0 .44.014.782.043 1.03.028.247.1.428.213.54.113.115.29.185.532.213.24.03.575.043 1 .043h.66"></path></g></svg>
+
+</a><ul class='site-nav-links'>
+<li>
+<a class="site-nav-link" href="/blog/tags">All Topics</a>
+</li>
+<li>
+<a class="site-nav-link" href="/blog/design">Design</a>
+</li>
+<li>
+<a class="site-nav-link" href="/blog/web">Web</a>
+</li>
+<li>
+<a class="site-nav-link" href="/blog/ios">iOS</a>
+</li>
+<li>
+<a class="site-nav-link" href="/blog/android">Android</a>
+</li>
+<li>
+<a class="site-nav-link" href="/blog/search"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 310.42 310.42" role="img" aria-labelledby="anc77fi9y72ttlkqibvynfm915wwf6io"><title id="anc77fi9y72ttlkqibvynfm915wwf6io">Search</title>
+  <path d="M273.587 214.965c49.11-49.11 49.11-129.02 0-178.132-49.11-49.11-129.02-49.11-178.13 0C53.793 78.497 47.483 140.463 76.51 188.85c0 0 2.085 3.498-.73 6.312-16.066 16.064-64.264 64.263-64.264 64.263-12.79 12.79-15.836 30.675-4.493 42.02l1.953 1.95c11.343 11.346 29.23 8.302 42.02-4.49l64.127-64.127c2.95-2.95 6.448-.866 6.448-.866 48.39 29.026 110.356 22.717 152.02-18.947zM118.71 191.71c-36.287-36.288-36.286-95.332.002-131.62 36.288-36.287 95.332-36.288 131.62 0 36.287 36.287 36.287 95.332 0 131.62-36.29 36.286-95.332 36.286-131.62 0z" fill="#454547"></path>
+  <path d="M126.75 118.424c-1.69 0-3.406-.332-5.06-1.03-6.612-2.8-9.705-10.427-6.907-17.04 17.586-41.558 65.703-61.06 107.26-43.475 6.612 2.794 9.705 10.422 6.907 17.034-2.8 6.612-10.425 9.703-17.04 6.906-28.353-11.997-61.185 1.31-73.182 29.664-2.1 4.96-6.913 7.938-11.978 7.938z" fill="#454547"></path>
+</svg>
+
+</a></li>
+</ul>
+<a class="hiring-cta" onclick="analytics.track(&#39;Blog Hiring Button&#39;, { category: &#39;Click&#39; });" href="/jobs">We&#39;re hiring!</a>
+</nav>
+
+<div class='container'>
+
+<article class='post text' data-url='/blog/using-redux-with-react-hooks' id='main-content' itemscope itemtype='https://schema.org/CreativeWork' role='main'>
+<header>
+<h1 class='title'>
+Using Redux with React Hooks
+</h1>
+<div class='meta'>
+<div class='meta-author'>
+<a href="/blog/authors/stephen-hanson">Stephen Hanson</a>
+</div>
+<time class='meta-date' datetime='2019-11-20T15:46:28Z' itemprop='dateModified'>
+July 30, 2019
+<span class='meta-updated'>updated on</span>
+November 20, 2019
+</time>
+<ul class='meta-tag-list'>
+<li class='meta-tag-item'>
+<a href="/blog/tags/react">react</a>
+</li>
+<li class='meta-tag-item'>
+<a href="/blog/tags/redux">redux</a>
+</li>
+<li class='meta-tag-item'>
+<a href="/blog/tags/javascript">javascript</a>
+</li>
+<li class='meta-tag-item'>
+<a href="/blog/tags/web">web</a>
+</li>
+</ul>
+
+</div>
+
+</header>
+<div class='post-body'>
+<p>React Redux recently released <a href="https://github.com/reduxjs/react-redux/releases/tag/v7.1.0">version 7.1</a>, which includes long
+awaited support for React Hooks. This means that you can now ditch the <code>connect</code>
+higher-order component and use Redux with Hooks in your function components.
+This post will take a look at how to get started using Redux with Hooks and then
+explore some gotchas of this approach.</p>
+<h2 id="what-are-hooks">
+  <a href="#what-are-hooks">
+    What are Hooks?
+  </a>
+</h2>
+
+<p>Hooks were added to React in 16.8 and allow you to access things like state,
+React lifecycle methods, and other goodies in function components that were
+previously only available in class components.</p>
+
+<p>For example, a React class component like this:</p>
+<div class="highlight"><pre class="highlight jsx"><code><span class="kd">class</span> <span class="nx">Count</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>&#x000A;  <span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>&#x000A;    <span class="na">count</span><span class="p">:</span> <span class="mi">0</span>&#x000A;  <span class="p">};</span>&#x000A;&#x000A;  <span class="nx">add</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>&#x000A;    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">count</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">});</span>&#x000A;  <span class="p">}</span>&#x000A;&#x000A;  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>&#x000A;    <span class="k">return</span> <span class="p">(</span>&#x000A;      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>&#x000A;        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Count: <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>&#x000A;        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">add</span><span class="si">}</span><span class="p">&gt;</span>Add<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>&#x000A;      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>&#x000A;    <span class="p">);</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">}</span>&#x000A;</code></pre></div>
+<p>Could be rewritten as a function component using Hooks like this:</p>
+<div class="highlight"><pre class="highlight jsx"><code><span class="kd">const</span> <span class="nx">Count</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>&#x000A;  <span class="c1">// state variable, initialized to 0</span>&#x000A;  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>&#x000A;&#x000A;  <span class="k">return</span> <span class="p">(</span>&#x000A;    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>&#x000A;      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Count: <span class="si">{</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>&#x000A;      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>Add<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>&#x000A;    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>&#x000A;  <span class="p">);</span>&#x000A;<span class="p">};</span>&#x000A;</code></pre></div>
+<p>The code is more concise and allows teams to make more use of function
+components without having to convert them to class components as soon as they
+need state or access to the React lifecycle. This post isn’t really about Hooks
+in general, so I’d check out the excellent <a href="https://reactjs.org/docs/hooks-intro.html">Hooks documentation</a> if you&rsquo;d
+like to learn more.</p>
+<h2 id="how-to-use-redux-with-hooks">
+  <a href="#how-to-use-redux-with-hooks">
+    How to use Redux with Hooks
+  </a>
+</h2>
+
+<p>React Redux now includes its own <code>useSelector</code> and <code>useDispatch</code> Hooks that can
+be used instead of <code>connect</code>.</p>
+
+<p><code>useSelector</code> is analogous to <code>connect</code>’s <code>mapStateToProps</code>. You pass it a
+function that takes the Redux store state and returns the pieces of state you’re
+interested in.</p>
+
+<p><code>useDispatch</code> replaces <code>connect</code>’s <code>mapDispatchToProps</code> but is lighter weight.
+All it does is return your store’s <code>dispatch</code> method so you can <a href="https://github.com/reduxjs/react-redux/issues/1252#issuecomment-488160930">manually
+dispatch actions</a>. I like this change, as binding action creators can
+be a little confusing to newcomers to React Redux.</p>
+
+<p>Alright, so now let’s convert a React component that formerly used <code>connect</code>
+into one that uses Hooks.</p>
+
+<p>Using <code>connect</code>:</p>
+<div class="highlight"><pre class="highlight jsx"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>&#x000A;<span class="k">import</span> <span class="p">{</span> <span class="nx">connect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-redux</span><span class="dl">"</span><span class="p">;</span>&#x000A;<span class="k">import</span> <span class="p">{</span> <span class="nx">addCount</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./store/counter/actions</span><span class="dl">"</span><span class="p">;</span>&#x000A;&#x000A;<span class="k">export</span> <span class="kd">const</span> <span class="nx">Count</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">addCount</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>&#x000A;  <span class="k">return</span> <span class="p">(</span>&#x000A;    <span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>&#x000A;      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Count: <span class="si">{</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>&#x000A;      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick=</span><span class="si">{</span><span class="nx">addCount</span><span class="si">}</span><span class="p">&gt;</span>Add to count<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>&#x000A;    <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>&#x000A;  <span class="p">);</span>&#x000A;<span class="p">};</span>&#x000A;&#x000A;<span class="kd">const</span> <span class="nx">mapStateToProps</span> <span class="o">=</span> <span class="nx">state</span> <span class="o">=&gt;</span> <span class="p">({</span>&#x000A;  <span class="na">count</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">counter</span><span class="p">.</span><span class="nx">count</span>&#x000A;<span class="p">});</span>&#x000A;&#x000A;<span class="kd">const</span> <span class="nx">mapDispatchToProps</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">addCount</span> <span class="p">};</span>&#x000A;&#x000A;<span class="k">export</span> <span class="k">default</span> <span class="nx">connect</span><span class="p">(</span><span class="nx">mapStateToProps</span><span class="p">,</span> <span class="nx">mapDispatchToProps</span><span class="p">)(</span><span class="nx">Count</span><span class="p">);</span>&#x000A;</code></pre></div>
+<p>Now, with the new React Redux Hooks instead of <code>connect</code>:</p>
+<div class="highlight"><pre class="highlight jsx"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>&#x000A;<span class="k">import</span> <span class="p">{</span> <span class="nx">useDispatch</span><span class="p">,</span> <span class="nx">useSelector</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-redux</span><span class="dl">"</span><span class="p">;</span>&#x000A;<span class="k">import</span> <span class="p">{</span> <span class="nx">addCount</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./store/counter/actions</span><span class="dl">"</span><span class="p">;</span>&#x000A;&#x000A;<span class="k">export</span> <span class="kd">const</span> <span class="nx">Count</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>&#x000A;  <span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">state</span> <span class="o">=&gt;</span> <span class="nx">state</span><span class="p">.</span><span class="nx">counter</span><span class="p">.</span><span class="nx">count</span><span class="p">);</span>&#x000A;  <span class="kd">const</span> <span class="nx">dispatch</span> <span class="o">=</span> <span class="nx">useDispatch</span><span class="p">();</span>&#x000A;&#x000A;  <span class="k">return</span> <span class="p">(</span>&#x000A;    <span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>&#x000A;      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Count: <span class="si">{</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>&#x000A;      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span><span class="p">(</span><span class="nx">addCount</span><span class="p">())</span><span class="si">}</span><span class="p">&gt;</span>Add to count<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>&#x000A;    <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>&#x000A;  <span class="p">);</span>&#x000A;<span class="p">};</span>&#x000A;</code></pre></div>
+<p>I like that using Redux with Hooks is a little bit simpler conceptually than
+wrapping components in the <code>connect</code> higher-order component. Another benefit of
+not using the higher-order component is that you no longer get what I call
+“Virtual DOM of death”:</p>
+
+<p><img
+  alt="Deeply nested DOM tree due to components wrapped with connect function"
+  style="width:260px; max-width: 100%"
+  src="https://images.thoughtbot.com/blog-vellum-image-uploads/BbwVghQmSvetg9BiHbHx_virtual-dom-of-death.png"
+/></p>
+
+<p>I suggest reading the full <a href="https://react-redux.js.org/api/hooks">Redux Hooks documentation</a> for more
+information.</p>
+<h2 id="useselector-gotchas">
+  <a href="#useselector-gotchas">
+    useSelector gotchas
+  </a>
+</h2>
+
+<p><code>useSelector</code> diverges from <code>mapStateToProps</code> in one fairly big way: it uses
+strict object reference equality (<code>===</code>) to determine if components should
+re-render instead of shallow object comparison. For example, in this snippet:</p>
+<div class="highlight"><pre class="highlight jsx"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">user</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">state</span> <span class="o">=&gt;</span> <span class="p">({</span>&#x000A;  <span class="na">count</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">counter</span><span class="p">.</span><span class="nx">count</span><span class="p">,</span>&#x000A;  <span class="na">user</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">user</span><span class="p">,</span>&#x000A;<span class="p">}));</span>&#x000A;</code></pre></div>
+<p><code>useSelector</code> is returning a different object literal each time it&rsquo;s called.
+When the store is updated, React Redux will run this selector, and since a new
+object was returned, always determine that the component needs to re-render,
+which isn&rsquo;t what we want.</p>
+
+<p>The simple rule to avoid this is to either call <code>useSelector</code> once for each
+value of your state that you need:</p>
+<div class="highlight"><pre class="highlight jsx"><code><span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">state</span> <span class="o">=&gt;</span> <span class="nx">state</span><span class="p">.</span><span class="nx">counter</span><span class="p">.</span><span class="nx">count</span><span class="p">);</span>&#x000A;<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">state</span> <span class="o">=&gt;</span> <span class="nx">state</span><span class="p">.</span><span class="nx">user</span><span class="p">);</span>&#x000A;</code></pre></div>
+<p>or, when returning an object containing several values
+from the store, explicitly tell <code>useSelector</code> to use a shallow equality
+comparison by passing the comparison method as the second argument:</p>
+<div class="highlight"><pre class="highlight jsx"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">shallowEqual</span><span class="p">,</span> <span class="nx">useSelector</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-redux</span><span class="dl">'</span><span class="p">;</span>&#x000A;&#x000A;<span class="kd">const</span> <span class="p">{</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">user</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">state</span> <span class="o">=&gt;</span> <span class="p">({</span>&#x000A;  <span class="na">count</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">counter</span><span class="p">.</span><span class="nx">count</span><span class="p">,</span>&#x000A;  <span class="na">user</span><span class="p">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">user</span><span class="p">,</span>&#x000A;<span class="p">}),</span> <span class="nx">shallowEqual</span><span class="p">);</span>&#x000A;</code></pre></div>
+<p>There is a section in the <a href="https://react-redux.js.org/next/api/hooks#equality-comparisons-and-updates">Redux Hooks documentation</a>
+that covers this in more detail.</p>
+<h2 id="redux-with-hooks-vs-connect-higher-order-component">
+  <a href="#redux-with-hooks-vs-connect-higher-order-component">
+    Redux with Hooks vs. Connect higher-order component
+  </a>
+</h2>
+
+<p><em>Note: this section has been updated since the article was first published. I
+originally recommended sticking with <code>connect</code> over the Redux Hooks but have
+since come to prefer using the Redux Hooks.</em></p>
+
+<p>Hooks are great. They allow for using function components in ways that weren&rsquo;t
+previously possible, and the community is clearly moving in the direction of
+using function components and hooks when possible. The <a href="https://reactjs.org/docs/hooks-intro.html#gradual-adoption-strategy">React
+documentation</a> states:</p>
+
+<blockquote>
+<p>We intend for Hooks to cover all existing use cases for classes, but we will
+keep supporting class components for the foreseeable future.</p>
+</blockquote>
+
+<p>While there is no need to race off and convert all your existing code, our
+recommendation for new code is to generally prefer function components and Hooks
+over using class-based components and higher-order components. Using the Redux
+Hooks aligns with this recommendation and provides other key benefits
+over <code>connect</code>.</p>
+
+<p>The main benefit of using the Redux Hooks is that they are conceptually simpler
+than <code>connect</code>. With <code>connect</code>, you are wrapping your component and injecting
+props into it. This can make it difficult to determine in the component which
+props come from Redux and which are passed in. If you are using TypeScript,
+correctly defining the types of connected components can be quite a chore for
+this reason. The Redux Hooks, on the other hand, are just regular hooks that
+don&rsquo;t modify the public interface of your component. In TypeScript projects, I
+create my own <code>useSelector</code> that is typed to my store, and then I get
+type-checking everywhere I use it. Easy!</p>
+
+<p>While the Redux Hooks have many benefits, there is one benefit of using
+<code>connect</code> instead of the Redux Hooks, and that is that it keeps your component
+decoupled from Redux. You can then test the component or prototype it in tools
+like <a href="https://storybook.js.org/">Storybook</a> without having to connect the component. An earlier version of
+this article recommended continuing to use the <code>connect</code> middleware instead of
+using the Redux Hooks for this reason. While this reasoning is still valid to an
+extent, I&rsquo;ve since found that in tests and prototyping tools, I almost always
+wrap my components in a Redux <code>Provider</code> and test them in the context of being
+connected to Redux anyway. It&rsquo;s just easier since my component might have a
+descendent that is connected to Redux and therefore still need to be connected.</p>
+
+<p>React Hooks are a useful new feature, and React Redux&rsquo;s addition of
+Redux-specific hooks is a great step toward simplifying Redux development.</p>
+
+</div>
+<aside class='related-articles'>
+<h2>If you enjoyed this post, you might also like:</h2>
+<ol>
+<li>
+<a href="/blog/5-common-json-decoders">5 Common JSON Decoders</a>
+</li>
+<li>
+<a href="/blog/json-event-based-convention-websockets">A JSON event-based convention for WebSockets</a>
+</li>
+<li>
+<a href="/blog/elm-and-rails-sitting-in-a-tree">Elm and Rails Sitting in a Tree</a>
+</li>
+</ol>
+</aside>
+</article>
+<script src="https://thoughtbot.com/blog/assets/office_location-1464548e63582f43fcbca7eb8a70347858e8ebc9258638b8d06c04e68d424146.js" defer="defer"></script>
+
+</div>
+<section class='container'>
+<div id='promoted'>
+<div class='email-sign-up'>
+<p>
+Sign up to receive a weekly recap from Giant Robots
+</p>
+<form action='https://formkeep.com/f/cc1cea1c3991' method='POST'>
+<input name='utf8' type='hidden' value='✓'>
+<div class='input-button-unit'>
+<input aria-label='Your email address' class='input-button-unit-input' name='email' placeholder='you@example.com' required type='email'>
+<button class='button input-button-unit-button'>
+Subscribe
+</button>
+</div>
+</form>
+</div>
+
+
+</div>
+
+</section>
+<div class='global-footer'>
+<div class='container container-wide'>
+<nav class='global-footer-link-section'>
+<dl class='global-footer-link-group'>
+<dt class='global-footer-link-list-title'>
+Products
+</dt>
+<dd class='global-footer-link-list'>
+<ul>
+<li>
+<a href="https://thoughtbot.com/upcase">Upcase
+</a></li>
+<li>
+<a href="https://formkeep.com">FormKeep
+</a></li>
+<li>
+<a href="https://houndci.com">Hound
+</a></li>
+</ul>
+</dd>
+</dl>
+<dl class='global-footer-link-group'>
+<dt class='global-footer-link-list-title'>
+Services
+</dt>
+<dd class='global-footer-link-list'>
+<ul>
+<li>
+<a href="https://thoughtbot.com/services/android-development">Android
+</a></li>
+<li>
+<a href="https://thoughtbot.com/services/design">Design
+</a></li>
+<li>
+<a href="https://thoughtbot.com/services/elixir-phoenix">Elixir/Phoenix
+</a></li>
+<li>
+<a href="https://thoughtbot.com/services/elm">Elm
+</a></li>
+<li>
+<a href="https://thoughtbot.com/services/ios-development">iOS
+</a></li>
+<li>
+<a href="https://thoughtbot.com/services/python-django">Python/Django
+</a></li>
+<li>
+<a href="https://thoughtbot.com/services/react-native">React Native
+</a></li>
+<li>
+<a href="https://thoughtbot.com/services/ruby-on-rails">Ruby/Rails
+</a></li>
+<li>
+<a href="https://thoughtbot.com/services/code-audit">Code Audit
+</a></li>
+</ul>
+</dd>
+</dl>
+<dl class='global-footer-link-group'>
+<dt class='global-footer-link-list-title'>
+Open Source
+</dt>
+<dd class='global-footer-link-list'>
+<ul>
+<li>
+<a href="https://github.com/thoughtbot/Argo">Argo
+</a></li>
+<li>
+<a href="http://bourbon.io">Bourbon
+</a></li>
+<li>
+<a href="https://github.com/thoughtbot/capybara-webkit">Capybara Webkit
+</a></li>
+<li>
+<a href="https://github.com/thoughtbot/clearance">Clearance
+</a></li>
+<li>
+<a href="https://github.com/thoughtbot/dotfiles">Dotfiles
+</a></li>
+<li>
+<a href="https://github.com/thoughtbot/factory_bot">Factory Bot
+</a></li>
+<li>
+<a href="https://github.com/thoughtbot/laptop">Laptop
+</a></li>
+<li>
+<a href="https://github.com/thoughtbot/suspenders">Suspenders
+</a></li>
+<li>
+<a href="https://github.com/thoughtbot">More…
+</a></li>
+</ul>
+</dd>
+</dl>
+<dl class='global-footer-link-group'>
+<dt class='global-footer-link-list-title'>
+Locations
+</dt>
+<dd class='global-footer-link-list'>
+<ul>
+<li>
+<a href="https://thoughtbot.com/austin">Austin, TX
+</a></li>
+<li>
+<a href="https://thoughtbot.com/boston">Boston, MA
+</a></li>
+<li>
+<a href="https://thoughtbot.com/london">London, UK
+</a></li>
+<li>
+<a href="https://thoughtbot.com/new-york-city">New York, NY
+</a></li>
+<li>
+<a href="https://thoughtbot.com/raleigh">Raleigh/Durham, NC
+</a></li>
+<li>
+<a href="https://thoughtbot.com/san-francisco">San Francisco, CA
+</a></li>
+</ul>
+</dd>
+</dl>
+<dl class='global-footer-link-group'>
+<dt class='global-footer-link-list-title'>
+Podcasts
+</dt>
+<dd class='global-footer-link-list'>
+<ul>
+<li>
+<a href="http://bikeshed.fm/">The Bike Shed
+</a></li>
+<li>
+<a href="http://buildphase.fm/">Build Phase
+</a></li>
+<li>
+<a href="http://giantrobots.fm/">Giant Robots
+</a></li>
+<li>
+<a href="http://tentative.fm/">Tentative
+</a></li>
+</ul>
+</dd>
+</dl>
+</nav>
+<footer class='global-footer-copywright-section'>
+<p class='global-footer-copywright-prose'>
+&copy; 2020
+<a href="https://thoughtbot.com">thoughtbot, inc.</a>
+The design of a robot and thoughtbot are registered trademarks of
+thoughtbot, inc.
+<a href="//www.iubenda.com/privacy-policy/7827608">Privacy Policy</a>
+</p>
+</footer>
+</div>
+</div>
+
+
+  <script>
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="4.0.0";
+    analytics.load("wperrhev8f");
+    analytics.page();
+    }}();
+  </script>
+
+
+</body>
+</html>

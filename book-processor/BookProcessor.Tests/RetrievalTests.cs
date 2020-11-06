@@ -15,7 +15,7 @@ namespace BookProcessor.Tests
         }
         [Theory]
         [InlineData("http://www.gutenberg.org/files/2600/2600-0.txt", false, "By Leo Tolstoy/Tolstoi")]
-        [InlineData("http://www.gutenberg.org/files/2600/2600-0.txt", true, "By Leo TolstoyTolstoi")]
+        [InlineData("http://www.gutenberg.org/files/2600/2600-0.txt", true, "By Leo Tolstoy Tolstoi")]
         public async void CanFetchABook(string url, Boolean sanitizeBook, string exp)
         {
             string content = await bookProcessor.FetchCorpus(url, sanitizeBook);

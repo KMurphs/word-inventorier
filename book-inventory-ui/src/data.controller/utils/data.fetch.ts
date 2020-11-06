@@ -31,7 +31,6 @@ const httpRequest = (
 
 
 
-
   // Process Parameters/body
   if(parameters){
     switch(method.toLowerCase()){

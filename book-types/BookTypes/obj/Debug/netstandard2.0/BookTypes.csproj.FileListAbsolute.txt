@@ -1,8 +1,0 @@
-C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\bin\Debug\netstandard2.0\BookTypes.deps.json
-C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\bin\Debug\netstandard2.0\BookTypes.dll
-C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\bin\Debug\netstandard2.0\BookTypes.pdb
-C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Debug\netstandard2.0\BookTypes.csprojAssemblyReference.cache
-C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Debug\netstandard2.0\BookTypes.AssemblyInfoInputs.cache
-C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Debug\netstandard2.0\BookTypes.AssemblyInfo.cs
-C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Debug\netstandard2.0\BookTypes.dll
-C:\PersonalProjects\corpus-word-inventory\book-types\BookTypes\obj\Debug\netstandard2.0\BookTypes.pdb

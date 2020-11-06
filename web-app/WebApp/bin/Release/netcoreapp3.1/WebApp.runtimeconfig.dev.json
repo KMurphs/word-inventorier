@@ -1,9 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\stephane.kibonge.PARSEC\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\stephane.kibonge.PARSEC\\.nuget\\packages",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-    ]
-  }
-}

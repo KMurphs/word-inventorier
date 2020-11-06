@@ -4,6 +4,8 @@
    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
    "version": "0.2.0",
    "configurations": [
+
+
         {
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
@@ -25,6 +27,20 @@
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             }
+        },
+        {
+            "name": ".NET Core: Tests",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // C:\PersonalProjects\corpus-word-inventory\text-inventorier\Inventorier.NUnitTests\bin\Debug\netcoreapp3.1\TextInventorier.NUnitTests.dll
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/text-inventorier/Inventorier.NUnitTests/bin/Debug/netcoreapp3.1/TextInventorier.NUnitTests.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/text-inventorier/Inventorier.NUnitTests",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false
         },
         {
             "name": ".NET Core Attach",

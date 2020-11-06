@@ -35,3 +35,26 @@ dotnet run
 
 dotnet publish --configuration Release
 dotnet publish --configuration Release
+
+
+
+
+
+@REM Apply .gitgnore to an existing repo with previous commits
+@REM https://stackoverflow.com/a/19757964/9034699
+@REM https://stackoverflow.com/a/1139797/9034699
+@REM First of all, commit all pending changes.
+
+@REM Then run this command:
+git rm -r --cached .
+
+@REM This removes everything from the index, then just run:
+git add .
+
+@REM Commit it:
+git commit -m ".gitignore is now working"
+
+@REM Check whether a file/folder is ignore by git
+@REM https://stackoverflow.com/a/467053/9034699
+@REM cd some/path
+git check-ignore -v *

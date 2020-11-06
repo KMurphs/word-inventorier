@@ -1,0 +1,8 @@
+C:\PersonalProjects\corpus-word-inventory\text-inventorier\Inventorier\bin\Release\netstandard2.0\TextInventorier.deps.json
+C:\PersonalProjects\corpus-word-inventory\text-inventorier\Inventorier\bin\Release\netstandard2.0\TextInventorier.dll
+C:\PersonalProjects\corpus-word-inventory\text-inventorier\Inventorier\bin\Release\netstandard2.0\TextInventorier.pdb
+C:\PersonalProjects\corpus-word-inventory\text-inventorier\Inventorier\obj\Release\netstandard2.0\TextInventorier.csprojAssemblyReference.cache
+C:\PersonalProjects\corpus-word-inventory\text-inventorier\Inventorier\obj\Release\netstandard2.0\TextInventorier.AssemblyInfoInputs.cache
+C:\PersonalProjects\corpus-word-inventory\text-inventorier\Inventorier\obj\Release\netstandard2.0\TextInventorier.AssemblyInfo.cs
+C:\PersonalProjects\corpus-word-inventory\text-inventorier\Inventorier\obj\Release\netstandard2.0\TextInventorier.dll
+C:\PersonalProjects\corpus-word-inventory\text-inventorier\Inventorier\obj\Release\netstandard2.0\TextInventorier.pdb

@@ -1,0 +1,11 @@
+C:\PersonalProjects\corpus-word-inventory\book-inventorier\BookInventorier\bin\Release\netstandard2.0\BookInventorier.deps.json
+C:\PersonalProjects\corpus-word-inventory\book-inventorier\BookInventorier\bin\Release\netstandard2.0\BookInventorier.dll
+C:\PersonalProjects\corpus-word-inventory\book-inventorier\BookInventorier\bin\Release\netstandard2.0\BookInventorier.pdb
+C:\PersonalProjects\corpus-word-inventory\book-inventorier\BookInventorier\bin\Release\netstandard2.0\BookTypes.dll
+C:\PersonalProjects\corpus-word-inventory\book-inventorier\BookInventorier\bin\Release\netstandard2.0\BookTypes.pdb
+C:\PersonalProjects\corpus-word-inventory\book-inventorier\BookInventorier\obj\Release\netstandard2.0\BookInventorier.csprojAssemblyReference.cache
+C:\PersonalProjects\corpus-word-inventory\book-inventorier\BookInventorier\obj\Release\netstandard2.0\BookInventorier.AssemblyInfoInputs.cache
+C:\PersonalProjects\corpus-word-inventory\book-inventorier\BookInventorier\obj\Release\netstandard2.0\BookInventorier.AssemblyInfo.cs
+C:\PersonalProjects\corpus-word-inventory\book-inventorier\BookInventorier\obj\Release\netstandard2.0\BookInventorier.csproj.CopyComplete
+C:\PersonalProjects\corpus-word-inventory\book-inventorier\BookInventorier\obj\Release\netstandard2.0\BookInventorier.dll
+C:\PersonalProjects\corpus-word-inventory\book-inventorier\BookInventorier\obj\Release\netstandard2.0\BookInventorier.pdb

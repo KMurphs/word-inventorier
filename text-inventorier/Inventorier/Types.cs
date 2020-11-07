@@ -124,7 +124,7 @@ namespace WordInventoryApp
         {
             id = _id;
             meta = _meta;
-            idType = _id.IndexOf("http") == -1 ? "text-hash" : "text-url";
+            idType = _meta.IndexOf("http") == -1 ? "text-hash" : "text-url";
             wordsCount  = _wordsCount;
             createdAt  = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
             uniqueWordsCount  = _uniqueWordsCount;

@@ -44,8 +44,8 @@ namespace WordInventoryApp.Tests
         {
             return new[] { 
                 new object[] {"test tmp test tmp test", "B683CA19173F4904E3A2DA8AAB10E1690113F4E76813D0546CAEC7EE792B7DCD", "test", "text-hash"},
-                // new object[] {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "2D8C2F6D978CA21712B5F6DE36C9D31FA8E96A4FA5D8FF8B0188DFB9E7C171BB", "in", "text-hash"},
-                // new object[] {"http://www.gutenberg.org/files/2600/2600-0.txt", "8223D47B279875728F57C5E7451F1D433EBAAD14F011DC487648227295AA4D3D", "the", "text-url"},
+                new object[] {"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum in.", "0B8089309A20F580DA76FB68F0773D8B532A16A9C409E100193C0586ED1F9966", "in", "text-hash"},
+                new object[] {"http://www.gutenberg.org/files/2600/2600-0.txt", "8223D47B279875728F57C5E7451F1D433EBAAD14F011DC487648227295AA4D3D", "the", "text-url"},
             };
         }
     }

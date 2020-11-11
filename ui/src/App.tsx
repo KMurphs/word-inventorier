@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import './App.css';
 import { TUIQueryItem, TTextSummary } from './data.controller/data.types';
 import DataController from './data.controller/data.controller';
+import { scrollIntoViewHelper } from './utils';
+
 
 
 
@@ -19,52 +21,62 @@ function App() {
   return (
     <main className="App">
       <BrowserRouter>
+        
+
+
         <Switch>
-
-
-
-          <Route path="/query">
-            <div id="query" className="screen screen-2">
-              <div>Query Screen</div>
-              <Link to="/results">to Results</Link>
+          <Redirect from="/*" to="/home" />
+          <Route path="/home">
+            <div id="home" className="screen screen-1">
+              <div>Home Screen</div>
+              {/* <Link to="/query">to Query</Link> */}
+              <a href="/" onClick={evt => scrollIntoViewHelper(evt, "query")}>to Query</a>
             </div>
           </Route>
+        </Switch>
+
+
+          {/* <Route path="/query"> */}
+            <div id="query" className="screen screen-2">
+              <div>Query Screen</div>
+              {/* <Link to="/results">to Results</Link> */}
+              <a href="/" onClick={evt => scrollIntoViewHelper(evt, "results")}>to Results</a>
+            </div>
+          {/* </Route> */}
 
 
 
-          <Route path="/results">
+          {/* <Route path="/results"> */}
             <div id="results" className="screen screen-2">
               <div>Result Screen</div>
               <div>
-                <Link to="/query">to Query</Link>
+                {/* <Link to="/query">to Query</Link> */}
+                <a href="/" onClick={evt => scrollIntoViewHelper(evt, "query")}>to Query</a>
               </div>
               <div>
-                <Link to="/details">to Details</Link>
+                {/* <Link to="/details">to Details</Link> */}
+                <a href="/" onClick={evt => scrollIntoViewHelper(evt, "details")}>to Details</a>
               </div>
             </div>
-          </Route>
+          {/* </Route> */}
 
 
 
-          <Route path="/details">
+          {/* <Route path="/details"> */}
             <div id="details" className="screen screen-2">
               <div>Details Screen</div>
-              <Link to="/results">to Results</Link>
+              {/* <Link to="/results">to Results</Link> */}
+              <a href="/" onClick={evt => scrollIntoViewHelper(evt, "results")}>to Results</a>
             </div>
-          </Route>
+          {/* </Route> */}
 
 
 
-          <Route path="/">
-            <div id="home" className="screen screen-1">
-              <div>Home Screen</div>
-              <Link to="/query">to Query</Link>
-            </div>
-          </Route>
 
 
 
-        </Switch>
+
+        
       </BrowserRouter>
 
 

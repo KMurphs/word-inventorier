@@ -1,5 +1,5 @@
 import httpRequest from "./utils/data.fetch";
-import { TUIQuery, TBookSummary, typeConverter } from "./data.types";
+import { TUIQuery, TTextSummary, typeConverter } from "./data.types";
 
 
 
@@ -11,9 +11,9 @@ export default class DataController {
   // private urlBaseProduction: string = "https://corpus-inventory.herokuapp.com/";
   // private urlBaseProduction: string = `${window.location.origin}/`; //Prevent the cors error between http and https
   private urlBase: string = "";
-  private urlGetAllBooks: string = "api/corpusinventory";
-  // private urlGetABook: string = "api/corpusinventory/{id}";
-  private urlProcessABook: string = "api/corpusinventory";
+  private urlGetAllTexts: string = "api/corpusinventory";
+  // private urlGetAText: string = "api/corpusinventory/{id}";
+  private urlProcessAText: string = "api/corpusinventory";
 
   // private setUiData: Function
   // private timerID: any
@@ -41,7 +41,7 @@ export default class DataController {
 
     // const _this = this
     // this.timerID = setInterval(()=>{
-    //   _this.getBooks()
+    //   _this.getTexts()
     // }, this.dataRefreshRateSec)
 
   }
@@ -58,21 +58,21 @@ export default class DataController {
 
 
 
-  async getBooks(): Promise<TBookSummary[]>{
-    let rawBooks = await httpRequest(this.buildURL(this.urlGetAllBooks));
-    return (rawBooks as any[]).map((rawBook: any) => typeConverter.toBookSummary(rawBook))
+  async getTexts(): Promise<TTextSummary[]>{
+    let rawTexts = await httpRequest(this.buildURL(this.urlGetAllTexts));
+    return (rawTexts as any[]).map((rawText: any) => typeConverter.toTextSummary(rawText))
   }
-  async getBookById(bookId: string): Promise<TBookSummary|null>{
-    let rawBook = await httpRequest(`${this.buildURL(this.urlGetAllBooks)}/${bookId}`);
-    return typeConverter.toBookSummary(rawBook);
+  async getTextById(textId: string): Promise<TTextSummary|null>{
+    let rawText = await httpRequest(`${this.buildURL(this.urlGetAllTexts)}/${textId}`);
+    return typeConverter.toTextSummary(rawText);
   }
-  processBook(uiQuery: TUIQuery, cb: Function): Promise<TBookSummary>{
+  processText(uiQuery: TUIQuery, cb: Function): Promise<TTextSummary>{
     return new Promise(async (resolve, reject) => {
-      await httpRequest(`${this.buildURL(this.urlProcessABook)}`, uiQuery, "POST")
+      await httpRequest(`${this.buildURL(this.urlProcessAText)}`, uiQuery, "POST")
       .then((res)=>{
         console.log(res)
         cb();
-        resolve(typeConverter.toBookSummary(res));
+        resolve(typeConverter.toTextSummary(res));
       })
       .catch((err)=>{
         reject(err);

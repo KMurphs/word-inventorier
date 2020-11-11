@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/web-app/WebApp/WebApp.csproj",
+                "${workspaceFolder}/text-inventorier/WebApp/WebApp.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/web-app/WebApp/WebApp.csproj",
+                "${workspaceFolder}/text-inventorier/WebApp/WebApp.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/web-app/WebApp/WebApp.csproj",
+                "${workspaceFolder}/text-inventorier/WebApp/WebApp.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

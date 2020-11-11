@@ -6,7 +6,7 @@ namespace WordInventoryApp.WebApp
 {
     public struct ApiQuery
     {
-        public string book { get; set; }
+        public string text { get; set; }
 
         public List<Query> queries { get; set; }
     }

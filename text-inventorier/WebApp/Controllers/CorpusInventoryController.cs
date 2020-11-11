@@ -33,7 +33,7 @@ namespace WordInventoryApp.WebApp.Controllers
         [HttpGet("{id}")]
         public TextSummary GetOne(string id)
         {
-            return new TextSummary(CorpusInventoryModel.GetBookByID(id));
+            return new TextSummary(CorpusInventoryModel.GetTextByID(id));
         }
 
 
@@ -43,30 +43,30 @@ namespace WordInventoryApp.WebApp.Controllers
         {
             // https://stackoverflow.com/questions/9478613/how-to-deserialize-a-bsondocument-object-back-to-class/9479341
             List<TextSummary> res = new List<TextSummary>();
-            List<DBTextSummary> books = CorpusInventoryModel.GetBooks();
-            foreach(DBTextSummary book in books){
-                res.Add(new TextSummary(book));
+            List<DBTextSummary> texts = CorpusInventoryModel.GetTexts();
+            foreach(DBTextSummary text in texts){
+                res.Add(new TextSummary(text));
             }
             return res;
         }
 
 
         [HttpPost()]
-        public async Task<TextSummary> ProcessBook([FromBody] ApiQuery content)
-        // public async Task<Object> ProcessBook([FromBody] Object content)
+        public async Task<TextSummary> ProcessText([FromBody] ApiQuery content)
+        // public async Task<Object> ProcessText([FromBody] Object content)
         {
             Console.WriteLine($"Received Query: {content}");
-            Console.WriteLine($"Received Query: {content.book}");
+            Console.WriteLine($"Received Query: {content.text}");
             Console.WriteLine($"Received Query: {content.queries}");
 
-            DBTextSummary book = null;
-            book = CorpusInventoryModel.GetBookWithID(content.book);
-            if(book == null){
-                book = await CorpusInventoryModel.ProcessNewBook(content.book);
+            DBTextSummary text = null;
+            text = CorpusInventoryModel.GetTextWithID(content.text);
+            if(text == null){
+                text = await CorpusInventoryModel.ProcessNewText(content.text);
             }
 
-            List<IQueryResult> results = CorpusInventoryModel.Query(content.queries, book.frequencyStructure, book.lengthsStructure);
-            return new TextSummary(book.id, book.meta, book.wordsCount, book.uniqueWordsCount, book.mostFrequentWord, book.longestWord, book.leastFrequentWord, book.shortestWord, book.summaryDurationSec, results);
+            List<IQueryResult> results = CorpusInventoryModel.Query(content.queries, text.frequencyStructure, text.lengthsStructure);
+            return new TextSummary(text.id, text.meta, text.wordsCount, text.uniqueWordsCount, text.mostFrequentWord, text.longestWord, text.leastFrequentWord, text.shortestWord, text.summaryDurationSec, results);
             // return content;
         }
     }

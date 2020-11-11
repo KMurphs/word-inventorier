@@ -1,5 +1,5 @@
 
-export type TBookSummary = {
+export type TTextSummary = {
   id: string,
   meta: string,
   idType: string,
@@ -39,12 +39,12 @@ export type TUIQueryItem = {
 }
 
 export type TUIQuery = {
-  book: string,
+  text: string,
   queries: TUIQueryItem[]
 }
 
 export type TTypeConverter = {
-  toBookSummary: (bookObj: any) => TBookSummary,
+  toTextSummary: (textObj: any) => TTextSummary,
   toTokenSummary: (tokenObj: any) => TTokenSummary,
   toQuerySummary: (resObj: any) => TQuerySummary,
   toUIQueryItem: (minTokenLength: number, maxTokenLength: number, topNCount: number) => TUIQueryItem
@@ -53,24 +53,24 @@ export type TTypeConverter = {
 
 const timestampToLocaleString = (ts: number)=>new Date(new Date(ts).getTime() - new Date().getTimezoneOffset() * 60000).toISOString().replace(/.[0-9]+Z$/,'').replace('T',' ')
 const typeConverter: TTypeConverter = {
-  toBookSummary(bookObj: any): TBookSummary{
+  toTextSummary(textObj: any): TTextSummary{
     return {
-      id: bookObj["id"] ? bookObj["id"] : "",
-      meta: bookObj["meta"] ? bookObj["meta"] : "",
-      idType: bookObj["idType"] ? bookObj["idType"] : "",
+      id: textObj["id"] ? textObj["id"] : "",
+      meta: textObj["meta"] ? textObj["meta"] : "",
+      idType: textObj["idType"] ? textObj["idType"] : "",
 
-      wordsCount: bookObj["wordsCount"] || bookObj["wordsCount"] === 0 ? bookObj["wordsCount"] : NaN,
-      uniqueWordsCount: bookObj["uniqueWordsCount"] || bookObj["uniqueWordsCount"] === 0  ? bookObj["uniqueWordsCount"] : NaN,
-      summaryDurationSec: bookObj["summaryDurationSec"] || bookObj["summaryDurationSec"] === 0  ? bookObj["summaryDurationSec"] : NaN,
-      createdAt: bookObj["createdAt"] ? bookObj["createdAt"] : 0,
-      _createdAt: bookObj["createdAt"] ? timestampToLocaleString(bookObj["createdAt"]) : "Invalid Date",
+      wordsCount: textObj["wordsCount"] || textObj["wordsCount"] === 0 ? textObj["wordsCount"] : NaN,
+      uniqueWordsCount: textObj["uniqueWordsCount"] || textObj["uniqueWordsCount"] === 0  ? textObj["uniqueWordsCount"] : NaN,
+      summaryDurationSec: textObj["summaryDurationSec"] || textObj["summaryDurationSec"] === 0  ? textObj["summaryDurationSec"] : NaN,
+      createdAt: textObj["createdAt"] ? textObj["createdAt"] : 0,
+      _createdAt: textObj["createdAt"] ? timestampToLocaleString(textObj["createdAt"]) : "Invalid Date",
 
-      mostFrequentWord: this.toTokenSummary(bookObj["mostFrequentWord"]),
-      leastFrequentWord: this.toTokenSummary(bookObj["leastFrequentWord"]),
-      longestWord: this.toTokenSummary(bookObj["longestWord"]),
-      shortestWord: this.toTokenSummary(bookObj["shortestWord"]),
+      mostFrequentWord: this.toTokenSummary(textObj["mostFrequentWord"]),
+      leastFrequentWord: this.toTokenSummary(textObj["leastFrequentWord"]),
+      longestWord: this.toTokenSummary(textObj["longestWord"]),
+      shortestWord: this.toTokenSummary(textObj["shortestWord"]),
       
-      results: bookObj["results"] ? bookObj["results"].map((res: any) => this.toQuerySummary(res)) : []
+      results: textObj["results"] ? textObj["results"].map((res: any) => this.toQuerySummary(res)) : []
     }
   },
 

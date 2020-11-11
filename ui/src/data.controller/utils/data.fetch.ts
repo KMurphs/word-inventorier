@@ -7,6 +7,7 @@
  * @param  {{[key:string]:string}} headers?
  * @returns Promise
  */
+const DEBUG = 0;
 const httpRequest = (
                       _url: string, 
                       parameters?: {[key: string]:any},
@@ -59,7 +60,7 @@ const httpRequest = (
     }
   }
 
-  console.log(`[fetch] Fetching at '${url}' with options '${JSON.stringify(options)}'`)
+  DEBUG && console.log(`[fetch] Fetching at '${url}' with options '${JSON.stringify(options)}'`)
 
 
 

@@ -33,7 +33,7 @@ namespace WordInventoryApp.WebApp.Models
                 return;
             }
             wordInventorierService = new WordInventorierService();
-            Console.WriteLine($"Current Book WordInventorierService Version: '{wordInventorierService.getVersion()}'");
+            Console.WriteLine($"Current Text WordInventorierService Version: '{wordInventorierService.getVersion()}'");
             
             isInitialized = true;
 
@@ -43,7 +43,7 @@ namespace WordInventoryApp.WebApp.Models
             // MongoClient client = new MongoClient();
             // MongoServer dbServer = dbClient.GetServer();
             // MongoDatabase dbCorpus = dbServer.GetDatabase(dbName);
-            // MongoCollection<DBBookSummary> dbCollection = dbCorpus.GetCollection<DBBookSummary>(dbSummaryCollectionName);
+            // MongoCollection<DBTextSummary> dbCollection = dbCorpus.GetCollection<DBTextSummary>(dbSummaryCollectionName);
             // dbCollection.Save(p);
 
 
@@ -59,33 +59,33 @@ namespace WordInventoryApp.WebApp.Models
             }
         }
 
-        public static List<DBTextSummary> GetBooks(){
+        public static List<DBTextSummary> GetTexts(){
 
-            var books = dbCollection.Find(new BsonDocument()).ToList();
+            var texts = dbCollection.Find(new BsonDocument()).ToList();
 
             List<DBTextSummary> res = new List<DBTextSummary>();
-            foreach(BsonDocument book in books){
-                res.Add(new DBTextSummary(book));
+            foreach(BsonDocument text in texts){
+                res.Add(new DBTextSummary(text));
             }
 
             return res;
         }
     
     
-        public static DBTextSummary GetBookWithID(string inBook){
-            string bookId = WordInventorierService.GetHashString(inBook);
-            return GetBookByID(bookId);
+        public static DBTextSummary GetTextWithID(string inText){
+            string textId = WordInventorierService.GetHashString(inText);
+            return GetTextByID(textId);
         }
-        public static DBTextSummary GetBookByID(string bookId){
+        public static DBTextSummary GetTextByID(string textId){
 
-            var dbFilter = Builders<BsonDocument>.Filter.Eq("id", bookId);
-            var book = dbCollection.Find(dbFilter).FirstOrDefault();
-            return book != null ? new DBTextSummary(book) : null;
+            var dbFilter = Builders<BsonDocument>.Filter.Eq("id", textId);
+            var text = dbCollection.Find(dbFilter).FirstOrDefault();
+            return text != null ? new DBTextSummary(text) : null;
         }
-        public static async Task<DBTextSummary> ProcessNewBook(string inBook){
+        public static async Task<DBTextSummary> ProcessNewText(string inText){
             
             wordInventorierService = new WordInventorierService();
-            TextSummaryAndStructures textSummaryAndStructures = await wordInventorierService.Handle(inBook);
+            TextSummaryAndStructures textSummaryAndStructures = await wordInventorierService.Handle(inText);
 
             DBTextSummary insertData = new DBTextSummary(textSummaryAndStructures);
             var _insertData = insertData.ToBsonDocument();

@@ -57,10 +57,14 @@
 
 
 .home__header{
-  padding: 2rem 1rem 1rem 1.5rem;
+  padding: 2rem 1rem 0rem 1.5rem;
   color: white;
   color: var(--color-white);
   position: relative;
+  flex: 1 1 10vh;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 } 
 
 .home__header p{
@@ -82,7 +86,7 @@
   .home__header h1{
     font-size: 4rem;
   }
-}
+} 
 
 
 
@@ -90,28 +94,36 @@
 
 
 .home__body{
-  /* background-color: #f2f2f2; */
+  /*background-color: #f2f2f2; */
   /* background-color: var(--color-white); */
   /* background-color: white; */
   background-color: none;
-  flex: 0 0 18rem;
+  /* flex: 0 0 18rem; */
   border-radius: 15px 15px 0 0;
   padding: 1.5rem;
   position: relative;
   /* box-shadow: -4px -4px 10px rgba(0, 0, 0, 0.1); */
+  padding-top: 0;
+}
+@media (min-width: 576px){
+  .home__body{
+    flex: 0 0 20rem;
+  }
 }
 
-
 .home__body .btn--icon{
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  /* position: absolute; */
+  /* bottom: 1.5rem; */
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
   border-radius: 25px;
-  width: 90%;
-  width: calc(100% - 3rem);
+  width: 100%;
+  /* width: calc(100% - 3rem); */
   align-items: center;
   font-size: 1rem;
+  margin: auto;
+  display: flex;
+  position: relative;
 }
 .home__body .btn--icon .btn__text{
   display: inline;

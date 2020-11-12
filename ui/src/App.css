@@ -8,6 +8,15 @@ html{
   overflow-x: hidden;
   overflow-y: hidden;
   scroll-behavior: smooth;
+  --color-white: #f2f2f2;
+  --color-black: #000;
+  --color-neutral: #C9C9C9;
+  --color-secondary-1--lightest: #fff5ec;
+  --color-secondary-1: #F79646;
+  --color-secondary-2: hsl(220, 100%, 19%);
+  --color-accent: #ac1876;
+  --color-accent-dark: #241f22;
+
 }
 @media (min-width: 768px){
   .App{
@@ -24,3 +33,4 @@ html{
 .screen-2, .screen-4{
   background-color: #fff;
 } 
+

@@ -1,0 +1,168 @@
+.home__container{
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+}
+@media (min-width: 576px){
+  .home__container{
+    justify-content: flex-start;
+  }
+}
+
+
+
+
+
+.home__background{
+  background-image: url(/imgs/bg-reduced.jpg);
+  /* background-color: var(--color-secondary-2); */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-position: left;
+  /* background-blend-mode: darken; */
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* filter: blur(4px); */
+  /* -webkit-filter: blur(4px);*/
+  /*background: #D66D75;*/  /* fallback for old browsers */
+  /*background: url(/imgs/bg-reduced.jpg), -webkit-linear-gradient(to right, #E29587, #D66D75);*/  /* Chrome 10-25, Safari 5.1-6 */
+  /*background: url(/imgs/bg-reduced.jpg), linear-gradient(to top, hsla(9, 61%, 71%, 100%), hsla(355, 56%, 63%, 100%));*/ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* background: linear-gradient(220deg, hsl(265deg 40% 36%), hsl(241deg 69% 19%)); */
+}
+.home__background::after{
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: hsl(220, 100%, 19%);
+  background: #D66D75;
+  background: linear-gradient(180deg, hsla(9, 61%, 71%, 100%), hsla(355, 56%, 63%, 100%));
+  /* background: linear-gradient(220deg, hsl(265deg 40% 36%), hsl(241deg 69% 19%)); */
+  background: linear-gradient(-10deg, hsl(9deg 83% 76% / 10%) 0%, hsl(355deg 56% 63% / 100%) 85%, hsl(355deg 56% 63% / 100%) 100%);
+  background: linear-gradient(-10deg, hsl(220deg 100% 19% / 10%) 0%, hsl(220deg 100% 19% / 100%) 85%, hsl(220deg 100% 19% / 100%) 100%);
+  background: linear-gradient(-10deg, hsl(230deg 100% 29% / 0.4) 0%, hsl(220deg 80% 19% / 90%) 75%, hsl(220deg 80% 19% / 100%) 100%);
+}
+
+
+
+
+.home__header{
+  padding: 2rem 1rem 1rem 1.5rem;
+  color: white;
+  color: var(--color-white);
+  position: relative;
+} 
+
+.home__header p{
+  margin-top: 2rem;
+}
+@media (min-width: 576px){
+  .home__header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vh;
+  }
+  .home__header h1{
+    font-size: 3rem;
+  }
+}
+@media (min-width: 768px){
+  .home__header h1{
+    font-size: 4rem;
+  }
+}
+
+
+
+
+
+
+.home__body{
+  /* background-color: #f2f2f2; */
+  /* background-color: var(--color-white); */
+  /* background-color: white; */
+  background-color: none;
+  flex: 0 0 18rem;
+  border-radius: 15px 15px 0 0;
+  padding: 1.5rem;
+  position: relative;
+  /* box-shadow: -4px -4px 10px rgba(0, 0, 0, 0.1); */
+}
+
+
+.home__body .btn--icon{
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 25px;
+  width: 90%;
+  width: calc(100% - 3rem);
+  align-items: center;
+  font-size: 1rem;
+}
+.home__body .btn--icon .btn__text{
+  display: inline;
+  line-height: 1;
+}
+.home__body .btn--icon i{
+  margin-right: 1rem;
+  position: absolute;
+  left: 1.5rem;
+}
+.home__body p{
+  line-height: 1.5;
+  /* font-size: 1rem; */
+  /* background: #eaf2ff; */
+  /* border: 1px solid #002060; */
+  padding: 1rem;
+  border-radius: 5px;
+  /* color: #002060; */
+  margin: 3vh auto 0 auto;
+  line-height: 1.5;
+  /* font-size: 1rem; */
+  /* background: #fff5ec; */
+  /* border: 1px solid #002060; */
+  padding: 1rem;
+  border-radius: 5px;
+  /* color: #c05d0c; */
+  margin: 3vh auto 0 auto;
+  /* box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); */
+  background: none;
+  color: #fff5ec;
+  color: var(--color-secondary-1--lightest);
+  font-size: .9rem;
+  text-align: center;
+}
+.home__body > *{
+  max-width: 350px;
+}
+
+/* .home__body .lds-ellipsis div {
+  background: var(--color-secondary-1--lightest);
+} */
+
+
+.logo{
+  font-family: cursive;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.5);
+  display: inline-flex;
+  height: 4rem;
+  width: 4rem;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+}

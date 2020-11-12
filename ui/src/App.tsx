@@ -50,7 +50,9 @@ function App() {
           <Details />
         </div>
 
-
+        <div id="footer" className="screen screen--footer">
+          <h1>Footer Screen</h1>
+        </div>
 
       </BrowserRouter>
     </main>

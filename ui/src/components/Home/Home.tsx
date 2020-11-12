@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ScrollToTop from "../../utils/ScrollToTop";
 import { scrollIDIntoViewHelper } from "../../utils/utils";
+import { CSSLoaderEllipsis } from "../CSSLoaders/CSSLoaders";
 import './Home.css';
 
 
@@ -11,10 +12,26 @@ import './Home.css';
 export class Home extends React.Component {
   
   render() {
-    return <div>
+    return <div className="home__container">
       <ScrollToTop/>
-      <h1>Home Screen</h1>
-      <a href="/" onClick={evt => scrollIDIntoViewHelper("query", evt)}>to Query</a>  
+      <div className="home__background"></div>
+      <div className="home__header">
+        <h1>Word Inventorier</h1>
+        <p>This app will inventory text and allow querying for most frequent words with lengths ranges</p>
+      </div>
+      <div className="home__body">
+        <p><CSSLoaderEllipsis/><br/>Let's start by entering some text to get going. Or, the URL to an online text file...</p>
+        
+        
+
+        <a className="btn btn--icon" href="/" onClick={evt => scrollIDIntoViewHelper("query", evt)}> 
+          <i className="fas fa-pencil-alt"></i>
+          <span className="btn__text">Start Exploring!</span>    
+        </a> 
+
+        <span></span>
+        
+      </div>
     </div>;
   }
 }

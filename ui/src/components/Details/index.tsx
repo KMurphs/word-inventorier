@@ -1,6 +1,6 @@
 import React from "react";
 import { scrollIDIntoViewHelper } from "../../utils/utils";
-import './Details.css';
+import './style.css';
 
 
 export class Details extends React.Component {

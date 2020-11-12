@@ -3,11 +3,10 @@ import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import './App.css';
 import { TUIQueryItem, TTextSummary } from './data.controller/data.types';
 import DataController from './data.controller/data.controller';
-import { scrollIDIntoViewHelper } from './utils/utils';
-import { Home } from './components/Home/Home';
-import { Query } from './components/Query/Query';
-import { Details } from './components/Details/Details';
-import { Results } from './components/Results/Results';
+import { Home } from './components/Home';
+import { Query } from './components/Query';
+import { Details } from './components/Details';
+import { Results } from './components/Results';
 
 
 

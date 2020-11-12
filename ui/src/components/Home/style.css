@@ -1,10 +1,10 @@
 .home__container{
-
+  /* position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: space-between;
+  justify-content: space-between; */
 }
 @media (min-width: 576px){
   .home__container{
@@ -111,29 +111,7 @@
   }
 }
 
-.home__body .btn--icon{
-  /* position: absolute; */
-  /* bottom: 1.5rem; */
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
-  border-radius: 25px;
-  width: 100%;
-  /* width: calc(100% - 3rem); */
-  align-items: center;
-  font-size: 1rem;
-  margin: auto;
-  display: flex;
-  position: relative;
-}
-.home__body .btn--icon .btn__text{
-  display: inline;
-  line-height: 1;
-}
-.home__body .btn--icon i{
-  margin-right: 1rem;
-  position: absolute;
-  left: 1.5rem;
-}
+
 .home__body p{
   line-height: 1.5;
   /* font-size: 1rem; */

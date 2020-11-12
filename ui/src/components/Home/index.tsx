@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ScrollToTop from "../../utils/ScrollToTop";
 import { scrollIDIntoViewHelper } from "../../utils/utils";
-import { CSSLoaderEllipsis } from "../CSSLoaders/CSSLoaders";
-import './Home.css';
+import { CSSLoaderEllipsis } from "../CSSLoaders";
+import './style.css';
 
 
 // React router does not reliably handle scrolling to the current element 
@@ -12,7 +12,7 @@ import './Home.css';
 export class Home extends React.Component {
   
   render() {
-    return <div className="home__container">
+    return <div className="container home__container">
       <ScrollToTop/>
       <div className="home__background"></div>
       <div className="home__header">
@@ -24,7 +24,7 @@ export class Home extends React.Component {
         
         
 
-        <a className="btn btn--icon" href="/" onClick={evt => scrollIDIntoViewHelper("query", evt)}> 
+        <a className="btn btn--text-icon" href="/" onClick={evt => scrollIDIntoViewHelper("query", evt)}> 
           <i className="fas fa-pencil-alt"></i>
           <span className="btn__text">Start Exploring!</span>    
         </a> 

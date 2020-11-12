@@ -1,6 +1,6 @@
 import React from "react";
 import { scrollIDIntoViewHelper } from "../../utils/utils";
-import './CSSLoaders.css';
+import './style.css';
 
 
 export class CSSLoaderEllipsis extends React.Component {

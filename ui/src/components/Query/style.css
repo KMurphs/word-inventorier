@@ -69,6 +69,63 @@
   margin: 0 auto;
 }
 
+.query-summary{
+  display: none;
+}
+
+@media (min-width: 576px){
+  .query__body{
+    flex-direction: row;
+    width: 100vw;
+    max-width: 100vw;
+    justify-content: space-between;
+  }
+  .query-input{
+    flex: 0 0 calc(50vw - 3rem);
+    display: grid;
+    grid-template: 1fr / 1fr;
+  }
+  .query-controls{
+    flex: 0 0 calc(50vw - 3rem);
+    position: relative;
+    padding-bottom: 4rem;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+  .query-input .autogrow-textarea > textarea, 
+  .query-input .autogrow-textarea::after{
+    max-height: 100vh;
+  }
+
+  .query-controls .btn{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .query-controls .two-range-input{
+    margin: 2rem auto;
+  }
+
+
+  .query-summary{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5rem !important;
+  }
+  .query-summary h3{
+    margin-bottom: 1rem;
+    color: var(--color-secondary-2);
+  }
+  .query-summary span{
+    /* margin-bottom: .5rem; */
+    font-style: italic;
+    font-size: 1rem;
+    color: #555;
+  }
+}
 @media (min-width: 768px){
   .query__container,
   .query__body{
@@ -76,38 +133,55 @@
   }
   .query__body{
     width: auto;
-    max-width: 100vw;
-    margin: 0;
+    max-width: 400px;
+    margin: 0 auto;
     padding: 1rem;
+    position: static;
   }
   .query__header{
-    flex: 0 0 30vw;
-    height: calc(100vh - 2rem);
-    margin: auto 0;
-    margin-left: 1rem;
-    border-radius: 5px;
+    flex: 0 0 50vw;
+    /* height: calc(100vh - 2rem); */
+    /* margin: auto 0; */
+    /* margin-left: 1rem; */
+    /* border-radius: 5px; */
+    justify-content: flex-start;
   }
   .query-input{
     flex: 0 0 30vw;
     /* padding-top: 1rem; */
-    display: grid;
-    grid-template: 1fr / 1fr;
+    /* display: grid; */
+    /* grid-template: 1fr / 1fr; */
+    position: absolute;
+    left: 1rem;
+    width: calc(50vw - 2rem);
+    top: 25%;
+    bottom: 1rem;
+    max-width: 400px;
+    left: calc((50vw - min(400px, 50vw - 2rem))/2);
   }
   .query-controls{
     flex: 1 1 30vw;
     margin-left: 2rem;
     margin-top: 0;
-    padding-top: 40%;
-    position: relative;
+    /* padding-top: 40%; */
+    /* position: relative; */
+    padding-bottom: 10rem;
+    justify-content: flex-end;
+    /* display: flex; */
+    /* flex-direction: column; */
   }
 
-  .query-input .autogrow-textarea > textarea, 
-  .query-input .autogrow-textarea::after{
-    max-height: 100vh;
+
+  .query-input .autogrow-textarea label{
+    color: white;
   }
-  .query-controls .btn{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  .query-input textarea{
+    background: rgba(0,0,0,0.1);
+    border-color: rgba(0,0,0,0.05);
+    color: white;
   }
+
+
+
+
 }

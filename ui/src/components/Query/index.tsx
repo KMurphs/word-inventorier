@@ -9,7 +9,7 @@ import './style.css';
 export class Query extends React.Component {
   render() {
     return <div className="container query__container">
-      {/* <div className="query__background"></div> */}
+
 
       <div className="query__header">
         <h1>Word Inventorier</h1>
@@ -22,6 +22,13 @@ export class Query extends React.Component {
           <AutoGrowingTextArea />
         </div>
         <div className="query-controls">
+
+          <div className="query-summary">
+            <h3>Query Summary</h3>
+            <span>Analyse Text on the left</span>
+            <span>Retrieve Top 10 most frequent words</span>
+            <span>With lengths between 10 and 30</span>
+          </div>
 
           <TwoRangeInput rangeLow={0} rangeHigh={100}/>
           <InputWithMovingChangingLabel />

@@ -24,9 +24,9 @@ export const Home = () => {
   // const [ref, entry] = useIntersect({ threshold: 1 });
 
 
-  const [headerRef] = useIntersect({threshold: [0, 1], onObservedIntersection: animateOnScroll});
-  const [pRef] = useIntersect({threshold: [0, 1], onObservedIntersection: animateOnScroll});
-  const [btnRef] = useIntersect({threshold: [0, 1], onObservedIntersection: animateOnScroll});
+  const [headerRef] = useIntersect({onObservedIntersection: animateOnScroll});
+  const [pRef] = useIntersect({onObservedIntersection: animateOnScroll});
+  const [btnRef] = useIntersect({onObservedIntersection: animateOnScroll});
 
 
 
@@ -34,15 +34,15 @@ export const Home = () => {
     <div className="container home__container">
       <ScrollToTop/>
       <div className="home__background"></div>
-      <div className="home__header" /*ref={headerRef} data-aos="zoom-in"*/>
+      <div className="home__header" ref={headerRef} data-aos="zoom-out">
         <h1>Word Inventorier</h1>
         <p>This app will inventory text and allow querying for most frequent words with lengths ranges</p>
       </div>
       <div className="home__body">
-        <p /*ref={pRef} data-aos="fade-left"*/><CSSLoaderEllipsis/><br/>Let's start by entering some text to get going. Or, the URL to an online text file...</p>
+        <p ref={pRef} data-aos="fade-left"><CSSLoaderEllipsis/><br/>Let's start by entering some text to get going. Or, the URL to an online text file...</p>
 
         {/* <AnimateOnSCrollExample /> */}
-        <a className="btn btn--text-icon" href="/" onClick={evt => scrollIDIntoViewHelper("query", evt)} /*data-aos="fade-right" ref={btnRef}*/> 
+        <a className="btn btn--text-icon" href="/" onClick={evt => scrollIDIntoViewHelper("query", evt)} data-aos="fade-right" ref={btnRef}> 
           <i className="fas fa-pencil-alt"></i>
           <span className="btn__text">Start Exploring!</span>    
         </a> 

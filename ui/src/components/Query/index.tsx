@@ -11,22 +11,16 @@ import './style.css';
 
 export const Query = () => {
 
-  const rootRef = useRef<HTMLDivElement>(null);
-  const parentNode = rootRef.current?.parentNode as Element;
-  // console.log(parentNode)
   
   const [headerRef] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
   const [textareaRef] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
   const [summaryRef] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
-  const [inputRef] = [null]; //useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
+  const [inputRef] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
   const [btnRef, getIntersectionObj] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
-  const intersectionObj = getIntersectionObj()
-  console.log(intersectionObj)
-  // const btnRef = useRef(null); 
 
 
-  console.log("Query rendered")
-  // let interval: NodeJS.Timeout;
+
+
   useEffect(()=>{
     const interval = setInterval(()=>{
       const intersectionObj = getIntersectionObj()
@@ -40,7 +34,7 @@ export const Query = () => {
 
 
   return (
-    <div className="container query__container" /*ref={rootRef}*/>
+    <div className="container query__container">
 
 
       <div className="query__header" ref={headerRef} data-aos="fade-left">
@@ -62,10 +56,10 @@ export const Query = () => {
             <span>With lengths between 10 and 30</span>
           </div>
 
-          {/* <div ref={inputRef} data-aos="fade-left"> */}
-            <TwoRangeInput rangeLow={0} rangeHigh={100}/>
+          <div ref={inputRef} data-aos="fade-right">
+            <TwoRangeInput rangeLow={0} rangeHigh={100} />
             <InputWithMovingChangingLabel/>
-          {/* </div> */}
+          </div>
 
 
           <a className="btn btn--text-icon" href="/" onClick={evt => scrollIDIntoViewHelper("results", evt)} ref={btnRef} data-aos="fade-right"> 

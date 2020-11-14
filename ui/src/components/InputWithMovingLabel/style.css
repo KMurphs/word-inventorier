@@ -3,6 +3,13 @@
 	/* border-bottom: 1px solid #777; */
 	margin-bottom: .5rem;
 }
+
+.input-with-moving-label *,
+.input-with-moving-label *::before,
+.input-with-moving-label *::after{
+  transition: all .3s;
+}
+
 .input-with-moving-label::before, .input-with-moving-label::after{
 	position: absolute;
 	bottom: 0;

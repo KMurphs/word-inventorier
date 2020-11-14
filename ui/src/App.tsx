@@ -7,6 +7,8 @@ import { Home } from './components/Home';
 import { Query } from './components/Query';
 import { Details } from './components/Details';
 import { Results } from './components/Results';
+import { scrollURLIDIntoViewHelper } from './utils/utils';
+import ScrollToURI from './utils/ScrollToURI';
 
 
 
@@ -20,9 +22,12 @@ function App() {
 
   const [isModalActive, setIsModalActive] = useState<boolean>(false)
 
+  // window.addEventListener('resize', ()=>setTimeout(scrollURLIDIntoViewHelper, 250));
+
 
   return (
     <main className="App">
+      <ScrollToURI timeout={0} />
       <BrowserRouter>
         
 

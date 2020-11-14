@@ -14,3 +14,18 @@ export const scrollIDIntoViewHelper = (targetID: string, clickEvent: any, target
   window.history.pushState(targetID, targetID, `/${targetURI ? targetURI : targetID}`);
 }
 
+export const scrollURLIDIntoViewHelper = (smooth: boolean = false)=>{
+  
+  // This function assumes that the last uri corresponds to the id of the element
+  // that must be scrolled into view
+  let url = window.location.href.split("/");
+  let target = url[url.length - 1].toLowerCase();
+  let element = document.getElementById(target);
+
+  // Adjust view to display component with id from uri
+  element && element.scrollIntoView(smooth ? { behavior: "smooth", block: "start" } : { block: "start" });
+}
+
+
+
+

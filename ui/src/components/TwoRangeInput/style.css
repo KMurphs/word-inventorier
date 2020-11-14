@@ -12,6 +12,7 @@
 	grid-template: -webkit-max-content/ 1fr 1fr;
 	grid-template: max-content/ 1fr 1fr;
 	position: relative;
+	margin-top: 2rem !important;
 }
 
 .two-range-input input[type="range"]{

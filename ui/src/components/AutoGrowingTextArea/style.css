@@ -4,6 +4,14 @@
   width: 100%;
   height: 100%;
 }
+
+.autogrow-textarea *,
+.autogrow-textarea *::before,
+.autogrow-textarea *::after{
+  transition: all .3s;
+}
+
+
 .autogrow-textarea::after {
   /* Note the weird space! Needed to preventy jumpy behavior */
   content: attr(data-replicated-value) " ";
@@ -32,6 +40,7 @@
   overflow-y: auto;
   word-break: break-word;
   line-height: 1.5;
+  min-height: 2.5rem;
 
   /* Place on top of each other */
   grid-area: 1 / 1 / 2 / 2;
@@ -42,7 +51,7 @@
 
 .autogrowing-textarea-container {
   position: relative;
-  padding-top: 1.5rem;
+  margin-top: 1.5rem;
 }
 .autogrowing-textarea-container::before,
 .autogrowing-textarea-container::after{
@@ -74,7 +83,7 @@
 }
 .autogrowing-textarea-container label{
   position: absolute;
-  top: 2rem;
+  top: .5rem;
   left: 1rem;
   font-size: 1rem;
   color: #444;
@@ -82,7 +91,7 @@
 .autogrowing-textarea-container textarea:focus + label,
 .autogrowing-textarea-container textarea:valid + label{
   position: absolute;
-  top: 0;
+  top: -1.5rem;
   left: 0;
   font-size: .9rem;
 }

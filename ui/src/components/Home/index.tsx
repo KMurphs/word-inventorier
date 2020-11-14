@@ -19,8 +19,8 @@ export const Home = () => {
   //   callback: ( entry ) => {if(entry.intersectionRatio > .5) console.log(entry);}
   // });
   // const [ref, entry] = useIntersect({ threshold: 1 });
-  const [ref1] = useIntersect({callback: (entry)=>{console.log("ref 1: ", entry.target.tagName, entry.intersectionRatio)}});
-  const [ref2] = useIntersect({callback: (entry)=>{console.log("ref 2: ", entry.target.tagName, entry.intersectionRatio)}});
+  const [ref1] = useIntersect({threshold: [0, 0.5, 1.0], onObservedIntersection: (entry)=>{console.log("ref 1: ", entry.target.tagName, entry.intersectionRatio)}});
+  const [ref2] = useIntersect({threshold: [0, 0.5, 1.0], onObservedIntersection: (entry)=>{console.log("ref 2: ", entry.target.tagName, entry.intersectionRatio)}});
   console.log("ReRender Home")
 
 

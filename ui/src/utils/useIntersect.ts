@@ -9,14 +9,14 @@ type Props = {
   root?: Element | null, 
   rootMargin?: string, 
   threshold?: number | number[],
-  callback: (entry: IntersectionObserverEntry ) => void
+  onObservedIntersection: (entry: IntersectionObserverEntry ) => void
 }
 
 
 
-export const useIntersect = ({ root = null, rootMargin = "0px", threshold = 1, callback }: Props): [React.Dispatch<React.SetStateAction<Element | null>>]  => {
+export const useIntersect = ({ root = null, rootMargin = "0px", threshold = 1, onObservedIntersection }: Props): [React.Dispatch<React.SetStateAction<Element | null>>]  => {
 
-  // 1. Let's link to a node
+  // 1. Let's link to a html node (the target to observe) as state persistent through rerenders
   const [targetNode, setTargetNode] = useState<Element|null>(null);
 
 
@@ -27,18 +27,23 @@ export const useIntersect = ({ root = null, rootMargin = "0px", threshold = 1, c
   
 
   // 3. useEffect: This happens after render is done, and just before re-render it is cleaned up
+  const cleanupObserver = () => observer && observer.current && observer.current.disconnect && observer.current.disconnect();
   useEffect(()=>{
+
+    // observer && observer.current && observer.current.disconnect && observer.current.disconnect();
+    cleanupObserver();
 
     // Create the oberver after the render, and start the observation
     observer.current = new IntersectionObserver(([entry])=>{
       // console.log(entry.target.tagName, entry.intersectionRatio)
-      callback(entry)
-    }, {root, rootMargin, threshold})
+      onObservedIntersection(entry)
+    }, { root, rootMargin, threshold })
     targetNode && observer && observer.current && observer.current.observe && observer.current.observe(targetNode)
    
 
     // Before re-render clean up my observer. We will build another one just after next rerender
-    return () => { observer && observer.current && observer.current.disconnect && observer.current.disconnect();}
+    return cleanupObserver;
+    // return () => { observer && observer.current && observer.current.disconnect && observer.current.disconnect(); }
 
 
   // Reactualize this hook and its oberver when these are changed

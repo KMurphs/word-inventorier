@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import './App.css';
+import './utils/AnimateOnScroll/style.css';
 import { TUIQueryItem, TTextSummary } from './data.controller/data.types';
 import DataController from './data.controller/data.controller';
 import { Home } from './components/Home';

@@ -1,0 +1,48 @@
+
+/* Common Style */
+/* https://css-tricks.com/almanac/selectors/a/attribute/ */
+/* This is heavily inspired by aos.js https://github.com/michalsnik/aos  */
+[data-aos]{
+  
+  --transition-duration: .5s;
+  --distance: 50px;
+
+  opacity: 0;
+
+  transition: transform .5s, opacity .5s;
+  transition: transform var(--transition-duration), opacity var(--transition-duration);
+  
+}
+.animate[data-aos]{
+
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+
+  transition: transform .5s, opacity .5s;
+  transition: transform var(--transition-duration), opacity var(--transition-duration);
+}
+
+
+/* Specific Classes */
+[data-aos="fade-right"]{
+  transform: translate3d(50px, 0, 0);
+  transform: translate3d(var(--distance), 0, 0);
+}
+[data-aos="fade-left"]{
+  transform: translate3d(-50px, 0, 0);
+  transform: translate3d(calc(-1 * var(--distance)), 0, 0);
+}
+[data-aos="fade-down"]{
+  transform: translate3d(0, -50px, 0);
+  transform: translate3d(0, calc(-1 * var(--distance)), 0);
+}
+[data-aos="fade-up"]{
+  transform: translate3d(0, 50px, 0);
+  transform: translate3d(0, var(--distance), 0);
+}
+[data-aos="zoom-in"]{
+  transform: scale(.6);
+}
+[data-aos="zoom-out"]{
+  transform: scale(1.2);
+}

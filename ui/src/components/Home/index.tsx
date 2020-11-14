@@ -6,6 +6,9 @@ import { CSSLoaderEllipsis } from "../CSSLoaders";
 import './style.css';
 
 import {useIntersect} from "../../utils/useIntersect";
+import animateOnScroll from "../../utils/AnimateOnScroll";
+import { AnimateOnSCrollExample } from "../../utils/AnimateOnScroll/example";
+
 
 // React router does not reliably handle scrolling to the current element 
 // We need to resort to doing it ourselves
@@ -19,30 +22,31 @@ export const Home = () => {
   //   callback: ( entry ) => {if(entry.intersectionRatio > .5) console.log(entry);}
   // });
   // const [ref, entry] = useIntersect({ threshold: 1 });
-  const [ref1] = useIntersect({threshold: [0, 0.5, 1.0], onObservedIntersection: (entry)=>{console.log("ref 1: ", entry.target.tagName, entry.intersectionRatio)}});
-  const [ref2] = useIntersect({threshold: [0, 0.5, 1.0], onObservedIntersection: (entry)=>{console.log("ref 2: ", entry.target.tagName, entry.intersectionRatio)}});
-  console.log("ReRender Home")
+
+
+  const [headerRef] = useIntersect({threshold: [0, 1], onObservedIntersection: animateOnScroll});
+  const [pRef] = useIntersect({threshold: [0, 1], onObservedIntersection: animateOnScroll});
+  const [btnRef] = useIntersect({threshold: [0, 1], onObservedIntersection: animateOnScroll});
+
 
 
   return (
     <div className="container home__container">
       <ScrollToTop/>
       <div className="home__background"></div>
-      <div className="home__header">
+      <div className="home__header" /*ref={headerRef} data-aos="zoom-in"*/>
         <h1>Word Inventorier</h1>
         <p>This app will inventory text and allow querying for most frequent words with lengths ranges</p>
       </div>
       <div className="home__body">
-        <p ref={ref1}><CSSLoaderEllipsis/><br/>Let's start by entering some text to get going. Or, the URL to an online text file...</p>
-        
-        {/* <span style={{"color":"white"}}>{entry && entry.intersectionRatio}</span> */}
-        
-        <a className="btn btn--text-icon" href="/" onClick={evt => scrollIDIntoViewHelper("query", evt)}> 
+        <p /*ref={pRef} data-aos="fade-left"*/><CSSLoaderEllipsis/><br/>Let's start by entering some text to get going. Or, the URL to an online text file...</p>
+
+        {/* <AnimateOnSCrollExample /> */}
+        <a className="btn btn--text-icon" href="/" onClick={evt => scrollIDIntoViewHelper("query", evt)} /*data-aos="fade-right" ref={btnRef}*/> 
           <i className="fas fa-pencil-alt"></i>
-          <span className="btn__text" ref={ref2}>Start Exploring!</span>    
+          <span className="btn__text">Start Exploring!</span>    
         </a> 
 
-        {/* <span style={{"color":"white"}}>{entry && entry.intersectionRatio}</span> */}
 
         
       </div>

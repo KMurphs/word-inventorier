@@ -7,6 +7,8 @@ html{
   max-width: 100vw;
   overflow-x: hidden;
   overflow-y: hidden;
+  max-height: 100vh;
+  overflow-y: auto;
   scroll-behavior: smooth;
   --color-white: #f2f2f2;
   --color-black: #000;

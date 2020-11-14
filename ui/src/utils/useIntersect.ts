@@ -14,36 +14,49 @@ type Props = {
 
 
 
-export const useIntersect = ({ root = null, rootMargin = "0px", threshold = 1, onObservedIntersection }: Props): [React.Dispatch<React.SetStateAction<Element | null>>]  => {
+export const useIntersect = ({ root = null, rootMargin = "0px", threshold = [.25, .75], onObservedIntersection }: Props): [React.Dispatch<React.SetStateAction<Element | null>>, ()=>(IntersectionObserverEntry | null)]  => {
 
   // 1. Let's link to a html node (the target to observe) as state persistent through rerenders
   const [targetNode, setTargetNode] = useState<Element|null>(null);
+
+  // Provide a way to send the intersectionObj to the client for debugging purposes
+  const intersectionObj = useRef<IntersectionObserverEntry|null>(null);
+  const getIntersectionObject = (): IntersectionObserverEntry|null => {return intersectionObj.current}
+
+
+  console.log("useIntersect rendered", intersectionObj.current)
 
 
   // 2. let's create our observer. But we want it be remebered, and not recreated between re-renders
   // Also We cannot call useRef inside a callback
   // So we create here a bogus ref hook, that we will attach to an acutal observer later on
   const observer = useRef<IntersectionObserver>()
+
+  // const options: IntersectionObserverInit = {
+  //   root: 
+  // }
+
+  
   
 
   // 3. useEffect: This happens after render is done, and just before re-render it is cleaned up
   const cleanupObserver = () => observer && observer.current && observer.current.disconnect && observer.current.disconnect();
   useEffect(()=>{
 
-    // observer && observer.current && observer.current.disconnect && observer.current.disconnect();
-    cleanupObserver();
+    // cleanupObserver();
 
     // Create the oberver after the render, and start the observation
     observer.current = new IntersectionObserver(([entry])=>{
-      // console.log(entry.target.tagName, entry.intersectionRatio)
+      // console.log(entry.target.tagName, entry.intersectionRatio, entry.boundingClientRect)
       onObservedIntersection(entry)
+      intersectionObj.current = entry;
+
     }, { root, rootMargin, threshold })
     targetNode && observer && observer.current && observer.current.observe && observer.current.observe(targetNode)
-   
+
 
     // Before re-render clean up my observer. We will build another one just after next rerender
     return cleanupObserver;
-    // return () => { observer && observer.current && observer.current.disconnect && observer.current.disconnect(); }
 
 
   // Reactualize this hook and its oberver when these are changed
@@ -51,7 +64,9 @@ export const useIntersect = ({ root = null, rootMargin = "0px", threshold = 1, o
   }, [targetNode, root, rootMargin, threshold])
 
 
-  return [setTargetNode];
+
+
+  return [setTargetNode, getIntersectionObject];
 };
 
 

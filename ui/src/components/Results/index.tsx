@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { dataControllerContext } from "../../contexts/context";
 import { scrollIDIntoViewHelper } from "../../utils/utils";
+import { CSSLoaderDualRing } from "../CSSLoaders";
 import './style.css';
 
 export const Results = () => {
@@ -9,9 +10,10 @@ export const Results = () => {
 
 
   return (
-    <div>
+    <div className="results">
       <h1>Results Screen</h1>
       {!waitingForServer && <p>Is Processing</p>}
+      {!waitingForServer && <CSSLoaderDualRing />}
       <div>
         <a href="/" onClick={evt => scrollIDIntoViewHelper("query", evt)}>to Query</a>
       </div>

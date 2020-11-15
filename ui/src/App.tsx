@@ -1,16 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import './App.css';
 import './utils/AnimateOnScroll/style.css';
 import { TUIQueryItem, TTextSummary } from './data.controller/data.types';
-import DataController from './data.controller/data.controller';
 import { Home } from './components/Home';
 import { Query } from './components/Query';
 import { Details } from './components/Details';
 import { Results } from './components/Results';
-import { scrollURLIDIntoViewHelper } from './utils/utils';
 import ScrollToURI from './utils/ScrollToURI';
-import { QueryLengthRangeProvider } from './contexts/context';
+import { dataControllerContext, QueryLengthRangeProvider } from './contexts/context';
 
 
 
@@ -18,11 +16,12 @@ import { QueryLengthRangeProvider } from './contexts/context';
 
 function App() {
 
-  let dc = useRef<DataController|null>(null);
-  (dc.current === null) && (dc.current = new DataController());
-  console.log('[App]: Data Controller Version: ', dc.current.getVersion())
+  // let dc = useRef<DataController|null>(null);
+  // (dc.current === null) && (dc.current = new DataController());
+  const dataController = useContext(dataControllerContext)
+  console.log('[App]: Data Controller Version: ', dataController.getVersion())
 
-  const [isModalActive, setIsModalActive] = useState<boolean>(false)
+  // const [isModalActive, setIsModalActive] = useState<boolean>(false)
 
   // window.addEventListener('resize', ()=>setTimeout(scrollURLIDIntoViewHelper, 250));
 

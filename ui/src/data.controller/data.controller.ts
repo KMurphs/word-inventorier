@@ -19,7 +19,7 @@ export default class DataController {
   // private timerID: any
   // private dataRefreshRateSec: number = 15;
   getVersion(){
-    return '1.0'
+    return '1.1'
   }
   // constructor(setUiData: Function){
   constructor(){

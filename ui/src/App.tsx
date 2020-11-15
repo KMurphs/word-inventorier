@@ -18,7 +18,7 @@ function App() {
 
   // let dc = useRef<DataController|null>(null);
   // (dc.current === null) && (dc.current = new DataController());
-  const [,dataController] = useContext(dataControllerContext)
+  const [,,dataController] = useContext(dataControllerContext)
   console.log('[App]: Data Controller Version: ', dataController.getVersion())
 
   // const [isModalActive, setIsModalActive] = useState<boolean>(false)

@@ -1,12 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import DataController from "../data.controller/data.controller";
+import { TTextSummary } from "../data.controller/data.types";
 
 
 export const queryMinLengthContext = React.createContext<[number, React.Dispatch<React.SetStateAction<number>>]>([0, ()=>{}]);
 export const queryMaxLengthContext = React.createContext<[number, React.Dispatch<React.SetStateAction<number>>]>([0, ()=>{}]);
 export const queryMostFrequentCountContext = React.createContext<[number, React.Dispatch<React.SetStateAction<number>>]>([0, ()=>{}]);
 export const queryTextToProcessContext = React.createContext<[string, React.Dispatch<React.SetStateAction<string>>]>(["", ()=>{}]);
-export const dataControllerContext = React.createContext<[Function, DataController]>([()=>{}, new DataController()]);
+export const dataControllerContext = React.createContext<[Function, boolean, DataController]>([()=>{}, false, new DataController()]);
 
 
 interface Props {
@@ -18,25 +19,35 @@ export const QueryLengthRangeProvider = ({children}: Props)=>{
   const [queryMaxLength, setQueryMaxLength] = useState(50)
   const [queryMostFrequent, setQueryMostFrequent] = useState(50)
   const [queryText, setQueryText] = useState("")
+  const [queryResults, setQueryResults] = useState<TTextSummary | null>(null)
+  const isExecutingQuery = useRef(false)
 
   const dataController = new DataController();
 
   const executeQuery = async () => {
-    const text = await dataController.processText({
+    
+    isExecutingQuery.current = false
+
+    dataController.processText({
       text: queryText,
       queries: [{
         minLength: queryMinLength,
         maxLength: queryMaxLength,
         topN: queryMostFrequent
       }]
+    }).then((res) => {
+      isExecutingQuery.current = true;
+      setQueryResults(res)
+      console.log(res);
     });
-
-    console.log(text)
+    
   }
+
+  const waitingForServer = isExecutingQuery.current
 
 
   return (
-    <dataControllerContext.Provider value={[executeQuery, dataController]}>
+    <dataControllerContext.Provider value={[executeQuery, waitingForServer, dataController]}>
       <queryMaxLengthContext.Provider value={[queryMaxLength, setQueryMaxLength]}>
         <queryMinLengthContext.Provider value={[queryMinLength, setQueryMinLength]}>
           <queryMostFrequentCountContext.Provider value={[queryMostFrequent, setQueryMostFrequent]}>

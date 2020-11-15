@@ -149,7 +149,7 @@
   }
   .query__body{
     width: auto;
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
     padding: 1rem;
     position: static;
@@ -177,8 +177,11 @@
     width: calc(50vw - 2rem);
     top: 25%;
     bottom: 1rem;
-    max-width: 400px;
-    left: calc((50vw - min(400px, 50vw - 2rem))/2);
+    --max-width: 100vw;
+    max-width: 500px;
+    max-width: var(--max-width);
+    left: calc((50vw - min(500px, 50vw - 2rem))/2);
+    left: calc((50vw - min(var(--max-width), 50vw - 2rem))/2);
     margin-bottom: 0rem;
   }
   .query-controls{

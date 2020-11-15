@@ -10,6 +10,7 @@ import { Details } from './components/Details';
 import { Results } from './components/Results';
 import { scrollURLIDIntoViewHelper } from './utils/utils';
 import ScrollToURI from './utils/ScrollToURI';
+import { QueryLengthRangeProvider } from './contexts/context';
 
 
 
@@ -28,38 +29,40 @@ function App() {
 
   return (
     <main className="App">
-      <ScrollToURI timeout={0} />
-      <BrowserRouter>
-        
+      <QueryLengthRangeProvider>
+        <ScrollToURI timeout={0} />
+        <BrowserRouter>
+          
 
-        <Switch>
-          <Route exact path="/home">
-            <div id="home" className="screen screen-1">
-              <Home />
-            </div>
-          </Route>
-          <Redirect from="/*" to="/home" />
-        </Switch>
+          <Switch>
+            <Route exact path="/home">
+              <div id="home" className="screen screen-1">
+                <Home />
+              </div>
+            </Route>
+            <Redirect from="/*" to="/home" />
+          </Switch>
 
 
 
-        <div id="query" className="screen screen-2">
-          <Query />
-        </div>
+          <div id="query" className="screen screen-2">
+            <Query />
+          </div>
 
-        <div id="results" className="screen screen-3">
-          <Results />
-        </div>
+          <div id="results" className="screen screen-3">
+            <Results />
+          </div>
 
-        <div id="details" className="screen screen-4">
-          <Details />
-        </div>
+          <div id="details" className="screen screen-4">
+            <Details />
+          </div>
 
-        <div id="footer" className="screen screen--footer">
-          <h1>Footer Screen</h1>
-        </div>
+          <div id="footer" className="screen screen--footer">
+            <h1>Footer Screen</h1>
+          </div>
 
-      </BrowserRouter>
+        </BrowserRouter>
+      </QueryLengthRangeProvider>
     </main>
   );
 }

@@ -24,17 +24,12 @@ export const useIntersect = ({ root = null, rootMargin = "0px", threshold = [.25
   const getIntersectionObject = (): IntersectionObserverEntry|null => {return intersectionObj.current}
 
 
-  console.log("useIntersect rendered", intersectionObj.current)
-
 
   // 2. let's create our observer. But we want it be remebered, and not recreated between re-renders
   // Also We cannot call useRef inside a callback
   // So we create here a bogus ref hook, that we will attach to an acutal observer later on
   const observer = useRef<IntersectionObserver>()
 
-  // const options: IntersectionObserverInit = {
-  //   root: 
-  // }
 
   
   

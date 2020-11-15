@@ -3,50 +3,39 @@ import { scrollIDIntoViewHelper } from "../../utils/utils";
 import './style.css';
 
 type Props = {
-  rangeMin: number,
-  rangeMax: number,
-  initialValue?: number
+  value: number,
+  setValue: (newValue: number) => void,
 }
 
 
-export const InputWithMovingChangingLabel = ({initialValue}: Props) => {
-
-  const [val, setVal] = useState<number>(initialValue || 0);
-
+export const InputWithMovingChangingLabel = ({value, setValue}: Props) => {
 
   return (
     <div className="input-with-moving-label input-with-moving-and-overriding-label" >
       
-      <input type="number" id="input-with-moving-label" required value={val} onChange={evt => setVal(parseInt((evt.target as HTMLInputElement).value))}/>
+      <input type="number" id="input-with-moving-label" required value={value} onChange={evt => setValue(parseInt((evt.target as HTMLInputElement).value))}/>
       <label htmlFor="input-with-moving-label" className="moving-label onfocus-label">How many entries to retrieve</label>
-      <label htmlFor="input-with-moving-label" className="moving-label overriding-label">Retrieve top <span className="dynamic-value">{val}</span> most frequent words</label>
+      <label htmlFor="input-with-moving-label" className="moving-label overriding-label">Retrieve top <span className="dynamic-value">{value}</span> most frequent words</label>
 
     </div>
   )
 
-
 }
-
-InputWithMovingChangingLabel.defaultProps = {
-  rangeMin: 0,
-  rangeMax: 100,
-  initialMin: 0,
-  initialMax: 100
-};
+InputWithMovingChangingLabel.defaultProps = {};
 
 
-export const InputWithMovingLabel = ({}: Props) => {
 
-  // const [min, setMin] = useState<number>(initialMin || rangeMin);
-  // const [max, setMax] = useState<number>(initialMax || rangeMax);
 
+
+export const InputWithMovingLabel = ({value, setValue}: Props) => {
 
   return (
     <div className="input-with-moving-label" >
       
-      <input type="text" required/>
+      <input type="text" required value={value} onChange={evt => setValue(parseInt((evt.target as HTMLInputElement).value))}/>
       <span className="moving-label">How many entries to retrieve</span>
 
     </div>
   )
+  
 }

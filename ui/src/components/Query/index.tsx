@@ -1,11 +1,12 @@
-import { render } from "@testing-library/react";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
+import { DisplayQueryMaxLength, DisplayQueryMinLength, DisplayQueryMostFrequentParameter } from "../../contexts/context";
 import animateOnScroll from "../../utils/AnimateOnScroll";
 import { useIntersect } from "../../utils/useIntersect";
 import { scrollIDIntoViewHelper } from "../../utils/utils";
-import { AutoGrowingTextArea } from "../AutoGrowingTextArea";
-import { InputWithMovingChangingLabel } from "../InputWithMovingLabel";
-import { TwoRangeInput } from "../TwoRangeInput";
+import { AutoGrowingTextAreaWithContext } from "../AutoGrowingTextArea/withContext";
+import { InputWithMovingChangingLabelWithContext } from "../InputWithMovingLabel/withContext";
+// import { TwoRangeInput } from "../TwoRangeInput";
+import { TwoRangeInputWithContext } from "../TwoRangeInput/withContext";
 import './style.css';
 
 
@@ -17,7 +18,6 @@ export const Query = () => {
   const [summaryRef] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
   const [inputRef] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
   const [btnRef, getIntersectionObj] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
-
 
 
 
@@ -45,20 +45,23 @@ export const Query = () => {
 
       <div className="query__body">
         <div className="query-input" ref={textareaRef} data-aos="fade-left">
-          <AutoGrowingTextArea />
+          <AutoGrowingTextAreaWithContext />
         </div>
         <div className="query-controls">
 
           <div className="query-summary" ref={summaryRef} data-aos="fade-right">
             <h3>Query Summary</h3>
             <span>Analyse Text on the left</span>
-            <span>Retrieve Top 10 most frequent words</span>
-            <span>With lengths between 10 and 30</span>
+            <span>Retrieve Top <DisplayQueryMostFrequentParameter /> most frequent words</span>
+            <span>With lengths between <DisplayQueryMinLength /> and <DisplayQueryMaxLength /></span>
+            
+
           </div>
 
           <div ref={inputRef} data-aos="fade-right">
-            <TwoRangeInput rangeLow={0} rangeHigh={100} />
-            <InputWithMovingChangingLabel/>
+            {/* <TwoRangeInput rangeLow={0} rangeHigh={100} /> */}
+            <TwoRangeInputWithContext />
+            <InputWithMovingChangingLabelWithContext/>
           </div>
 
 

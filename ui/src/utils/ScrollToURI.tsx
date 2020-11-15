@@ -11,16 +11,20 @@ type Props = {
   timeout?: number // This timeout is caused by the "transition: all .3s" that's applying to everything from css
 }
 export default function ScrollToURI({timeout}: Props) {
-  const callback = () => setTimeout(scrollURLIDIntoViewHelper, timeout || 305)
-
-
+  
   useLayoutEffect(() => {
 
+    // Define, Register and Pre-run a callback for scrolling
+    const callback = () => setTimeout(scrollURLIDIntoViewHelper, timeout || 305)
     window.addEventListener('resize', callback);
     callback();
 
+    // Return object to cleanup effect
     return () => window.removeEventListener('resize', callback);
-  }, []);
 
+  // Explicitely state dependency (otherwise a warning is generated)
+  }, [timeout]);
+
+  
   return null;
 }

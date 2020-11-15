@@ -111,7 +111,10 @@
   }
 }
 
-
+.home__body__text-container{
+  margin: 0 auto;
+  text-align: center;
+}
 .home__body p{
   line-height: 1.5;
   /* font-size: 1rem; */

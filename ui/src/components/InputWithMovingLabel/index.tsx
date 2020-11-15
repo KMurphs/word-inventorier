@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { scrollIDIntoViewHelper } from "../../utils/utils";
+import React from "react";
 import './style.css';
 
 type Props = {

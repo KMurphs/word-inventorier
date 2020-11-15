@@ -6,7 +6,7 @@ import './style.css';
 
 
 type Props = {}
-export const AutoGrowingTextAreaWithContext = ({}: Props) => {
+export const AutoGrowingTextAreaWithContext = () => {
 
   const [queryText, setQueryText] = useContext(queryTextToProcessContext);
   return (

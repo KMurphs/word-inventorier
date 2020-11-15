@@ -56,7 +56,8 @@ export const useIntersect = ({ root = null, rootMargin = "0px", threshold = [.25
 
   // Reactualize this hook and its oberver when these are changed
   // Node is included here, because at the very beginning it is null
-  }, [targetNode, root, rootMargin, threshold])
+  // onObservedIntersection is added to prevent a compiler warning
+  }, [targetNode, root, rootMargin, threshold, onObservedIntersection])
 
 
 

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { scrollIDIntoViewHelper } from "../../utils/utils";
+import React from "react";
 import './style.css';
 
 type Props = {
@@ -23,8 +22,8 @@ export const TwoRangeInput = ({ rangeLow, rangeHigh, valueLow, valueHigh, setVal
     
       <div className="track-muted"></div>
       
-      <input id="a" type="range" min={rangeLow} max={rangeHigh} step="1" value={valueLow} onInput={evt => setValueLow(Math.min(parseInt((evt.target as HTMLInputElement).value), valueHigh))} />
-      <input id="b" type="range" min={rangeLow} max={rangeHigh} step="1" value={valueHigh} onInput={evt => setValueHigh(Math.max(parseInt((evt.target as HTMLInputElement).value), valueLow))} />
+      <input id="a" type="range" min={rangeLow} max={rangeHigh} step="1" value={valueLow} onChange={evt => setValueLow(Math.min(parseInt((evt.target as HTMLInputElement).value), valueHigh))} />
+      <input id="b" type="range" min={rangeLow} max={rangeHigh} step="1" value={valueHigh} onChange={evt => setValueHigh(Math.max(parseInt((evt.target as HTMLInputElement).value), valueLow))} />
       
       <label htmlFor="a"><output htmlFor="a" style={{"--val": "var(--a)"} as React.CSSProperties}></output></label>
       <label htmlFor="b"><output htmlFor="b" style={{"--val": "var(--b)"} as React.CSSProperties}></output></label>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { InputWithMovingChangingLabel, InputWithMovingLabel } from ".";
 import { queryMostFrequentCountContext } from "../../contexts/context";
 import './style.css';
@@ -8,7 +8,7 @@ import './style.css';
 
 type Props = {
 }
-export const InputWithMovingChangingLabelWithContext = ({}: Props) => {
+export const InputWithMovingChangingLabelWithContext = () => {
 
   const [queryMostFrequent, setQueryMostFrequent] = useContext(queryMostFrequentCountContext);
   return (
@@ -22,7 +22,7 @@ InputWithMovingChangingLabelWithContext.defaultProps = {};
 
 
 
-export const InputWithMovingLabelWithContext = ({}: Props) => {
+export const InputWithMovingLabelWithContext = () => {
 
   const [queryMostFrequent, setQueryMostFrequent] = useContext(queryMostFrequentCountContext);
   return (

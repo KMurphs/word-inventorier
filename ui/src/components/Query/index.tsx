@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { DisplayQueryMaxLength, DisplayQueryMinLength, DisplayQueryMostFrequentParameter } from "../../contexts/context";
+import React, { useContext } from "react";
+import { dataControllerContext, DisplayQueryMaxLength, DisplayQueryMinLength, DisplayQueryMostFrequentParameter } from "../../contexts/context";
 import animateOnScroll from "../../utils/AnimateOnScroll";
 import { useIntersect } from "../../utils/useIntersect";
 import { scrollIDIntoViewHelper } from "../../utils/utils";
@@ -17,18 +17,19 @@ export const Query = () => {
   const [textareaRef] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
   const [summaryRef] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
   const [inputRef] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
-  const [btnRef, getIntersectionObj] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
+  const [btnRef] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
+  // const [btnRef, getIntersectionObj] = useIntersect({threshold: [.25, .75], onObservedIntersection: animateOnScroll});
 
+  const [executeQuery] = useContext(dataControllerContext)
 
+  // useEffect(()=>{
+  //   const interval = setInterval(()=>{
+  //     const intersectionObj = getIntersectionObj()
+  //     console.log(intersectionObj?.time, intersectionObj?.intersectionRatio, intersectionObj?.rootBounds, intersectionObj?.boundingClientRect, intersectionObj?.intersectionRect, intersectionObj?.isIntersecting)
+  //   }, 1000)
 
-  useEffect(()=>{
-    const interval = setInterval(()=>{
-      const intersectionObj = getIntersectionObj()
-      console.log(intersectionObj?.time, intersectionObj?.intersectionRatio, intersectionObj?.rootBounds, intersectionObj?.boundingClientRect, intersectionObj?.intersectionRect, intersectionObj?.isIntersecting)
-    }, 1000)
-
-    return ()=> clearInterval(interval)
-  })
+  //   return ()=> clearInterval(interval)
+  // })
 
 
 
@@ -61,11 +62,11 @@ export const Query = () => {
           <div ref={inputRef} data-aos="fade-right">
             {/* <TwoRangeInput rangeLow={0} rangeHigh={100} /> */}
             <TwoRangeInputWithContext />
-            <InputWithMovingChangingLabelWithContext/>
+            <InputWithMovingChangingLabelWithContext />
           </div>
 
 
-          <a className="btn btn--text-icon" href="/" onClick={evt => scrollIDIntoViewHelper("results", evt)} ref={btnRef} data-aos="fade-right"> 
+          <a className="btn btn--text-icon" href="/" onClick={evt => { executeQuery(); scrollIDIntoViewHelper("results", evt)}} ref={btnRef} data-aos="fade-right"> 
             <i className="fas fa-cloud-upload-alt"></i>
             <span className="btn__text">Submit</span>    
           </a>  

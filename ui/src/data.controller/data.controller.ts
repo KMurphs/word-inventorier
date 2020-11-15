@@ -81,12 +81,12 @@ export default class DataController {
    * @param  {Function} cb: Callback - Called when server response has been received and successfully processed
    * @returns Promise\<TTextSummary\>
    */
-  processText(uiQuery: TUIQuery, cb: Function): Promise<TTextSummary>{
+  processText(uiQuery: TUIQuery, cb?: Function): Promise<TTextSummary>{
     return new Promise(async (resolve, reject) => {
       await httpRequest(`${this.buildURL(this.urlProcessAText)}`, uiQuery, "POST")
       .then((res)=>{
         console.log(res)
-        cb();
+        cb && cb();
         resolve(typeConverter.toTextSummary(res));
       })
       .catch((err)=>{

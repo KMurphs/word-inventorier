@@ -1,5 +1,4 @@
 import React from "react";
-import { scrollIDIntoViewHelper } from "../../utils/utils";
 import './style.css';
 
 

@@ -37,7 +37,11 @@ export const Home = () => {
         <p>This app will inventory text and allow querying for most frequent words with lengths ranges</p>
       </div>
       <div className="home__body">
-        <p ref={pRef} data-aos="fade-left"><CSSLoaderEllipsis/><br/>Let's start by entering some text to get going. Or, the URL to an online text file...</p>
+        <div ref={pRef} data-aos="fade-left" className="home__body__text-container">
+          <CSSLoaderEllipsis/>
+          <p><br/>Let's start by entering some text to get going. Or, the URL to an online text file...</p>
+        </div>
+        
 
         {/* <AnimateOnSCrollExample /> */}
         <a className="btn btn--text-icon" href="/" onClick={evt => scrollIDIntoViewHelper("query", evt)} data-aos="fade-right" ref={btnRef}> 

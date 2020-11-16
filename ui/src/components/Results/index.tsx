@@ -7,6 +7,8 @@ import {
   TwoCategorySymmetricHistogramHeader as HistogramHeader,
   TwoCategorySymmetricHistogramData as HistogramData,
 } from "../Histogram";
+import { InputWithMovingChangingLabelWithContext } from "../InputWithMovingLabel/withContext";
+import { TwoRangeInputWithContext } from "../TwoRangeInput/withContext";
 import './style.css';
 
 type SortParameters = {
@@ -87,6 +89,13 @@ export const Results = () => {
             return { label: item.key, category1Value: item.length, category1Annotation: "", category2Value: item.frequency, category2Annotation: ""}
           })]} category1Maximum={longest.length} category2Maximum={mostFrequent.frequency}/>  
         </div>
+
+        
+        {/* <div className="results__controls" ref={inputRef} data-aos="fade-right"> */}
+          {/* <TwoRangeInputWithContext /> */}
+          {/* <p>Adjust Range of Lengths on Query</p> */}
+          {/* <InputWithMovingChangingLabelWithContext /> */}
+        {/* </div> */}
 
 
       </div>

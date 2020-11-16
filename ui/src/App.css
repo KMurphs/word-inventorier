@@ -20,6 +20,7 @@ html{
   --color-secondary-2--light: hsl(220, 85%, 31%);
   --color-secondary-2: hsl(220, 100%, 19%);
   --color-accent-lighter: #e048a9;
+  --color-accent-light: #d83d9f;
   --color-accent: #c9298e;
   --color-accent-dark: #ac1876;
 
@@ -40,3 +41,13 @@ html{
   background-color: #fff;
 } 
 
+.screen-3{
+  /* height: auto; */
+  background-color: transparent;
+}
+@media (min-width: 768px){
+  .screen-3{
+    height: auto;
+    margin-top: 5rem;
+  }
+}

@@ -166,6 +166,7 @@
     /* margin-left: 1rem; */
     /* border-radius: 5px; */
     justify-content: flex-start;
+    box-shadow: none;
   }
   .query-input{
     flex: 0 0 30vw;

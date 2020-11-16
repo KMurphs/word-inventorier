@@ -82,7 +82,7 @@
   /* background: #aaa; */
   flex: 0 0 50%;
   padding: 0 .5rem;
-  
+  transition: flex-basis .3s;
 }
 .histogram-bar__item--main::before {
   content: "";
@@ -245,7 +245,7 @@
   justify-content: flex-end;
 }
 
-@media (min-width: 768px){
+@media (min-width: 576px){
   .histogram-bar,
   .histogram-bar-label{
     flex-basis: calc(33% - 1px);

@@ -87,10 +87,7 @@ export default class DataController {
       .then((res)=>{
         console.log(res)
         cb && cb();
-        setTimeout(()=>{
-          resolve(typeConverter.toTextSummary(res));
-        }, 2000)
-        // resolve(typeConverter.toTextSummary(res));
+        resolve(typeConverter.toTextSummary(res));
       })
       .catch((err)=>{
         reject(err);

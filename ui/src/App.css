@@ -15,6 +15,9 @@ html{
   --color-neutral: #C9C9C9;
   --color-secondary-1--lightest: #fff5ec;
   --color-secondary-1: #F79646;
+  --color-secondary-2--lightest: hsl(220, 100%, 94%);
+  --color-secondary-2--lighter: hsl(220, 65%, 49%);
+  --color-secondary-2--light: hsl(220, 85%, 31%);
   --color-secondary-2: hsl(220, 100%, 19%);
   --color-accent-lighter: #e048a9;
   --color-accent: #c9298e;

@@ -84,7 +84,24 @@ a{
   margin: .5rem auto;
   display: flex;
 }
-
+.btn--icon {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  display: flex;
+}
+.btn--secondary{
+  color: var(--color-accent-lighter) !important;
+  background-color: transparent;
+  box-shadow: none;
+}
+.btn--secondary:hover{
+  background-color: var(--color-accent-lighter);
+  color: white !important;
+}
 .btn--text-icon .btn__text{
   display: inline;
   line-height: 1;

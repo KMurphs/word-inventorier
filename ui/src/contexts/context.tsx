@@ -8,6 +8,7 @@ export const queryMaxLengthContext = React.createContext<[number, React.Dispatch
 export const queryMostFrequentCountContext = React.createContext<[number, React.Dispatch<React.SetStateAction<number>>]>([0, ()=>{}]);
 export const queryTextToProcessContext = React.createContext<[string, React.Dispatch<React.SetStateAction<string>>]>(["", ()=>{}]);
 export const dataControllerContext = React.createContext<[Function, boolean, DataController]>([()=>{}, false, new DataController()]);
+export const queryResultsContext = React.createContext<TTextSummary | null>(null);
 
 
 interface Props {
@@ -20,13 +21,16 @@ export const QueryLengthRangeProvider = ({children}: Props)=>{
   const [queryMostFrequent, setQueryMostFrequent] = useState(50)
   const [queryText, setQueryText] = useState("")
   const [queryResults, setQueryResults] = useState<TTextSummary | null>(null)
-  const isExecutingQuery = useRef(false)
+  const [isExecutingQuery, setIsExecutingQuery] = useState(false)
+  // const isExecutingQuery = useRef(false)
 
   const dataController = new DataController();
 
   const executeQuery = async () => {
     
-    isExecutingQuery.current = false
+    // isExecutingQuery.current = true
+    // setQueryResults(null)
+    setIsExecutingQuery(true)
 
     dataController.processText({
       text: queryText,
@@ -36,14 +40,24 @@ export const QueryLengthRangeProvider = ({children}: Props)=>{
         topN: queryMostFrequent
       }]
     }).then((res) => {
-      isExecutingQuery.current = true;
+
+      return new Promise<TTextSummary>((resolve) => {
+        setTimeout(()=>{
+          resolve(res);
+        }, 500)
+      })
+
+    }).then((res) => {
+      // isExecutingQuery.current = false;
       setQueryResults(res)
+      setIsExecutingQuery(false)
       console.log(res);
     });
     
   }
 
-  const waitingForServer = isExecutingQuery.current
+  const waitingForServer = isExecutingQuery
+  // const waitingForServer = isExecutingQuery.current
 
 
   return (
@@ -52,7 +66,9 @@ export const QueryLengthRangeProvider = ({children}: Props)=>{
         <queryMinLengthContext.Provider value={[queryMinLength, setQueryMinLength]}>
           <queryMostFrequentCountContext.Provider value={[queryMostFrequent, setQueryMostFrequent]}>
             <queryTextToProcessContext.Provider value={[queryText, setQueryText]}>
-              { children }
+              <queryResultsContext.Provider value={queryResults}>
+                { children }
+              </queryResultsContext.Provider>
             </queryTextToProcessContext.Provider>
           </queryMostFrequentCountContext.Provider>
         </queryMinLengthContext.Provider>

@@ -1,0 +1,178 @@
+
+
+.histogram-header *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.histogram-header{
+  /* background: #fff;
+  border: 1px solid #eee;
+  margin: auto;
+  width: 100%;
+  min-width: 320px;
+  max-width: 600px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 2rem;
+  padding-top: 3rem; */
+}
+.histogram-header{
+  display: flex;
+}
+
+.half-item{
+  flex: 0 0 50%;
+  background: #fafafa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .75rem;
+  height: 1.5rem;
+}
+.histogram-header .half-item{
+  height: auto;
+  padding: 0 .5rem;
+  margin-bottom: 0.25rem;
+}
+
+
+
+
+
+.histogram-bar{
+  flex: 0 0 50%;
+  background: #ddd;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .25rem;
+  height: 1.5rem;
+}
+.histogram-container{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.histogram-bar-container{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.histogram-bar-label{
+  flex: 0 0 100%;
+  text-align: right; 
+  padding: 0 0.5rem;
+}
+.histogram-bar{
+  display: flex;
+  flex-basis: calc(50% - 1px);
+}
+
+.histogram-bar__item{
+  background: #fafafa;
+  flex: 1 1 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.histogram-bar__item--main{
+  background: #aaa;
+  flex: 0 0 50%;
+  padding: 0 .5rem;
+}
+.histogram-bar__text{
+  color: white;
+  font-size: .9rem;
+  flex: 1 0 1rem;
+}
+.histogram-bar-label,
+.histogram-bar__text--muted{
+  color: #ddd;
+  font-style: italic;
+  font-size: .8rem;
+}
+.histogram-bar__text--muted{
+  flex-shrink: 1;
+  flex-basis: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.histogram-bar--left .histogram-bar__text{
+  text-align: right;
+}
+.histogram-bar--left .histogram-bar__text--muted{
+  text-align: left;
+}
+.histogram-bar--right .histogram-bar__text{
+  text-align: left;
+}
+.histogram-bar--right .histogram-bar__text--muted{
+  text-align: right;
+}
+.histogram-bar-container:hover *{
+  font-weight: bold;
+  transition: all .3s;
+}
+
+
+.histogram-btn{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s;
+}
+.histogram-btn:hover{
+  background: #eee;
+  transition: all .3s;
+} 
+
+
+
+/* Give app style to histogram*/
+.histogram-bar-label{
+  color: #999999;
+}
+.histogram-bar--left .histogram-bar__item--main{
+  background: #f79646;
+}
+.histogram-bar-container:hover .histogram-bar--left .histogram-bar__item--main{
+  background: #cb5c00;
+  transition: all .3s;
+}
+.histogram-bar--left .histogram-bar__text--muted{
+  color: #cb5c00;
+}
+.histogram-bar--right .histogram-bar__item--main{
+  background: #002060;
+}
+.histogram-bar-container:hover .histogram-bar--right .histogram-bar__item--main{
+  background: #001849;
+  transition: all .3s;
+}
+.histogram-bar--right .histogram-bar__text--muted{
+  color: #a9b8d6;
+}
+.histogram-bar-container:hover .histogram-bar__text--muted{
+  opacity: 0;
+  transition: all .3s;
+}
+
+.half-item{
+  background: none;
+}
+
+.histogram-header .half-item--left{
+  color: #f79646;
+  font-weight: bold;
+}
+.histogram-header .half-item--right{
+  color: #002060;
+  font-weight: bold;
+}

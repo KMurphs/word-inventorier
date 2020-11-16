@@ -76,22 +76,57 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 .histogram-bar__item--main{
-  background: #aaa;
+  /* background: #aaa; */
   flex: 0 0 50%;
   padding: 0 .5rem;
+  
+}
+.histogram-bar__item--main::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  transition: right .3s, left .3s;
+}
+.histogram-bar--left .histogram-bar__item--main::before{
+  left: 100%;
+}
+.histogram-bar--right .histogram-bar__item--main::before{
+  right: 100%;
+}
+.histogram-visible .histogram-bar--left .histogram-bar__item--main::before{
+  left: 0;
+}
+.histogram-visible .histogram-bar--right .histogram-bar__item--main::before{
+  right: 0;
+}
+.histogram-bar__item > *{
+  position: relative;
 }
 .histogram-bar__text{
   color: white;
   font-size: .9rem;
   flex: 1 0 1rem;
+  min-width: 1rem;
 }
 .histogram-bar-label,
 .histogram-bar__text--muted{
   color: #ddd;
   font-style: italic;
   font-size: .8rem;
+}
+.histogram-bar__text--muted{
+  font-size: .6rem;
+}
+@media (min-width: 576px){
+  .histogram-bar__text--muted{
+    font-size: .8rem;
+  }
 }
 .histogram-bar__text--muted{
   flex-shrink: 1;
@@ -119,7 +154,7 @@
 
 
 .histogram-btn{
-  width: 2rem;
+  /* width: 2rem; */
   height: 2rem;
   border-radius: 50%;
   background: #fafafa;
@@ -127,19 +162,43 @@
   justify-content: center;
   align-items: center;
   transition: all .3s;
+  position: relative;
+  display: grid;
+  grid-template: 1fr 1fr;
 }
-.histogram-btn:hover{
+/* .histogram-btn:hover{
   background: #eee;
   transition: all .3s;
+}  */
+.histogram-btn::before {
+  content: " ";
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  background: rgba(0,0,0,0.03);
+  z-index: 0;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  grid-area: 1 / 1 / span 1 / span 1;
+  transition: background .3s;
+}
+.histogram-btn:hover::before{
+  background: rgba(0,0,0,0.1);
+  transition: all .3s;
 } 
-
-
+.histogram-btn i{
+  position: relative;
+  grid-area: 1 / 1 / span 1 / span 1;
+}
 
 /* Give app style to histogram*/
 .histogram-bar-label{
   color: #999999;
 }
-.histogram-bar--left .histogram-bar__item--main{
+.histogram-bar--left .histogram-bar__item::before{
+/* .histogram-bar--left .histogram-bar__item--main{ */
   background: #f79646;
 }
 .histogram-bar-container:hover .histogram-bar--left .histogram-bar__item--main{
@@ -149,7 +208,8 @@
 .histogram-bar--left .histogram-bar__text--muted{
   color: #cb5c00;
 }
-.histogram-bar--right .histogram-bar__item--main{
+.histogram-bar--right .histogram-bar__item::before{
+/* .histogram-bar--right .histogram-bar__item--main{ */
   background: #002060;
 }
 .histogram-bar-container:hover .histogram-bar--right .histogram-bar__item--main{
@@ -171,8 +231,39 @@
 .histogram-header .half-item--left{
   color: #f79646;
   font-weight: bold;
+  padding-left: 0;
 }
 .histogram-header .half-item--right{
   color: #002060;
   font-weight: bold;
+  padding-right: 0;
 }
+.histogram-header .half-item--left .histogram-btn{
+  justify-content: flex-start;
+}
+.histogram-header .half-item--right .histogram-btn{
+  justify-content: flex-end;
+}
+
+@media (min-width: 768px){
+  .histogram-bar,
+  .histogram-bar-label{
+    flex-basis: calc(33% - 1px);
+  }
+  .histogram-bar-label{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .histogram-header{
+    justify-content: flex-end;
+  }
+  .histogram-header .half-item{
+    flex-basis: calc(33% - 1px);
+  }
+}
+
+
+
+

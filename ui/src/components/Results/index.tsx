@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { dataControllerContext, queryResultsContext } from "../../contexts/context";
+import { TTokenSummary } from "../../data.controller/data.types";
 import { scrollIDIntoViewHelper } from "../../utils/utils";
 import { CSSLoaderDualRing } from "../CSSLoaders";
 import { 
@@ -8,11 +9,29 @@ import {
 } from "../Histogram";
 import './style.css';
 
+type SortParameters = {
+  byLength: boolean,
+  directionIsAscending: boolean,
+}
 export const Results = () => {
+
+  const [sortParameters, setSortParameters] = useState<SortParameters>({byLength: false, directionIsAscending: false});
 
   const [, waitingForServer] = useContext(dataControllerContext)
   const queryResultsFromContext = useContext(queryResultsContext)
-  const queryResults = queryResultsFromContext ? {...queryResultsFromContext.results} : null
+  const queryResults = queryResultsFromContext ? [...queryResultsFromContext.results[0].data] : []
+
+  const mostFrequent: TTokenSummary = queryResultsFromContext ? {...queryResultsFromContext.mostFrequentWord} : { key: "", length: 0, frequency: 0 }
+  const leastFrequent: TTokenSummary = queryResultsFromContext ? {...queryResultsFromContext.leastFrequentWord} : { key: "", length: 0, frequency: 0 }
+  const longest: TTokenSummary = queryResultsFromContext ? {...queryResultsFromContext.longestWord} : { key: "", length: 0, frequency: 0 }
+  const shortest: TTokenSummary = queryResultsFromContext ? {...queryResultsFromContext.shortestWord} : { key: "", length: 0, frequency: 0 }
+
+
+  console.log({...sortParameters})
+  sortParameters.byLength && queryResults.sort((a, b) => (a.length - b.length) * (sortParameters.directionIsAscending ? 1 : -1))
+  !sortParameters.byLength && queryResults.sort((a, b) => (a.frequency - b.frequency) * (sortParameters.directionIsAscending ? 1 : -1))
+
+
 
   return (
     <div className="container results__container">
@@ -46,24 +65,27 @@ export const Results = () => {
         
         <div className="results__data">
   
-          <HistogramHeader />
-
+          <HistogramHeader onSort={
+            (newValue) => setSortParameters(
+              (current) => { 
+                current.directionIsAscending = (current.byLength === newValue) ? !current.directionIsAscending : current.directionIsAscending;
+                current.byLength = newValue;
+                return {...current}
+              }
+            )}/>
 
           <HistogramData data={[
-              {category1Value: 2, category1Annotation: "fsdf", category2Value: 12, category2Annotation: "dsf"},
-              {category1Value: 10, category1Annotation: "fsdf", category2Value: 20, category2Annotation: "dsf"},
-              {category1Value: 5, category1Annotation: "fsdf", category2Value: 200, category2Annotation: "dsf"},
-              {category1Value: 3, category1Annotation: "fsdf", category2Value: 2, category2Annotation: "dsf"},
+              { label: mostFrequent.key, category1Value: mostFrequent.length, category1Annotation: "", category2Value: mostFrequent.frequency, category2Annotation: "Most Frequent"},
+              { label: leastFrequent.key, category1Value: leastFrequent.length, category1Annotation: "Least Frequent", category2Value: leastFrequent.frequency, category2Annotation: ""},
+              { label: longest.key, category1Value: longest.length, category1Annotation: "Longest", category2Value: longest.frequency, category2Annotation: ""},
+              { label: shortest.key, category1Value: shortest.length, category1Annotation: "", category2Value: shortest.frequency, category2Annotation: "Shortest"},
             ]}/>
 
           <hr/>
 
-          <HistogramData data={[
-              {label: "dasdasd", category1Value: 2,  category2Value: 12},
-              {label: "dasdasd", category1Value: 10, category2Value: 20},
-              {label: "dasdasd", category1Value: 5,  category2Value: 200},
-              {label: "dasdasd", category1Value: 3,  category2Value: 2},
-            ]}/>  
+          <HistogramData data={[...queryResults.map((item) => {
+            return { label: item.key, category1Value: item.length, category1Annotation: "", category2Value: item.frequency, category2Annotation: ""}
+          })]} category1Maximum={longest.length} category2Maximum={mostFrequent.frequency}/>  
         </div>
 
 

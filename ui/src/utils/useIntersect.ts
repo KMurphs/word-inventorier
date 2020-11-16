@@ -12,7 +12,7 @@ type Props = {
   onObservedIntersection: (entry: IntersectionObserverEntry ) => void
 }
 
-
+export const thresholdsHelper = (steps: number) => Array.from(Array(steps).keys(), i => (i / steps) + (1 / (2 * steps)))
 
 export const useIntersect = ({ root = null, rootMargin = "0px", threshold = [.25, .75], onObservedIntersection }: Props): [React.Dispatch<React.SetStateAction<Element | null>>, ()=>(IntersectionObserverEntry | null)]  => {
 

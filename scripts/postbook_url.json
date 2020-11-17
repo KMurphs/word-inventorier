@@ -1,0 +1,16 @@
+{
+    "book": "http://www.gutenberg.org/files/2600/2600-0.txt",
+    "queries": [{
+        "minLength": 0,
+        "maxLength": 13,
+        "topN": 40
+    },{
+        "minLength": 0,
+        "maxLength": 13,
+        "topN": 40
+    },{
+        "minLength": 0,
+        "maxLength": 13,
+        "topN": 40
+    }]
+}

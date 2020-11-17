@@ -21,6 +21,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "publish": "npm run build && cd ../scripts && push-app-to-backend.bat",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

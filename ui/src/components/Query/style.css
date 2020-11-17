@@ -15,7 +15,6 @@
 }
 
 .query__body{
-  /* background-color: red; */
   flex: 1 1 3rem;
   display: flex;
   flex-direction: column;
@@ -151,6 +150,23 @@
     justify-content: flex-start;
     box-shadow: none;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   .query-input{
     flex: 0 0 30vw;
     /* padding-top: 1rem; */
@@ -165,7 +181,7 @@
     max-width: 500px;
     max-width: var(--max-width);
     left: calc((50vw - min(500px, 50vw - 2rem))/2);
-    left: calc((50vw - min(var(--max-width), 50vw - 2rem))/2);
+    left: calc((50vw - min(var(--max-width), calc(50vw - 2rem)))/2);
     margin-bottom: 0rem;
   }
   .query-controls{
@@ -195,6 +211,5 @@
 
   .query-controls .btn{
     margin-bottom: 0;
-  }
-
+  }  
 }

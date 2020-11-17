@@ -75,7 +75,7 @@ function App() {
 
           </div>
 
-        </BrowserRouter>
+        </BrowserRouter> 
     </main>
   );
 }

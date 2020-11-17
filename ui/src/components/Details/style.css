@@ -75,7 +75,7 @@
 .details__body .details__processing{
   display: none;
 }
-.details__body .details__data{
+.details__body .details__data-graph{
   display: block;
   display: flex;
   overflow-y: auto;
@@ -127,7 +127,7 @@
   .details__header h1 > span{
     margin: 2rem 0;
   }
-  .details__body .details__data{
+  .details__body .details__data-graph{
     display: block;
     display: flex;
     overflow-y: auto;
@@ -136,4 +136,77 @@
     left: 0;
     width: 100%;
   }
+}
+
+
+
+
+
+
+
+
+.details__data-text{
+  margin-top: 4rem;
+  color: #444;
+}
+.details__data-text__group h2{
+  text-align: center;
+  padding: 1rem 0;
+}
+.details__data-text__subgroup h3{
+  padding: 1rem 0 .5rem 0;
+}
+.details__data-text__subgroup > div{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.details__data-text__subgroup > div > span:first-child{
+  font-style: italic;
+  color: #777;
+}
+
+.details__data-text__subgroup > div > span:last-child{
+  /* text-overflow: ellipsis; */
+  white-space: nowrap;
+  overflow-x: auto;
+  width: 100%;
+  display: inline-block;
+  padding: .3rem 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: var(--color-secondary-1--dark);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.details__data-text__subgroup > div > span:last-child > span:first-child{
+  flex: 1 0 auto;
+  min-width: 5rem;
+}
+.details__data-text__subgroup > div > span:last-child > span:nth-child(2){
+  flex: 1 0 130px;
+  /* text-align: right; */
+  display: flex;
+  justify-content: flex-end;
+  font-size: .8rem;
+  font-weight: normal;
+}
+.details__data-text__subgroup > div > span:last-child > span:nth-child(2) > span:first-child{
+  flex: 0 0 150px;
+  text-align: right;
+  /* display: flex; */
+}
+.details__data-text__subgroup > div > span:last-child > span:nth-child(2) > span:last-child{
+  flex: 0 0 90px;
+  text-align: right;
+  /* display: flex; */
+}
+
+.details__data-text__subgroup > div > span:last-child > span:nth-child(2) > span > span{
+  color: #aaa;
+  font-weight: normal;
+  font-style: italic;
+  font-size: .8rem;
 }

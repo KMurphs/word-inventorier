@@ -15,6 +15,7 @@ html{
   --color-neutral: #C9C9C9;
   --color-secondary-1--lightest: #fff5ec;
   --color-secondary-1: #F79646;
+  --color-secondary-1--dark: #d37324;
   --color-secondary-2--lightest: hsl(220, 100%, 94%);
   --color-secondary-2--lighter: hsl(220, 65%, 49%);
   --color-secondary-2--light: hsl(220, 85%, 31%);
@@ -46,7 +47,8 @@ html{
   background-color: transparent;
 }
 @media (min-width: 768px){
-  .screen-3{
+  .screen-3,
+  .screen-4{
     height: auto;
     margin-top: 5rem;
   }

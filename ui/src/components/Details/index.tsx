@@ -59,18 +59,64 @@ export const Details = () => {
         
         <div className="details__data">
 
-          <HistogramHeader onSort={
-            (newValue) => setSortParameters(
-              (current) => { 
-                current.directionIsAscending = (current.byLength === newValue) ? !current.directionIsAscending : current.directionIsAscending;
-                current.byLength = newValue;
-                return {...current}
-              }
-            )}  isCompact={true}/>
-            
-          <HistogramData data={[...queryResults.map((item) => {
-              return { category1Value: item.length, category1Annotation: "", category2Value: item.frequency, category2Annotation: ""}
-            })]} category1Maximum={longest.length} category2Maximum={mostFrequent.frequency} isCompact={true}/>  
+          <div className="details__data-graph">
+            <HistogramHeader onSort={
+              (newValue) => setSortParameters(
+                (current) => { 
+                  current.directionIsAscending = (current.byLength === newValue) ? !current.directionIsAscending : current.directionIsAscending;
+                  current.byLength = newValue;
+                  return {...current}
+                }
+              )}  isCompact={true}/>
+              
+            <HistogramData data={[...queryResults.map((item) => {
+                return { category1Value: item.length, category1Annotation: "", category2Value: item.frequency, category2Annotation: ""}
+              })]} category1Maximum={longest.length} category2Maximum={mostFrequent.frequency} isCompact={true}/>  
+          </div>
+
+
+          <div className="details__data-text">
+
+            <div className="details__data-text__group">
+              <h2>Text Processing Results</h2>
+              <div className="details__data-text__subgroup">
+                <h3>Meta Data</h3>
+                <div><span>Text ID: </span><span>{queryResultsFromContext?.id}</span></div>
+                <div><span>Text Type: </span><span>{queryResultsFromContext?.idType}</span></div>
+                <div><span>Text Info: </span><span>{queryResultsFromContext?.meta}</span></div>
+                <div><span>Submitted At: </span><span>{queryResultsFromContext?._createdAt}</span></div>
+                <div><span>Processed In: </span><span>{((queryResultsFromContext?.summaryDurationSec || 0) / 1000).toFixed(2)}sec</span></div>
+              </div>
+              <div className="details__data-text__subgroup">
+                <h3>Summary</h3>
+                <div><span>Word Count: </span><span>{queryResultsFromContext?.wordsCount}</span></div>
+                <div><span>Unique Words: </span><span>{queryResultsFromContext?.uniqueWordsCount}</span></div>
+                <div><span>Most Frequent Word: </span><span><span>{queryResultsFromContext?.mostFrequentWord.key}</span><span><span><span>Frequency: </span>{queryResultsFromContext?.mostFrequentWord.frequency}</span><span><span>Length: </span>{queryResultsFromContext?.mostFrequentWord.length}</span></span></span></div>
+                <div><span>Least Frequent Word: </span><span><span>{queryResultsFromContext?.leastFrequentWord.key}</span><span><span><span>Frequency: </span>{queryResultsFromContext?.leastFrequentWord.frequency}</span><span><span>Length: </span>{queryResultsFromContext?.leastFrequentWord.length}</span></span></span></div>
+                <div><span>Longest Word: </span><span><span>{queryResultsFromContext?.longestWord.key}</span><span><span><span>Frequency: </span>{queryResultsFromContext?.longestWord.frequency}</span><span><span>Length: </span>{queryResultsFromContext?.longestWord.length}</span></span></span></div>
+                <div><span>Shortest Word: </span><span><span>{queryResultsFromContext?.shortestWord.key}</span><span><span><span>Frequency: </span>{queryResultsFromContext?.shortestWord.frequency}</span><span><span>Length: </span>{queryResultsFromContext?.shortestWord.length}</span></span></span></div>
+              </div>
+            </div>
+
+
+            <div className="details__data-text__group">
+              <h2>Query Processing Results</h2>
+              <div className="details__data-text__subgroup">
+                <h3>Query Parameters</h3>
+                <div><span>Limit: </span><span>{queryResultsFromContext?.results[0].uiQuery.topN}</span></div>
+                <div><span>Minimum Length: </span><span>{queryResultsFromContext?.results[0].uiQuery.minLength}</span></div>
+                <div><span>Maximum Length: </span><span>{queryResultsFromContext?.results[0].uiQuery.maxLength}</span></div>
+              </div>
+              <div className="details__data-text__subgroup">
+                <h3>Summary</h3>
+                <div><span>Submitted At: </span><span>{queryResultsFromContext?.results[0]._createdAt}</span></div>
+                <div><span>Processed In: </span><span>{((queryResultsFromContext?.results[0].durationMs || 0) / 1000).toFixed(2)}sec</span></div>
+              </div>
+            </div>
+
+
+
+          </div>
 
         </div>
       </div>

@@ -3,26 +3,25 @@
 .histogram-header *{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-.histogram-header{
-  /* background: #fff;
-  border: 1px solid #eee;
-  margin: auto;
-  width: 100%;
-  min-width: 320px;
-  max-width: 600px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  padding: 2rem;
-  padding-top: 3rem; */
-}
-.histogram-header{
-  display: flex;
-}
 
+}
+.histogram-header-compact span{
+  box-sizing: border-box;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+.histogram-header{
+  display: flex;
+}
+.histogram-header-compact.histogram-header,
+.histogram-container.histogram-compact{
+  height: 280px;
+}
+.histogram-header-compact.histogram-header{
+  flex-direction: column-reverse;
+  /* height: 200px; */
+}
 .half-item{
   flex: 0 0 50%;
   background: #fafafa;
@@ -37,8 +36,19 @@
   padding: 0 .5rem;
   margin-bottom: 0.25rem;
 }
-
-
+.histogram-header-compact.histogram-header .half-item{
+  flex-direction: column-reverse;
+  padding: .2rem .5rem;
+  flex-basis: 48%;
+  /* margin: .2rem 0; */
+  align-items: center;
+}
+.histogram-container.histogram-compact{
+  /* height: 200px; */
+  /* transform: rotate(270deg); */
+  flex-direction: row;
+  flex: 1 1 1px;
+}
 
 
 
@@ -50,6 +60,10 @@
   margin-bottom: .25rem;
   height: 1.5rem;
 }
+.histogram-compact .histogram-bar{
+  margin-bottom: 0;
+  height: auto;
+}
 .histogram-container{
   display: flex;
   flex-direction: column;
@@ -60,16 +74,27 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.histogram-compact .histogram-bar-container{
+  flex: 1 1 1px;
+  transform: rotate(180deg);
+  flex-direction: column;
+}
 .histogram-bar-label{
   flex: 0 0 100%;
   text-align: right; 
   padding: 0 0.5rem;
 }
+.histogram-compact .histogram-bar-label{
+  display: none;
+}
 .histogram-bar{
   display: flex;
   flex-basis: calc(50% - 1px);
 }
-
+.histogram-compact .histogram-bar{
+  height: auto;
+  flex-direction: column;
+}
 .histogram-bar__item{
   background: #fafafa;
   flex: 1 1 10px;
@@ -83,6 +108,9 @@
   flex: 0 0 50%;
   padding: 0 .5rem;
   transition: flex-basis .3s;
+}
+.histogram-compact .histogram-bar__item--main{
+  padding: 0;
 }
 .histogram-bar__item--main::before {
   content: "";
@@ -113,6 +141,9 @@
   font-size: .9rem;
   flex: 1 0 1rem;
   min-width: 1rem;
+}
+.histogram-compact .histogram-bar__text{
+  display: none;
 }
 .histogram-bar-label,
 .histogram-bar__text--muted{
@@ -165,6 +196,7 @@
   position: relative;
   display: grid;
   grid-template: 1fr 1fr;
+  cursor: pointer;
 }
 /* .histogram-btn:hover{
   background: #eee;
@@ -191,6 +223,9 @@
 .histogram-btn i{
   position: relative;
   grid-area: 1 / 1 / span 1 / span 1;
+}
+.histogram-header-compact .histogram-btn{
+  transform: rotate(270deg);
 }
 
 /* Give app style to histogram*/
@@ -238,16 +273,16 @@
   font-weight: bold;
   padding-right: 0;
 }
-.histogram-header .half-item--left .histogram-btn{
+.histogram-header:not(.histogram-header-compact) .half-item--left .histogram-btn{
   justify-content: flex-start;
 }
-.histogram-header .half-item--right .histogram-btn{
+.histogram-header:not(.histogram-header-compact) .half-item--right .histogram-btn{
   justify-content: flex-end;
 }
 
 @media (min-width: 576px){
-  .histogram-bar,
-  .histogram-bar-label{
+  .histogram-container:not(.histogram-compact) .histogram-bar,
+  .histogram-container:not(.histogram-compact) .histogram-bar-label{
     flex-basis: calc(33% - 1px);
   }
   .histogram-bar-label{
@@ -259,7 +294,7 @@
   .histogram-header{
     justify-content: flex-end;
   }
-  .histogram-header .half-item{
+  .histogram-header:not(.histogram-header-compact) .half-item{
     flex-basis: calc(33% - 1px);
   }
 }

@@ -77,9 +77,15 @@
   display: none;
 }
 
+.query-input .autogrowing-textarea-container{
+  height: 100%;
+  max-height: 100%;
+  margin-bottom: 1rem;
+}
 .query-input .autogrow-textarea > textarea, 
 .query-input .autogrow-textarea::after{
   max-height: calc(100vh - 173px - 162px - 3rem);
+  max-height: 100%;
 }
 
 @media (min-width: 576px){

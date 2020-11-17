@@ -80,13 +80,19 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   outline: none;
+  background: rgba(0,0,0,0.05);
+  background: rgba(0,0,0,0.03);
+  line-height: 1.8;
+  color: #333;
+  color: #222;
+  font-size: .95rem;
 }
 .autogrowing-textarea-container label{
   position: absolute;
   top: .5rem;
   left: 1rem;
   font-size: 1rem;
-  color: #444;
+  color: #777;
 }
 .autogrowing-textarea-container textarea:focus + label,
 .autogrowing-textarea-container textarea:valid + label{

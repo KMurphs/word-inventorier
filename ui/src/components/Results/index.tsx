@@ -41,15 +41,24 @@ export const Results = () => {
 
       <div className="results__header">
         <h1>
-          <a className="btn btn--icon btn--secondary" href="/" onClick={evt => { scrollIDIntoViewHelper("query", evt)}}> 
+          <a className="btn btn--icon btn--secondary" href="/" onClick={evt => { scrollIDIntoViewHelper("query", evt) }}> 
             <i className="fas fa-angle-left"></i> 
           </a>  
 
           <span>Results</span>
 
-          <a className="btn btn--icon btn--secondary" href="/" onClick={evt => { scrollIDIntoViewHelper("details", evt)}}> 
-            <i className="fas fa-angle-right"></i>  
-          </a>  
+          {
+            waitingForServer 
+            ? (
+              <span className="btn btn--icon btn--secondary"></span>
+            )
+            : (
+              <a className="btn btn--icon btn--secondary" href="/" onClick={evt => { scrollIDIntoViewHelper("details", evt) }}> 
+                <i className="fas fa-angle-right"></i>  
+              </a>  
+            )
+          }
+
         </h1>
       </div>
 

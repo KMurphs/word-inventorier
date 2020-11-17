@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import DataController from "../data.controller/data.controller";
 import { TTextSummary } from "../data.controller/data.types";
 
@@ -14,7 +14,7 @@ export const queryResultsContext = React.createContext<TTextSummary | null>(null
 interface Props {
   children: React.ReactNode[] | React.ReactNode
 }
-export const QueryLengthRangeProvider = ({children}: Props)=>{
+export const AppContextProvider = ({children}: Props)=>{
 
   const [queryMinLength, setQueryMinLength] = useState(0)
   const [queryMaxLength, setQueryMaxLength] = useState(50)

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import { dataControllerContext, queryResultsContext } from "../../contexts/context";
 import { TTokenSummary } from "../../data.controller/data.types";
 import { scrollIDIntoViewHelper } from "../../utils/utils";
@@ -7,8 +7,8 @@ import {
   TwoCategorySymmetricHistogramHeader as HistogramHeader,
   TwoCategorySymmetricHistogramData as HistogramData,
 } from "../Histogram";
-import { InputWithMovingChangingLabelWithContext } from "../InputWithMovingLabel/withContext";
-import { TwoRangeInputWithContext } from "../TwoRangeInput/withContext";
+// import { InputWithMovingChangingLabelWithContext } from "../InputWithMovingLabel/withContext";
+// import { TwoRangeInputWithContext } from "../TwoRangeInput/withContext";
 import './style.css';
 
 type SortParameters = {

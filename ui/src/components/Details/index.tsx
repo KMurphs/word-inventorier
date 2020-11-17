@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { dataControllerContext, queryResultsContext } from "../../contexts/context";
 import { TTokenSummary } from "../../data.controller/data.types";
+import animateOnScroll from "../../utils/AnimateOnScroll";
+import { thresholdsHelper, useIntersect } from "../../utils/useIntersect";
 import { scrollIDIntoViewHelper } from "../../utils/utils";
 import { CSSLoaderDualRing } from "../CSSLoaders";
 import { HistogramData, HistogramHeader } from "../Histogram/TwoCategorySymmetricHistogram";
@@ -12,28 +14,33 @@ type SortParameters = {
 export const Details = () => {
 
   const [sortParameters, setSortParameters] = useState<SortParameters>({byLength: false, directionIsAscending: false});
-
-
   const [, waitingForServer] = useContext(dataControllerContext)
-  
   const queryResultsFromContext = useContext(queryResultsContext)
   const queryResults = queryResultsFromContext ? [...queryResultsFromContext.results[0].data] : []
 
-  const mostFrequent: TTokenSummary = queryResultsFromContext ? {...queryResultsFromContext.mostFrequentWord} : { key: "", length: 0, frequency: 0 }
-  const leastFrequent: TTokenSummary = queryResultsFromContext ? {...queryResultsFromContext.leastFrequentWord} : { key: "", length: 0, frequency: 0 }
-  const longest: TTokenSummary = queryResultsFromContext ? {...queryResultsFromContext.longestWord} : { key: "", length: 0, frequency: 0 }
-  const shortest: TTokenSummary = queryResultsFromContext ? {...queryResultsFromContext.shortestWord} : { key: "", length: 0, frequency: 0 }
 
-  console.log({...sortParameters})
+  const mostFrequent: TTokenSummary = queryResultsFromContext ? {...queryResultsFromContext.mostFrequentWord} : { key: "", length: 0, frequency: 0 }
+  const longest: TTokenSummary = queryResultsFromContext ? {...queryResultsFromContext.longestWord} : { key: "", length: 0, frequency: 0 }
+
+
   sortParameters.byLength && queryResults.sort((a, b) => (a.length - b.length) * (sortParameters.directionIsAscending ? 1 : -1))
   !sortParameters.byLength && queryResults.sort((a, b) => (a.frequency - b.frequency) * (sortParameters.directionIsAscending ? 1 : -1))
+
+
+  const [titleRef] = useIntersect({threshold: thresholdsHelper(4), onObservedIntersection: animateOnScroll});
+  const [graphRef] = useIntersect({threshold: thresholdsHelper(4), onObservedIntersection: animateOnScroll});
+  const [group1Ref] = useIntersect({threshold: thresholdsHelper(100), onObservedIntersection: animateOnScroll});
+  const [group2Ref] = useIntersect({threshold: thresholdsHelper(100), onObservedIntersection: animateOnScroll});
+
+
+
 
   return (
     <div className="container details__container">
 
 
       <div className="details__header">
-        <h1>
+        <h1 ref={titleRef} data-aos="fade-up">
           <a className="btn btn--icon btn--secondary" href="/" onClick={evt => { scrollIDIntoViewHelper("results", evt)}}> 
             <i className="fas fa-angle-left"></i> 
           </a>  
@@ -57,9 +64,9 @@ export const Details = () => {
         
         
         
-        <div className="details__data">
+        <div className="details__data"  >
 
-          <div className="details__data-graph">
+          <div className="details__data-graph" ref={graphRef} data-aos="fade-left">
             <HistogramHeader onSort={
               (newValue) => setSortParameters(
                 (current) => { 
@@ -79,7 +86,7 @@ export const Details = () => {
 
             <div className="details__data-text__group">
               <h2>Text Processing Results</h2>
-              <div className="details__data-text__subgroup">
+              <div className="details__data-text__subgroup" ref={group1Ref} data-aos="fade-right">
                 <h3>Text Meta Data</h3>
                 <div><span>Text ID: </span><span>{queryResultsFromContext?.id}</span></div>
                 <div><span>Text Type: </span><span>{queryResultsFromContext?.idType}</span></div>
@@ -99,7 +106,7 @@ export const Details = () => {
             </div>
 
 
-            <div className="details__data-text__group">
+            <div className="details__data-text__group" ref={group2Ref} data-aos="fade-right">
               <h2>Query Processing Results</h2>
               <div className="details__data-text__subgroup">
                 <h3>Query Parameters</h3>

@@ -8,7 +8,7 @@ import { Query } from './components/Query';
 import { Details } from './components/Details';
 import { Results } from './components/Results';
 import ScrollToURI from './utils/ScrollToURI';
-import { dataControllerContext, QueryLengthRangeProvider } from './contexts/context';
+import { dataControllerContext, QueryLengthRangeProvider, queryResultsContext } from './contexts/context';
 
 
 
@@ -20,6 +20,8 @@ function App() {
   // (dc.current === null) && (dc.current = new DataController());
   const [,,dataController] = useContext(dataControllerContext)
   console.log('[App]: Data Controller Version: ', dataController.getVersion())
+
+  const queryResultsFromContext = useContext(queryResultsContext)
 
   // const [isModalActive, setIsModalActive] = useState<boolean>(false)
 
@@ -48,16 +50,38 @@ function App() {
             <Query />
           </div>
 
-          <div id="results" className="screen screen-3">
-            <Results />
-          </div>
+          {
+            queryResultsFromContext && (
 
-          <div id="details" className="screen screen-4">
-            <Details />
-          </div>
+              <React.Fragment>
+                <div id="results" className="screen screen-3">
+                  <Results />
+                </div>
+          
+                <div id="details" className="screen screen-4">
+                  <Details />
+                </div>
+              </React.Fragment>
+
+            )
+          }
 
           <div id="footer" className="screen screen--footer">
-            <h1>Footer Screen</h1>
+            <h1>Word Inventorier App</h1>
+            <p className="app-details">
+              <span>Author: </span><span>Stephan K.</span>
+              <span>Github Repository: </span><span><a href="https://github.com/KMurphs/word-inventorier" target="_blank">https://github.com/KMurphs/word-inventorier</a></span>
+            </p>
+
+            <h2>Contact Me</h2>
+            <div className="contact-message"><p>Want to chat? Got a question/Suggestion? Drop me a message. <br/>I'm always happy to engage with the community</p></div>
+            <div className="contact-links">
+              <a href="https://github.com/KMurphs" target="_blank"><i className="fab fa-github"></i></a>
+              <a href="https://twitter.com/murphs_k" target="_blank"><i className="fab fa-twitter"></i></a>
+              <a href="https://www.linkedin.com/in/stephane-kibonge/" target="_blank"><i className="fab fa-linkedin"></i></a>
+              <a href="https://codepen.io/kmurphs" target="_blank"><i className="fab fa-codepen"></i></a>
+            </div>
+
           </div>
 
         </BrowserRouter>

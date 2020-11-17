@@ -80,15 +80,15 @@ export const Details = () => {
             <div className="details__data-text__group">
               <h2>Text Processing Results</h2>
               <div className="details__data-text__subgroup">
-                <h3>Meta Data</h3>
+                <h3>Text Meta Data</h3>
                 <div><span>Text ID: </span><span>{queryResultsFromContext?.id}</span></div>
                 <div><span>Text Type: </span><span>{queryResultsFromContext?.idType}</span></div>
                 <div><span>Text Info: </span><span>{queryResultsFromContext?.meta}</span></div>
-                <div><span>Submitted At: </span><span>{queryResultsFromContext?._createdAt}</span></div>
-                <div><span>Processed In: </span><span>{((queryResultsFromContext?.summaryDurationSec || 0) / 1000).toFixed(2)}sec</span></div>
+                <div><span>Text was Submitted at: </span><span>{queryResultsFromContext?._createdAt}</span></div>
+                <div><span>Text was Processed In: </span><span>{((queryResultsFromContext?.summaryDurationSec || 0) / 1000).toFixed(2)}sec</span></div>
               </div>
               <div className="details__data-text__subgroup">
-                <h3>Summary</h3>
+                <h3>Text Summary</h3>
                 <div><span>Word Count: </span><span>{queryResultsFromContext?.wordsCount}</span></div>
                 <div><span>Unique Words: </span><span>{queryResultsFromContext?.uniqueWordsCount}</span></div>
                 <div><span>Most Frequent Word: </span><span><span>{queryResultsFromContext?.mostFrequentWord.key}</span><span><span><span>Frequency: </span>{queryResultsFromContext?.mostFrequentWord.frequency}</span><span><span>Length: </span>{queryResultsFromContext?.mostFrequentWord.length}</span></span></span></div>
@@ -103,14 +103,14 @@ export const Details = () => {
               <h2>Query Processing Results</h2>
               <div className="details__data-text__subgroup">
                 <h3>Query Parameters</h3>
-                <div><span>Limit: </span><span>{queryResultsFromContext?.results[0].uiQuery.topN}</span></div>
-                <div><span>Minimum Length: </span><span>{queryResultsFromContext?.results[0].uiQuery.minLength}</span></div>
-                <div><span>Maximum Length: </span><span>{queryResultsFromContext?.results[0].uiQuery.maxLength}</span></div>
+                <div><span>Most Frequent Tokens Retrieved: </span><span>{queryResultsFromContext?.results[0].uiQuery.topN}</span></div>
+                <div><span>Token Minimum Length: </span><span>{queryResultsFromContext?.results[0].uiQuery.minLength}</span></div>
+                <div><span>Token Maximum Length: </span><span>{queryResultsFromContext?.results[0].uiQuery.maxLength}</span></div>
               </div>
               <div className="details__data-text__subgroup">
-                <h3>Summary</h3>
-                <div><span>Submitted At: </span><span>{queryResultsFromContext?.results[0]._createdAt}</span></div>
-                <div><span>Processed In: </span><span>{((queryResultsFromContext?.results[0].durationMs || 0) / 1000).toFixed(2)}sec</span></div>
+                <h3>Query Summary</h3>
+                <div><span>Query was Submitted at: </span><span>{queryResultsFromContext?.results[0]._createdAt}</span></div>
+                <div><span>Query was Processed in: </span><span>{((queryResultsFromContext?.results[0].durationMs || 0) / 1000).toFixed(2)}sec</span></div>
               </div>
             </div>
 

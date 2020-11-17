@@ -20,6 +20,7 @@ html{
   --color-secondary-2--lighter: hsl(220, 65%, 49%);
   --color-secondary-2--light: hsl(220, 85%, 31%);
   --color-secondary-2: hsl(220, 100%, 19%);
+  --color-accent-lightest: #ff73cc;
   --color-accent-lighter: #e048a9;
   --color-accent-light: #d83d9f;
   --color-accent: #c9298e;
@@ -52,4 +53,64 @@ html{
     height: auto;
     margin-top: 5rem;
   }
+}
+
+.screen--footer{
+  background-color: var(--color-secondary-2);
+  color: white;
+  margin-top: 6rem;
+  text-align: center;
+  padding: 4rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.screen--footer h1{
+  margin: 1.5rem 0;
+  font-size: 1.5rem;
+}
+.screen--footer .app-details{
+  display: grid;
+  grid-template: 1fr / 200px fit-content(40%);
+  text-align: left;
+  width: auto;
+}
+.screen--footer .app-details span{
+  min-width: max-content;
+}
+.screen--footer h2{
+  margin: 6rem 0 2rem 0;
+  font-size: 2rem;
+}
+.screen--footer .contact-message{
+  line-height: 1.8;
+  
+}
+.screen--footer .contact-message p{
+  font-size: 1.2rem;
+}
+.screen--footer a{
+  color: var(--color-accent-lightest);
+}
+.screen--footer .contact-links{
+  display: flex;
+  margin-top: 2rem;
+}
+.screen--footer .contact-links a{
+  width: 3rem;
+  height: 3rem;
+  margin: 2rem 1rem;
+  display: inline-block;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  background-color: var(--color-accent-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: all .3s;
+}
+.screen--footer .contact-links a:hover{
+  background-color: var(--color-accent-dark);
+  transition: all .3s;
 }

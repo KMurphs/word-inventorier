@@ -1,0 +1,5 @@
+{
+  "typescript.tsdk": "./ui/node_modules/typescript/lib",
+  "html-css-class-completion.includeGlobPattern": "./ui/src/**/*.{css,html}",
+  "tailwindCSS.emmetCompletions": true
+}   

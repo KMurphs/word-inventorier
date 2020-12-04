@@ -1,6 +1,6 @@
 {
-  "short_name": "Corpus Inventory App",
-  "name": "Corpus Inventory Application",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",

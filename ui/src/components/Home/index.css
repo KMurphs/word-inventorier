@@ -1,0 +1,50 @@
+.Home header.component-header h1{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 4.3rem;
+  margin-top: 2rem;
+}
+.Home header.component-header h2{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.25rem;
+  line-height: 1.8rem;
+  margin-bottom: .5rem;
+}
+
+.Home main.component-body{
+  flex: 1 1 50%;
+  line-height: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.Home main.component-body span{
+  margin-bottom: .45rem;
+  display: inline-block;
+}
+.Home main.component-body ul li{
+  display: flex;
+  align-items: baseline;
+}
+.Home main.component-body ul li .icon{
+  margin: 0 1rem;
+  display: inline-block;
+}
+
+.Home .component-body__image{
+  flex: 1 1 10px;
+  display: grid;
+  grid-template: 1fr / 1fr;
+}
+.Home .component-body__image img{
+  height: 100%;
+  margin: 0 auto;
+}
+
+.Home .component-footer{
+  margin-top: 3.5rem;
+}

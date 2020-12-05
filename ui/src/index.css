@@ -1,17 +1,76 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* C:\PersonalProjects\corpus-word-inventory\ui\node_modules\tailwindcss\dist\base.css */
+/* C:\PersonalProjects\corpus-word-inventory\ui\node_modules\tailwindcss\dist\components.css */
+/* C:\PersonalProjects\corpus-word-inventory\ui\node_modules\tailwindcss\dist\utilities.css */
+
+
+
+html, body, #root, .App,
+.full-height{
+  /* https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser */
+  /* https://dev.to/admitkard/mobile-issue-with-100vh-height-100-100vh-3-solutions-3nae */
+  /* https://stackoverflow.com/a/60735432/9034699 */
+  height: calc(100vh - calc(100vh - 100%))
+}
+
+.flex-force-wrap{
+  flex: 0 0 100%;
+}
+.hide-on-mobile{
+  display: none;
+}
+@media (min-width: 1024px){
+  .hide-on-mobile{
+    display: block;
+  }
+}
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif;*/
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --primary-100: #E3EDFF;
+  --primary-200: #ABC3EF;
+  --primary-500: #2C59AC;
+  --primary-800: #1A3568;
+  --accent-100: #FFEBE8;
+  --accent-200: #FFD3CB;
+  --accent-500: #F48571;
+  --accent-600: #DC5D46;
+  --accent-700: #AB4A14;
+
+  color: #1A3568;
+  color: var(--primary-800);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+
+.btn{
+  background: #2C59AC;
+  background: var(--primary-500);
+  border-radius: 10px;
+  display: block;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  color: #FFFFFF;
+  min-height: 50px;
+  padding: .5rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

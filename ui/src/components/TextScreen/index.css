@@ -1,0 +1,26 @@
+.TextScreen main.component-body{
+  flex: 1 1 50%;
+  line-height: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .TextScreen main.component-body span{
+  margin-bottom: .45rem;
+  display: inline-block;
+} */
+
+
+.TextScreen .component-body__image{
+  flex: 1 1 10px;
+  display: grid;
+  grid-template: 1fr / 1fr;
+}
+.TextScreen .component-body__image img{
+  height: 100%;
+  margin: 0 auto;
+}
+
+.TextScreen .component-footer{
+  margin-top: 3.5rem;
+}

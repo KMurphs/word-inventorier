@@ -74,3 +74,27 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+h1{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 4.3rem;
+  /* margin-top: 2rem; */
+}
+h2{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.25rem;
+  line-height: 1.8rem;
+  /* margin-bottom: .5rem; */
+}
+
+.component-header h2{
+  font-weight: 600;
+  color: #2C59AC;
+  color: var(--primary-500);
+  line-height: 2.125rem;
+}

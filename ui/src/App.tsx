@@ -7,22 +7,44 @@ import TextScreen from './components/TextScreen';
 import DetailedResultsScreen from './components/DetailedResultsScreen';
 import RangeScreen from './components/RangeScreen';
 import ResultScreen from './components/ResultScreen';
-import { scrollIDIntoViewHelper } from './utils/scrollHelpers';
+import { scrollIDIntoViewHelper, useResetURI } from './utils/scrollHelpers';
 
 
 function App() {
 
   const [currentScreen, setCurrentScreen] = useState<string>("Home")
+  console.log("App refreshed")
+
+  // const resetURI = useRef<boolean>(false)
+  // const prevURI = useRef<string | null>("Home")
+  // const nextURI = useRef<string>("Home")
+
+
+  // const handleResetURI = () => {window.history.pushState("Home", "Home", `/Home`);};
+  // useEffect(() => {
+  //   window.addEventListener("load", handleResetURI);
+
+  //   return () => {
+  //     // Clean up the listener
+  //     window.removeEventListener("load", handleResetURI);
+  //   };
+  // });
+  useResetURI()
+
+
 
   const handleScreenChange = (nextScreenId: string, clickEvt?: any)=>{
     setCurrentScreen(nextScreenId)
     scrollIDIntoViewHelper(nextScreenId, clickEvt)
   }
+
+  
+
   return (
     <div className="App full-height flex flex-col ">
 
 
-      <header className={`app-header p-8 flex justify-between flex-wrap ${currentScreen == 'Home' ? 'hide-on-mobile' : '' }`}>
+      <header className={`app-header p-8 flex justify-between flex-wrap ${currentScreen === 'Home' ? 'hide-on-mobile' : '' }`}>
         <div className="logo hidden">Words</div>
         <div className="progress w-full at-step-1 at-step-2 at-step-3 at-steps-completed">
           <ul className="grid grid-cols-3 text-xs max-w-lg m-auto con">
@@ -50,7 +72,7 @@ function App() {
         </section>
 
         <section className="flex">
-          <div id="TextScreen" className="app-screen p-8 w-screen"><TextScreen /></div>
+          <div id="TextScreen" className="app-screen p-8 w-screen"><TextScreen onSubmit={evt => handleScreenChange("ResultScreen", evt)}/></div>
           <div id="RangeScreen" className="app-screen p-8 w-screen"><RangeScreen /></div>
         </section>
 

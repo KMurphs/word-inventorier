@@ -1,19 +1,9 @@
 .Home header.component-header h1{
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 4.3rem;
   margin-top: 2rem;
 }
 .Home header.component-header h2{
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: normal;
-  font-size: 1.25rem;
-  line-height: 1.8rem;
   margin-bottom: .5rem;
-}
+} 
 
 .Home main.component-body{
   flex: 1 1 50%;

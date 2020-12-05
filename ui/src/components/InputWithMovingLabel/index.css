@@ -1,69 +1,32 @@
 .input-with-moving-label {
 	position: relative;
-	/* border-bottom: 1px solid #777; */
-	margin-bottom: .5rem;
+  padding-top: 1.5rem;
+  display: grid;
+  grid-template: 1fr / 1fr;
 }
-
-.input-with-moving-label *,
-.input-with-moving-label *::before,
-.input-with-moving-label *::after{
-  transition: all .3s;
+.input-with-moving-label .moving-label,
+.input-with-moving-label input{
+  grid-area: 1 / 1 / 2 / 2;
+  position: relative;
 }
-
-.input-with-moving-label::before, .input-with-moving-label::after{
-	position: absolute;
-	bottom: 0;
-	height: 1px;
-	width: 100%;
-	left: 0;
-	content: "";
-}
-.input-with-moving-label::before{
-	background-color: #aaa;
-	background-color: var(--color-secondary-2);
-	opacity: .5;
-}
-.input-with-moving-label::after{
-	background-color: #666;
-	background-color: var(--color-secondary-2);
-	transform: scaleX(0);
-}
-.input-with-moving-label:hover::after{
-	transform: scaleX(1);
-}
-.input-with-moving-label .dynamic-value{
-	color: var(--color-secondary-2);
-	/* font-weight: bold; */
+.input-with-moving-label .moving-label{
+  padding-left: 1rem;
+  padding-top: .5rem;
+  top: 0;
+  left: 0;
+  color: #777;
 }
 .input-with-moving-label input{
-	padding: 0rem 1rem .5rem 1rem;
-	width: 100%;
-	margin-top: 1.5rem;
-	position: relative;
 	z-index: 1;
-	background: none;
-	outline: none;
-	border: none;
-	font-size: 1rem;
+	background: none !important;
 }
-
-.input-with-moving-label .moving-label{
-	font-size: 1rem;
-	position: absolute;
-	top: 1.3rem;
-	left: 1rem;
-	display: inline-block;
-	width: 100%;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	padding-right: 1rem
-}
+.input-with-moving-label *{
+  transition: top .3s, left .3s, font-size .3s;
+} 
 
 .input-with-moving-label input:valid ~ .moving-label,
 .input-with-moving-label input:focus ~ .moving-label{
-	top: 0rem;
-	left: 0rem;
+  top: -2rem;
+  left: -1rem;
 	font-size: .8rem;
-	opacity: 1;
 }

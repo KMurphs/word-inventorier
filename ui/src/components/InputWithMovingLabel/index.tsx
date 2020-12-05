@@ -4,7 +4,7 @@ import './index.css';
 export type Props = {
   value: number | string,
   setValue: (newValue: number | string) => void,
-  label?: string
+  label: string
 }
 type PropsInternal = Props & {
   type: string
@@ -16,7 +16,8 @@ const InputWithMovingLabel: React.FC<PropsInternal> = ({value, setValue, label, 
     <div className="input-with-moving-label" >
       <input id="input-1" 
              type={type} 
-             required value={value} 
+             required 
+             value={value} 
              onChange={evt => setValue((evt.target as HTMLInputElement).value)}
             //  onChange={evt => setValue(parseInt((evt.target as HTMLInputElement).value))}
       />

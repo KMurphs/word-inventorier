@@ -27,6 +27,23 @@ const InputWithMovingLabel: React.FC<PropsInternal> = ({value, setValue, label, 
   )
   
 }
+const TextAreaWithMovingLabel: React.FC<Props> = ({value, setValue, label}: Props) => {
+
+  return (
+    <div className="input-with-moving-label" >
+      <textarea name="textarea-1"
+                id="textarea-1" 
+                required 
+                value={value} 
+                onChange={evt => setValue((evt.target as HTMLTextAreaElement).value)}>
+       </textarea>
+
+      <label htmlFor="textarea-1" className="moving-label">{label}</label>
+    </div>
+  )
+  
+}
+
 
 const useWithType = (ReactComponent: React.FC<PropsInternal>, explicitType: string): React.FC<Props> => {
   return (props: Props) => <ReactComponent type={explicitType} {...props}/>
@@ -38,5 +55,6 @@ const useWithType = (ReactComponent: React.FC<PropsInternal>, explicitType: stri
 
 
 
+export { TextAreaWithMovingLabel as TextArea};
 export const TextInput: React.FC<Props> = (props: Props) => useWithType(InputWithMovingLabel, "text")(props)
 export const NumericInput: React.FC<Props> = (props: Props) => useWithType(InputWithMovingLabel, "number")(props)

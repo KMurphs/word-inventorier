@@ -5,7 +5,8 @@
   grid-template: 1fr / 1fr;
 }
 .input-with-moving-label .moving-label,
-.input-with-moving-label input{
+.input-with-moving-label input,
+.input-with-moving-label textarea{
   grid-area: 1 / 1 / 2 / 2;
   position: relative;
 }
@@ -16,7 +17,8 @@
   left: 0;
   color: #777;
 }
-.input-with-moving-label input{
+.input-with-moving-label input,
+.input-with-moving-label textarea{
 	z-index: 1;
 	background: none !important;
 }
@@ -25,7 +27,9 @@
 } 
 
 .input-with-moving-label input:valid ~ .moving-label,
-.input-with-moving-label input:focus ~ .moving-label{
+.input-with-moving-label input:focus ~ .moving-label,
+.input-with-moving-label textarea:valid ~ .moving-label,
+.input-with-moving-label textarea:focus ~ .moving-label{
   top: -2rem;
   left: -1rem;
 	font-size: .8rem;

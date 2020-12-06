@@ -5,12 +5,26 @@
   flex-direction: column;
 }
 
-/* .TextScreen main.component-body span{
-  margin-bottom: .45rem;
-  display: inline-block;
-} */
+.TextScreen main.component-body .input-group{
+  margin-top: 2.8rem;
+  margin-bottom: 2.8rem;
+} 
+.TextScreen main.component-body .input-group.input-group-with-textarea{
+  margin-top: 1rem;
+  margin-bottom: 0;
+} 
+.TextScreen main.component-body .input-group.input-group-with-textarea textarea{
+  height: 20vh;
+}
 
-
+.TextScreen main.component-body .input-group .FileReader{
+  margin-top: 2rem;
+  margin-bottom: .5rem;
+  border: 1px solid var(--accent-200);
+  color: var(--accent-600);
+  --bg-color: var(--accent-500);
+  
+}
 .TextScreen .component-body__image{
   flex: 1 1 10px;
   display: grid;
@@ -21,6 +35,8 @@
   margin: 0 auto;
 }
 
-.TextScreen .component-footer{
-  margin-top: 3.5rem;
+
+.TextScreen .component-footer .btn.btn-tertiary{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }

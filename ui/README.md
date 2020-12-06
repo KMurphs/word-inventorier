@@ -53,3 +53,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 2. https://transfonter.org/
 2. https://stackoverflow.com/a/24990647/9034699
 2. https://stackoverflow.com/questions/24990554/how-to-include-a-font-ttf-using-css
+3. https://web.dev/read-files/

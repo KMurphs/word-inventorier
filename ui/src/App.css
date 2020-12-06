@@ -124,13 +124,24 @@
   font-style: normal;
   font-weight: normal;
 }
-.input-group input[type="text"]{
+.input-group input[type="text"], textarea{
   min-height: 2.375rem;
-  padding: .5rem;
+  padding: .5rem 1rem;
   font-size: 1rem;
   line-height: 1.3125rem;
   border-radius: 4px;
   border: 1px solid #CED4DA;
+  border: 1px solid var(--accent-200);
   background: #FFFFFF;
+}
+.input-group input, textarea{
   margin-bottom: .5rem;
 }
+.input-group .text-muted button{
+  text-decoration: underline;
+  /* border-bottom-width: 2px; */
+  /* border-bottom-style: solid; */
+}
+
+
+

@@ -72,7 +72,11 @@ function App() {
         </section>
 
         <section className="flex">
-          <div id="TextScreen" className="app-screen p-8 w-screen"><TextScreen onSubmit={evt => handleScreenChange("ResultScreen", evt)}/></div>
+          <div id="TextScreen" className="app-screen p-8 w-screen">
+            <TextScreen onSubmit={evt => handleScreenChange("ResultScreen", evt)}
+                        onSetRange={evt => handleScreenChange("RangeScreen", evt)}
+            />
+          </div>
           <div id="RangeScreen" className="app-screen p-8 w-screen"><RangeScreen /></div>
         </section>
 

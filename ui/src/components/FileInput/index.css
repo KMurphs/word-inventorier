@@ -1,0 +1,37 @@
+.FileReader{
+  --progress: 30;
+  --bg-color: blue;
+  display: grid;
+  grid-template: 1fr 1fr;
+  padding: .2rem;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+.FileReader input[type="file"]{
+  /* border-bottom: 1px solid red; */
+  width: 100%;
+  grid-area: 1 / 1 / 2 / 2;
+  margin: 0 !important;
+  margin-bottom: 3px !important;
+  padding: 0 !important;
+}
+.FileReader::before,
+.FileReader::after{
+  content: "";
+  height: 2px;
+  width: 100%;
+  background-color: blue;
+  background-color: var(--bg-color);
+  display: block;
+  grid-area: 1 / 1 / 2 / 2;
+  align-self: end;
+  border-radius: 10px;
+}
+.FileReader::before{
+  background-color:#eee;
+}
+.FileReader::after{
+  width: 20%;
+  width: calc(var(--progress) * 1%);
+  transition: width .3s;
+}

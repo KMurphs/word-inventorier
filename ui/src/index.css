@@ -74,6 +74,28 @@ code {
   justify-content: center;
   align-items: center;
 }
+.btn-tertiary{
+  align-self: end;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  background: none;
+  color: var(--primary-500);
+  align-items: end;
+  display: flex;
+  margin-left: auto;
+  padding: 0;
+  min-height: auto;
+}
+.btn-tertiary .icon{
+  margin-left: 1rem;
+}
+
+
+
+
 
 h1{
   font-family: "Poppins";
@@ -97,4 +119,6 @@ h2{
   color: #2C59AC;
   color: var(--primary-500);
   line-height: 2.125rem;
+  margin-bottom: 1.5rem;
 }
+

@@ -53,14 +53,6 @@ function App() {
             <li><span>Explore</span></li>
           </ul>
         </div>
-        <div className="flex-force-wrap flex flex-col">
-          {/* <button onClick={evt => scrollIDIntoViewHelper("Home", evt)}>toHome</button> */}
-          {/* <button onClick={evt => scrollIDIntoViewHelper("TextScreen", evt)}>toText</button> */}
-          {/* <button onClick={evt => scrollIDIntoViewHelper("RangeScreen", evt)}>toRange</button> */}
-          {/* <button onClick={evt => scrollIDIntoViewHelper("ResultScreen", evt)}>toResults</button> */}
-          {/* <button onClick={evt => scrollIDIntoViewHelper("DetailedResultsScreen", evt)}>toDetails</button> */}
-        </div>
-        
       </header>
 
 
@@ -77,7 +69,11 @@ function App() {
                         onSetRange={evt => handleScreenChange("RangeScreen", evt)}
             />
           </div>
-          <div id="RangeScreen" className="app-screen p-8 w-screen"><RangeScreen /></div>
+          <div id="RangeScreen" className="app-screen p-8 w-screen">
+            <RangeScreen onSubmit={evt => handleScreenChange("ResultScreen", evt)}
+                         onEnterText={evt => handleScreenChange("TextScreen", evt)}
+            />
+          </div>
         </section>
 
         <section className="flex">

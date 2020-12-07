@@ -39,4 +39,5 @@
 .TextScreen .component-footer .btn.btn-tertiary{
   margin-top: 2rem;
   margin-bottom: 2rem;
+  margin-left: auto;
 }

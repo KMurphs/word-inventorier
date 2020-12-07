@@ -1,0 +1,151 @@
+.two-range-input, .two-range-input * {
+	font: inherit;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.two-range-input{
+	/* margin: 5em auto; */
+	padding-top: 1.5rem;
+	width: 20rem;
+	width: 100%;
+	--dif: calc(var(--max) - var(--min));
+	--bg-col: #0900ff;
+  --fg-col: white;
+  --thumb: 2rem;
+	--left: calc((var(--a) - var(--min))/var(--dif) * calc(20rem - var(--thumb)));
+	--right: calc((var(--b) - var(--min))/var(--dif) * calc(20rem - var(--thumb)));
+	--width: calc((var(--b) - var(--a))/var(--dif) * calc(20rem - var(--thumb)));
+	--left: calc((var(--a) - var(--min))/var(--dif) * calc(100% - var(--thumb)));
+	--right: calc((var(--b) - var(--min))/var(--dif) * calc(100% - var(--thumb)));
+	--width: calc((var(--b) - var(--a))/var(--dif) * calc(100% - var(--thumb)));
+	display: grid;
+	grid-template: -webkit-max-content/ 1fr 1fr;
+	grid-template: max-content/ 1fr 1fr;
+	position: relative;
+}
+
+.two-range-input input[type="range"]{
+	grid-column: 1/ span 2;
+	grid-row: 1;
+	background: none;
+	pointer-events: none;
+	margin: 0!important;
+}
+.two-range-input input[type='range']::-webkit-slider-runnable-track, 
+.two-range-input input[type='range']::-webkit-slider-thumb, 
+.two-range-input input[type='range'] {
+	-webkit-appearance: none;
+}
+.two-range-input input[type='range']::-webkit-slider-runnable-track,
+.two-range-input input[type='range']::-moz-range-track {
+	width: 100%;
+	background: none;
+}
+.two-range-input input[type='range']:focus {
+  outline: none;
+}
+/* .two-range-input input[type='range']::-moz-range-thumb, */
+.two-range-input input[type='range']::-webkit-slider-thumb{
+	border: none;
+	width: 1rem;
+	height: 1rem;
+  width: var(--thumb);
+  height: var(--thumb);
+  background: var(--bg-col);
+	pointer-events: auto;
+	z-index: 2;
+	position: relative;
+  opacity: .1;
+  opacity: .0;
+	transform: translate(0, -40%);
+	/* transform: translate(0.25rem, -25%); */
+} 
+
+
+.two-range-input .track-muted{
+	height: 2px;
+	background: #ccc;
+	width: 100%;
+	grid-row: 1;
+	grid-column: 1/ span 2;
+	position: relative;
+	top: calc(50% - 1px);
+	z-index: 0;
+}
+
+
+.two-range-input::after{
+	grid-column: 1/ span 2;
+	grid-row: 1;
+	background: var(--bg-col);
+	content: "";
+	height: 2px;
+	position: absolute;
+	top: calc(50% - 1px);
+	left: calc(0.5 * var(--thumb) + var(--left));
+	width: var(--width);
+}
+
+
+
+
+
+
+
+
+
+.two-range-input output{
+	position: absolute;
+	grid-column: 1/ span 2;
+	grid-row: 1;
+	background: var(--bg-col);
+  height: 1rem;
+  width: 1rem;
+	left: var(--left);
+	transform: translate(50%, 50%);
+	/* transform: translate(75%, 75%); */
+  border-radius: 50%;
+}
+.two-range-input output ~ output{
+	left: var(--right);
+}
+.two-range-input output::after{
+  content: "";
+	background: #0900ff;
+  background: var(--bg-col);
+	display: block;
+	height: 1rem;
+	width: 1rem;
+	position: absolute;
+	z-index: -1;
+	left: 50%;
+	transform: translate(-50%, -225%) rotate(45deg) scale(0.8);
+	border-radius: 2px; 
+}
+.two-range-input output::before{
+  counter-reset: val var(--val);
+	content: counter(val);
+	background: #0900ff;
+  background: var(--bg-col);
+  color: var(--fg-col);
+	display: block;
+	height: auto;
+  min-width: 1.5rem;
+  width: fit-content;
+  left: 0;
+	padding: 0 .2rem;
+	text-align: center;
+	border-radius: 3px;
+	font-size: .9rem;
+	line-height: 1.3rem;
+	z-index: 1;
+  left: calc(-50% + 0.5rem); 
+  transform: translate(-25%, -125%);
+}
+
+
+
+
+

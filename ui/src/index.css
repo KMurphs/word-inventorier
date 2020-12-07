@@ -73,6 +73,16 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid #2C59AC;
+  border-color: var(--primary-500);
+}
+.btn-secondary{
+  font-weight: normal;
+  color: #2C59AC;
+  color: var(--primary-500);
+  background: transparent;
+  border: 1px solid #2C59AC;
+  border-color: var(--primary-500);
 }
 .btn-tertiary{
   align-self: end;
@@ -83,11 +93,11 @@ code {
   line-height: 30px;
   background: none;
   color: var(--primary-500);
-  align-items: end;
+  align-items: flex-end;
   display: flex;
-  margin-left: auto;
   padding: 0;
   min-height: auto;
+  border-color: transparent;
 }
 .btn-tertiary .icon{
   margin-left: 1rem;

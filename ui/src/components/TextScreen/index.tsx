@@ -17,7 +17,7 @@ export default function TextScreen({onSubmit, onSetRange}: Props) {
   const [currentInputType, setCurrentInputType] = useState<number>(0);
   const [, setQueryContent] = useContext(queryContentContext);
 
-  
+
   const handleInputTypeChange = (evt: any, nextInputType: number) => {
     evt.preventDefault();
     setCurrentInputType(nextInputType);
@@ -77,7 +77,7 @@ export default function TextScreen({onSubmit, onSetRange}: Props) {
           <span>Set Range</span>
           <span className="icon"><img src={leftArrow} alt="left arrow"/></span>
         </button>
-        <button className="btn w-full" onClick={onSubmit}><span>Submit</span></button>
+        <button className="btn btn-secondary w-full" onClick={onSubmit}><span>Submit</span></button>
       </footer>
     </div>
   );

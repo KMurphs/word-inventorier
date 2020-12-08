@@ -1,3 +1,4 @@
+
 .Home header.component-header h1{
   margin-top: 2rem;
   color: var(--primary-500);
@@ -30,7 +31,7 @@
 
 .Home .component-body__image{
   flex: 1 1 10px;
-  display: grid;
+  /* display: grid; */
   grid-template: 1fr / 1fr;
 }
 .Home .component-body__image img{
@@ -40,4 +41,27 @@
 
 .Home .component-footer{
   margin-top: 3.5rem;
+}
+
+@media (min-width: 1024px){
+  .Home .banner img{
+    max-height: 45vh;
+    margin: auto;
+  }
+  .Home main.component-body{
+    flex-basis: 10px;
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+    flex-grow: 0;
+    margin: 1rem 0;
+  }
+  .Home main.component-body span{
+    margin-bottom: .5rem;
+  }
+  .Home .component-footer{
+    margin-top: 3rem;
+  }
+  .Home header.component-header h1{
+    margin-top: 1rem;
+  }
 }

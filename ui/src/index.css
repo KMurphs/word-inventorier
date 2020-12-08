@@ -23,8 +23,11 @@ html, body, #root, .App,
 }
 @media (min-width: 1024px){
   .hide-on-mobile{
-    display: block;
+    display: flex;
   }
+}
+.align-center{
+  align-items: center;
 }
 
 body {
@@ -113,6 +116,7 @@ h1{
   font-weight: 600;
   font-size: 3rem;
   line-height: 4.3rem;
+  color: var(--primary-800);
   /* margin-top: 2rem; */
 }
 h2{
@@ -132,3 +136,25 @@ h2{
   margin-bottom: 1.5rem;
 }
 
+@media (min-width: 1024px){
+  #root::before{
+    display: block;
+    content: "";
+    height: 1rem;
+    background-color: var(--primary-500);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  h1{
+    font-size: 4.5rem;
+    line-height: 6.75rem;
+  }
+  h2{
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+  .component-header h2{
+    line-height: 3rem;
+  }
+}

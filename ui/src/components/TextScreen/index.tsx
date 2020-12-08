@@ -30,7 +30,7 @@ export default function TextScreen({onSubmit, onSetRange}: Props) {
   return (
     <div className="TextScreen flex flex-col h-full">
       <header className="component-header">
-        <h2>Enter Some Text</h2>
+        <h2><span className="hidden">1</span>Enter Some Text</h2>
       </header>
 
       <main className="component-body"> 

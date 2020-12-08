@@ -13,8 +13,6 @@ export const scrollIDIntoViewHelper = (targetID: string, clickEvent: any, target
   const targetElmt = document.getElementById(targetID);
   targetElmt && targetElmt.scrollIntoView(smooth ? { behavior: "smooth", block: "start" } : { block: "start" });
 
-  console.log(targetElmt)
-
   // Update the url
   window.history.pushState(targetID, targetID, `/${targetURI ? targetURI : targetID}`);
 }
@@ -27,8 +25,6 @@ export const scrollURLIDIntoViewHelper = (smooth: boolean = false)=>{
   let url = window.location.href.split("/");
   let target = url[url.length - 1];//.toLowerCase();
   let element = document.getElementById(target);
-
-  console.log(element)
 
   // Adjust view to display component with id from uri
   element && element.scrollIntoView(smooth ? { behavior: "smooth", block: "start" } : { block: "start" });

@@ -12,7 +12,8 @@
 	width: 100%;
 	--dif: calc(var(--max) - var(--min));
 	--bg-col: #0900ff;
-  --fg-col: white;
+	--fg-col: white;
+	--muted-col: #ccc;
   --thumb: 2rem;
 	--left: calc((var(--a) - var(--min))/var(--dif) * calc(20rem - var(--thumb)));
 	--right: calc((var(--b) - var(--min))/var(--dif) * calc(20rem - var(--thumb)));
@@ -65,13 +66,14 @@
 
 
 .two-range-input .track-muted{
-	height: 2px;
+	height: 4px;
 	background: #ccc;
+	background: var(--muted-col);
 	width: 100%;
 	grid-row: 1;
 	grid-column: 1/ span 2;
 	position: relative;
-	top: calc(50% - 1px);
+	top: calc(50% - 2px);
 	z-index: 0;
 }
 
@@ -81,9 +83,9 @@
 	grid-row: 1;
 	background: var(--bg-col);
 	content: "";
-	height: 2px;
+	height: 4px;
 	position: absolute;
-	top: calc(50% - 1px);
+	top: calc(50% - 2px);
 	left: calc(0.5 * var(--thumb) + var(--left));
 	width: var(--width);
 }

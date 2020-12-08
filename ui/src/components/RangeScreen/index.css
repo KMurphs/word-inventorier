@@ -9,23 +9,7 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
 } 
-/* 
-.RangeScreen main.component-body .input-group.input-group-with-textarea{
-  margin-top: 1rem;
-  margin-bottom: 0;
-} 
-.RangeScreen main.component-body .input-group.input-group-with-textarea textarea{
-  height: 20vh;
-}
 
-.RangeScreen main.component-body .input-group .FileReader{
-  margin-top: 2rem;
-  margin-bottom: .5rem;
-  border: 1px solid var(--accent-200);
-  color: var(--accent-600);
-  --bg-color: var(--accent-500);
-  
-} */
 .RangeScreen .component-body__image{
   flex: 1 1 10px;
   display: grid;
@@ -40,6 +24,7 @@
 
 .RangeScreen .two-range-input{
   --bg-col: var(--accent-600);
+  --muted-col: var(--accent-100);
   margin-bottom: .2rem;
 }
 
@@ -53,7 +38,6 @@
   display: inline-block;
   width: fit-content;
   margin-top: 0.625rem;
-  /* border: 1px solid red; */
 }
 .RangeScreen .query-limit-container input{
   width: 4rem;
@@ -75,4 +59,48 @@
   transform: rotate(180deg);
   margin-left: 0;
   margin-right: 1rem;
+}
+@media (min-width: 1024px){
+  .RangeScreen .component-body__image,
+  .RangeScreen .component-footer .btn.btn-tertiary{
+    display: none;
+  }
+  .RangeScreen main.component-body{
+    flex-grow: 0;
+  }
+  .RangeScreen h2{
+    /* position: relative; */
+  }
+  .RangeScreen h2 span{
+    position: absolute;
+    display: inline-block;
+    height: 3.3rem;
+    width: 3.3rem;
+    background-color: var(--primary-500);
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    left: 2rem;
+    line-height: 3.2rem;
+  }
+  .RangeScreen main.component-body .input-group{
+    margin: 0;
+  }
+  .RangeScreen main.component-body .input-group .text-muted{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: .9rem;
+    line-height: 1.5rem;
+  }
+  .RangeScreen .component-footer{
+    margin-top: 5.8rem;
+  }
+
+  .RangeScreen .component-footer .btn{
+    position: absolute;
+    left: 48px;
+    right: 48px;
+    width: calc(100% - 96px);
+    bottom: 48px;
+  }
 }

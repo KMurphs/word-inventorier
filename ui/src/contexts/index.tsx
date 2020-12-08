@@ -15,13 +15,13 @@ export const ContextProvider = ({children}: Props) => {
   const [queryContent, setQueryContent] = useState<string>("Hello")
   const [queryMinLength, setQueryMinLength] = useState<number>(0)
   const [queryMaxLength, setQueryMaxLength] = useState<number>(20)
-  const [queryResultLimit, setQqueryResultLimit] = useState<number>(50)
+  const [queryResultLimit, setQueryResultLimit] = useState<number>(50)
 
   return (
     <queryContentContext.Provider value={[queryContent, setQueryContent]}>
       <queryMinLengthContext.Provider value={[queryMinLength, setQueryMinLength]}>
         <queryMaxLengthContext.Provider value={[queryMaxLength, setQueryMaxLength]}>
-          <queryResultLimitContext.Provider value={[queryResultLimit, setQqueryResultLimit]}>
+          <queryResultLimitContext.Provider value={[queryResultLimit, setQueryResultLimit]}>
             { children }
           </queryResultLimitContext.Provider>
         </queryMaxLengthContext.Provider>

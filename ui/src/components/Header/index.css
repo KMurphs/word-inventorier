@@ -1,0 +1,12 @@
+.Header{
+  max-width: 1280px;
+}
+
+.Header .app-progress-bar{
+  width: 100%;
+  max-width: 300px;
+}
+
+.Header .logo{
+  color: var(--primary-500);
+}

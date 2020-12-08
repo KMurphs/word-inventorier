@@ -1,6 +1,5 @@
-/* Progress Bar */
-.progress{
-  
+.app-progress-bar{
+  min-width: 200px;
   height: fit-content;
   --shape-muted: var(--primary-100);
   --shape-busy: var(--primary-100);
@@ -9,14 +8,41 @@
   --text-busy: var(--primary-500);
   --text-complete: var(--primary-500);
 }
-.progress ul{
-  position: relative;
-  margin-bottom: 1rem;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto
+@media (min-width: 1024px){
+  .app-progress-bar{
+    min-width: 30rem;
+  }
+  .app-progress-bar ul li span{
+    font-size: 18px;
+    margin-top: .5rem;
+    line-height: 27px;
+  }
 }
 
 
-.progress ul li::before{
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Progress bar items */
+.app-progress-bar ul{
+  position: relative;
+  /* Because of the text underneath */
+  margin-bottom: 2rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto
+}
+
+.app-progress-bar ul li::before{
+  /* Round shapes */
   content: "";
   width: 20px;
   height: 20px;
@@ -33,7 +59,8 @@
   position: relative;
 }
 
-.progress ul li::after{
+.app-progress-bar ul li::after{
+  /* Connecting lines */
   content: "";
   width: 50%;
   height: 2px;
@@ -49,48 +76,78 @@
   z-index: 0;
   z-index: 20;
 }
-.progress ul li:nth-child(2)::after{
+
+
+.app-progress-bar ul li:nth-child(2)::after{
+  /* Adjustements for the lines */
   left: 50%;
   width: 48%;
 }
-.progress ul li:nth-child(3)::after{
+.app-progress-bar ul li:nth-child(3)::after{
   display: none;
 }
 
-.progress ul li span{
+
+
+
+
+
+.app-progress-bar ul li span{
+  /* Style text */
   position: absolute;
   color: #ABC3EF;
   color: var(--primary-200);
   color: var(--text-muted);
   font-size: .625rem;
 }
-.progress ul li:nth-child(2) span{
+.app-progress-bar ul li:nth-child(2) span{
+  /* Adjust text */
   left: 50%;
   transform: translate(-50%, 0);
 }
-.progress ul li:nth-child(3) span{
+.app-progress-bar ul li:nth-child(3) span{
   right: 0;
+}
+@media (min-width: 1024px){
+  .app-progress-bar ul li span{
+    font-size: 18px;
+    margin-top: .5rem;
+    line-height: 27px;
+  }
 }
 
 
 
 
-.progress.at-step-1 li:nth-child(1) span,
-.progress.at-step-2 li:nth-child(2) span,
-.progress.at-step-3 li:nth-child(3) span,
-.progress.at-step-2 li:nth-child(1) span,
-.progress.at-step-3 li:nth-child(1) span,
-.progress.at-step-3 li:nth-child(2) span,
-.progress.at-steps-completed li:nth-child(1) span,
-.progress.at-steps-completed li:nth-child(2) span,
-.progress.at-steps-completed li:nth-child(3) span{
+
+
+
+
+
+
+
+
+
+
+
+
+/* The logic of the progress bar */
+.app-progress-bar.at-step-1 li:nth-child(1) span,
+.app-progress-bar.at-step-2 li:nth-child(2) span,
+.app-progress-bar.at-step-3 li:nth-child(3) span,
+.app-progress-bar.at-step-2 li:nth-child(1) span,
+.app-progress-bar.at-step-3 li:nth-child(1) span,
+.app-progress-bar.at-step-3 li:nth-child(2) span,
+.app-progress-bar.at-steps-completed li:nth-child(1) span,
+.app-progress-bar.at-steps-completed li:nth-child(2) span,
+.app-progress-bar.at-steps-completed li:nth-child(3) span{
   color: #2C59AC;
   color: var(--primary-500);
   color: var(--text-complete);
 }
-.progress.at-step-1 li:nth-child(1)::before,
-.progress.at-step-2 li:nth-child(2)::before,
-.progress.at-step-3 li:nth-child(3)::before{
+.app-progress-bar.at-step-1 li:nth-child(1)::before,
+.app-progress-bar.at-step-2 li:nth-child(2)::before,
+.app-progress-bar.at-step-3 li:nth-child(3)::before{
   background: #ABC3EF;
   background: var(--primary-200);
   background: var(--shape-busy);
@@ -98,12 +155,12 @@
   border-color: var(--primary-500);
   border-color: var(--shape-complete);
 }
-.progress.at-step-2 li:nth-child(1)::before,
-.progress.at-step-3 li:nth-child(1)::before,
-.progress.at-step-3 li:nth-child(2)::before,
-.progress.at-steps-completed li:nth-child(1)::before,
-.progress.at-steps-completed li:nth-child(2)::before,
-.progress.at-steps-completed li:nth-child(3)::before{
+.app-progress-bar.at-step-2 li:nth-child(1)::before,
+.app-progress-bar.at-step-3 li:nth-child(1)::before,
+.app-progress-bar.at-step-3 li:nth-child(2)::before,
+.app-progress-bar.at-steps-completed li:nth-child(1)::before,
+.app-progress-bar.at-steps-completed li:nth-child(2)::before,
+.app-progress-bar.at-steps-completed li:nth-child(3)::before{
   background: #2C59AC;
   background: var(--primary-500);
   background: var(--shape-complete);
@@ -111,22 +168,12 @@
   border-color: var(--primary-500);
   border-color: var(--shape-complete);
 }
-.progress.at-step-2 li:nth-child(1)::after,
-.progress.at-step-3 li:nth-child(1)::after,
-.progress.at-step-3 li:nth-child(2)::after,
-.progress.at-steps-completed li:nth-child(1)::after,
-.progress.at-steps-completed li:nth-child(2)::after{
+.app-progress-bar.at-step-2 li:nth-child(1)::after,
+.app-progress-bar.at-step-3 li:nth-child(1)::after,
+.app-progress-bar.at-step-3 li:nth-child(2)::after,
+.app-progress-bar.at-steps-completed li:nth-child(1)::after,
+.app-progress-bar.at-steps-completed li:nth-child(2)::after{
   background: #2C59AC;
   background: var(--primary-500);
   background: var(--shape-complete);
-}
-@media (min-width: 1024px){
-  .progress{
-    min-width: 30rem;
-  }
-  .progress ul li span{
-    font-size: 18px;
-    margin-top: .5rem;
-    line-height: 27px;
-  }
 }

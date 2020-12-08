@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 /* C:\PersonalProjects\corpus-word-inventory\ui\node_modules\tailwindcss\dist\base.css */
 /* C:\PersonalProjects\corpus-word-inventory\ui\node_modules\tailwindcss\dist\components.css */
 /* C:\PersonalProjects\corpus-word-inventory\ui\node_modules\tailwindcss\dist\utilities.css */
@@ -117,7 +115,6 @@ h1{
   font-size: 3rem;
   line-height: 4.3rem;
   color: var(--primary-800);
-  /* margin-top: 2rem; */
 }
 h2{
   font-family: "Poppins";
@@ -125,38 +122,8 @@ h2{
   font-weight: normal;
   font-size: 1.25rem;
   line-height: 1.8rem;
-  /* margin-bottom: .5rem; */
 }
 
-.component-header h2{
-  font-weight: 600;
-  color: #2C59AC;
-  color: var(--primary-500);
-  line-height: 2.125rem;
-  margin-bottom: 1.5rem;
-}
-#root::before{
-  display: none;
-}
-@media (min-width: 1024px){
-  #root::before{
-    display: block;
-    content: "";
-    height: 1rem;
-    background-color: var(--primary-500);
-    position: sticky;
-    top: 0;
-    z-index: 20;
-  }
-  h1{
-    font-size: 4.5rem;
-    line-height: 6.75rem;
-  }
-  h2{
-    font-size: 2rem;
-    line-height: 3rem;
-  }
-  .component-header h2{
-    line-height: 3rem;
-  }
-}
+
+
+

@@ -63,11 +63,17 @@
 
 
 
+#Home.app-screen{
+  height: 100%;
+}
 
 
 @media (min-width: 1024px){
   #root, .App{
     height: auto;
+  }
+  #Home.app-screen{
+    height: calc(90vh - 84px );
   }
   .app-screen{
     height: calc(90vh - 84px );
@@ -230,6 +236,7 @@
 @media (min-width: 1024px){
   .top-left-circles{
     opacity: 1;
+    top: 0;
   }
   .top-left-circles::before{
     top: -125px;
@@ -330,3 +337,20 @@
 .bottom-right-histogram::before{ height: 100px;  }
 .bottom-right-histogram span:first-child{ height: 232px;  }
 .bottom-right-histogram::after{ height: 200px;  }
+
+
+
+
+
+
+
+.App::before{
+  position: fixed;
+  content: "";
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--primary-500);
+}

@@ -39,9 +39,9 @@
   margin: 0 auto;
 }
 
-.Home .component-footer{
+/* .Home .component-footer{
   margin-top: 3.5rem;
-}
+} */
 
 @media (min-width: 1024px){
   .Home .banner img{
@@ -58,9 +58,9 @@
   .Home main.component-body span{
     margin-bottom: .5rem;
   }
-  .Home .component-footer{
+  /* .Home .component-footer{
     margin-top: 3rem;
-  }
+  } */
   .Home header.component-header h1{
     margin-top: 1rem;
   }

@@ -193,12 +193,14 @@
 .top-left-circles{
   position: absolute;
   top: 0;
+  top: -100px;
   left: 0;
   height: 245px;
   width: 300px;
   background-color: transparent;
   z-index: -1;
   overflow: hidden;
+  opacity: 0;
 }
 .top-left-circles::before,
 .top-left-circles::after{
@@ -212,29 +214,51 @@
   border-radius: 50%;
 }
 .top-left-circles::before{
-  top: -125px;
-  left: 36px
+  top: -175px;
+  left: -15px
 }
 .top-left-circles::after{
-  left: -148px;
-  top: -36px
+  left: -178px;
+  top: -25px
 }
 .decorators-first .top-left-circles{
-  top: -100px;
-  z-index: 15;
+  opacity: 1;
+  top: 0;
+  z-index: -1;
+  position: fixed;
+} 
+@media (min-width: 1024px){
+  .top-left-circles{
+    opacity: 1;
+  }
+  .top-left-circles::before{
+    top: -125px;
+    left: 36px
+  }
+  .top-left-circles::after{
+    left: -148px;
+    top: -36px
+  }
+  .decorators-first .top-left-circles{
+    top: -100px;
+    z-index: 15;
+    opacity: 1;
+    position: absolute;
+  }
 }
-
 
 
 .top-right-circle{
   position: absolute;
-  top: 0;
+  top: auto;
+  bottom: 0;
   right: 0;
   height: 245px;
   width: 245px;
   background-color: transparent;
-  z-index: 5;
+  z-index: -1;
   overflow: hidden;
+  opacity: 0;
 }
 .top-right-circle::before{
   background-color: var(--accent-100);
@@ -243,14 +267,39 @@
   width: 245px;
   position: absolute;
   content: "";
-  top: 0;
+  top: auto;
+  bottom: 0;
   border-radius: 50%;
   right: -125px;
-  top: -125px;
+  top: auto;
+  bottom: -125px
 }
 .decorators-first .top-right-circle{
   top: -100px;
+  top: auto;
+  opacity: 1;
+  position: fixed;
+} 
+@media (min-width: 1024px){
+  .top-right-circle{
+    top: 0;
+    bottom: auto;
+    z-index: 5;
+    opacity: 1;
+  }
+  .decorators-first .top-right-circle{
+    top: -100px;
+    position: absolute;
+  }
+  .top-right-circle::before{
+    top: 0;
+    bottom: auto;
+    top: -125px;
+    bottom: auto;
+  }
 }
+
+
 
 
 
@@ -260,7 +309,7 @@
   right: 100px;
   background-color: transparent;
   z-index: 15;
-  display: grid;
+  /* display: grid; */
   grid-template: 1fr / 1fr 1fr 1fr 1fr;
   gap: 55px;
   align-items: baseline;

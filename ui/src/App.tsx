@@ -11,6 +11,7 @@ import RangeScreen from './components/RangeScreen';
 import ResultScreen from './components/ResultScreen';
 import { scrollIDIntoViewHelper, useResetURI } from './utils/scrollHelpers';
 import ProgressIndicator from './components/ProgressIndicator';
+import { useScrollTransition } from './utils/useScrollTransition';
 
 
 function App() {
@@ -28,48 +29,22 @@ function App() {
 
 
 
-  function throttle(fn: Function, waitMs: number) {
-    var time = Date.now();
-    return function() {
-      if ((time + waitMs - Date.now()) < 0) {
-        fn();
-        time = Date.now();
-      }
-    }
-  }
-  const callback = (evt: Event) => {
-    // https://stackoverflow.com/a/52638293/9034699
-    // https://www.sitepoint.com/throttle-scroll-events/
-    let y = (window.scrollY || window.pageYOffset) / 140;
-    y = y > 1 ? 1 : y ;// ensure y is always >= 1 (due to Safari's elastic scroll)
-    y = Math.round(y * 100)/100;
-
-    console.log(evt)
-
-    if(y <= 1 && logoHTML.current){
+  useScrollTransition(140, (scrollRatio)=>{
+    if(scrollRatio <= 1 && logoHTML.current){
       // console.log(y.toFixed(2));
       // console.log(headerHTML.current?.classList);
-      logoHTML.current.style.left = `${6.5 * (1 - y)}rem`;
-      logoHTML.current.style.top = `${8.5 * (1 - y)}rem`;
-      logoHTML.current.style.fontSize = `${48 + (72 - 48) * (1 - y)}px`;
+      logoHTML.current.style.left = `${6.5 * (1 - scrollRatio)}rem`;
+      logoHTML.current.style.top = `${8.5 * (1 - scrollRatio)}rem`;
+      logoHTML.current.style.fontSize = `${48 + (72 - 48) * (1 - scrollRatio)}px`;
       headerHTML.current && headerHTML.current.classList.remove("has-shadow");
     } 
-    if (y >= 1 && headerHTML.current){
+    if (scrollRatio >= 1 && headerHTML.current){
       !headerHTML.current.classList.contains("has-shadow")
                  && headerHTML.current.classList.add("has-shadow")
     }
+  })
 
-  };
 
-  useEffect(() => {
-    // window.addEventListener("scroll", throttle(callback, 100));
-    window.addEventListener("scroll", callback);
-
-    return () => {
-      // window.removeEventListener("scroll", throttle(callback, 100));
-      window.removeEventListener("scroll", callback);
-    };
-  });
   useResetURI()
 
 
@@ -82,7 +57,7 @@ function App() {
   
 
   return (
-    <div className="App full-height flex flex-col" >
+    <div className="App full-height flex flex-col " >
 
 
       <header ref={headerHTML} className={`app-header p-8 flex justify-between flex-wrap ${currentScreen === 'Home' ? 'hide-on-mobile' : '' }`}>
@@ -93,7 +68,7 @@ function App() {
 
 
 
-      <main className="flex-grow flex overflow-y-hidden lg:flex-col lg:overflow-y-visible">
+      <main className="flex-grow flex overflow-y-hidden overflow-x-hidden lg:flex-col lg:overflow-y-visible lg:overflow-x-visible">
         
         
         <section className="flex flex-wrap relative">
@@ -108,10 +83,10 @@ function App() {
             </div>
           </div>
 
-          <div className="decorators decorators-first hidden lg:block">
+          <div className="decorators decorators-first">
             <div className="top-left-circles"></div>
             <div className="top-right-circle"></div>
-            <div className="bottom-right-histogram"><span></span><span></span></div>
+            <div className="bottom-right-histogram hidden lg:grid"><span></span><span></span></div>
           </div>
 
         </section>
@@ -156,10 +131,10 @@ function App() {
           </div>
 
 
-          <div className="decorators hidden lg:block">
+          <div className="decorators ">
             <div className="top-left-circles"></div>
-            <div className="top-right-circle"></div>
-            <div className="bottom-right-histogram"><span></span><span></span></div>
+            <div className="top-right-circle "></div>
+            <div className="bottom-right-histogram hidden lg:grid"><span></span><span></span></div>
           </div>
 
         </section>

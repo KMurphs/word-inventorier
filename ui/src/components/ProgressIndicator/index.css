@@ -1,6 +1,6 @@
 /* Progress Bar */
 .progress{
-  min-width: 30rem;
+  
   height: fit-content;
   --shape-muted: var(--primary-100);
   --shape-busy: var(--primary-100);
@@ -121,6 +121,9 @@
   background: var(--shape-complete);
 }
 @media (min-width: 1024px){
+  .progress{
+    min-width: 30rem;
+  }
   .progress ul li span{
     font-size: 18px;
     margin-top: .5rem;

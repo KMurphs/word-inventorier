@@ -19,12 +19,13 @@ function App() {
 
   const initialPos = useRef<[number, number]>([-1,-1])
   const finalPos = useRef<[number, number]>([-1,-1])
-  const getHTMLElementPosition = (targetPositionContainer: React.MutableRefObject<[number, number]>,target: HTMLElement) => { 
-    targetPositionContainer.current = [target.getClientRects()[0].x, target.getClientRects()[0].y] 
+  const movingElement = useRef<HTMLElement | null>(null)
+  const getHTMLElementPosition = ( target: HTMLElement):[number, number] => [target.getClientRects()[0].x, target.getClientRects()[0].y] 
+  const saveHTMLElementPosition = (targetPositionContainer: React.MutableRefObject<[number, number]>, target: HTMLElement) => { 
+    targetPositionContainer.current = getHTMLElementPosition(target)
   }
-
   
-  console.log(initialPos.current)
+  // console.log(initialPos.current)
 
   return (
     <div className="App full-height" ref={elm} >
@@ -32,13 +33,18 @@ function App() {
       {/* Header Section  */}
       <section className="app-section flex-auto h-1 lg:h-2 bg-blue-500" id="top-bar-element"></section>
       <section className={`app-section px-8 flex-nowrap ${true?'hidden md:flex':''}`} id="app-header">
-        <button onClick={evt=>console.log(initialPos.current)}>Click me</button>
-        <Header exposeLogo={ getHTMLElementPosition.bind(null, initialPos) }/>
+        <button onClick={evt=>console.log(initialPos.current, finalPos.current, movingElement.current && getHTMLElementPosition(movingElement.current))}>Click me</button>
+        <Header exposeLogo={ saveHTMLElementPosition.bind(null, finalPos) }/>
       </section>
 
       
       {/* Intro Section  */}
-      {/* <section className="app-section flex-1/12 px-8 pb-8" id="introduction"><Introduction onExplore={()=>{}}/></section> */}
+      <section className="app-section flex-1/12 px-8 pb-8" id="introduction">
+        <Introduction onExplore={()=>{}}
+                      exposeMovingLogoAnchor={ saveHTMLElementPosition.bind(null, initialPos) }
+                      exposeMovingLogo={ (target)=>movingElement.current = target }
+        />
+      </section>
       {/* <section className="app-section progress-bar-section" id="introduction-progress"><ProgressIndicator /></section> */}
 
 

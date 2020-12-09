@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './index.css';
 import bodyImage from './assets/undraw_maker_launch_crhe.svg';
 import bannerImage from './assets/undraw_book_lover_mkck 1.svg';
@@ -7,14 +7,22 @@ import leftArrow from './assets/Vectorarrow.svg';
 
 interface Props {
   onExplore: (evt: any)=>void,
-  movingLogo: any,
-  movingLogoAnchor: any
+  exposeMovingLogo?: (newEl: HTMLElement)=>void,
+  exposeMovingLogoAnchor?: (newEl: HTMLElement)=>void,
 }
-export default function Introduction({onExplore, movingLogo, movingLogoAnchor}: Props) {
+export default function Introduction({onExplore, exposeMovingLogo, exposeMovingLogoAnchor}: Props) {
+
+  const movingLogo = useRef<HTMLSpanElement | null>(null);
+  const movingLogoAnchor = useRef<HTMLSpanElement | null>(null);
+  useEffect(()=>{
+    movingLogo.current && exposeMovingLogo && exposeMovingLogo(movingLogo.current);
+    movingLogoAnchor.current && exposeMovingLogoAnchor && exposeMovingLogoAnchor(movingLogoAnchor.current);
+
+    return ()=>{}
+  }, [movingLogo.current, movingLogoAnchor.current])
+
   return (
     <div className="Introduction flex h-full">
-
-
 
 
         <section className="content super-group flex-grow md:flex-6/12 h-full overflow-y-scroll flex-nowrap md:pr-8">

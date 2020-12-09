@@ -10,3 +10,11 @@
 .Header .logo{
   color: var(--primary-500);
 }
+
+@media (min-width: 1024px){
+  #app-header{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+  }
+}

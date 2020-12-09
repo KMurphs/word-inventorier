@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import ProgressIndicator from '../ProgressIndicator';
 import './index.css';
 
@@ -10,13 +10,13 @@ interface Props{
 export default function Header({exposeLogo}: Props) {
 
   const logo = useRef<HTMLSpanElement | null>(null);
-  useEffect(()=>{
+  useLayoutEffect(()=>{
     logo.current && exposeLogo && exposeLogo(logo.current);
 
     return ()=>{}
   }, [logo.current])
 
-  
+
   return (
     <div className="Header app-section flex justify-center w-full md:justify-between pt-8 lg:pt-4 max-w-screen-xl mx-auto">
         <h1 className="logo hidden lg:block"><span ref={logo}>Words</span></h1>

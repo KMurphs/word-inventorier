@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type TAction = (scrollRatio: number) => void
 
@@ -25,36 +25,62 @@ type TAction = (scrollRatio: number) => void
  * @param  {number} targetScrollOffset
  * @param  {(scrollRatio:number)=>void} onRatioChange
  */
-export const useScrollTransition = (targetScrollOffset: number, onRatioChange: (scrollRatio: number) => void) =>{
+export const useScrollTransition = (targetOffset: number, onRatioChange: (scrollRatio: number, targetOffset: number) => void) =>{
 
-  const computeRatio = (targetOffset: number)=>{
+
+
+  const computeRatio = (targetOffset: number): [number, number]=>{
     
     // Possible optimization: discard scroll event not on window
     // Or maybe find a way to bind scroll to a custom element different from window
 
-    // let y = (window.scrollY || window.pageYOffset) / 140;
-    let scrollRatio = (window.scrollY || window.pageYOffset) / targetOffset;
-    scrollRatio = scrollRatio > 1 ? 1 : scrollRatio ;// ensure y is always >= 1 (due to Safari's elastic scroll)
-    scrollRatio = Math.round(scrollRatio * 100)/100;
-    return scrollRatio;
+    const scrollRatio = Math.round(coerce((window.scrollY || window.pageYOffset) / targetOffset, 0, 1) * 100)/100;
+    return [scrollRatio, targetOffset];
+  }
+
+  
+  
+  useEffect(() => {
+    
+    const cb = ()=> onRatioChange(...computeRatio(targetOffset));
+    window.addEventListener("scroll", cb);
+
+    return () => { window.removeEventListener("scroll", cb); };
+  }, [targetOffset]);
+}
+
+
+
+export const useScrollTransitionV2 = (onRatioChange: (scrollRatio: number, originalOffset: number, dstAnchor: HTMLElement, srcAnchor: HTMLElement) => void): [(destinationAnchor: HTMLElement)=>void, (sourceAnchor: HTMLElement)=>void] =>{
+
+
+  const [dstOffset, setDstOffset] = useState<number>(-1)
+  const [srcOffset, setSrcOffset] = useState<number>(-1)
+  const srcAnchor = useRef<HTMLElement | null>(null)
+  const dstAnchor = useRef<HTMLElement | null>(null)
+
+
+
+  const grabSourceAnchor = (target: HTMLElement)=>{
+    srcAnchor.current = target;
+    setSrcOffset(target.getClientRects()[0].y);
+  }
+  const grabFinalAnchor = (target: HTMLElement)=>{
+    dstAnchor.current = target;
+    setDstOffset(target.getClientRects()[0].y);
   }
 
 
 
-  useEffect(() => {
-    // window.addEventListener("scroll", throttle(callback, 100));
-    window.addEventListener("scroll", ()=> onRatioChange(computeRatio(targetScrollOffset)));
+  useScrollTransition(
+    Math.abs(dstOffset - srcOffset), 
+    (ratio, offset) => dstAnchor.current && srcAnchor.current && onRatioChange(ratio, offset, dstAnchor.current, srcAnchor.current)
+  );
 
-    return () => {
-      // window.removeEventListener("scroll", throttle(callback, 100));
-      window.removeEventListener("scroll", ()=> onRatioChange(computeRatio(targetScrollOffset)));
-    };
-  });
 
+  return [grabFinalAnchor, grabSourceAnchor];
 
 }
-
-
 
 
 // https://stackoverflow.com/a/52638293/9034699
@@ -67,4 +93,11 @@ function throttle(fn: Function, waitMs: number) {
       time = Date.now();
     }
   }
+}
+
+const coerce = (val: number, low: number, high: number) => {
+  if(low > high) return val;
+  if(val < low) return low;
+  if(val > high) return high;
+  return val;
 }

@@ -2,7 +2,7 @@
   max-width: min(100%, 1024px);
   margin-left: auto;
   margin-right: auto;
-  overflow-y: scroll;
+  overflow-y: auto;
 }/* 
 .Introduction{
   height: 100%;
@@ -25,6 +25,9 @@
 
 }
 */
+.Introduction .moving-logo{
+  transition: font-size .1s, top .1s, left .1s;
+}
 .Introduction .title h1{
   color: var(--primary-500);
 }

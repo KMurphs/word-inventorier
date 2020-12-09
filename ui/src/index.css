@@ -5,8 +5,8 @@
 
 
 
-html, body, #root, .App,
-.full-height{
+/* html, body, #root, .App */
+.full-height, .h-screen{
   /* https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser */
   /* https://dev.to/admitkard/mobile-issue-with-100vh-height-100-100vh-3-solutions-3nae */
   /* https://stackoverflow.com/a/60735432/9034699 */

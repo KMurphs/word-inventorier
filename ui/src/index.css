@@ -10,23 +10,11 @@ html, body, #root, .App,
   /* https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser */
   /* https://dev.to/admitkard/mobile-issue-with-100vh-height-100-100vh-3-solutions-3nae */
   /* https://stackoverflow.com/a/60735432/9034699 */
-  height: calc(100vh - calc(100vh - 100%))
+  height: calc(100vh - calc(100vh - 100%));
+  height: calc(100 * var(--vh));
 }
 
-.flex-force-wrap{
-  flex: 0 0 100%;
-}
-.hide-on-mobile{
-  display: none;
-}
-@media (min-width: 1024px){
-  .hide-on-mobile{
-    display: flex;
-  }
-}
-.align-center{
-  align-items: center;
-}
+
 
 body {
   margin: 0;
@@ -127,3 +115,148 @@ h2{
 
 
 
+.app-container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.app-section{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  flex: 0 0 auto;
+  /* Ensure that row items are never bigger than the container */
+  max-width: 100%;
+}
+.super-group{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex: 0 0 auto;
+  /* Ensure that row items are never bigger than the container */
+  max-width: 100%;
+}
+.group{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  flex: 0 0 auto;
+}
+
+
+
+
+.flex-any\/12 { flex: 1 1 1px; }
+.flex-1\/12 { flex: 1 1 8.33333%; }
+.flex-2\/12 { flex: 1 1 16.66666%; }
+.flex-3\/12 { flex: 1 1 25%; }
+.flex-4\/12 { flex: 1 1 33.33333%; }
+.flex-5\/12 { flex: 1 1 41.66666%; }
+.flex-6\/12 { flex: 1 1 50%; }
+.flex-7\/12 { flex: 1 1 58.33333%; }
+.flex-8\/12 { flex: 1 1 66.66666%; }
+.flex-9\/12 { flex: 1 1 75%; }
+.flex-10\/12 { flex: 1 1 83.33333%; }
+.flex-11\/12 { flex: 1 1 91.66666%; }
+.flex-12\/12 { flex: 0 0 100%; }
+.flex-auto { flex: 0 0 auto; }
+
+
+@media (min-width: 640px){
+  /* Tablets: 640px and up */
+  .sm\:flex-1\/12 { flex: 1 1 8.33333%; }
+  .sm\:flex-2\/12 { flex: 1 1 16.66666%; }
+  .sm\:flex-3\/12 { flex: 1 1 25%; }
+  .sm\:flex-4\/12 { flex: 1 1 33.33333%; }
+  .sm\:flex-5\/12 { flex: 1 1 41.66666%; }
+  .sm\:flex-6\/12 { flex: 1 1 50%; }
+  .sm\:flex-7\/12 { flex: 1 1 58.33333%; }
+  .sm\:flex-8\/12 { flex: 1 1 66.66666%; }
+  .sm\:flex-9\/12 { flex: 1 1 75%; }
+  .sm\:flex-10\/12 { flex: 1 1 83.33333%; }
+  .sm\:flex-11\/12 { flex: 1 1 91.66666%; }
+  .sm\:flex-12\/12 { flex: 0 0 100%; }
+}
+@media (min-width: 768px){
+  /* Tablets Landscape: 768px and up */
+  .md\:flex-1\/12 { flex: 1 1 8.33333%; }
+  .md\:flex-2\/12 { flex: 1 1 16.66666%; }
+  .md\:flex-3\/12 { flex: 1 1 25%; }
+  .md\:flex-4\/12 { flex: 1 1 33.33333%; }
+  .md\:flex-5\/12 { flex: 1 1 41.66666%; }
+  .md\:flex-6\/12 { flex: 1 1 50%; }
+  .md\:flex-7\/12 { flex: 1 1 58.33333%; }
+  .md\:flex-8\/12 { flex: 1 1 66.66666%; }
+  .md\:flex-9\/12 { flex: 1 1 75%; }
+  .md\:flex-10\/12 { flex: 1 1 83.33333%; }
+  .md\:flex-11\/12 { flex: 1 1 91.66666%; }
+  .md\:flex-12\/12 { flex: 0 0 100%; }
+}
+@media (min-width: 1024px){
+  /* Laptops: 1024px and up */
+  .lg\:flex-1\/12 { flex: 1 1 8.33333%; }
+  .lg\:flex-2\/12 { flex: 1 1 16.66666%; }
+  .lg\:flex-3\/12 { flex: 1 1 25%; }
+  .lg\:flex-4\/12 { flex: 1 1 33.33333%; }
+  .lg\:flex-5\/12 { flex: 1 1 41.66666%; }
+  .lg\:flex-6\/12 { flex: 1 1 50%; }
+  .lg\:flex-7\/12 { flex: 1 1 58.33333%; }
+  .lg\:flex-8\/12 { flex: 1 1 66.66666%; }
+  .lg\:flex-9\/12 { flex: 1 1 75%; }
+  .lg\:flex-10\/12 { flex: 1 1 83.33333%; }
+  .lg\:flex-11\/12 { flex: 1 1 91.66666%; }
+  .lg\:flex-12\/12 { flex: 0 0 100%; }
+}
+@media (min-width: 1280px){
+  /* Desktops: 1280px and up */
+  .xl\:flex-1\/12 { flex: 1 1 8.33333%; }
+  .xl\:flex-2\/12 { flex: 1 1 16.66666%; }
+  .xl\:flex-3\/12 { flex: 1 1 25%; }
+  .xl\:flex-4\/12 { flex: 1 1 33.33333%; }
+  .xl\:flex-5\/12 { flex: 1 1 41.66666%; }
+  .xl\:flex-6\/12 { flex: 1 1 50%; }
+  .xl\:flex-7\/12 { flex: 1 1 58.33333%; }
+  .xl\:flex-8\/12 { flex: 1 1 66.66666%; }
+  .xl\:flex-9\/12 { flex: 1 1 75%; }
+  .xl\:flex-10\/12 { flex: 1 1 83.33333%; }
+  .xl\:flex-11\/12 { flex: 1 1 91.66666%; }
+  .xl\:flex-12\/12 { flex: 0 0 100%; }
+}
+@media (min-width: 1536px){
+  /* Huge displays, TV, 4K: 1536px and up */
+  .\2xl\:flex-1\/12 { flex: 1 1 8.33333%; }
+  .\2xl\:flex-2\/12 { flex: 1 1 16.66666%; }
+  .\2xl\:flex-3\/12 { flex: 1 1 25%; }
+  .\2xl\:flex-4\/12 { flex: 1 1 33.33333%; }
+  .\2xl\:flex-5\/12 { flex: 1 1 41.66666%; }
+  .\2xl\:flex-6\/12 { flex: 1 1 50%; }
+  .\2xl\:flex-7\/12 { flex: 1 1 58.33333%; }
+  .\2xl\:flex-8\/12 { flex: 1 1 66.66666%; }
+  .\2xl\:flex-9\/12 { flex: 1 1 75%; }
+  .\2xl\:flex-10\/12 { flex: 1 1 83.33333%; }
+  .\2xl\:flex-11\/12 { flex: 1 1 91.66666%; }
+  .\2xl\:flex-12\/12 { flex: 0 0 100%; }
+}
+.flex-force-wrap{
+  flex: 0 0 100%;
+}
+/* .hide-on-mobile{
+  display: none;
+}
+@media (min-width: 1024px){
+  .hide-on-mobile{
+    display: flex;
+  }
+} */
+.align-center{ align-items: center; }
+.align-baseline{ align-items: baseline; }
+.flex-image-container { display: flex; align-items: center; overflow: hidden; }
+.flex-image-container img{ margin: 0 auto; max-height: 100%; }

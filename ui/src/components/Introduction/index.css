@@ -1,0 +1,66 @@
+#introduction{
+  max-width: min(100%, 1024px);
+  margin-left: auto;
+  margin-right: auto;
+  overflow-y: scroll;
+}/* 
+.Introduction{
+  height: 100%;
+}
+@media (min-width: 640px){
+  #introduction{
+    flex: 1 1 50vh;
+  }
+}
+*/
+/* .Introduction .content{
+  max-width: 500px;
+} */
+
+
+/*
+
+.Introduction .super-group{
+  max-width: 512px;
+
+}
+*/
+.Introduction .title h1{
+  color: var(--primary-500);
+}
+/*
+.Introduction .steps{
+  margin-top: 1rem;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+*/
+.Introduction .banner{
+  display: none;
+}
+@media (min-width: 768px){
+  .Introduction .banner{
+    display: flex;
+  }
+}
+
+
+
+.Introduction .btn{
+  width: 100%;
+}
+@media (min-width: 640px){
+  .Introduction .btn{
+    width: 300px;
+  }
+}
+/* .Introduction .title-banner img{
+  max-height: 33vh;
+  width: auto;
+  margin: 0 auto;
+}  */

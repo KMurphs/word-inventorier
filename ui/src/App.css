@@ -1,3 +1,22 @@
-.current {
+.debug {
   border: 1px solid red;
+}
+.App{
+  display: flex;
+  flex-direction: column;
+}
+
+.App .flex-shrink-0{flex-shrink: 0;}
+.App .justify-start{ justify-content: flex-start; }
+.App .justify-center{ justify-content: center; }
+.App .flex-grow{ flex-grow: 1; }
+.App .hidden{ display: none; }
+@media (min-width: 768px){
+  .App .md\:justify-start { justify-content: flex-start; }
+  .App .md\:hidden { display: none; }
+  .App .md\:flex { display: flex; }
+}
+@media (min-width: 1024px){
+  .App .lg\:block { display: block; }
+  .App .lg\:justify-end { justify-content: flex-end; }
 }

@@ -28,7 +28,7 @@ export default function Introduction({onExplore, exposeMovingLogo, exposeMovingL
         <section className="content super-group flex-grow md:flex-6/12 h-full overflow-y-auto flex-nowrap md:pr-8">
 
           <div className="group title flex-4/12 mb-4 flex-auto justify-start" >
-            <h1 className="mt-12 mb-2"><span className="lg:fixed moving-logo" ref={movingLogo}>Words</span><span ref={movingLogoAnchor} className="opacity-1">123</span></h1>
+            <h1 className="mt-12 mb-2"><span className="lg:fixed moving-logo" ref={movingLogo}>Words</span><span ref={movingLogoAnchor} className="opacity-0">123</span></h1>
             <h2>Words draw a frequency chart from a text, and lets you inspect it!</h2>
           </div>
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 type TAction = (scrollRatio: number) => void
 
@@ -39,13 +39,22 @@ export const useScrollTransition = (targetOffset: number, onRatioChange: (scroll
   }
 
   
+
+
   
-  useEffect(() => {
+  useLayoutEffect(() => {
+
     
     const cb = ()=> onRatioChange(...computeRatio(targetOffset));
-    window.addEventListener("scroll", cb);
+    const scrollToTop = ()=> window.scrollTo(0, 0);
 
-    return () => { window.removeEventListener("scroll", cb); };
+    window.addEventListener("scroll", cb);
+    window.addEventListener("beforeunload", scrollToTop);
+
+    return () => { 
+      window.removeEventListener("scroll", cb); 
+      window.removeEventListener("beforeunload", scrollToTop); 
+    };
   }, [targetOffset]);
 }
 
@@ -63,11 +72,12 @@ export const useScrollTransitionV2 = (onRatioChange: (scrollRatio: number, origi
 
   const grabSourceAnchor = (target: HTMLElement)=>{
     srcAnchor.current = target;
-    setSrcOffset(target.getClientRects()[0].y);
+    setSrcOffset(target.getBoundingClientRect().y);
   }
   const grabFinalAnchor = (target: HTMLElement)=>{
     dstAnchor.current = target;
-    setDstOffset(target.getClientRects()[0].y);
+    console.log(target, target.getBoundingClientRect())
+    setDstOffset(target.getBoundingClientRect().y);
   }
 
 
@@ -83,17 +93,17 @@ export const useScrollTransitionV2 = (onRatioChange: (scrollRatio: number, origi
 }
 
 
-// https://stackoverflow.com/a/52638293/9034699
-// https://www.sitepoint.com/throttle-scroll-events/
-function throttle(fn: Function, waitMs: number) {
-  var time = Date.now();
-  return function() {
-    if ((time + waitMs - Date.now()) < 0) {
-      fn();
-      time = Date.now();
-    }
-  }
-}
+// // https://stackoverflow.com/a/52638293/9034699
+// // https://www.sitepoint.com/throttle-scroll-events/
+// function throttle(fn: Function, waitMs: number) {
+//   var time = Date.now();
+//   return function() {
+//     if ((time + waitMs - Date.now()) < 0) {
+//       fn();
+//       time = Date.now();
+//     }
+//   }
+// }
 
 const coerce = (val: number, low: number, high: number) => {
   if(low > high) return val;

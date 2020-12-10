@@ -13,7 +13,9 @@
   height: calc(100vh - calc(100vh - 100%));
   height: calc(100 * var(--vh));
 }
-
+@media (min-width: 1024px){
+  .lg\:.full-height { height: calc(100 * var(--vh)); }
+}
 
 
 body {

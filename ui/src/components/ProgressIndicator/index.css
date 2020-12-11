@@ -182,3 +182,51 @@
   background: var(--primary-500);
   background: var(--shape-complete);
 }
+
+
+
+
+/* Pulse Animation */
+/* rgb(44, 89, 172); rgb(220, 93, 70);*/
+.animate-primary::before{
+  box-shadow: 0 0 0 0 rgba(44, 89, 172, 1);
+  transform: scale(1);
+	animation: pulse-primary 1.5s infinite;
+}
+@keyframes pulse-primary {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(44, 89, 172, 0.7);
+	}
+	
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(44, 89, 172, 0);
+	}
+	
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(44, 89, 172, 0);
+	}
+}
+.animate-accent::before{
+  box-shadow: 0 0 0 0 rgba(220, 93, 70, 1);
+  transform: scale(1);
+	animation: pulse-accent 1.5s infinite;
+}
+@keyframes pulse-accent {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(220, 93, 70, 0.7);
+	}
+	
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(220, 93, 70, 0);
+	}
+	
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(220, 93, 70, 0);
+	}
+}

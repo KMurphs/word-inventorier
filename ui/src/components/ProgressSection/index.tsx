@@ -12,7 +12,7 @@ export default function ProgressSection({title}: Props) {
     <div className="progress-section w-full py-12 px-4">
       <section className="super-group">
         <div className="group justify-start"><h2>{title}</h2></div>
-        <div className="group my-8"><ProgressIndicator /></div>
+        <div className="group my-8"><ProgressIndicator animateClass="animate-accent"/></div>
       </section>
     </div>
   );

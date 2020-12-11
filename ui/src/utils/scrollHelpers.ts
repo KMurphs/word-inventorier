@@ -4,7 +4,7 @@
 
 import { useEffect } from "react";
 
-export const scrollIDIntoViewHelper = (targetID: string, clickEvent: any, targetURI?: string, smooth: boolean = false)=>{
+export const scrollIDIntoViewHelper = (targetID: string, clickEvent?: any, targetURI?: string, smooth: boolean = false)=>{
   
   // We are essentially hijacking the click event which does not really work with react router
   clickEvent && clickEvent.preventDefault && clickEvent.preventDefault();
@@ -14,7 +14,7 @@ export const scrollIDIntoViewHelper = (targetID: string, clickEvent: any, target
   targetElmt && targetElmt.scrollIntoView(smooth ? { behavior: "smooth", block: "start" } : { block: "start" });
 
   // Update the url
-  window.history.pushState(targetID, targetID, `/${targetURI ? targetURI : targetID}`);
+  targetURI && window.history.pushState(targetID, targetID, `/${targetURI ? targetURI : targetID}`);
 }
 
 // useEffect(scrollURLIDIntoViewHelper) use with interval?
@@ -22,9 +22,9 @@ export const scrollURLIDIntoViewHelper = (smooth: boolean = false)=>{
   
   // This function assumes that the last uri corresponds to the id of the element
   // that must be scrolled into view
-  let url = window.location.href.split("/");
-  let target = url[url.length - 1];//.toLowerCase();
-  let element = document.getElementById(target);
+  const url = window.location.href.split("/");
+  const target = url[url.length - 1];//.toLowerCase();
+  const element = document.getElementById(target);
 
   // Adjust view to display component with id from uri
   element && element.scrollIntoView(smooth ? { behavior: "smooth", block: "start" } : { block: "start" });

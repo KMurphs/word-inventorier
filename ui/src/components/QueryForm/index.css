@@ -1,0 +1,99 @@
+#query-form{
+  max-width: min(100%, 500px);
+  margin-left: auto;
+  margin-right: auto;
+  overflow-y: auto;
+}
+@media (min-width: 768px){
+  #query-form{
+    max-width: min(100%, 1024px);
+  }
+}
+@media (min-width: 1024px){
+  #query-form{
+    max-width: min(100%, 1024px);
+  }
+}
+.query-form .query-form-section-number{
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--primary-500);
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  left: 2rem;
+  color: white
+}
+
+@media (min-width: 1024px){
+  .query-form .form-container{
+    /* background-color: var(--primary-100); */
+    box-shadow: 2px 4px 10px -2px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    /* border: 1px solid var(--primary-200); */
+  }
+}
+
+.query-form .text-muted{
+  font-size: 13px;
+  line-height: 19px;
+  color: #7E8694;
+  display: inline-block;
+}
+@media (min-width: 640px){
+  .query-form .text-muted{
+    font-size: 15px;
+    line-height: 22px;
+  }
+}
+.query-form .query-limit-value input{
+  width: 5rem;
+  padding: .2rem .5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: rgba(0,0,0,0.03);
+  
+}
+.query-form .query-limit-value{
+  border-bottom: 1px solid #b7bfcf;
+}
+.query-form .text-muted button{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.query-form .input-with-moving-label .moving-label{
+  border: 1px solid transparent;
+}
+.query-form .input-with-moving-label{
+  margin-bottom: .5rem;
+}
+.query-form input[type="file"]{
+  margin-bottom: .2rem;
+  width: 100%;
+}
+.query-form .FileReader{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);;
+  margin-bottom: .5rem;
+}
+.query-form .two-range-input{
+  --bg-col: var(--accent-600);
+	--fg-col: white;
+	--muted-col: var(--accent-100);
+}
+
+.query-form .banner h1{
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 54px;
+}
+.query-form .banner h2{
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 36px;
+  margin-top: 2rem;
+}
+
+.query-form .component-body{
+  overflow: auto;
+}

@@ -67,7 +67,6 @@
   background-color: #E3EDFF;
   background-color: var(--primary-100);
   background-color: var(--shape-muted);
-  border-radius: 50%;
   top: 10px;
   left: 10px;
   right: 0;
@@ -113,6 +112,12 @@
     font-size: 18px;
     margin-top: .5rem;
     line-height: 27px;
+    transform: translate(-50%, 0);
+  }
+  .app-progress-bar ul li:nth-child(3) span{
+    left: 100%;
+    right: auto;
+    transform: translate(-70%, 0);
   }
 }
 

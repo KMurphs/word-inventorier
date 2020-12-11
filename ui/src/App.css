@@ -7,22 +7,28 @@
 }
 
 
-.App.fixed-app-bar #top-bar-element{
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-}
-.App.fixed-app-bar #app-header{
-  background: white;
-  box-shadow: 2px 4px 10px -2px rgba(0, 0, 0, 0.25);
-}
 
+
+@media (min-width: 1024px){
+  .App.fixed-app-bar #top-bar-element{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+  }
+  .App.fixed-app-bar #app-header{
+    background: white;
+    box-shadow: 2px 4px 10px -2px rgba(0, 0, 0, 0.25);
+    z-index: 5;
+  }
+}
 
 .App .flex-shrink-0{flex-shrink: 0;}
 .App .justify-start{ justify-content: flex-start; }
 .App .justify-center{ justify-content: center; }
 .App .flex-grow{ flex-grow: 1; }
+.App .flex-col { flex-direction: column; }
 .App .hidden{ display: none; }
+.App .ml-0{ margin-left: 0; }
 @media (min-width: 768px){
   .App .md\:justify-start { justify-content: flex-start; }
   .App .md\:hidden { display: none; }
@@ -31,4 +37,9 @@
 @media (min-width: 1024px){
   .App .lg\:block { display: block; }
   .App .lg\:justify-end { justify-content: flex-end; }
+  .App .lg\:flex { display: flex; }
+  .App .lg\:h-auto { height: auto; }
+  .App .lg\:hidden { display: none; }
+  .App .lg\:justify-between { justify-content: space-between; }
+  .App .lg\:inline-flex { display: inline-flex; }
 }

@@ -15,6 +15,7 @@
 }
 @media (min-width: 1024px){
   .lg\:.full-height { height: calc(100 * var(--vh)); }
+  .lg\:h-auto { height: auto; }
 }
 
 
@@ -93,9 +94,16 @@ code {
 .btn-tertiary .icon{
   margin-left: 1rem;
 }
+:focus {
+  outline: var(--accent-500) auto 1px;
+}
 
-
-
+input[type="text"], textarea{
+  border-radius: 4px;
+  font-size: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: .5rem 1rem;
+}
 
 
 h1{

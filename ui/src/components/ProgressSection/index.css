@@ -1,0 +1,27 @@
+#introduction-progress,
+#query-form-progress{
+  background-color: var(--primary-800);
+}
+.progress-section{
+  max-width: min(100%, 1024px);
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+}
+.progress-section h2{
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 54px;
+  margin-bottom: 2rem;
+}
+.progress-section .app-progress-bar{
+  transform: scale(1.5);
+  --shape-muted: var(--accent-100);
+  --shape-busy: var(--accent-100);
+  --shape-complete: var(--accent-500);
+  --text-muted: var(--accent-200);
+  --text-busy: var(--accent-500);
+  --text-complete: var(--accent-500);
+}

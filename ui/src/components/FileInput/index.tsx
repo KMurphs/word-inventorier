@@ -23,6 +23,7 @@ export const FileInput = ({onChange}: Props) => {
       }
     }
     file && reader.readAsText(file);
+    !file && onChange("");
   }
 
 

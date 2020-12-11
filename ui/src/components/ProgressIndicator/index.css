@@ -41,6 +41,21 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto
 }
 
+
+.app-progress-bar ul::after{
+  /* solid progress line */
+  content: "";
+  background-color: var(--shape-complete);;
+  height: 2px;
+  grid-area: 1 / 1 / 2 / 3;
+  position: absolute;
+  top: 50%;
+  z-index: 20;
+  left: 10px;
+  width: 0;
+  transition: width .3s;
+}
+
 .app-progress-bar ul li::before{
   /* Round shapes */
   content: "";
@@ -173,7 +188,7 @@
   border-color: var(--primary-500);
   border-color: var(--shape-complete);
 }
-.app-progress-bar.at-step-2 li:nth-child(1)::after,
+/* .app-progress-bar.at-step-2 li:nth-child(1)::after,
 .app-progress-bar.at-step-3 li:nth-child(1)::after,
 .app-progress-bar.at-step-3 li:nth-child(2)::after,
 .app-progress-bar.at-steps-completed li:nth-child(1)::after,
@@ -181,8 +196,11 @@
   background: #2C59AC;
   background: var(--primary-500);
   background: var(--shape-complete);
-}
-
+} */
+.app-progress-bar.at-step-1 ul::after{ width: 0; }
+.app-progress-bar.at-step-2 ul::after{ width: 50%; }
+.app-progress-bar.at-step-3 ul::after{ width: 100%; }
+.app-progress-bar.at-steps-completed ul::after{ width: 100%; }
 
 
 

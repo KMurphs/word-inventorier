@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useLayoutEffect, useRef, useState } from 'react';
 import './App.css';
 import {  scrollIDIntoViewHelper, useResetURI } from './utils/scrollHelpers';
 import Header from './components/Header';
@@ -7,6 +7,8 @@ import { useCustomCss_vh } from './utils/useCustomCss_vh';
 import { useScrollTransitionV2 } from './utils/useScrollTransition';
 import ProgressSection from './components/ProgressSection';
 import QueryForm from './components/QueryForm';
+import { dataControllerContext } from './contexts';
+import { CSSLoaderEllipsis } from './components/CSSLoaders';
 
 type TCurrentScreen = "Introduction" | "Text" | "Range" | "Results" | "Details"
 
@@ -46,11 +48,29 @@ function App() {
     }
   })
   
+  const [waitingForServer, executeQuery] = useContext(dataControllerContext)
+
+
+  const loader = useRef<HTMLElement | null>(null)
+  // useLayoutEffect(()=>{
+  //   const classToAdd = "visible";
+  //   setTimeout(()=>{
+  //     waitingForServer && !loader.current?.classList.contains(classToAdd) && loader.current?.classList.add(classToAdd);
+  //   }, 250)
+  // }, [waitingForServer])
 
 
   return (
     <div className="App full-height lg:h-auto" ref={appElm} >
-      
+
+      {/* Loader Section */}
+      <section ref={loader} className={`loader fixed top-0 left-0 text-white justify-center align-center flex-col z-50 text-center ${waitingForServer? "visible" : "invisible"}`}>
+        <h1 className="text-white mb-8">Processing Query</h1>
+        <h2 className="text-white mb-8">This will take a moment</h2>
+        <CSSLoaderEllipsis/>
+      </section>
+
+
       {/* Header Section  */}
       <section className="app-section flex-auto h-1 lg:h-2 bg-blue-500" id="top-bar-element"></section>
       <section className={`app-section px-8 flex-nowrap ${currentScreen === "Introduction"?'hidden md:flex':''}`} id="app-header">        
@@ -78,7 +98,7 @@ function App() {
       <section className={`app-section px-8 pt-8 lg:pt-16 pb-8 lg:mb-20 flex-2/12 ${["Text", "Range"].includes(currentScreen) ? "" : "hidden lg:flex"}`} id="query-form">
         <QueryForm onEnterText={()=>setCurrentScreen("Text")}
                    onSetRange={()=>setCurrentScreen("Range")}
-                   onResults={()=>{ setCurrentScreen("Results"); scrollIDIntoViewHelper("results"); }}
+                   onResults={()=>{ setCurrentScreen("Results"); scrollIDIntoViewHelper("results"); executeQuery(); }}
                    displayTextScreen={currentScreen === "Text"}
                    displayRangeScreen={currentScreen === "Range"}
         />

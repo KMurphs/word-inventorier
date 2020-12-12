@@ -27,7 +27,7 @@ export default function RangeScreen({onSubmit, onEnterText}: Props) {
         
 
         <div className="input-group mt-4 lg:mt-0 mb-12 lg:mb-0 flex-1/12" >
-          <TwoRangeInputWithContext />
+          <TwoRangeInputWithContext lowLimit={0} highLimit={50}/>
           <span className="text-muted text-sm mb-4 lg:my-8">
             The Application will retrieve the top <QueryResultLimitSpan /> most frequent words 
             with length between <QueryMinLengthSpan /> and <QueryMaxLengthSpan />

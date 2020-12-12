@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 
-type TAction = (scrollRatio: number) => void
+// type TAction = (scrollRatio: number) => void
 
 /**
  * This function will call a function "onRatioChange" everytime the window is scrolled.
@@ -55,7 +55,7 @@ export const useScrollTransition = (targetOffset: number, onRatioChange: (scroll
       window.removeEventListener("scroll", cb); 
       window.removeEventListener("beforeunload", scrollToTop); 
     };
-  }, [targetOffset]);
+  }, [targetOffset, onRatioChange]);
 }
 
 

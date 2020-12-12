@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './index.css';
 import bodyImage from './assets/undraw_maker_launch_crhe.svg';
 import bannerImage from './assets/undraw_book_lover_mkck 1.svg';
@@ -19,7 +19,8 @@ export default function Introduction({onExplore, exposeMovingLogo, exposeMovingL
     movingLogoAnchor.current && exposeMovingLogoAnchor && exposeMovingLogoAnchor(movingLogoAnchor.current);
 
     return ()=>{}
-  }, [movingLogo.current, movingLogoAnchor.current])
+  }, [exposeMovingLogo, exposeMovingLogoAnchor])
+  // }, [movingLogo.current, movingLogoAnchor.current, exposeMovingLogo, exposeMovingLogoAnchor])
 
   return (
     <div className="Introduction flex h-full">

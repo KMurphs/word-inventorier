@@ -3,12 +3,12 @@ import ProgressIndicator, {Props as InternalProps} from "."
 import { stepContext } from "../../contexts";
 
 
-const circularIncrement = (low: number, high: number, val: number, doDecrement: boolean = false): number => {
-  if(doDecrement) return Math.abs(circularIncrement(-1 * high, -1 * low, -1 * val, false));
-  if(val === high) return low;
-  return val + 1;
-}
-const oneArgCircularIncrement = circularIncrement.bind(null, 0, 3)
+// const circularIncrement = (low: number, high: number, val: number, doDecrement: boolean = false): number => {
+//   if(doDecrement) return Math.abs(circularIncrement(-1 * high, -1 * low, -1 * val, false));
+//   if(val === high) return low;
+//   return val + 1;
+// }
+// const oneArgCircularIncrement = circularIncrement.bind(null, 0, 3)
 
 
 

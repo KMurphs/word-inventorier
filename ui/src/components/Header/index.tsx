@@ -16,7 +16,8 @@ export default function Header({exposeLogo}: Props) {
     logo.current && exposeLogo && exposeLogo(logo.current);
 
     return ()=>{}
-  }, [logo.current])
+  }, [exposeLogo])
+  // }, [logo.current, exposeLogo])
 
 
   return (

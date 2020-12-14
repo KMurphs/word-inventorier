@@ -36,9 +36,26 @@ export type Props = {
 }
 
 
-export default function DetailedResultsScreen({onResults, onNewQuery, tokens, data}: Props) {
+export default function DetailedResultsScreen({onResults, onNewQuery, tokens, data, textMeta, queryMeta}: Props) {
 
-
+  console.log({textMeta, queryMeta})
+  const titles = {
+    createdAt: "Created At",
+    processedIn: "Processed In (sec)",
+    type: "Type",
+    wordCount: "Word Count",
+    uniqueWordCount: "Unique Word Count",
+  }
+  const textMetaProcessed = Object.keys(textMeta).reduce((acc, key) => {
+    let tmp = {};
+    (tmp as any)[(titles as any)[key]] = (textMeta as any)[key]
+    return {...tmp, ...acc}
+  }, {})
+  const queryMetaProcessed = Object.keys(queryMeta).reduce((acc, key) => {
+    let tmp = {};
+    (tmp as any)[(titles as any)[key]] = (queryMeta as any)[key]
+    return {...tmp, ...acc}
+  }, {})
   const extremeTokens = data.reduce(
     (acc, item) => {
 
@@ -116,6 +133,14 @@ export default function DetailedResultsScreen({onResults, onNewQuery, tokens, da
               />
             ))
           }
+
+          <QueryCardSimple title={"Query Processing Summary"} 
+                           data={queryMetaProcessed} 
+                           colorMain={"var(--primary-500)"} />
+
+          <QueryCardSimple title={"Text Processing Summary"} 
+                           data={textMetaProcessed} 
+                           colorMain={"var(--primary-500)"} />
 
         </ul>
       </main>
@@ -224,6 +249,45 @@ const QueryCard = ({
 
 
       <span className="design-element"><img src={designElement} alt="Design Element"/></span>
+
+
+
+    </li>
+
+
+  )
+}
+
+
+type SimpleCardProps = {
+  title: string,
+  colorMain: string,
+  data: {[key: string]: string | number},
+}
+const QueryCardSimple = ({
+  title, colorMain, data
+}: SimpleCardProps)=>{
+
+
+  const styles = {
+    "--main-color": colorMain,
+  } as CSSProperties
+
+
+  return (
+
+    <li className="query-card query-card--simple" style={styles}>
+      
+      <h3 className="query-card__title">{title}</h3>
+
+        {
+          Object.keys(data).map((key, index) => (
+            <h4 className="query-card__word" key={index}>
+              <span>{key}: </span>
+              <span className="query-card__main-word">{data[key]}</span>
+            </h4>
+          ))
+        }
 
 
 

@@ -183,3 +183,7 @@
 
 
 
+/* Variant */
+.query-card.query-card--simple .query-card__word{
+  margin-bottom: 1rem;
+}

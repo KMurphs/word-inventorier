@@ -1,6 +1,7 @@
 import React from "react";
 import './index.css';
 
+// https://loading.io/css/
 
 export class CSSLoaderEllipsis extends React.Component {
   render() {

@@ -10,6 +10,7 @@ export const queryMaxLengthContext = React.createContext<[number, React.Dispatch
 export const queryResultLimitContext = React.createContext<[number, React.Dispatch<React.SetStateAction<number>>]>([0, ()=>{}])
 export const stepContext = React.createContext<TStep>(0)
 export const queryResultsContext = React.createContext<TTextSummary | null>(null);
+// export const queryResultsContext = React.createContext<TTextSummary | null>(null);
 export const dataControllerContext = React.createContext<[boolean, Function]>([false, ()=>{}]);
 
 
@@ -19,7 +20,7 @@ interface Props {
 export const ContextProvider = ({children}: Props) => {
 
 
-
+  
 
   // Declaring states that will fill contexts 
   const [queryContent, setQueryContent] = useState<string>("")
@@ -27,10 +28,10 @@ export const ContextProvider = ({children}: Props) => {
   const [queryMaxLength, setQueryMaxLength] = useState<number>(20)
   const [queryResultLimit, setQueryResultLimit] = useState<number>(50)
 
-  const [queryResults, setQueryResults] = useState<TTextSummary | null>(null)
+  const [queryResults, setQueryResults] = useState<TTextSummary | null>(JSON.parse(localStorage.getItem("example") || ""))
   const [isExecutingQuery, setIsExecutingQuery] = useState(false)
 
-
+  console.log(queryResults?.results[0].data)
 
 
 
@@ -55,28 +56,38 @@ export const ContextProvider = ({children}: Props) => {
       const dataController = new DataController();
       console.log("Fetching: DataController Version: " + dataController.getVersion())
 
-      dataController.processText({
-        text: queryContent,
-        queries: [{
-          minLength: queryMinLength,
-          maxLength: queryMaxLength,
-          topN: queryResultLimit
-        }]
-      }).then((res) => {
+      // dataController.processText({
+      //   text: queryContent,
+      //   queries: [{
+      //     minLength: queryMinLength,
+      //     maxLength: queryMaxLength,
+      //     topN: queryResultLimit
+      //   }]
+      // }).then((res) => {
 
-        return new Promise<TTextSummary>((resolve) => {
-          setTimeout(()=>{
-            resolve(res);
-          }, 500)
-        })
+      //   return new Promise<TTextSummary>((resolve) => {
+      //     setTimeout(()=>{
+      //       resolve(res);
+      //     }, 500)
+      //   })
 
-      }).then((res) => {
-        // isExecutingQuery.current = false;
+      // }).then((res) => {
+      //   // isExecutingQuery.current = false;
+      //   setQueryResults(res)
+      //   setIsExecutingQuery(false)
+      //   localStorage.setItem("example", JSON.stringify(res))
+      //   console.log(res);
+      // });
+      
+
+      if(true){
+        const res = JSON.parse(localStorage.getItem("example") || "")
         setQueryResults(res)
         setIsExecutingQuery(false)
+        
         console.log(res);
-      });
-      
+      }
+
     }
 
     isExecutingQuery && executeQuery() 

@@ -9,7 +9,7 @@
 
 
 
-
+.frosty-loader,
 .loader{
   transition: all .3s;
   background-color: var(--primary-500);
@@ -20,10 +20,12 @@
   z-index: -100;
   transform: scale(1);
 }
+.frosty-loader.visible,
 .loader.visible{
   z-index: 100;
   animation: zoomin .3s ease-in;
 }
+.frosty-loader.invisible,
 .loader.invisible{
   z-index: -100;
   opacity: 0;
@@ -37,6 +39,33 @@
   from { transform: scale(1); opacity: 1; z-index: 100; }
   to   { transform: scale(1.2); opacity: 0; z-index: 100;}
 }
+.frosty-loader{
+  background-color: transparent;
+  color: var(--primary-800);
+}
+.frosty-loader * {
+  color: var(--primary-800);
+}
+.frosty-loader::before {
+  content: "";
+  z-index: -1;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  backdrop-filter: blur(10px);
+  filter: blur(10px);
+}
+
+
+.frosty-loader .lds-ellipsis div{
+  background-color: var(--primary-800);
+}
+
+
+
 
 
 
@@ -75,4 +104,12 @@
   .App .lg\:hidden { display: none; }
   .App .lg\:justify-between { justify-content: space-between; }
   .App .lg\:inline-flex { display: inline-flex; }
+}
+
+
+.flip-180{
+  transform: scaleY(-1);
+}
+.rotate-180{
+  transform: rotate(180deg);
 }

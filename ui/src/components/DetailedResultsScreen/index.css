@@ -9,10 +9,15 @@
   font-size: 14px;
   line-height: 21px;
   margin-top: .5rem;
+  
 }
 
 
-
+.DetailedResultsScreen footer .btn{
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 
@@ -32,6 +37,8 @@
   align-items: flex-start;
   justify-content: flex-start;
   margin-bottom: 2rem;
+  max-width: 400px;
+  margin: 0 auto 2rem auto;
 }
 
 .query-card__title{
@@ -186,4 +193,71 @@
 /* Variant */
 .query-card.query-card--simple .query-card__word{
   margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+.compact-histogram{
+  display: grid;
+  grid-template: 1fr 1fr / min-content 1fr;
+  gap: .5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+.compact-histogram__header{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  height: auto;
+  padding: .5rem .2rem;
+  font-size: .8rem;
+}
+.compact-histogram__header span{
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+.compact-histogram__header .icon{
+  transform: rotate(90deg) scaleX(-.8) scaleY(.8);
+  margin: 1rem 0;
+}
+.compact-histogram__header .icon.flip-180{
+  transform: rotate(90deg) scaleX(-.8) scaleY(-.8);
+}
+
+.compact-histogram__header--bottom{
+  text-align: right;
+}
+.compact-histogram__bars{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.compact-histogram__bars li{
+  background-color: red;
+  background-color: var(--primary-500);
+  flex: 1 1 4px;
+  margin-left: 2px;
+  border-radius: 4px;
+  transition: height .3s;
+}
+.compact-histogram__bars--bottom{
+  align-items: flex-start;
+}
+.compact-histogram__bars.compact-histogram__bars--bottom li{
+  background-color: var(--accent-500);
+}
+.compact-histogram__header.compact-histogram__header--bottom{
+  color: var(--accent-700);
+}
+.compact-histogram__header.compact-histogram__header--bottom .icon{
+  transform: rotate(90deg) scaleX(.8) scaleY(-.8);
+}
+.compact-histogram__header.compact-histogram__header--bottom .icon.flip-180{
+  transform: rotate(90deg) scaleX(.8) scaleY(.8);
 }

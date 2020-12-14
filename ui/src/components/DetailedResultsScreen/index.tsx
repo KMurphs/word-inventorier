@@ -4,7 +4,8 @@ import './index.css';
 import leftArrow from './assets/LeftArrow.svg';
 import designElementPrimary from './assets/DesignElementPrimary.svg';
 import designElementAccent from './assets/DesignElementAccent.svg';
-
+import freqSort from './assets/Frequency Sort.svg';
+import lenSort from './assets/Length Sort.svg';
 
 export type QueryMeta = {
   createdAt: string | undefined;
@@ -36,9 +37,9 @@ export type Props = {
 }
 
 
-export default function DetailedResultsScreen({onResults, onNewQuery, tokens, data, textMeta, queryMeta}: Props) {
+export default function DetailedResultsScreen({onResults, onNewQuery, tokens, data, textMeta, queryMeta, onSortByFrequency, onSortByLength}: Props) {
 
-  console.log({textMeta, queryMeta})
+  console.log({data})
   const titles = {
     createdAt: "Created At",
     processedIn: "Processed In (sec)",
@@ -74,7 +75,15 @@ export default function DetailedResultsScreen({onResults, onNewQuery, tokens, da
       "leastFrequent": data[0],
     } 
   )
-  
+  const [maxLengths, maxFrequencies] = data.reduce(
+    (acc, {frequency, length}) => {
+      return [ 
+        length > acc[0] ? length : acc[0], 
+        frequency > acc[1] ? frequency : acc[1] 
+      ]
+    }, 
+    [-1, -1]
+  )
 
   const cards = Object.keys(extremeTokens).map((key) => {
 
@@ -111,6 +120,26 @@ export default function DetailedResultsScreen({onResults, onNewQuery, tokens, da
       </header>
 
       <main>
+        <div className="compact-histogram">
+          <button className="compact-histogram__header" onClick={onSortByFrequency}>
+            <span className={`icon ${maxFrequencies === data[0].frequency ? "flip-180" : ""}`}><img src={freqSort} alt="left arrow"/></span>
+            <span>Frequency</span>
+          </button>
+          <ul className="compact-histogram__bars">
+            {
+              data.map((item, index) => <li key={index} style={{height: `${100 * item.frequency/extremeTokens.mostFrequent.frequency}%`}}></li>)
+            } 
+          </ul>
+          <button className="compact-histogram__header compact-histogram__header--bottom" onClick={onSortByLength}>
+            <span>Length</span>
+            <span className={`icon ${maxLengths === data[0].length ? "flip-180" : ""}`}><img src={lenSort} alt="left arrow"/></span>
+          </button>
+          <ul className="compact-histogram__bars compact-histogram__bars--bottom">
+            {
+              data.map((item, index) => <li key={index} style={{height: `${100 * item.length/extremeTokens.longest.length}%`}}></li>)
+            } 
+          </ul>
+        </div>
         <ul>
           {
             cards.map((token, index) => (
@@ -136,11 +165,13 @@ export default function DetailedResultsScreen({onResults, onNewQuery, tokens, da
 
           <QueryCardSimple title={"Query Processing Summary"} 
                            data={queryMetaProcessed} 
-                           colorMain={"var(--primary-500)"} />
+                           colorMain={"var(--primary-500)"}
+                           colorMainMuted={"var(--primary-100)"} />
 
           <QueryCardSimple title={"Text Processing Summary"} 
                            data={textMetaProcessed} 
-                           colorMain={"var(--primary-500)"} />
+                           colorMain={"var(--primary-500)"} 
+                           colorMainMuted={"var(--primary-100)"} />
 
         </ul>
       </main>
@@ -153,6 +184,36 @@ export default function DetailedResultsScreen({onResults, onNewQuery, tokens, da
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -183,6 +244,7 @@ type CardProps = {
   maxFrequency: number, 
   maxLength: number, 
 }
+
 
 
 
@@ -259,18 +321,25 @@ const QueryCard = ({
 }
 
 
+
+
+
+
 type SimpleCardProps = {
   title: string,
   colorMain: string,
+  colorMainMuted: string,
   data: {[key: string]: string | number},
 }
 const QueryCardSimple = ({
-  title, colorMain, data
+  title, colorMain, data, colorMainMuted
 }: SimpleCardProps)=>{
 
 
   const styles = {
     "--main-color": colorMain,
+    "--category-1-color": colorMain,
+    "--category-1-color--muted": colorMainMuted,
   } as CSSProperties
 
 

@@ -31,7 +31,7 @@ export default function ResultScreen({data, onNewQuery, onDetailedResults, onSor
   return (
     <div className="ResultScreen w-full h-full flex flex-col">
       
-      <header className="component-header lg:pl-12 mb-8 flex align-center">
+      <header className="component-header lg:pl-12 lg:justify-center lg:pb-8 mb-8 flex align-center">
         <h2>Explore Results</h2>
         <button className="btn btn-tertiary ml-auto flex align-center lg:hidden" onClick={onDetailedResults}>
           <span>More</span>

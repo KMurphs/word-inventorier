@@ -104,6 +104,10 @@
   .App .lg\:hidden { display: none; }
   .App .lg\:justify-between { justify-content: space-between; }
   .App .lg\:inline-flex { display: inline-flex; }
+  .App .lg\:flex-grow-0 { flex-grow: 0; }
+}
+@media (min-width: 1238px){
+  .App .xl\:flex { display: flex; }
 }
 
 

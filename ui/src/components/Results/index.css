@@ -97,3 +97,17 @@
 .query-form .component-body{
   overflow: auto;
 }
+
+.query-form .detailed-results{
+  flex-grow: 0;
+  flex-basis: 500px;
+}
+
+
+.side-bar{
+  top: 25vh;
+  position: sticky;
+}
+.side-bar img{
+  transform: scale(.7);
+}

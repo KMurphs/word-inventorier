@@ -33,9 +33,9 @@ export default function TextScreen({onSubmit, onSetRange}: Props) {
         <h2><span className="hidden lg:inline-flex query-form-section-number">1</span>Enter Some Text</h2>
       </header>
 
-      <main className="component-body lg:pl-12 flex-2/12 flex flex-col lg:block"> 
-        {(currentInputType !== 1) && (<div className="component-body__image flex-image-container lg:hidden flex-1/12"><img src={bodyImage} alt="launch rocket"/></div>)}
-        {(currentInputType === 1) && (<div className="component-body__image flex-image-container lg:hidden flex-1/12"><img src={bodyImageAlt} alt="launch rocket"/></div>)}
+      <main className="component-body lg:pl-12 flex-2/12 flex flex-col lg:block flex-grow"> 
+        {(currentInputType !== 1) && (<div className="component-body__image flex-image-container lg:hidden flex-1/12 flex-grow"><img src={bodyImage} alt="launch rocket"/></div>)}
+        {(currentInputType === 1) && (<div className="component-body__image flex-image-container lg:hidden flex-1/12 flex-grow"><img src={bodyImageAlt} alt="launch rocket"/></div>)}
 
 
         {

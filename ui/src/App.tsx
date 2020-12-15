@@ -88,7 +88,7 @@ function App() {
 
 
       {/* Form Section  */}
-      <section className={`app-section px-8 pt-8 lg:pt-16 pb-8 lg:mb-20 flex-2/12 ${["Text", "Range"].includes(currentScreen) ? "" : "hidden lg:flex"}`} id="query-form">
+      <section className={`app-section px-8 pt-8 lg:pt-16 pb-8 lg:mb-20 flex-2/12 flex-grow ${["Text", "Range"].includes(currentScreen) ? "" : "hidden lg:flex"}`} id="query-form">
         <QueryForm onEnterText={()=>setCurrentScreen("Text")}
                    onSetRange={()=>setCurrentScreen("Range")}
                    onResults={()=>{ setCurrentScreen("Results"); scrollIDIntoViewHelper("results"); executeQuery(); }}
@@ -105,7 +105,7 @@ function App() {
 
 
       {/* Result Section  */}
-      <section className={`app-section px-8 pt-8 lg:pt-16 pb-8 lg:mb-20 flex-2/12 overflow-y-auto ${["Results", "Details"].includes(currentScreen) ? "" : "hidden lg:flex"}`} id="results">
+      <section className={`app-section px-8 pt-8 lg:pt-16 pb-8 lg:mb-20 flex-2/12 overflow-y-auto xl:overflow-y-visible flex-grow ${["Results", "Details"].includes(currentScreen) ? "" : "hidden lg:flex"}`} id="results">
         <Results  onNewQuery={()=>{ setCurrentScreen("Text"); scrollIDIntoViewHelper("query-form"); }}
                   onDetailedResults={()=>{ setCurrentScreen("Details"); scrollIDIntoViewHelper("query-form"); }}
                   onResults={()=>{ setCurrentScreen("Results"); scrollIDIntoViewHelper("query-form"); }}

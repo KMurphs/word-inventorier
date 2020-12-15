@@ -111,7 +111,7 @@ export default function DetailedResultsScreen({onResults, onNewQuery, tokens, da
     <div className="DetailedResultsScreen w-full h-full flex flex-col">
 
 
-      <header className="component-header lg:pl-12 mb-8 flex flex-col align-start">
+      <header className="component-header lg:pl-12 mb-8 flex flex-col align-start lg:opacity-0">
         <h2>Explore Results: Details</h2>
         <button className="btn btn-tertiary mr-auto flex align-center lg:hidden" onClick={onResults}>
           <span className="icon"><img src={leftArrow} alt="left arrow"/></span>

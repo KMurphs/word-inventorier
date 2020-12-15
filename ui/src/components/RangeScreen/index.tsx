@@ -21,8 +21,8 @@ export default function RangeScreen({onSubmit, onEnterText}: Props) {
         <h2><span className="hidden lg:inline-flex query-form-section-number">2</span>Set a Range of Lengths</h2>
       </header>
 
-      <main className="component-body lg:pl-12 flex-2/12 flex flex-col lg:block"> 
-        <div className="component-body__image flex-image-container lg:hidden flex-1/12"><img src={bodyImage} alt="launch rocket"/></div>
+      <main className="component-body lg:pl-12 flex-2/12 flex flex-col lg:block flex-grow"> 
+        <div className="component-body__image flex-image-container lg:hidden flex-1/12 flex-grow"><img src={bodyImage} alt="launch rocket"/></div>
 
         
 

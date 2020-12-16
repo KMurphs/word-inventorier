@@ -39,7 +39,7 @@ export type Props = {
 
 export default function DetailedResultsScreen({onResults, onNewQuery, tokens, data, textMeta, queryMeta, onSortByFrequency, onSortByLength}: Props) {
 
-  console.log({data})
+  // console.log({data})
   const titles = {
     createdAt: "Created At",
     processedIn: "Processed In (sec)",

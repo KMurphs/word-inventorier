@@ -35,9 +35,9 @@ function App() {
     const srcFontSize = 4;
 
     if(ratio === 1 || ((window.scrollY || window.pageYOffset) > 126)){
-      movingElement.current && (movingElement.current.style.top = (dst + (1 - ratio) * offset) + "px");
-      movingElement.current && (movingElement.current.style.left = (dstLeft + (1 - ratio) * (srcLeft - dstLeft)) + "px");
-      movingElement.current && (movingElement.current.style.fontSize = (dstFontSize + (1 - ratio) * (srcFontSize - dstFontSize)) + "rem");
+      movingElement.current && (movingElement.current.style.top = dst + "px");
+      movingElement.current && (movingElement.current.style.left = dstLeft + "px");
+      movingElement.current && (movingElement.current.style.fontSize = dstFontSize + "rem");
       !appElm.current?.classList.contains("fixed-app-bar") && appElm.current?.classList.add("fixed-app-bar");
 
     }else{

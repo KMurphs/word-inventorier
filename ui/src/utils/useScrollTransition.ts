@@ -44,7 +44,6 @@ export const useScrollTransition = (targetOffset: number, onRatioChange: (scroll
   
   useLayoutEffect(() => {
 
-    
     const cb = ()=> onRatioChange(...computeRatio(targetOffset));
     const scrollToTop = ()=> window.scrollTo(0, 0);
 
@@ -76,7 +75,6 @@ export const useScrollTransitionV2 = (onRatioChange: (scrollRatio: number, origi
   }
   const grabFinalAnchor = (target: HTMLElement)=>{
     dstAnchor.current = target;
-    console.log(target, target.getBoundingClientRect())
     setDstOffset(target.getBoundingClientRect().y);
   }
 

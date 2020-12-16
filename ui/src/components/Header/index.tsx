@@ -11,8 +11,8 @@ export default function Header({exposeLogo}: Props) {
 
   const logo = useRef<HTMLSpanElement | null>(null);
   useLayoutEffect(()=>{
-    logo.current && exposeLogo && console.log(logo.current.getBoundingClientRect());
-    logo.current && exposeLogo && console.log(logo.current.getClientRects());
+    // logo.current && exposeLogo && console.log(logo.current.getBoundingClientRect());
+    // logo.current && exposeLogo && console.log(logo.current.getClientRects());
     logo.current && exposeLogo && exposeLogo(logo.current);
 
     return ()=>{}

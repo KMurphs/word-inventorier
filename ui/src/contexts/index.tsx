@@ -31,7 +31,7 @@ export const ContextProvider = ({children}: Props) => {
   const [queryResults, setQueryResults] = useState<TTextSummary | null>(JSON.parse(localStorage.getItem("example") || ""))
   const [isExecutingQuery, setIsExecutingQuery] = useState(false)
 
-  console.log(queryResults?.results[0].data)
+  // console.log(queryResults?.results[0].data)
 
 
 
@@ -41,7 +41,7 @@ export const ContextProvider = ({children}: Props) => {
     if(isExecutingQuery || queryResults) return 2;
     return 1;
   })();
-  console.log({currentStep, queryContent})
+  // console.log({currentStep, queryContent})
 
 
   

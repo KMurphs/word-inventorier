@@ -1,0 +1,43 @@
+.Footer{
+  padding: 6rem 3rem;
+  background-color: var(--primary-800);
+  color: white;
+}
+.Footer h2{
+  margin-bottom: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+.Footer .app-details div{
+  display: grid;
+  grid-template: 1fr 1fr / max-content 1fr;
+  gap: .5rem 1rem;
+}
+.Footer .app-details a:hover{
+  text-decoration: underline;
+}
+.Footer .contact-details div{
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+}
+.Footer .contact-details h2{
+  font-size: 2rem;
+}
+.Footer .contact-details p{
+  text-align: center;
+  line-height: 2;
+}
+.Footer .contact-details a{
+  font-size: 2rem;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--accent-700);
+  /* background-color: rgba(0,0,0,0.1); */
+  margin-left: 2rem;
+  /* color: var(--accent-00); */
+}

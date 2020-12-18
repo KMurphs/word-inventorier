@@ -49,8 +49,8 @@ const withContext = (FC: React.FC<Props>, context: React.Context<TTextSummary | 
 
             const dataSummary: {[key: string]: TTokenSummary} = {
               "longest": {...(results.longestWord)},
-              "shortest": {...(results.mostFrequentWord)},
-              "mostFrequent": {...(results.shortestWord)},
+              "shortest": {...(results.shortestWord)},
+              "mostFrequent": {...(results.mostFrequentWord)},
               "leastFrequent": {...(results.leastFrequentWord)},
             }
 

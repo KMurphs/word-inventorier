@@ -175,6 +175,16 @@
   border-color: var(--primary-500);
   border-color: var(--shape-complete);
 }
+@media (min-width: 1024px){
+  .app-progress-bar.at-step-3 li:nth-child(3)::before{
+    background: #2C59AC;
+    background: var(--primary-500);
+    background: var(--shape-complete);
+    border: 1px solid #2C59AC;
+    border-color: var(--primary-500);
+    border-color: var(--shape-complete);
+  }
+}
 .app-progress-bar.at-step-2 li:nth-child(1)::before,
 .app-progress-bar.at-step-3 li:nth-child(1)::before,
 .app-progress-bar.at-step-3 li:nth-child(2)::before,

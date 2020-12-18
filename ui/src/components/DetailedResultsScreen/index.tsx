@@ -39,7 +39,7 @@ export type Props = {
 
 export default function DetailedResultsScreen({onResults, onNewQuery, tokens, data, textMeta, queryMeta, onSortByFrequency, onSortByLength}: Props) {
 
-  // console.log({data})
+  console.log({tokens})
   const titles = {
     createdAt: "Created At",
     processedIn: "Processed In (sec)",
@@ -85,6 +85,7 @@ export default function DetailedResultsScreen({onResults, onNewQuery, tokens, da
     [-1, -1]
   )
 
+
   const cards = Object.keys(extremeTokens).map((key) => {
 
     const titles = {
@@ -99,8 +100,8 @@ export default function DetailedResultsScreen({onResults, onNewQuery, tokens, da
       "fromQuery": {...(extremeTokens as any)[key]},
       "fromText": {...tokens[key]},
       "isCategory1": !(["longest", "shortest"].includes(key)),
-      "maxFrequency": extremeTokens.mostFrequent.frequency,
-      "maxLength": extremeTokens.longest.length,
+      "maxFrequency": tokens.mostFrequent.frequency,
+      "maxLength": tokens.longest.length,
     }
   })
 

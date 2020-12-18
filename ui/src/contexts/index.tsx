@@ -28,7 +28,8 @@ export const ContextProvider = ({children}: Props) => {
   const [queryMaxLength, setQueryMaxLength] = useState<number>(20)
   const [queryResultLimit, setQueryResultLimit] = useState<number>(50)
 
-  const [queryResults, setQueryResults] = useState<TTextSummary | null>(JSON.parse(localStorage.getItem("example") || ""))
+  // const [queryResults, setQueryResults] = useState<TTextSummary | null>(JSON.parse(localStorage.getItem("example") || ""))
+  const [queryResults, setQueryResults] = useState<TTextSummary | null>(null)
   const [isExecutingQuery, setIsExecutingQuery] = useState(false)
 
   // console.log(queryResults?.results[0].data)
@@ -56,37 +57,37 @@ export const ContextProvider = ({children}: Props) => {
       const dataController = new DataController();
       console.log("Fetching: DataController Version: " + dataController.getVersion())
 
-      // dataController.processText({
-      //   text: queryContent,
-      //   queries: [{
-      //     minLength: queryMinLength,
-      //     maxLength: queryMaxLength,
-      //     topN: queryResultLimit
-      //   }]
-      // }).then((res) => {
+      dataController.processText({
+        text: queryContent,
+        queries: [{
+          minLength: queryMinLength,
+          maxLength: queryMaxLength,
+          topN: queryResultLimit
+        }]
+      }).then((res) => {
 
-      //   return new Promise<TTextSummary>((resolve) => {
-      //     setTimeout(()=>{
-      //       resolve(res);
-      //     }, 500)
-      //   })
+        return new Promise<TTextSummary>((resolve) => {
+          setTimeout(()=>{
+            resolve(res);
+          }, 500)
+        })
 
-      // }).then((res) => {
-      //   // isExecutingQuery.current = false;
-      //   setQueryResults(res)
-      //   setIsExecutingQuery(false)
-      //   localStorage.setItem("example", JSON.stringify(res))
-      //   console.log(res);
-      // });
-      
-
-      if(true){
-        const res = JSON.parse(localStorage.getItem("example") || "")
+      }).then((res) => {
+        // isExecutingQuery.current = false;
         setQueryResults(res)
         setIsExecutingQuery(false)
-        
+        localStorage.setItem("example", JSON.stringify(res))
         console.log(res);
-      }
+      });
+      
+
+      // if(true){
+      //   const res = JSON.parse(localStorage.getItem("example") || "")
+      //   setQueryResults(res)
+      //   setIsExecutingQuery(false)
+        
+      //   console.log(res);
+      // }
 
     }
 

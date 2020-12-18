@@ -7,9 +7,10 @@ import { useCustomCss_vh } from './utils/useCustomCss_vh';
 import { useScrollTransitionV2 } from './utils/useScrollTransition';
 import ProgressSection from './components/ProgressSection';
 import QueryForm from './components/QueryForm';
-import { dataControllerContext } from './contexts';
+import { dataControllerContext, queryResultsContext } from './contexts';
 import { CSSLoaderEllipsis } from './components/CSSLoaders';
 import Results from './components/Results';
+import Footer from './components/Footer';
 
 type TCurrentScreen = "Introduction" | "Text" | "Range" | "Results" | "Details"
 
@@ -50,6 +51,8 @@ function App() {
   })
   
   const [waitingForServer, executeQuery] = useContext(dataControllerContext)
+  const queryResults = useContext(queryResultsContext)
+  console.log(queryResults)
 
 
 
@@ -106,17 +109,20 @@ function App() {
 
       {/* Result Section  */}
       <section className={`app-section px-8 pt-8 lg:pt-16 pb-8 lg:mb-20 flex-2/12 overflow-y-auto xl:overflow-y-visible flex-grow ${["Results", "Details"].includes(currentScreen) ? "" : "hidden lg:flex"}`} id="results">
-        <Results  onNewQuery={()=>{ setCurrentScreen("Text"); scrollIDIntoViewHelper("query-form"); }}
-                  onDetailedResults={()=>{ setCurrentScreen("Details"); scrollIDIntoViewHelper("query-form"); }}
-                  onResults={()=>{ setCurrentScreen("Results"); scrollIDIntoViewHelper("query-form"); }}
-                  displayResultsScreen={currentScreen === "Results"}
-                  displayDetailedResults={currentScreen === "Details"}
-        />
+        { queryResults !== null && (
+            <Results  onNewQuery={()=>{ setCurrentScreen("Text"); scrollIDIntoViewHelper("query-form"); }}
+                    onDetailedResults={()=>{ setCurrentScreen("Details"); scrollIDIntoViewHelper("query-form"); }}
+                    onResults={()=>{ setCurrentScreen("Results"); scrollIDIntoViewHelper("query-form"); }}
+                    displayResultsScreen={currentScreen === "Results"}
+                    displayDetailedResults={currentScreen === "Details"}
+            />
+          )
+        }
       </section>
 
 
       {/* Footer */}
-      {/* <footer className="app-section hidden lg:block" id="footer"><Footer/></footer> */}
+      <footer className="app-section hidden lg:flex" id="footer"><Footer/></footer>
 
     </div>
   );

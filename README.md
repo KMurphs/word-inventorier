@@ -35,19 +35,32 @@ Initially, the concept was born out of a discussion with a friend. I had some fr
 
 ## Core Solution Research
 
-The initial question was how to retrieve the top (50) most frequent in a body of text. There are many solution to a problem like this: The initial inclination was to use a dictionary where each word would become a key associated to the number of times that word was already met.
+1. The initial question was how to retrieve the top (50) most frequent in a body of text. There are many solution to a problem like this: 
+    - The initial inclination was to use a dictionary where each word would become a key associated to the number of times that word occured.
 
-Then an extra requirement was added to make the problem a little bit more interesting: The algorithm should be able to look at words with lengths in a certain range (say between 10 and 20).
-The initial algorithm would inventory the whole text in O(N), where N is the number of words in the text. The dictionary would call for a space complexity of O(M), where  M is the number of unique words in the text. 
-From thereon, to retrieve the top 50, a sorting algorithm could be used and the solution would take O(MlogM). A modified bubble sort could bring down the time complexity to O(kM) by only considering the top K most frequent words - As long as K is smaller than logM, the modified bubble sort is a better alternative. On top of this, this modified bubble would hanlde the length requirements of the query without trouble at all.
+    <br>Then an extra requirement was added to make the problem a little bit more interesting: 
+    - The algorithm should be able to look at words with lengths in a certain range (say between 10 and 20).
 
-Another requirement was to be able to reuse the processing of this huge text to run different queries at a later point. This meant that the text processing algorithm and the query processing happened at different point in time.
-So the dictionary algorithm in O(N) and O(M) could still be used for the text processing. The query processing would use the modified bubble sorting in O(M) and O(k).
-A step further was to investigate whether this last O(M) could be reduced. For that, an extra data structure was created during the text processing. This data structure is also a dictionary where keys are words lengths in the text, and values are linkedlist of words that have the same length as the key they are associated to. This extra structure adds another O(M + d) where d is bounded by the longest word in the english dictionary and d << M. This data structure will bring down the time complexity of the query processing by allowing the algorithm to only process words that have length within a specified range. If there are V such words, the new time complexity is O(V). In some instances V can be way smaller than M.
+    The initial algorithm would still inventory the whole text in ``O(N)``, where ***N is the number of words in the text***. The dictionary would call for a space complexity of ``O(M)``, where  ***M is the number of unique words in the text***. 
+
+2. From thereon, to retrieve the top 50, a sorting algorithm could be used and the solution would take ``O(MlogM)``. 
+<br>A *modified bubble sort* could bring down the time complexity to ``O(kM)`` by only considering the top K most frequent words - As long as, K is way smaller than logM (``K << logM``), the modified bubble sort is a better alternative. 
+<br>On top of this, this modified bubble would handle the length requirement of the query without trouble at all.
+
+3. Another requirement was to be able to reuse the processing of this huge text to run different queries at a later point. This meant that the text processing algorithm and the query processing happened at different point in time.
+    - So the dictionary algorithm in ``O(N)`` and ``O(M)`` could still be used for the text processing. The query processing would use the modified bubble sorting in ``O(M)`` and ``O(k)``.
+
+    A step further was to investigate whether this last time complexity of ``O(M)`` could be reduced. 
+    <br>For that, an extra data structure was created during the text processing. 
+    - This data structure is also a dictionary where keys are words lengths in the text, and values are linkedlist of words that have the same length as the key they are associated to. This extra structure adds another ``O(M + d)`` to the space complexity of the text processing phase - ***d (the number of possible word lengths within the text)*** is bounded by the longest word in the english dictionary ***pneumonoultramicroscopicsilicovolcanoconiosis - Length = 45***.
+    <br>``d <= 45`` therefore ``d << M``. 
+    
+    This data structure will bring down the time complexity of the query processing by allowing the algorithm to only process ***words that have length within a specified range***. If there are ***V** such words, the new time complexity is ``O(V)``. In some instances V can be way smaller than M.
 
 In summary, 
-- Text Processing: O(N) Time Complexity, O(M) space complexity
-- Query Processing: O(V) Time Complexity, O(k) space complexity
+- Text Processing: ``O(N) Time Complexity, O(M) space complexity``
+- Query Processing: ``O(V) Time Complexity, O(k) space complexity``
+
 where,
 - N: number of words in text
 - M: number of unique words in text
@@ -55,6 +68,12 @@ where,
 - k: number of words of interest (the top k most frequent words)
 
 The dictionary of frequencies ``IDictionary<string, int>`` and the dictionary of lengths ``IDictionary<int, LinkedList<string>>`` can easily be serialized and deserialized.
+
+
+
+
+
+
 
 ## References
 1. https://stackoverflow.com/questions/4495241/given-a-file-find-the-ten-most-frequently-occurring-words-as-efficiently-as-pos

@@ -15,11 +15,11 @@
 
 Project used to build an inventory of words from a body of text while keeping track of some statistics like frequency and length. As the sole developer, I conceived, designed, implemented and documented the solution. Access the application live at: [https://corpus-inventory.herokuapp.com/](https://corpus-inventory.herokuapp.com/)
 
-``Duration``: 2 weeks 
+**Duration**: 2 weeks 
 
-``Tools, Technologies, skills``: NUnit Testing Framework, ASP.NET, REST API, Docker, Heroku, Figma, React, Typescript, Tailwindcss
+**Tools, Technologies, skills**: NUnit Testing Framework, ASP.NET, REST API, Docker, Heroku, Figma, React, Typescript, Tailwindcss
 
-``Languages``: C#, Batch Files, Javascript/Typescript
+**Languages**: C#, Batch Files, Javascript/Typescript
 
 
 

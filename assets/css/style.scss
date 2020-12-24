@@ -44,3 +44,18 @@
   margin-bottom: 1.5rem;
   margin-top: 3rem;
 }
+.main-content h1{
+  width: 100%;
+  text-align: center;
+  border-width: 0;
+  font-size: 3rem;
+  margin-bottom: 5rem;
+}
+.main-content li{
+  margin-bottom: 1rem;
+}
+@media screen and (min-width: 64em){
+  .main-content {
+    line-height: 1.8;
+  }
+}

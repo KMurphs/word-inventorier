@@ -106,11 +106,11 @@ Information Architecture was first established as the most important aspect of t
 
 Figma was used to design the UI.
 
-The Mobile first Version of the front end client
+### The Mobile first Version of the front end client
 
 ![Mobile First Version](https://raw.githubusercontent.com/KMurphs/word-inventorier/master/docs/ui-mobile-lg.png "Mobile First Version of UI")
 
-The Desktop Version of the front end client
+### The Desktop Version of the front end client
 
 ![Mobile First Version](https://raw.githubusercontent.com/KMurphs/word-inventorier/master/docs/ui-desktop-lg.png "Desktop Version of UI")
 

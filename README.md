@@ -79,6 +79,8 @@ The first step was to implement the core service that would process the text and
 
 A range of utility classes are used to fetch the text when a URL is provided, preprocess the text (Handle special characters, lower case all the text, ...), serialize and deserialize the data structures, hashing the text into an ID that can be used later to skip re-processing the text if the processing result is stored in our database.
 
+``<Current Repository>/text-inventorier/scripts/misc.bat`` describes some of the commands used to configure the C# project in Visual Studio Code (VSCode).
+
 ## API and Productionization
 
 See ``<Current Repository>/text-inventorier/WebApp/``
@@ -104,7 +106,10 @@ Information Architecture was first established as the most important aspect of t
 
 ## UI Design and Prototyping
 
+See ``<Current Repository>/ui-design/``
+
 Figma was used to design the UI.
+
 
 ### The Mobile first Version of the front end client
 
@@ -113,6 +118,37 @@ Figma was used to design the UI.
 ### The Desktop Version of the front end client
 
 ![Mobile First Version](https://raw.githubusercontent.com/KMurphs/word-inventorier/master/docs/ui-desktop-lg.png "Desktop Version of UI")
+
+
+
+
+## UI Implementation and Tests
+
+See ``<Current Repository>/ui/``
+
+Setting up ``tailwindcss`` with ``create-react-app`` was quite the mission.
+
+``<Current Repository>/text-inventorier/scripts/setup-ui.bat`` describes some of the commands used to setup ``tailwindcss`` with ``create-react-app``.
+
+
+
+
+## UI Productionization
+
+See ``<Current Repository>/ui/``
+
+The build files from ``npm react build`` were copied to ``<Current Repository>/text-inventorier/WebApp/wwwroot``
+
+Then, the webapp was recompiled, the docker image rebuilt, retagged and pushed to the remote repo.
+
+Heroku redeployed the new image. The application is live at [Heroku](https://corpus-inventory.herokuapp.com/) 
+
+
+
+## Iteration
+
+Although the process is described sequentially, there are times were things happen through iteration.
+
 
 ## References
 1. https://stackoverflow.com/questions/4495241/given-a-file-find-the-ten-most-frequently-occurring-words-as-efficiently-as-pos

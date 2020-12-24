@@ -1,4 +1,4 @@
-# [Corpus Word Inventory](https://github.com/KMurphs/word-inventorier)
+# [Word Inventorier](https://github.com/KMurphs/word-inventorier)
 
 
 
@@ -13,11 +13,11 @@
 
 ## Definition
 
-Project used to build an inventory of words from a body of text while keeping track of some statistics like frequency and length. As the sole developer, I conceived, designed, implemented and documented the solution. Access the application live at: [https://corpus-inventory.herokuapp.com/](https://corpus-inventory.herokuapp.com/)
+Project used to build an inventory of words from a body of text while keeping track of some statistics like frequency and length. As the sole developer, I conceived, designed, implemented and documented the solution. <br/>Access the application live at: [https://corpus-inventory.herokuapp.com/](https://corpus-inventory.herokuapp.com/)
 
 **Duration**: 2 weeks 
 
-**Tools, Technologies, skills**: NUnit Testing Framework, ASP.NET, REST API, Docker, Heroku, Figma, React, Typescript, Tailwindcss
+**Tools, Technologies, Skills**: NUnit Testing Framework, ASP.NET, REST API, Docker, Heroku, Figma, React, Typescript, Tailwindcss
 
 **Languages**: C#, Batch Files, Javascript/Typescript
 
@@ -25,7 +25,7 @@ Project used to build an inventory of words from a body of text while keeping tr
 
 ## Context
 
-Initially, the concept was born out of a discussion with a friend. I had some free time on my hand and was wondering the best method to quickly analyze a huge amount of text and perform queries such as retrieving the top 100 most frequent words with length between 10 and 50 for example.
+Initially, the concept was born out of a discussion with a friend. I had some free time on my hand and was wondering the best method to quickly analyze a huge amount of text and perform queries such as retrieving the top 100 most frequent words with lengths between 10 and 50 for example.
 
 
 ## The Process

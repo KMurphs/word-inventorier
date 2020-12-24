@@ -15,6 +15,7 @@
 }
 .Footer .app-details a:hover{
   text-decoration: underline;
+  color: var(--accent-500);
 }
 .Footer .contact-details div{
   display: flex;
@@ -40,4 +41,9 @@
   /* background-color: rgba(0,0,0,0.1); */
   margin-left: 2rem;
   /* color: var(--accent-00); */
+}
+.Footer .contact-details a:hover{
+  box-shadow: 4px 8px 1rem -2px rgba(174, 74, 20, 0.25);
+  transform: scale(1.05);
+  transition: transform .3s, box-shadow .3s;
 }

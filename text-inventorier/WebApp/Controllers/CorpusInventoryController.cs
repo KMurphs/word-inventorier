@@ -55,9 +55,9 @@ namespace WordInventoryApp.WebApp.Controllers
         public async Task<TextSummary> ProcessText([FromBody] ApiQuery content)
         // public async Task<Object> ProcessText([FromBody] Object content)
         {
-            Console.WriteLine($"Received Query: {content}");
-            Console.WriteLine($"Received Query: {content.text}");
-            Console.WriteLine($"Received Query: {content.queries}");
+            // Console.WriteLine($"Received Query: {content}");
+            // Console.WriteLine($"Received Query: {content.text}");
+            // Console.WriteLine($"Received Query: {content.queries}");
 
             DBTextSummary text = null;
             text = CorpusInventoryModel.GetTextWithID(content.text);

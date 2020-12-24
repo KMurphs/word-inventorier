@@ -100,7 +100,10 @@ function App() {
         />
       </section>
       <section className="app-section progress-bar-section hidden lg:flex" id="query-form-progress">
-        <ProgressSection title="Your results are ready!"/>
+        { queryResults !== null && (
+            <ProgressSection title="Your results are ready!"/>
+          )
+        }
       </section>
 
 

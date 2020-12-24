@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WordInventoryApp;
-
+using System.Text.RegularExpressions;
 
 
 namespace WordInventoryApp
@@ -71,8 +71,11 @@ namespace WordInventoryApp
             string textID = GetHashString(textSrc); // hash is used as id in the db to cache the result of the processing of the input text
             string textMeta = "";
 
+            string pattern = @"^(((https?:\/\/)|(www\.))[^\s]+)$";
+            Match m = Regex.Match(textSrc, pattern, RegexOptions.IgnoreCase);
+
             // Get and sanitize text
-            if(textSrc.IndexOf("http") != -1){
+            if(m.Success){
                 sanitizedText = await textPreprocessor.FetchCorpus(textSrc, true);
                 textMeta = textSrc;
             }else{

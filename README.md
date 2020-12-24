@@ -110,6 +110,10 @@ The Mobile first Version of the front end client
 
 ![Mobile First Version](https://raw.githubusercontent.com/KMurphs/word-inventorier/master/docs/ui-mobile-lg.png "Mobile First Version of UI")
 
+The Desktop Version of the front end client
+
+![Mobile First Version](https://raw.githubusercontent.com/KMurphs/word-inventorier/master/docs/ui-desktop-lg.png "Desktop Version of UI")
+
 ## References
 1. https://stackoverflow.com/questions/4495241/given-a-file-find-the-ten-most-frequently-occurring-words-as-efficiently-as-pos
 2. https://www.geeksforgeeks.org/python-count-occurrences-of-each-word-in-given-text-file-using-dictionary/

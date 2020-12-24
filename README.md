@@ -150,7 +150,16 @@ Heroku redeployed the new image. The application is live at [Heroku](https://cor
 Although the process is described sequentially, there are times were things happen through iteration.
 
 
+## Github Page
+
+Some files were added to expose the project repo as github pages
+- ``<Current Repository>/assets/``
+- ``<Current Repository>/_config.yml``
+
 ## References
 1. https://stackoverflow.com/questions/4495241/given-a-file-find-the-ten-most-frequently-occurring-words-as-efficiently-as-pos
 2. https://www.geeksforgeeks.org/python-count-occurrences-of-each-word-in-given-text-file-using-dictionary/
-3. 
+3. https://tailwindcss.com/docs/guides/create-react-app
+4. https://tailwindcss.com/docs/installation
+5. https://tailwindcss.com/docs/installation#post-css-7-compatibility-build
+6. Some docs are available as pdfs under ``<Current Repository>/docs/``

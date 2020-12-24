@@ -1,7 +1,13 @@
 theme: jekyll-theme-cayman
 
+# To resolve urls properly
 baseurl: "/word-inventorier" # the subpath of your site, e.g. /blog
 url: "https://kmurphs.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
+# Site Presentation
 title: Word Inventorier
-# description: [A short description of your site's purpose]
+description: Project used to build an inventory of words in a corpus while keeping track of most frequent and longest words
+
+# Use for linking portfolio landing page to project
+skills: data structure and algorithms, C#, ASP.NET, NUnit, MongoDB, API, React, Typescript, Tailwindcss, Docker, Heroku
+banner: https://raw.githubusercontent.com/KMurphs/word-inventorier/master/docs/hero-mobile.png

@@ -30,4 +30,4 @@ Initially, the concept was born out of a discussion with a friend. I had some fr
 
 ## The Process
 
-![Process](https://github.com/KMurphs/word-inventorier/blob/master/docs/Process.png "Development and Design Process")
+![Process](https://raw.githubusercontent.com/KMurphs/word-inventorier/master/docs/Process.png "Development and Design Process")

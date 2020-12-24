@@ -52,10 +52,10 @@ Initially, the concept was born out of a discussion with a friend. I had some fr
 
     A step further was to investigate whether this last time complexity of ``O(M)`` could be reduced. 
     <br>For that, an extra data structure was created during the text processing. 
-    - This data structure is also a dictionary where keys are words lengths in the text, and values are linkedlist of words that have the same length as the key they are associated to. This extra structure adds another ``O(M + d)`` to the space complexity of the text processing phase - ***d (the number of possible word lengths within the text)*** is bounded by the longest word in the english dictionary ***pneumonoultramicroscopicsilicovolcanoconiosis - Length = 45***.
+    - This data structure is also a dictionary where keys are words lengths in the text, and values are linkedlist of words whose lengths ave the value specified by the key they are associated to. This extra structure adds another ``O(M + d)`` to the space complexity of the text processing phase - ***d (the number of possible word lengths within the text)*** is bounded by the longest word in the english dictionary ***pneumonoultramicroscopicsilicovolcanoconiosis - Length = 45***.
     <br>``d <= 45`` therefore ``d << M``. 
     
-    This data structure will bring down the time complexity of the query processing by allowing the algorithm to only process ***words that have length within a specified range***. If there are ***V** such words, the new time complexity is ``O(V)``. In some instances V can be way smaller than M.
+    This data structure will bring down the time complexity of the query processing by allowing the algorithm to only process ***words that have length within a specified range***. If there are ***V*** such words, the new time complexity is ``O(V)``. <br>In some instances V can be way smaller than M.
 
 In summary, 
 - Text Processing: ``O(N) Time Complexity, O(M) space complexity``
@@ -71,9 +71,44 @@ The dictionary of frequencies ``IDictionary<string, int>`` and the dictionary of
 
 
 
+## MVP and Unit Testing
+
+See ``<Current Repository>/text-inventorier/Inventorier/``
+
+The first step was to implement the core service that would process the text and run the query. Tests were developed to ensure functionality and corner cases (See ``<Current Repository>/text-inventorier/Inventorier.NUnitTests/``)
+
+A range of utility classes are used to fetch the text when a URL is provided, preprocess the text (Handle special characters, lower case all the text, ...), serialize and deserialize the data structures, hashing the text into an ID that can be used later to skip re-processing the text if the processing result is stored in our database.
+
+## API and Productionization
+
+See ``<Current Repository>/text-inventorier/WebApp/``
+Now that we have functional code, we can wrap it into an API.
+
+First step was to set up a ASP.NET server locally, and integrate with our core service at endpoint ``<Site URL>/api/corpusinventory``. Then integrate with MongoDB to store and retrieve serialized data structures.
+
+A docker image for ``aspnet:3.1`` is available (See ``<Current Repository>/text-inventorier/WebApp/DockerFile``). The image was built, pushed to a remote repo, and Heroku was configured to retrieve and run the docker image.
+
+``<Current Repository>/text-inventorier/scripts/push-app-to-backend.bat`` describes some of the commands used to perform this.
 
 
 
+## UI Solution Research and Ideation
+
+To show how the API could be consumed, a React Client was to be written that would demonstrate this.
+
+Sites like Dribble, Behance, and Google were surveyed to generate ideas for a suitable UI/UX concepts related to our word inventorier application.
+
+Information Architecture was first established as the most important aspect of the UI/UX considerations. Once related questions were answered, wireframes were drafted.
+
+![Wireframes](https://raw.githubusercontent.com/KMurphs/word-inventorier/master/docs/Process.png "Wireframes")
+
+## UI Design and Prototyping
+
+Figma was used to design the UI.
+
+The Mobile first Version of the front end client
+
+![Mobile First Version](https://raw.githubusercontent.com/KMurphs/word-inventorier/master/docs/ui-mobile.png "Mobile First Version of UI")
 
 ## References
 1. https://stackoverflow.com/questions/4495241/given-a-file-find-the-ten-most-frequently-occurring-words-as-efficiently-as-pos

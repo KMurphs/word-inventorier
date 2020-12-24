@@ -7,5 +7,5 @@
 .page-header {
   background-color: #2C59AC;
   background-image: linear-gradient(120deg, #2C59AC, #DC5D46);
-  background-image: url(/docs/hero-desktop.png);
+  background-image: url("{{ site.baseurl }}/docs/hero-desktop.png");
 }

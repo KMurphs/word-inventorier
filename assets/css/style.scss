@@ -13,15 +13,22 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  transition: all .3s;
+}
+.page-header .project-tagline {
+  max-width: 50vw;
 }
 .page-header * {
   opacity: 0;
+  transition: all .3s;
 }
 .page-header:hover * {
   opacity: 1;
+  transition: all .3s;
 }
 .page-header:hover {
   background-blend-mode: multiply;
+  transition: all .3s;
 }
 
 .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
